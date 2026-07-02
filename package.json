@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "@miletorix/vitepress-youtube-embed": "^1.0.3",
+    "gh-pages": "^6.3.0",
+    "markdown-it-mathjax3": "^4.3.2",
+    "vitepress": "^2.0.0-alpha.17",
+    "vitepress-mermaid-preview": "^0.2.1"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "predeploy": "GITHUB_ACTIONS=true npm run docs:build",
+    "deploy": "gh-pages -d docs/.vitepress/dist"
+  }
+}
