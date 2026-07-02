@@ -1,1 +1,0 @@
-import{g as n,d as e}from"./theme.BUkmNhYw.js";var a=n((o,t)=>{let d;return t==="sandbox"&&(d=e("#i"+o)),(t==="sandbox"?e(d.nodes()[0].contentDocument.body):e("body")).select(`[id="${o}"]`)},"getDiagramElement");export{a as d};
