@@ -2,8 +2,8 @@
     <div class="container flex-column">
         <h1>Not Found !</h1>
         <div class="flex-column">
-            <img id="404-2" src="https://i.pinimg.com/736x/a3/be/7b/a3be7bf75029c1eb317746fa5bc021b3.jpg" />
-            <img id="404-1" src="https://elementor.com/cdn-cgi/image/f=auto,w=1201/blog/wp-content/uploads/2021/03/Redesign-Your-Website_8.png"/>
+            <!-- <img id="404-2" src="https://i.pinimg.com/736x/a3/be/7b/a3be7bf75029c1eb317746fa5bc021b3.jpg" /> -->
+            <!-- <img id="404-1" src="https://elementor.com/cdn-cgi/image/f=auto,w=1201/blog/wp-content/uploads/2021/03/Redesign-Your-Website_8.png"/> -->
             <img id="404-2" src="https://miro.medium.com/v2/resize:fit:1400/1*ASPrAbd2qtFVSVuru7Y7Rw.png" />
         </div>        
     </div>    
