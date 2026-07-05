@@ -1,20 +1,9 @@
 import { defineConfig } from 'vitepress';
 import { vitepressMermaidPreview } from 'vitepress-mermaid-preview';
+import TOP_NAVBAR from "./navs/navbar";
 
 // Check if the build environment is GitHub Actions
 const IS_GITHUB_ACTIONS = process.env.GITHUB_ACTIONS === 'true';
-
-const defaultTopNav = [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' },
-      { text: 'Utils', items: [
-                          { text: 'Images', link: '/utils/images' },
-                          { text: 'Youtube', link: '/utils/youtube' },
-                          { text: 'Mermaid', link: '/utils/mermaid' },
-                          { text: 'Maths', link: '/utils/maths' },
-                        ]
-      },
-    ];
 
 const sidebarDefault = [
       {
@@ -62,7 +51,7 @@ export default defineConfig({
 	],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    nav: defaultTopNav,
+    nav: TOP_NAVBAR,
     sidebar: {
       "/": sidebarDefault,
       "/utils/": sidebarUtils,
