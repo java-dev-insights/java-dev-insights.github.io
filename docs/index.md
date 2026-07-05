@@ -7,32 +7,31 @@ hero:
   text: "Java Dev Insights"
   tagline: Notes and References for learning and implementing
   image:
-    alt: Hero Image
-    # src: /images/background.png
-    src: https://img.magnific.com/free-vector/cute-man-super-hero-flying-cartoon-vector-icon-illustration-people-holiday-icon-isolated-flat-vector_138676-12120.jpg?semt=ais_hybrid&w=740&q=80
+    alt: Hero
+    light: /images/hero-light.png
+    dark: /images/hero-dark.png
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Backend Dev
+      link: /backend
     - theme: alt
-      text: Utils
-      link: /utils/images
-    - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: SWE Concepts
+      link: /swe
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-    icon: 🪐
-    link: /api-examples
-    linkText: Check API examples
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Frontend
+    details: html, css, js, jest, sass, vue, angular
+    # icon: 🪐
+    link: /frontend
+    linkText: Check frontend topics
+  - title: Backend
+    details: Java, Spring, Hibernate, Utils
+    link: /backend
+  - title: API
+    details: Http, REST, CORS, OWASP, webservices, microservices
+    link: /api
     icon:
-      dark: /images/alien.png
-      light: /images/alien2.png
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+      dark: /images/alien-orange.png
+      light: /images/alien-green.png
 ---
 
