@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Notebook"
-  text: "Java Dev Insiights"
+  text: "Java Dev Insights"
   tagline: Notes and References for learning and implementing
   image:
     alt: Hero Image
