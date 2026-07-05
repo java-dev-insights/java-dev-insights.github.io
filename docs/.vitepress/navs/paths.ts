@@ -3,6 +3,7 @@
 const enum PATH_ENUMS {
     // Home and Root Nav Items
     HOME = "/",
+    UTILS = "/utils",
     // Frontend
     FRONTEND_INDEX = "/frontend",
     FRONTEND_HTML = "/frontend/html",

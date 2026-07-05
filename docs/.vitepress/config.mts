@@ -1,39 +1,10 @@
 import { defineConfig } from 'vitepress';
 import { vitepressMermaidPreview } from 'vitepress-mermaid-preview';
 import TOP_NAVBAR from "./navs/navbar";
+import ALL_SIDEBARS from './navs/sidebar';
 
 // Check if the build environment is GitHub Actions
 const IS_GITHUB_ACTIONS = process.env.GITHUB_ACTIONS === 'true';
-
-const sidebarDefault = [
-      {
-        collapsed: true,
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      }
-    ];
-
-const sidebarUtils = [
-  { 
-    collapsed: true,
-    text: 'Media', 
-    items: [
-      { text: 'Images', link: '/utils/images' },
-      { text: 'Youtube', link: '/utils/youtube' },
-    ] 
-  },
-  { 
-    collapsed: true,
-    text: 'Diagrams', 
-    items: [
-      { text: 'Mermaid', link: '/utils/mermaid' },
-      { text: 'Maths', link: '/utils/maths' },
-    ] 
-  }
-];
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -52,10 +23,7 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: TOP_NAVBAR,
-    sidebar: {
-      "/": sidebarDefault,
-      "/utils/": sidebarUtils,
-    },
+    sidebar: ALL_SIDEBARS,
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
