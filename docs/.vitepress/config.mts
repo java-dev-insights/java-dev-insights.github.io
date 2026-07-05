@@ -6,7 +6,6 @@ const IS_GITHUB_ACTIONS = process.env.GITHUB_ACTIONS === 'true';
 
 const defaultTopNav = [
       { text: 'Home', link: '/' },
-      { text: 'Setup', link: '/setup' },
       { text: 'Examples', link: '/markdown-examples' },
       { text: 'Utils', items: [
                           { text: 'Images', link: '/utils/images' },
@@ -49,10 +48,10 @@ const sidebarUtils = [
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "template-vitepress",
-  description: "template-vitepress",
+  title: "java-dev-insights",
+  description: "java-dev-insights",
   // Use repository name for GitHub Pages, fallback to root '/' for Netlify
-  base: IS_GITHUB_ACTIONS ? '/template-vitepress' : '/',
+  base: IS_GITHUB_ACTIONS ? '/' : '/',
   cleanUrls: true,
   ignoreDeadLinks: true,
   head: [

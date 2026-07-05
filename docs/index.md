@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: "template-vitepress"
-  text: "template-vitepress"
-  tagline: My great project tagline
+  name: "Notebook"
+  text: "Java Dev Insights"
+  tagline: Notes and References for learning and implementing
   image:
     alt: Hero Image
     # src: /images/background.png
