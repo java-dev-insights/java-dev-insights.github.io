@@ -14,6 +14,7 @@ export default defineConfig({
   base: IS_GITHUB_ACTIONS ? '/' : '/',
   cleanUrls: true,
   ignoreDeadLinks: true,
+  srcDir: "./src",
   head: [
 		["link", { rel: "icon", href: "icons/favicon.ico" }],
 		["link", { rel: "preconnect", href: "https://fonts.googleapis.com" }],
