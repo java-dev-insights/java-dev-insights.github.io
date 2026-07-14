@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-    console.log('Default Layout slots not-found')
+    // console.log('Default Layout slots not-found')
 </script>
 
 <style scoped>
