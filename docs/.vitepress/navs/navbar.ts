@@ -10,9 +10,15 @@ const TOP_NAVBAR = [
                 items: [
                     { text: 'Html', link: PATHS.FRONTEND_HTML },
                     { text: 'CSS', link: PATHS.FRONTEND_CSS },
-                    { text: 'Javascript', link: PATHS.FRONTEND_JS },
                     { text: 'Bootstrap', link: PATHS.FRONTEND_BOOTSTRAP },
                     { text: 'SASS', link: PATHS.FRONTEND_SASS },
+                ]
+            },
+            { 
+                // text: 'JS 🌐', 
+                items: [
+                    { text: 'Javascript', link: PATHS.FRONTEND_JS },
+                    { text: 'Typescript', link: PATHS.FRONTEND_TS },
                     { text: 'Jest', link: PATHS.FRONTEND_JEST },
                 ]
             },
