@@ -20,6 +20,9 @@ case $1 in
     git merge origin/main;
     # git push;
     ;;
+  log)
+    git log -n 10 --oneline;
+    ;;
   install)
     banner "install node and packages"
     # install and uses node version from .nvmrc file
