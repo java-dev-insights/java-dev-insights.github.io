@@ -23,15 +23,15 @@ features:
     details: html, css, js, jest, sass, vue, angular
     # icon: 🪐
     link: /frontend
-    linkText: Check frontend topics
+    # linkText: Check frontend topics
   - title: Backend
     details: Java, Spring, Hibernate, Utils
     link: /backend
   - title: API
     details: Http, REST, CORS, OWASP, webservices, microservices
     link: /api
-    icon:
-      dark: /images/alien-orange.png
-      light: /images/alien-green.png
+    # icon:
+      # dark: /images/alien-orange.png
+      # light: /images/alien-green.png
 ---
 

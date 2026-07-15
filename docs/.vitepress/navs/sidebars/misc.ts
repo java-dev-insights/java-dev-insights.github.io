@@ -10,17 +10,17 @@ const SIDEBAR_MISC_DEFAULT = [
         ]
       },
       {
+        text: 'Others',
+        items: [
+          { text: 'References', link: PATHS.MISC_REFS },
+          { text: 'Utils', link: PATHS.UTILS + '/images' },
+        ]
+      },
+      {
         text: 'Examples',
         items: [
           { text: 'Markdown Examples', link: PATHS.MISC_MARKDOWN_EXAMPLES },
           { text: 'Runtime API Examples', link: PATHS.MISC_API_EXAMPLES },
-        ]
-      },
-      {
-        text: 'Others',
-        items: [
-          { text: 'References', link: PATHS.MISC_REFS },
-          { text: 'Elements', link: '/misc/elements' },
         ]
       },
     ]
