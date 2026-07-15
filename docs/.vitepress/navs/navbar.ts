@@ -202,7 +202,6 @@ const TOP_NAVBAR = [
                     { text: 'Chrome', link: PATHS.MISC_CHROME },
                 ]
             },
-            { text: 'MD Examples', link: PATHS.MISC_MARKDOWN_EXAMPLES },
             { text: 'References', link: PATHS.MISC_REFS },
         ]
     },
