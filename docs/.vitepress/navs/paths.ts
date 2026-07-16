@@ -82,7 +82,6 @@ const enum PATH_ENUMS {
     MISC_INDEX = "/misc",
     MISC_REFS = "/misc/refs",
     MISC_JEKYLL = "/misc/jekyll",
-    MISC_CHROME = "/misc/chrome",
     MISC_API_EXAMPLES = "/misc/examples/api-examples",
     MISC_MARKDOWN_EXAMPLES = '/misc/examples/markdown-examples',
 }

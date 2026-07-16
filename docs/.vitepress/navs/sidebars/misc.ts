@@ -6,7 +6,6 @@ const SIDEBAR_MISC_DEFAULT = [
         text: 'Miscellaneous',
         items: [
           { text: 'Jekyll', link: PATHS.MISC_JEKYLL },
-          { text: 'Chrome', link: PATHS.MISC_CHROME },
         ]
       },
       {
