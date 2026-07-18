@@ -1,12 +1,13 @@
 <template>
     <div>
-        <p>Properties</p>
-        <ul v-if="showDebugText">
-            <li>prefix : {{ prefix }}</li>
-            <li>imagePath : {{ imagePath }}</li>
-            <li>imageUrl : {{ imageUrl }}</li>
-        </ul>
-
+        <div v-if="showDebugText">
+            <p>Properties</p>
+            <ul>
+                <li>prefix : {{ prefix }}</li>
+                <li>imagePath : {{ imagePath }}</li>
+                <li>imageUrl : {{ imageUrl }}</li>
+            </ul>
+        </div>
         <img :src="imageUrl" alt="Image is missing" srcset="" :title="title">
     </div>
     
