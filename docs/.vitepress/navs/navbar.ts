@@ -195,14 +195,8 @@ const TOP_NAVBAR = [
     {
         text: 'Misc', 
         items: [
-            {
-                // text: 'Programming Basics',
-                items: [
-                    { text: 'Jekyll', link: PATHS.MISC_JEKYLL },
-                    { text: 'Chrome', link: PATHS.MISC_CHROME },
-                ]
-            },
             { text: 'References', link: PATHS.MISC_REFS },
+            { text: 'Jekyll', link: PATHS.MISC_JEKYLL },
         ]
     },
 ]

@@ -31,6 +31,10 @@ export default defineConfig({
     ],
     search: { provider: 'local' },
 		// TODO: Agolia AI search
+    outline: {
+      level: [2, 3], // Only displays level-2 headings (H2)
+      label: 'Contents'
+    }
   },
   markdown: {
     math: true,

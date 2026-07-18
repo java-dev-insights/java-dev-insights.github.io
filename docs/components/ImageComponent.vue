@@ -1,13 +1,14 @@
 <template>
     <div>
-        <p>Properties</p>
-        <ul>
-            <li>prefix : {{ prefix }}</li>
-            <li>imagePath : {{ imagePath }}</li>
-            <li>imageUrl : {{ imageUrl }}</li>
-        </ul>
-
-        <img :src="imageUrl" alt="Image is missing" srcset="">
+        <div v-if="showDebugText">
+            <p>Properties</p>
+            <ul>
+                <li>prefix : {{ prefix }}</li>
+                <li>imagePath : {{ imagePath }}</li>
+                <li>imageUrl : {{ imageUrl }}</li>
+            </ul>
+        </div>
+        <img :src="imageUrl" alt="Image is missing" srcset="" :title="title">
     </div>
     
 </template>
@@ -16,8 +17,10 @@
 import { ref, computed, defineProps } from 'vue';
 
 const props = defineProps({
-  prefix: {type: String, default: 'https://cdn.pixabay.com/photo'},
+  prefix: {type: String, default: 'https://raw.githubusercontent.com/arpit04tripathi/cdn/main/notebook'},
   imagePath: { type: String, required: true },
+  showDebugText: { type: Boolean, default: false },
+  title: { type: String }
 })
 
 const images = ref(
