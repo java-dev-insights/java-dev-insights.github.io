@@ -1,7 +1,7 @@
 import { default as PATHS } from '../paths';
 
 const SIDEBAR_DEFAULT_BACKEND = [
-      { text: 'Overview', link: PATHS.BACKEND_INDEX },
+      { text: 'Overview - Backend', link: PATHS.BACKEND_INDEX },
       {
         text: 'Basic',
         items: [

@@ -1,12 +1,18 @@
 const SIDEBAR_JAVA = [
-      { text: 'Java Home Examples', link: '/markdown-examples' },
+      { text: 'Overview - Java', link: '/backend/java/' },
       {
         text: 'Java',
-        collapsed: true,
+        collapsed: false,
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' },
-          { text: 'Elements', link: '/elements' },
+          { text: 'OOP and OOD', link: '/backend/java/oop-and-ood' },
+          { text: 'JVM Architecture', link: '/backend/java/jvm-architecture' },
+          { text: 'Replace_This', link: '/backend/java/replace_this' },
+          { text: 'Replace_This', link: '/backend/java/replace_this' },
+          { text: 'Replace_This', link: '/backend/java/replace_this' },
+          { text: 'Replace_This', link: '/backend/java/replace_this' },
+          { text: 'Replace_This', link: '/backend/java/replace_this' },
+          { text: 'Replace_This', link: '/backend/java/replace_this' },
+          { text: 'Replace_This', link: '/backend/java/replace_this' },
         ]
       }
     ]
