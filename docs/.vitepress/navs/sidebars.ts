@@ -1,4 +1,4 @@
-import { default as PATHS } from "./paths";
+import { default as PATHS } from "./paths.ts";
 import { DefaultTheme } from "vitepress";
 import * as SIDEBARS from './sidebars/index.ts';
 

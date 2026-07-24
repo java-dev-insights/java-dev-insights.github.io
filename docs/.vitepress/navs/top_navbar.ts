@@ -197,6 +197,7 @@ const TOP_NAVBAR = [
         items: [
             { text: 'References', link: PATHS.MISC_REFS },
             { text: 'Jekyll', link: PATHS.MISC_JEKYLL },
+            { text: 'temp', link: '/misc/temp' },
         ]
     },
 ]
