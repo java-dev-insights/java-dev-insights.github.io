@@ -237,48 +237,57 @@ Steps:
 |Pure Fabrication       |           |A class that does not represent a concept in the problem domain, specially made up to achieve low coupling, high cohesion|
 
 ***Creator***
-* You try to answer these 4 question:
-    - Who is responsible for creating the objects?, or, how those objects are created in the first place?
-    - Does one object contain another (composition relationship)?
-    - Does one object very closely use another, 
-    - Will one object know enough to make another object?
 
-***Low Coupling***  
+You try to answer these 4 question:
+- Who is responsible for creating the objects?, or, how those objects are created in the first place?
+- Does one object contain another (composition relationship)?
+- Does one object very closely use another, 
+- Will one object know enough to make another object?
+
+***Low Coupling***
+
 - Coupling is a measure of how strongly one element is connected to, has knowledge of, or relies on other elements.
 - lower dependency between the classes,
 - change in one class having a lower impact on other classes,
 - higher reuse potential.
-* Now low coupling does not mean no coupling. Objects do need to know about each other, but as much as possible they should do what they can with the minimum of dependencies.
+- Now low coupling does not mean no coupling. Objects do need to know about each other, but as much as possible they should do what they can with the minimum of dependencies.
 
 ***High Cohesion***
-* The more you have a class that has relevant and focused responsibilities, the higher cohesion you will have.
-* You try to make the responsibilities of your classes relevant, related as much as you can.
-* You may need to break a class into some classes and distribute the responsibilities, instead of having a single class that does everything.
+
+- The more you have a class that has relevant and focused responsibilities, the higher cohesion you will have.
+- You try to make the responsibilities of your classes relevant, related as much as you can.
+- You may need to break a class into some classes and distribute the responsibilities, instead of having a single class that does everything.
 
 ***Polymorphism***
-* Having an object that can take the shape of several different objects. This allows us to trigger the correct behavior.
-* If, for example, we have an interface that’s implemented by several classes, you can assign or pass an instance of any of the sub classes to a reference variable that has the interface as it’s type. This will allow you to trigger the right methods, for the implementing class.
+
+- Having an object that can take the shape of several different objects. This allows us to trigger the correct behavior.
+- If, for example, we have an interface that’s implemented by several classes, you can assign or pass an instance of any of the sub classes to a reference variable that has the interface as it’s type. This will allow you to trigger the right methods, for the implementing class.
 
 ***Protected Variations***
-* How to design a system so that changes and variations have the minimum impact on what already exists.
-* Identify the parts of the system that are more likely to change, separate them from what stays the same, and then, encapsulate every part that vary in the system.
-* Most of the concepts we have been exploring are simply way of doing this, things like encapsulation and data-hiding, making your attributes private.
-* Interfaces are another area where we can wrap the unstable parts with an interface, and using polymorphism to create various implementations of this interface.
-* The Liskov substitution principle, where the child classes should always work when treated as their parent classes is another way.
-* The open/closed principle that we can add, but we try not to change code that works already is yet another.
+
+- How to design a system so that changes and variations have the minimum impact on what already exists.
+- Identify the parts of the system that are more likely to change, separate them from what stays the same, and then, encapsulate every part that vary in the system.
+- Most of the concepts we have been exploring are simply way of doing this, things like encapsulation and data-hiding, making your attributes private.
+- Interfaces are another area where we can wrap the unstable parts with an interface, and using polymorphism to create various implementations of this interface.
+- The Liskov substitution principle, where the child classes should always work when treated as their parent classes is another way.
+- The open/closed principle that we can add, but we try not to change code that works already is yet another.
 
 ***Pure Fabrication***
-* What if there’s something that needs to exist in the application that doesn’t announce itself as an obvious class or real-world object?. What if you have behavior that doesn’t naturally fit in existing classes?
-* Well, rather than force that behavior into an existing class where it doesn’t belong, which means we are decreasing cohesion, we instead invent, we fabricate a new class.
-* That class might not have existed in our conceptual model, but it needs to exist now. And there’s nothing wrong with creating a class that represents pure functionality as long as you know why you’re doing it.
-* A pure fabrication is a class that does not represent a concept in the problem domain, specially made up to achieve low coupling, high cohesion, and the reuse potential thereof derived (when a solution presented by the information expert pattern does not). This kind of class is called a "service" in domain-driven design.
+
+- What if there’s something that needs to exist in the application that doesn’t announce itself as an obvious class or real-world object?. What if you have behavior that doesn’t naturally fit in existing classes?
+- Well, rather than force that behavior into an existing class where it doesn’t belong, which means we are decreasing cohesion, we instead invent, we fabricate a new class.
+- That class might not have existed in our conceptual model, but it needs to exist now. And there’s nothing wrong with creating a class that represents pure functionality as long as you know why you’re doing it.
+- A pure fabrication is a class that does not represent a concept in the problem domain, specially made up to achieve low coupling, high cohesion, and the reuse potential thereof derived (when a solution presented by the information expert pattern does not). This kind of class is called a "service" in domain-driven design.
 
 ## Code Smell
-*  Code Smells are a great term for when reading code, the code may be valid, it may work, but there is something about it that just doesn’t smell right.
-*  It’s often a clue, a warning sign of a deeper problem, that there is a part in the code indicates violation of fundamental design principles and negatively impact design quality.
-* And here are just a few examples of what we mean by a code smell.
-    - **Long Method** - One would be the idea of a long method. We open up a method to read it, it has got many lines. This is the kind of thing that really needs to be split up into much smaller methods.
-	- **Identifiers** - Working with very short or very long identifiers. Aside from using letters like ‘i’ for indexes and iteration, we shouldn’t be expecting to see variables called A and B and C in real code.
-	- **Comments** - Another clue would be pointless comments. Yes, code should be commented and code should be well-written so that it’s readable and the code comments itself. We do want comments, but we don’t want comments where the comment is actually longer than the code that it’s describing.
-	- **The God Object** - This is where you have one master object that tries to do everything in the program, or at least one object that seems to be doing very different responsibilities that have nothing to do with each other.It’s a clue that this needs to be revisited and broken apart into the right kind of objects.
-	- **Feature Envy** - And then there’s feature envy. If a class seems to do very little except it uses all the methods of one other class, it’s another sign that you need to rethink the roles of one or the other.
+
+- Code Smells are a great term for when reading code, the code may be valid, it may work, but there is something about it that just doesn’t smell right.
+- It’s often a clue, a warning sign of a deeper problem, that there is a part in the code indicates violation of fundamental design principles and negatively impact design quality.
+
+And here are just a few examples of what we mean by a code smell.
+
+- **Long Method** - One would be the idea of a long method. We open up a method to read it, it has got many lines. This is the kind of thing that really needs to be split up into much smaller methods.
+- **Identifiers** - Working with very short or very long identifiers. Aside from using letters like ‘i’ for indexes and iteration, we shouldn’t be expecting to see variables called A and B and C in real code.
+- **Comments** - Another clue would be pointless comments. Yes, code should be commented and code should be well-written so that it’s readable and the code comments itself. We do want comments, but we don’t want comments where the comment is actually longer than the code that it’s describing.
+- **The God Object** - This is where you have one master object that tries to do everything in the program, or at least one object that seems to be doing very different responsibilities that have nothing to do with each other.It’s a clue that this needs to be revisited and broken apart into the right kind of objects.
+- **Feature Envy** - And then there’s feature envy. If a class seems to do very little except it uses all the methods of one other class, it’s another sign that you need to rethink the roles of one or the other.
