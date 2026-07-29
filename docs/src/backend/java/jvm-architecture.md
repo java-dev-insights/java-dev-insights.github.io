@@ -269,3 +269,112 @@ JVM Heap memory is divided into two parts – Young Generation and Old Generatio
 <ImageComponent image-path='/java/jvm-architecture/heap-memory-switches.png' />
 
 <ImageComponent image-path='/java/jvm-architecture/heap-memory-switches-generation.png' />
+
+## Java Garbage Collection
+
+- Process to identify and remove the unused objects from memory and free up the space.
+- Java has **automatic garbage collection**.
+- **Garbage Collector**, background program that looks for unreferenced objects, which are deleted to reclaim memory.
+- Garbage collection involves three steps:
+  - **Marking** – identifies objects not in use.
+  - **Normal Deletion** - removes the unused objects and reclaim the free space.
+  - **Deletion with Compacting** - For better performance, all survived objects moved together.
+
+Problems with simple mark and delete approach.
+- Not efficient, because most of the newly created objects will become unused.
+- Objects that are in-use for multiple garbage collection cycle are most likely to be in-use for future cycles too.
+
+Due to these problems, **Java Garbage Collection is Generational**.  
+We have **Young Generation** and **Old Generation** spaces in the heap memory.
+
+### Garbage Collection Types
+
+Use JVM switch to enable the garbage collection strategy for the application.  
+There are 5 types of garbage collection.
+
+#### Serial GC (-XX:+UseSerialGC)
+
+- simple **mark-sweep-compact** approach for young and old generations garbage collection i.e Minor and Major GC. 
+- It is good for small applications with low memory footprint.
+- useful in client-machines
+  - simple stand-alone applications
+  - machines with smaller CPU. 
+
+#### Parallel GC (-XX:+UseParallelGC)
+
+- Also called **throughput collector** because it uses multiple CPUs to speed up the GC performance. 
+- Same as Serial GC except that is **spawns N threads for young generation garbage collection**
+  - **N is the number of CPU cores** in the system. 
+- Parallel GC uses **single thread for Old Generation** garbage collection.
+- We can control the number of threads using `-XX:ParallelGCThreads=n` JVM option.
+
+#### **Parallel Old GC (-XX:+UseParallelOldGC)**
+
+- same as Parallel GC, uses multiple threads for both Young Generation and Old Generation garbage collection.
+
+#### Concurrent Mark Sweep (CMS) Collector (-XX:+UseConcMarkSweepGC)
+
+- known as **concurrent low pause collector**.
+- does the garbage collection for Old generation.
+- CMS collector tries to minimize the pauses due to garbage collection.
+  - by doing most of the garbage collection work concurrently with the application threads.
+- CMS collector on young generation uses the same algorithm as that of the parallel GC.
+- Suitable for responsive applications where we can’t afford longer pause times. 
+- Can limit the number of threads in CMS collector using `-XX:ParallelCMSThreads=n` JVM option.
+
+#### G1 Garbage Collector (-XX:+UseG1GC)
+
+- Garbage First or G1 garbage collector
+- it’s long term goal is to replace the CMS collector.
+- parallel, concurrent, and incrementally compacting low-pause garbage collector.
+- G1 GC doesn’t work like other collectors and there is no concept of Young and Old generation space.
+- It divides the heap space into multiple equal-sized heap regions.
+- When a garbage collection is invoked, it first collects the region with lesser live data, hence “Garbage First”.
+
+### Reference Types
+
+Types of references based on when will the objects on heap become eligible for garbage collection.
+
+#### Strong Reference
+
+Not garbage collected if it has a direct or indirect strong reference pointing to it. (through a chain of strong references)
+
+#### Weak Reference
+
+- Object with weak reference is most likely to not survive after the next garbage collection process.
+- A weak reference is created as follows:
+
+```java
+WeakReference<StringBuilder> reference 
+      = new WeakReference<>(new StringBuilder());
+```
+
+- **Use Case** - caching scenarios where you retrieve some data, and you want it to be stored in memory but not sure when, or if, this data will be requested again. So, you can keep a weak reference to it, and in case the garbage collector runs, it could be that it destroys your object on the heap. Therefore, after a while, retrieve may return null value.
+- A nice implementation for caching scenarios is the collection `WeakHashMap<K,V>`.
+- Entry<K,V> actually extends the WeakReference class and uses its **ref** field as the map’s key:
+
+```java
+// The entries in this hash table extend WeakReference, 
+// using its main ref field as the key.
+private static class Entry<K,V> 
+          extends WeakReference<Object> implements Map.Entry<K,V> {
+  V value;
+  final int hash;
+  Entry<K,V> next;
+```
+
+- keys are stored using weak references.
+- Once a key from the WeakHashMap is garbage collected, the entire entry is removed from the map.
+- Unlike a standard HashMap, which holds a strong reference to its keys, a WeakHashMap allows its entry to be automatically garbage collected as soon as its key object is no longer referenced anywhere else outside the map.
+
+#### Soft Reference
+
+- For more memory-sensitive scenarios, Wll be garbage collected only when application is running low on memory.
+- If no critical need to free up some space, the GC will not touch softly reachable objects.
+- Java guarantees that all soft referenced objects are cleaned up before it throws an OutOfMemoryError.
+- Similar to weak references, a soft reference is created as follows:
+
+```java
+SoftReference<StringBuilder> reference = new SoftReference<>(new StringBuilder());
+```
+
