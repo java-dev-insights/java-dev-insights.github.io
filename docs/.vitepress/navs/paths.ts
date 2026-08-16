@@ -3,9 +3,12 @@
 const enum PATH_ENUMS {
     // Home and Root Nav Items
     HOME = "/",
-    UTILS = "/utils",
+    FRONTEND_INDEX = "/frontend/",
+    BACKEND_INDEX = "/backend/",
+    DEVOPS_INDEX = "/devops/",
+    INTERVIEW_INDEX = "/interview/",
+    UTILS = "/misc/utils",
     // Frontend
-    FRONTEND_INDEX = "/frontend",
     FRONTEND_HTML = "/frontend/html",
     FRONTEND_CSS = "/frontend/css",
     FRONTEND_JS = "/frontend/js",
@@ -19,7 +22,6 @@ const enum PATH_ENUMS {
     FRONTEND_WEBPACK = "/frontend/webpack",
     FRONTEND_VITE = "/frontend/vite",
     // Backend
-    BACKEND_INDEX = "/backend",
     BACKEND_JAVA = "/backend/java",
     BACKEND_SPRING = "/backend/spring",
     BACKEND_HIBERNATE = "/backend/hibernate",
@@ -44,7 +46,6 @@ const enum PATH_ENUMS {
     API_RABBIT_MQ = "/api/rabbit-mq",
     API_OWASP = "/api/owasp",
     // DevOps & CI/CD Tools
-    DEVOPS_INDEX = "/devops",
     DEVOPS_GIT = "/devops/git",
     DEVOPS_GRADLE = "/devops/gradle",
     DEVOPS_JENKINS = "/devops/jenkins",

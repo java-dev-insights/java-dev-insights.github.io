@@ -16,6 +16,15 @@ const SIDEBAR_MISC_DEFAULT = [
         ]
       },
       {
+        text: 'Utils',
+        items: [
+          { text: 'Images', link: PATHS.UTILS+'/images' },
+          { text: 'Youtube', link: PATHS.UTILS+'/youtube' },
+          { text: 'Mermaid', link: PATHS.UTILS+'/mermaid' },
+          { text: 'Maths', link: PATHS.UTILS+'/maths' },
+        ]
+      },
+      {
         text: 'Examples',
         items: [
           { text: 'Markdown Examples', link: PATHS.MISC_MARKDOWN_EXAMPLES },
