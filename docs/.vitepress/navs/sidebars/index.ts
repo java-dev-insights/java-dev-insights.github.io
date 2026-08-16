@@ -1,5 +1,3 @@
-// Home Page
-export { default as SIDEBAR_DEFAULT_UTILS } from './utils';
 // Frontend
 export { default as SIDEBAR_DEFAULT_FRONTEND } from './frontend'
 // Backend

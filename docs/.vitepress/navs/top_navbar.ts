@@ -1,7 +1,41 @@
 import { default as PATHS } from "./paths";
 
 const TOP_NAVBAR = [
-    { text: 'Home', link: PATHS.HOME },
+    // { text: 'Home', link: PATHS.HOME },
+    {
+        text: 'Tracks', 
+        items: [
+            { text: 'Frontend Dev', link: PATHS.FRONTEND_INDEX },
+            { text: 'Backend Dev', link: PATHS.BACKEND_INDEX },
+            { text: 'Devops & CICD', link: PATHS.DEVOPS_INDEX },
+        ]
+    },
+    {
+        text: 'Interview', 
+        items: [
+            { text: 'Interview Landscape', link: '/interview/' },
+            { text: 'Coding', link: '/interview/coding/' },
+            { text: 'LLD', link: '/interview/lld/' },
+            { text: 'System Design', link: '/interview/system-design/' },
+            { text: 'Other FAQs', link: '/interview/faqs/' },
+            { text: 'Behaviorial', link: '/interview/behaviorial/' },
+            { text: 'Salary Negotiations', link: '/interview/salary-negotiations/' },
+        ]
+    },
+    {
+        text: 'AI', 
+        items: [
+            { text: 'Introduction', link: PATHS.AI_INTRO },
+        ]
+    },
+    {
+        text: 'Misc', 
+        items: [
+            { text: 'References', link: PATHS.MISC_REFS },
+            { text: 'Jekyll', link: PATHS.MISC_JEKYLL },
+            { text: 'temp', link: '/misc/temp' },
+        ]
+    },
     { 
         text: 'Frontend', 
         items: [
@@ -184,20 +218,6 @@ const TOP_NAVBAR = [
                     { text: 'Puzzles', link: PATHS.CSE_PUZZLES },
                 ]
             },
-        ]
-    },
-    {
-        text: 'AI', 
-        items: [
-            { text: 'Introduction', link: PATHS.AI_INTRO },
-        ]
-    },
-    {
-        text: 'Misc', 
-        items: [
-            { text: 'References', link: PATHS.MISC_REFS },
-            { text: 'Jekyll', link: PATHS.MISC_JEKYLL },
-            { text: 'temp', link: '/misc/temp' },
         ]
     },
 ]
