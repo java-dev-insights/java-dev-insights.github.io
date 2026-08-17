@@ -18,3 +18,4 @@ Back-end developers are responsible for building and maintaining these systems, 
 - API Docs - [Swagger](swagger), [OpenAPI](openapi)
 - Messaging - [Apache Kafka](kafka), [RabbitMQ](rabbit-mq), SQS
 - Security - [OWASP](owasp)
+- [Clean Code](clean-code)

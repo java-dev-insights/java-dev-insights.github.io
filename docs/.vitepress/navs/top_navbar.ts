@@ -17,8 +17,9 @@ const TOP_NAVBAR = [
             { text: 'Coding', link: PATHS.INTERVIEW_CODING },
             { text: 'LLD', link: PATHS.INTERVIEW_LLD },
             { text: 'System Design', link: PATHS.INTERVIEW_SYSTEM_DESIGN },
-            { text: 'Behaviorial', link: PATHS.INTERVIEW_BEHAVIORIAL },
+            { text: 'Concurrency', link: PATHS.INTERVIEW_CONCURRENCY },
             { text: 'FAQs', link: PATHS.INTERVIEW_FAQS },
+            { text: 'Behavioral', link: PATHS.INTERVIEW_BEHAVIORAL },
             { text: 'Salary Negotiations', link: PATHS.INTERVIEW_SALARY_NEGOTIATIONS },
         ]
     },
@@ -35,33 +36,6 @@ const TOP_NAVBAR = [
             { text: 'Jekyll', link: PATHS.MISC_JEKYLL },
             { text: 'temp', link: PATHS.MISC_TEMP },
         ]
-    },
-    { 
-        text: 'SWE', 
-        items: [
-            {
-                // text: 'Best Practices',
-                items: [
-                    { text: 'Clean Code', link: PATHS.SWE_CLEAN_CODE },
-                    { text: 'Design Patterns', link: PATHS.SWE_DESIGN_PATTERNS },
-                ]
-            },
-            {
-                // text: 'Concepts',
-                items: [
-                    { text: 'Cloud Computing', link: PATHS.SWE_CLOUD_COMPUTING },
-                    { text: 'Distributed Systems', link: PATHS.SWE_DISTRIBUTED_SYSTEMS },
-                    { text: 'System Design Concepts', link: PATHS.SWE_SYSTEM_DESIGN },
-                    { text: 'System Design Examples', link: PATHS.SWE_SYSTEM_DESIGN_EXAMPLES },
-                ]
-            },
-            {
-                // text: 'Cloud Platforms',
-                items: [
-                    { text: 'AWS', link: PATHS.SWE_AWS },
-                ]
-            },            
-        ] 
     },
 ]
 
