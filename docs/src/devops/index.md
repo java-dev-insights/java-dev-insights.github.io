@@ -1,14 +1,20 @@
 # 🛠️ DevOps & CI/CD Tools
 
-- [Git](git) - version control system
-- Build Tool - Gradle, Maven
-- Automation - [Jenkins](jenkins), Ansible, Checf
+- Version Control and Build Tools
+  - [Git](git) - version control system
+  - [Gradle](gradle), Maven
 - Containers - [Containerization](containerization), [Docker](docker)
-- Puppet
-- Nginx
-- Container Orchestration - Kubernetes, Openshift (RedHat), Hasicorp Nomad, Docker Swarm, etc…
+- Tools
+  - Automation - [Jenkins](jenkins), Ansible, Checf
+  - [Puppet](puppet)
+  - [Nginx](nginx)
+- Container Orchestration
+  - [Kubernetes](kubernetes)
+  - [Hasicorp Nomad](nomad)
+  - Openshift (RedHat)
+  - Docker Swarm, etc…
 - [16 Best Container Orchestration Tools and Services](https://devopscube.com/docker-container-clustering-tools){:target=""_blank}
 - **Monitoring & Observability** 📊
-  - ELK
-  - Grafana and Metrics
+  - [ELK](elk)
+  - [Grafana](grafana) and Metrics
   - Monitoring, Alerts and Logs

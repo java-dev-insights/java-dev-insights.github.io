@@ -13,17 +13,17 @@ const SIDEBAR_MISC_DEFAULT = [
       {
         text: 'Utils',
         items: [
-          { text: 'Images', link: PATHS.MISC_UTILS+'images' },
-          { text: 'Youtube', link: PATHS.MISC_UTILS+'youtube' },
-          { text: 'Mermaid', link: PATHS.MISC_UTILS+'mermaid' },
-          { text: 'Maths', link: PATHS.MISC_UTILS+'maths' },
+          { text: 'Images', link: PATHS.MISC_INDEX+'utils/images' },
+          { text: 'Youtube', link: PATHS.MISC_INDEX+'utils/youtube' },
+          { text: 'Mermaid', link: PATHS.MISC_INDEX+'utils/mermaid' },
+          { text: 'Maths', link: PATHS.MISC_INDEX+'utils/maths' },
         ]
       },
       {
         text: 'Examples',
         items: [
-          { text: 'Markdown Examples', link: PATHS.MISC_EXAMPLES+'markdown-examples' },
-          { text: 'Runtime API Examples', link: PATHS.MISC_EXAMPLES+'api-examples' },
+          { text: 'Markdown Examples', link: PATHS.MISC_INDEX+'examples/markdown-examples' },
+          { text: 'Runtime API Examples', link: PATHS.MISC_INDEX+'examples/api-examples' },
         ]
       },
     ]

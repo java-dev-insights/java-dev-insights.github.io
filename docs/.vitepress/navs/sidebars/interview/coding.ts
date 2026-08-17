@@ -5,8 +5,8 @@ const SIDEBAR_INTERVIEW_CODING = [
     {
         // text: 'Version Control',
         items: [
-            { text: "Git", link: PATHS.DEVOPS_GIT },
-            { text: "Gradle", link: PATHS.DEVOPS_GRADLE },
+            { text: "Git", link: 'git' },
+            { text: "Gradle", link: 'gradle' },
         ],
     },
 ];

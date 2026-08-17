@@ -39,6 +39,36 @@ const SIDEBAR_DEFAULT_BACKEND = [
           { text: 'Feign', link: PATHS.BACKEND_INDEX+'feign' },
         ]
       },
+      {
+        text: 'API',
+        items: [
+          { text: 'Http', link: PATHS.BACKEND_INDEX+'http' },
+          { text: 'CORS', link: PATHS.BACKEND_INDEX+'cors' },
+          { text: 'REST', link: PATHS.BACKEND_INDEX+'rest' },
+          { text: 'OWASP', link: PATHS.BACKEND_INDEX+'owasp' },
+        ]
+      },
+      {
+        text: 'Services',
+        items: [
+          { text: 'WebServices', link: PATHS.BACKEND_INDEX+'webservices' },
+          { text: 'Microservices', link: PATHS.BACKEND_INDEX+'microservices' },
+        ]
+      },
+      {
+        text: 'API Docs',
+        items: [
+          { text: 'Swagger', link: PATHS.BACKEND_INDEX+'swagger' },
+          { text: 'Open API', link: PATHS.BACKEND_INDEX+'openapi' },
+        ]
+      },
+      {
+        text: 'Messaging',
+        items: [
+          { text: 'Apache Kafka', link: PATHS.BACKEND_INDEX+'kafka' },
+          { text: 'Rabbit MQ', link: PATHS.BACKEND_INDEX+'rabbit-mq' },
+        ]
+      },
     ]
 
 export default SIDEBAR_DEFAULT_BACKEND;

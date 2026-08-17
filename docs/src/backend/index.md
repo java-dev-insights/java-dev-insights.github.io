@@ -13,4 +13,8 @@ Back-end developers are responsible for building and maintaining these systems, 
 - Libraries
   - Mappers - [Object Mapper](mapper), [JSON](json), [XML](xml)
   - Boilerplate - [Lombok](lombok), [Logger (SLF4J)](logger), [Feign](feign)
-- API Docs - Swagger
+- API - [Http](http), [CORS](cors), [REST](rest)
+- services - [WebServices](webservices) and [Microservices](microservices)
+- API Docs - [Swagger](swagger), [OpenAPI](openapi)
+- Messaging - [Apache Kafka](kafka), [RabbitMQ](rabbit-mq), SQS
+- Security - [OWASP](owasp)

@@ -9,8 +9,6 @@ export { default as SIDEBAR_INTERVIEW_CODING } from './interview/coding';
 export { default as SIDEBAR_DEFAULT_AI } from './ai';
 // Misc
 export { default as SIDEBAR_DEFAULT_MISC } from './misc';
-// APIs
-export { default as SIDEBAR_DEFAULT_API } from './api';
 // SWE
 export { default as SIDEBAR_DEFAULT_SWE } from './swe';
 
