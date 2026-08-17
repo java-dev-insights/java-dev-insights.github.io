@@ -1,4 +1,4 @@
-/** Paths for Top Navbar Items (Routes) */
+/** Paths for Top Navbar Items (Routes) which are also used in sidebars */
 
 const enum PATH_ENUMS {
     // Home and Root Nav Items
@@ -7,32 +7,18 @@ const enum PATH_ENUMS {
     BACKEND_INDEX = "/backend/",
     DEVOPS_INDEX = "/devops/",
     INTERVIEW_INDEX = "/interview/",
-    UTILS = "/misc/utils",
-    // Frontend
-    FRONTEND_HTML = "/frontend/html",
-    FRONTEND_CSS = "/frontend/css",
-    FRONTEND_JS = "/frontend/js",
-    FRONTEND_BOOTSTRAP = "/frontend/bs",
-    FRONTEND_SASS = "/frontend/sass",
-    FRONTEND_JEST = "/frontend/jest",
-    FRONTEND_TS = "/frontend/ts",
-    FRONTEND_VUE = "/frontend/vue",
-    FRONTEND_VTU = "/frontend/vue-test-utils",
-    FRONTEND_ANGULAR = "/frontend/angular",
-    FRONTEND_WEBPACK = "/frontend/webpack",
-    FRONTEND_VITE = "/frontend/vite",
-    // Backend
-    BACKEND_JAVA = "/backend/java",
-    BACKEND_SPRING = "/backend/spring",
-    BACKEND_HIBERNATE = "/backend/hibernate",
-    BACKEND_JUNIT = "/backend/junit",
-    BACKEND_CUCUMBER = "/backend/cucumber",
-    BACKEND_OBJECT_MAPPER = "/backend/mapper",
-    BACKEND_JSON = "/backend/json",
-    BACKEND_XML = "/backend/xml",
-    BACKEND_LOMBOK = "/backend/lombok",
-    BACKEND_LOGGER = "/backend/logger",
-    BACKEND_FEIGN = "/backend/feign",
+    MISC_INDEX = "/misc/",
+    AI_INDEX = "/ai/",
+    // Sub Folders
+    INTERVIEW_CODING = INTERVIEW_INDEX + "coding/",
+    INTERVIEW_LLD = INTERVIEW_INDEX + "lld/",
+    INTERVIEW_SYSTEM_DESIGN = INTERVIEW_INDEX + "system-design/",
+    INTERVIEW_FAQS = INTERVIEW_INDEX + "faqs/",
+    INTERVIEW_BEHAVIORIAL = INTERVIEW_INDEX + "behaviorial/",
+    INTERVIEW_SALARY_NEGOTIATIONS = INTERVIEW_INDEX + "salary-negotiations/",
+    MISC_UTILS = "/misc/utils/",
+    MISC_EXAMPLES = "/misc/examples/",
+    /** Sidebar links */
     // APIs & Microservices
     API_INDEX = "/api",
     API_HTTP = "/api/http",
@@ -66,25 +52,12 @@ const enum PATH_ENUMS {
     SWE_SYSTEM_DESIGN = "/swe/system-design",
     SWE_SYSTEM_DESIGN_EXAMPLES = "/swe/system-design-examples",
     SWE_AWS = "/swe/aws",
-    // CSE Core
-    CSE_INDEX = "/cse",
-    CSE_DS = "/cse/ds",
-    CSE_ALGO = "/cse/algo",
-    CSE_OS = "/cse/os",
-    CSE_DBMS = "/cse/dbms",
-    CSE_CN = "/cse/networks",
-    CSE_PROG_BASIC = "/cse/programming-basics",
-    CSE_CHEATSHEET = "/cse/cheatsheet",
-    CSE_PUZZLES = "/cse/puzzles",
     // Miscellaneous
-    AI_INDEX = "/ai",
     AI_INTRO = "/ai/intro",
     // Miscellaneous
-    MISC_INDEX = "/misc",
-    MISC_REFS = "/misc/refs",
-    MISC_JEKYLL = "/misc/jekyll",
-    MISC_API_EXAMPLES = "/misc/examples/api-examples",
-    MISC_MARKDOWN_EXAMPLES = '/misc/examples/markdown-examples',
+    MISC_REFS = MISC_INDEX+"refs",
+    MISC_JEKYLL = MISC_INDEX+"jekyll",
+    MISC_TEMP = MISC_INDEX+"temp",
 }
 
 export default PATH_ENUMS;

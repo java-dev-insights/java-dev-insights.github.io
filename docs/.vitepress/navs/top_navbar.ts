@@ -13,13 +13,13 @@ const TOP_NAVBAR = [
     {
         text: 'Interview', 
         items: [
-            { text: 'Interview Landscape', link: '/interview/' },
-            { text: 'Coding', link: '/interview/coding/' },
-            { text: 'LLD', link: '/interview/lld/' },
-            { text: 'System Design', link: '/interview/system-design/' },
-            { text: 'Other FAQs', link: '/interview/faqs/' },
-            { text: 'Behaviorial', link: '/interview/behaviorial/' },
-            { text: 'Salary Negotiations', link: '/interview/salary-negotiations/' },
+            { text: 'Interview Landscape', link: PATHS.INTERVIEW_INDEX },
+            { text: 'Coding', link: PATHS.INTERVIEW_CODING },
+            { text: 'LLD', link: PATHS.INTERVIEW_LLD },
+            { text: 'System Design', link: PATHS.INTERVIEW_SYSTEM_DESIGN },
+            { text: 'Behaviorial', link: PATHS.INTERVIEW_BEHAVIORIAL },
+            { text: 'FAQs', link: PATHS.INTERVIEW_FAQS },
+            { text: 'Salary Negotiations', link: PATHS.INTERVIEW_SALARY_NEGOTIATIONS },
         ]
     },
     {
@@ -33,76 +33,8 @@ const TOP_NAVBAR = [
         items: [
             { text: 'References', link: PATHS.MISC_REFS },
             { text: 'Jekyll', link: PATHS.MISC_JEKYLL },
-            { text: 'temp', link: '/misc/temp' },
+            { text: 'temp', link: PATHS.MISC_TEMP },
         ]
-    },
-    { 
-        text: 'Frontend', 
-        items: [
-            { 
-                // text: 'Basics 🌐', 
-                items: [
-                    { text: 'Html', link: PATHS.FRONTEND_HTML },
-                    { text: 'CSS', link: PATHS.FRONTEND_CSS },
-                    { text: 'Javascript', link: PATHS.FRONTEND_JS },
-                ]
-            },
-            { 
-                // text: 'JS 🌐', 
-                items: [
-                    { text: 'Bootstrap', link: PATHS.FRONTEND_BOOTSTRAP },
-                    { text: 'SASS', link: PATHS.FRONTEND_SASS },
-                    { text: 'Typescript', link: PATHS.FRONTEND_TS },
-                    { text: 'Jest', link: PATHS.FRONTEND_JEST },
-                ]
-            },
-            { 
-                // text: 'Frameworks', 
-                items: [
-                    { text: 'Vue.js', link: PATHS.FRONTEND_VUE },
-                    { text: 'Vue Test Utils', link: PATHS.FRONTEND_VTU },
-                    { text: 'Angular', link: PATHS.FRONTEND_ANGULAR },
-                ]
-            },
-            { 
-                // text: 'Bundler', 
-                items: [
-                    { text: 'vite', link: PATHS.FRONTEND_VITE },
-                    { text: 'webpack', link: PATHS.FRONTEND_WEBPACK },
-                ]
-            },            
-        ] 
-    },
-    { 
-        text: 'Backend', 
-        items: [
-            {
-                // text: 'Core',
-                items: [
-                    { text: 'Java', link: PATHS.BACKEND_JAVA },
-                    { text: 'Spring', link: PATHS.BACKEND_SPRING },
-                    { text: 'Hibernate', link: PATHS.BACKEND_HIBERNATE },
-                ]
-            },
-            {
-                // text: 'Testing',
-                items: [
-                    { text: 'JUnit', link: PATHS.BACKEND_JUNIT },
-                    { text: 'Cucumber', link: PATHS.BACKEND_CUCUMBER },
-                ]
-            },
-            {
-                // text: 'Utils',
-                items: [
-                    { text: 'Object Mapper', link: PATHS.BACKEND_OBJECT_MAPPER },
-                    { text: 'JSON', link: PATHS.BACKEND_JSON },
-                    { text: 'XML', link: PATHS.BACKEND_XML },
-                    { text: 'Lombok', link: PATHS.BACKEND_LOMBOK },
-                    { text: 'Logger (SLF4J)', link: PATHS.BACKEND_LOGGER },
-                    { text: 'Feign', link: PATHS.BACKEND_FEIGN },
-                ]
-            },
-        ] 
     },
     { 
         text: 'APIs', 
@@ -201,24 +133,6 @@ const TOP_NAVBAR = [
                 ]
             },            
         ] 
-    },
-    {
-        text: 'CSE', 
-        items: [
-            { text: 'Data Structures', link: PATHS.CSE_DS },
-            { text: 'Algorithms', link: PATHS.CSE_ALGO },
-            { text: 'Operating Systems (OS)', link: PATHS.CSE_OS },
-            { text: 'DBMS', link: PATHS.CSE_DBMS },
-            { text: 'Computer Networks', link: PATHS.CSE_CN },
-            {
-                // text: 'Programming Basics',
-                items: [
-                    { text: 'Programming', link: PATHS.CSE_PROG_BASIC },
-                    { text: 'Cheat Sheet', link: PATHS.CSE_CHEATSHEET },
-                    { text: 'Puzzles', link: PATHS.CSE_PUZZLES },
-                ]
-            },
-        ]
     },
 ]
 

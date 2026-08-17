@@ -5,30 +5,25 @@ const SIDEBAR_MISC_DEFAULT = [
       {
         text: 'Miscellaneous',
         items: [
-          { text: 'Jekyll', link: PATHS.MISC_JEKYLL },
-        ]
-      },
-      {
-        text: 'Others',
-        items: [
           { text: 'References', link: PATHS.MISC_REFS },
-          { text: 'Utils', link: PATHS.UTILS + '/images' },
+          { text: 'Jekyll', link: PATHS.MISC_JEKYLL },
+          { text: 'temp', link: PATHS.MISC_TEMP },
         ]
       },
       {
         text: 'Utils',
         items: [
-          { text: 'Images', link: PATHS.UTILS+'/images' },
-          { text: 'Youtube', link: PATHS.UTILS+'/youtube' },
-          { text: 'Mermaid', link: PATHS.UTILS+'/mermaid' },
-          { text: 'Maths', link: PATHS.UTILS+'/maths' },
+          { text: 'Images', link: PATHS.MISC_UTILS+'images' },
+          { text: 'Youtube', link: PATHS.MISC_UTILS+'youtube' },
+          { text: 'Mermaid', link: PATHS.MISC_UTILS+'mermaid' },
+          { text: 'Maths', link: PATHS.MISC_UTILS+'maths' },
         ]
       },
       {
         text: 'Examples',
         items: [
-          { text: 'Markdown Examples', link: PATHS.MISC_MARKDOWN_EXAMPLES },
-          { text: 'Runtime API Examples', link: PATHS.MISC_API_EXAMPLES },
+          { text: 'Markdown Examples', link: PATHS.MISC_EXAMPLES+'markdown-examples' },
+          { text: 'Runtime API Examples', link: PATHS.MISC_EXAMPLES+'api-examples' },
         ]
       },
     ]
