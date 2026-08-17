@@ -1,2 +1,2 @@
-# Java FAQ
+# FAQs - Java
 

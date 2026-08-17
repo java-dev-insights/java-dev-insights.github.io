@@ -8,17 +8,18 @@ const SIDEBAR_DEFAULT_INTERVIEW = [
 			{ text: "Coding Interview", link: PATHS.INTERVIEW_CODING },
 			{ text: "LLD", link: PATHS.INTERVIEW_LLD },
 			{ text: "System Design", link: PATHS.INTERVIEW_SYSTEM_DESIGN },
-      { text: "Concurrency", link: PATHS.INTERVIEW_CONCURRENCY },
+			{ text: "Concurrency", link: PATHS.INTERVIEW_CONCURRENCY },
+			{
+				text: "Other FAQs",
+				link: PATHS.INTERVIEW_FAQS,
+				items: [
+					{ text: "Java", link: PATHS.INTERVIEW_FAQS + "java" },
+					{ text: "Spring", link: PATHS.INTERVIEW_FAQS + "spring" },
+				],
+			},
 		],
 	},
-	{ 
-    text: "Other FAQs", 
-    link: PATHS.INTERVIEW_FAQS,
-    items: [
-      { text: "Java", link: PATHS.INTERVIEW_FAQS+"java" },
-      { text: "Spring", link: PATHS.INTERVIEW_FAQS+"spring" },
-    ]
-  },
+
 	{ text: "Behavioral", link: PATHS.INTERVIEW_BEHAVIORAL },
 	{ text: "Salary Negotiations", link: PATHS.INTERVIEW_SALARY_NEGOTIATIONS },
 ];
