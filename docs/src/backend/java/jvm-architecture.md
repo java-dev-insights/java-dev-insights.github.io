@@ -335,6 +335,10 @@ There are 5 types of garbage collection.
 
 Types of references based on when will the objects on heap become eligible for garbage collection.
 
+![Reference Types](https://media.licdn.com/dms/image/v2/C5612AQGg6TTNRuak1g/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1520059709669?e=2147483647&v=beta&t=9hS4l_d5vVLJKYrc3mlk7loXqXexrzEW76ye5koEdX8)
+
+![reference flow diagram](https://www.javacodegeeks.com/wp-content/uploads/2014/03/Weak-Strong-Soft-and-Phantom-Reference-in-Java.gif)
+
 #### Strong Reference
 
 Not garbage collected if it has a direct or indirect strong reference pointing to it. (through a chain of strong references)
@@ -377,4 +381,57 @@ private static class Entry<K,V>
 ```java
 SoftReference<StringBuilder> reference = new SoftReference<>(new StringBuilder());
 ```
+
+#### Phantom Reference
+
+- Used to schedule post-mortem cleanup actions, since we know for sure that objects are no longer alive.
+- Used only with a **reference queue**, since the **get() method of such references will always return null**.
+- Garbage Collector adds a phantom reference to a reference queue **after the finalize method of its referent is executed**. It implies that the instance is still in the memory.
+
+**Use Cases**
+
+- **to determine when an object was removed from the memory** which helps to schedule memory-sensitive tasks.
+  - For example, we can wait for a large object to be removed before loading another one.
+- **to avoid using the finalize method and improve the finalization process**.
+
+```java
+ReferenceQueue < Object > referenceQueue = new ReferenceQueue < > ();
+List < LargeObjectFinalizer > references = new ArrayList < > ();
+List < Object > largeObjects = new ArrayList < > ();
+
+for (int i = 0; i < 10; ++i) {
+    Object largeObject = new Object();
+    largeObjects.add(largeObject);
+    references.add(new LargeObjectFinalizer(largeObject, referenceQueue));
+}
+largeObjects = null;
+System.gc();
+Reference << ? > referenceFromQueue;
+for (PhantomReference < Object > reference: references) {
+    System.out.println(reference.isEnqueued());
+}
+while ((referenceFromQueue = referenceQueue.poll()) != null) {
+    ((LargeObjectFinalizer) referenceFromQueue).finalizeResources();
+    referenceFromQueue.clear();
+}
+```
+
+```java
+public class LargeObjectFinalizer extends PhantomReference < Object > {
+    public LargeObjectFinalizer(
+        Object referent, ReferenceQueue << ? super Object > q) {
+        super(referent, q);
+    }
+    public void finalizeResources() {
+        // free resources
+        System.out.println("clearing ...");
+    }
+}
+
+// referenceQueue – to keep track of enqueued references, references – to perform cleaning work afterward, largeObjects – a large data structure.
+```
+- *System.gc()* isn’t triggering garbage collection immediately – it’s simply a hint for JVM to trigger the process.
+- The for loop demonstrates how to make sure that all references are enqueued – it will print out true for each reference.
+- Finally, we used a while loop to poll out the enqueued references and do cleaning work for each of them.
+
 

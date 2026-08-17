@@ -7,8 +7,7 @@ const SIDEBAR_DEFAULT_BACKEND = [
         items: [
           { 
             text: 'Java', 
-            link: PATHS.BACKEND_INDEX+'java', 
-            collapsible: true,
+            // link: PATHS.BACKEND_INDEX+'java', 
             collapsed: true,
             items: [
               { text: 'OOP and OOD', link: '/backend/java/oop-and-ood' },
