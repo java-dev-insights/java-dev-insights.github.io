@@ -430,8 +430,130 @@ public class LargeObjectFinalizer extends PhantomReference < Object > {
 
 // referenceQueue – to keep track of enqueued references, references – to perform cleaning work afterward, largeObjects – a large data structure.
 ```
+
 - *System.gc()* isn’t triggering garbage collection immediately – it’s simply a hint for JVM to trigger the process.
 - The for loop demonstrates how to make sure that all references are enqueued – it will print out true for each reference.
 - Finally, we used a while loop to poll out the enqueued references and do cleaning work for each of them.
 
+## Garbage Collection Monitoring
 
+Garbage collection (GC) monitoring is the process of tracking automatic memory management in software runtimes (like the Java Virtual Machine) to measure pause times, frequency, and memory reclamation efficiency.  
+It helps prevent software stuttering or crashes caused by memory exhaustion.
+
+**Key Metrics to Track**
+- GC Pause Duration: How long application threads are frozen ("stop-the-world") to clean memory.
+- GC Frequency: How often minor or full collection cycles occur per minute.
+- Heap Utilization: The percentage of active memory used before and after a collection cycle.
+- Throughput: The total application running time versus time spent doing garbage collection.
+
+**Common Monitoring Tools**
+- Command Line / Native: Built-in runtime tools like jstat, jconsole, or jvisualvm for live metrics.
+- Log Analyzers: Dedicated parsers like Garbage Collection and Memory Visualizer (GCMV) or GCeasy to inspect verbose logs.
+- Application Performance Monitoring (APM): Enterprise systems like Dynatrace, Datadog, or Splunk AppDynamics for continuous production tracking.
+
+### CLI jstat
+
+We can use Java command line as well as UI tools for monitoring garbage collection activities of an application.
+
+```java
+~/Downloads/jdk1.7.0_55/demo/jfc/Java2D$ java -Xmx120m -Xms30m -Xmn10m -XX:PermSize=20m -XX:MaxPermSize=20m -XX:+UseSerialGC -jar Java2Demo.jar
+```
+
+- We can use **jstat command line tool** to monitor the JVM memory and garbage collection activities. 
+- It ships with standard JDK, so you don’t need to do anything else to get it. 
+- For executing jstat you need to know the process id of the application, you can get it easily using `ps -eaf | grep java` command.
+
+```java
+ps -eaf | grep Java2Demo.jar
+501 9582  11579   0  9:48PM ttys000    0:21.66 /usr/bin/java -Xmx120m -Xms30m -Xmn10m -XX:PermSize=20m -XX:MaxPermSize=20m -XX:+UseG1GC -jar Java2Demo.jar
+501 14073 14045   0  9:48PM ttys002    0:00.00 grep Java2Demo.jar
+```
+So the process id for my java application is 9582.
+```java
+jstat -gc 9582 1000
+```
+
+S0C|S1C|S0U|S1U|EC|EU|OC|OU|PC|PU|YGC|YGCT|FGC|FGCT|GCT
+---|---|---|---|---|---|---|---|---|---|---|---|---|---|---
+1024.0|1024.0|0.0 |0.0|8192.0|7933.3|42108.0|23401.3|20480.0|19990.9|157|0.274|40|1.381|1.654
+1024.0|1024.0|0.0 |0.0|8192.0|8026.5|42108.0|23401.3|20480.0|19990.9|157|0.274|40|1.381|1.654
+1024.0|1024.0|0.0 |0.0|8192.0|8030.0|42108.0|23401.3|20480.0|19990.9|157|0.274|40|1.381|1.654
+1024.0|1024.0|0.0 |0.0|8192.0|8122.2|42108.0|23401.3|20480.0|19990.9|157|0.274|40|1.381|1.654
+1024.0|1024.0|0.0 |0.0|8192.0|8171.2|42108.0|23401.3|20480.0|19990.9|157|0.274|40|1.381|1.654
+1024.0|1024.0|48.7|0.0|8192.0|106.7 |42108.0|23401.3|20480.0|19990.9|158|0.275|40|1.381|1.656
+1024.0|1024.0|48.7|0.0|8192.0|145.8 |42108.0|23401.3|20480.0|19990.9|158|0.275|40|1.381|1.656
+
+The last argument for jstat is the time interval between each output, so it will print memory and garbage collection data every 1 second.
+
+
+
+### Issues : HL, Leaks, OOME
+
+To find the root cause of common issues like high latency, memory leaks, and OutOfMemoryErrors (OOMEs) in Java, you must analyze GC logs and Heap Dumps.
+Here is how to diagnose and fix each issue step-by-step.
+
+#### Step 1: Enable Comprehensive GC Logging
+
+You cannot diagnose these issues without detailed logs. Add these flags to your Java startup command (Java 9+):
+
+```javac
+-Xlog:gc*,gc+phases=debug:file=gc.log:time,uptime,pid:filecount=5,filesize=100M
+```
+
+### Scenario: High Latency (Long Pause Times)
+
+Your application freezes or stutters because the GC is taking too long to clean memory. [4, 5] 
+
+**How to Analyze**
+1. Upload your GC log to an online tool like GCeasy or open it in GCViewer.
+2. Check the phase breakdowns. Look for long "Concurrent Mark" or "Remark" phases.
+3. Check the allocation rate. High allocation rates force frequent, rushed GC cycles. [6, 7, 8] 
+
+**How to Fix**
+
+```javac
+# print current GC type used
+java -XX:+PrintCommandLineFlags -version
+
+# GC type
+-XX:+UseG1GC   # Low latency (under 200ms)
+-XX:+UseZGC    # Ultra-low latency (under 1ms)
+
+# Heap Sizes
+-Xms4g -Xmx4g
+```
+
+* Switch to a modern GC: If you are using Parallel GC, switch to G1GC or ZGC for low-latency targets.
+* Increase heap sizing: Give the GC more breathing room so it runs less frequently. ``
+* Optimize code: Reduce object creation in loops to lower the allocation rate.
+
+### Scenario: Memory Leaks
+Memory usage continuously climbs over time and never drops back to the baseline, even after a Full GC. [13, 14] 
+
+**How to Analyze**
+
+1. Capture a heap dump when memory is high but before the application crashes: `jcmd <pid> GC.heap_dump /path/to/heapdump.hprof`
+2. Open the dump in Eclipse Memory Analyzer (MAT).
+3. Run the "Leak Suspects" report. MAT will identify which objects are consuming the most memory.
+4. Trace the GC Roots. Look for objects held by static collections, long-lived threads, or unclosed database connections. [15, 16, 17, 18, 19] 
+
+**How to Fix**
+
+* Clear collections: Ensure List or Map objects are cleared or items removed when no longer needed.
+* Use WeakReferences: For caches, switch to WeakHashMap so the GC can reclaim entries automatically.
+* Close resources: Use try-with-resources blocks to ensure streams and connections close properly. [20, 21, 22, 23] 
+
+### Scenario: OutOfMemoryError (OOME)
+The JVM completely runs out of memory and crashes.
+
+**How to Analyze**
+1. Automate heap dumps on crash by adding this flag to your production startup script: `-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/path/to/dumps/`
+2. Identify the OOME type from your error logs:
+   * Java heap space: The heap is too small or there is a massive memory leak.
+   * Metaspace: Too many dynamic classes are being loaded (common with heavy reflection or Spring/Hibernate proxies).
+3. Analyze the crash dump in Eclipse MAT to find the exact object allocation that triggered the crash.
+
+**How to Fix**
+* For Heap Space: Increase -Xmx or fix the memory leak found via MAT.
+* For Metaspace: Increase the max metaspace limit: `-XX:MaxMetaspaceSize=512m`
+* Pagination: If a single database query loaded millions of rows into memory, implement pagination to stream data in smaller batches. [32, 33] 
