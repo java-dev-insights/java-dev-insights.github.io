@@ -5,7 +5,7 @@ const SIDEBAR_DEFAULT_AI = [
       {
         // text: 'Examples',
         items: [
-          { text: 'Introduction', link: PATHS.AI_INTRO },
+          { text: 'Introduction', link: PATHS.AI_INDEX+'intro' },
         ]
       },
     ]

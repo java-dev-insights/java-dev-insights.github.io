@@ -16,8 +16,11 @@ outline: deep
 
 ## Preparing for Interview
 
-- **Programming** - [LeetCode]{target="_blank"}, [InterviewBit]{target="_blank"}, [HackerRank]{target="_blank"}, [HackerEarth]{target="_blank"}
-- **System Design** - [HelloInterview]{target="_blank"}, [Grokking]{target="_blank"}, [Tech Dummies]{target="_blank"}, [Gaurav Sen]{target="_blank"}
+- **Programming** 
+  - Platforms : [LeetCode]{target="_blank"} ([study](https://leetcode.com/studyplan/){target="_blank"}, [explore](https://leetcode.com/explore/){target="_blank"}), [HackerRank]{target="_blank"}, [InterviewBit]{target="_blank"}, [HackerEarth]{target="_blank"}
+- **System Design** 
+  - Platforms : [algomaster.io](https://algomaster.io){target="_blank"} ([blog](https://blog.algomaster.io/){target="_blank"}), [HelloInterview]{target="_blank"}, [Grokking]{target="_blank"}
+  - Youtube Videos : [Tech Dummies]{target="_blank"}, [Gaurav Sen]{target="_blank"}
 
 <!-- All links shortcut -->
 [12 Factor App]: https://12factor.net

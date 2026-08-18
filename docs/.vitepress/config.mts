@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress';
 import { vitepressMermaidPreview } from 'vitepress-mermaid-preview';
-import TOP_NAVBAR from "./navs/navbar";
-import ALL_SIDEBARS from './navs/sidebar';
+import TOP_NAVBAR from "./navs/top_navbar";
+import ALL_SIDEBARS from './navs/sidebars';
 
 // Check if the build environment is GitHub Actions
 const IS_GITHUB_ACTIONS = process.env.GITHUB_ACTIONS === 'true';

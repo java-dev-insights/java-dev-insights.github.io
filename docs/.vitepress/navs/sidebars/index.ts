@@ -1,19 +1,13 @@
-// Home Page
-export { default as SIDEBAR_DEFAULT_UTILS } from './utils';
-// Frontend
+// Tracks
 export { default as SIDEBAR_DEFAULT_FRONTEND } from './frontend'
-// Backend
-export { default as SIDEBAR_JAVA } from './backend/java'
-export { default as SIDEBAR_SPRING } from './backend/spring';
 export { default as SIDEBAR_DEFAULT_BACKEND } from './backend';
-// APIs
-export { default as SIDEBAR_DEFAULT_API } from './api';
-// Devops & CICD
 export { default as SIDEBAR_DEFAULT_DEVOPS } from './devops';
-// SWE
-export { default as SIDEBAR_DEFAULT_SWE } from './swe';
-// CSE
-export { default as SIDEBAR_DEFAULT_CSE } from './cse';
+// Interview
+export { default as SIDEBAR_DEFAULT_INTERVIEW } from './interview';
+export { default as SIDEBAR_INTERVIEW_CODING } from './interview/coding';
+export { default as SIDEBAR_INTERVIEW_LLD } from './interview/lld';
+export { default as SIDEBAR_INTERVIEW_SYSTEM_DESIGN } from './interview/system-design';
+export { default as SIDEBAR_INTERVIEW_CONCURRENCY } from './interview/concurrency';
 // AI
 export { default as SIDEBAR_DEFAULT_AI } from './ai';
 // Misc
