@@ -56,6 +56,8 @@ An abstract computing machine to run a Java program.
 
 <ImageComponent image-path='/java/jvm-architecture/jvm-architecture.png' />
 
+![JVM Architecture](https://miro.medium.com/v2/1*K2AmthJxslFa2-NwnT6zHw.png)
+
 ![JVM architecture](https://techvidvan.com/tutorials/wp-content/uploads/sites/2/2020/06/JVM-Model.jpg)
 
 ![JVM architecture](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*bSYQtrFC2fiqybMszGhgow.png)

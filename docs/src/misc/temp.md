@@ -28,6 +28,3 @@ Virtual Threads Issue Before Java 25
 
 [![Executor Service](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*hMeNaYBzBRMd_y3cKqi9Iw.png)](https://medium.com/@vinciabhinav7/concurrency-in-java-executorservice-future-and-callable-f22a7fbeefe2){target="_blank"}
 
-## System Design
-
-![system design trade-offs](https://substackcdn.com/image/fetch/$s_!HWMz!,w_1456,c_limit,f_webp,q_auto:good,fl_lossy/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0c3e3af8-5a12-4036-8a93-ef17c5461d8b_800x998.gif)

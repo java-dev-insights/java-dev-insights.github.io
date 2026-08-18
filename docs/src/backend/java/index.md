@@ -9,6 +9,8 @@ Java is a high-level, object-oriented programming language designed to let devel
 - [Exception](exception)
 - [Generics](generics)
 - [Collection Framework](collections)
+- [Java Memory Model](jmm)
+- [Java Concurrency](concurrency)
 - [Threading](threading)
 - [Marker Interface](marker-interface)
 - [Multi Threading](multi-threading)
