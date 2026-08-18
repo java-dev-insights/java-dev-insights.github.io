@@ -39,6 +39,10 @@ What to use when?
 
 ![](https://intexsoft.com/app/uploads/2019/10/jdk-1.jpg.webp)
 
+![](https://itsobes.com/assets/en/java/152.jpg)
+
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc1tkQFPdXQfEjmBi5zqHXDvRTt_1mYpAf9beySuE8-nCt0zi44GE8XFFe&s=10)
+
 ## JVM - Java Virual Machine
 
 An abstract computing machine to run a Java program.

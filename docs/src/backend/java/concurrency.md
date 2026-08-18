@@ -10,4 +10,4 @@
 
 ![](https://miro.medium.com/v2/1*K--sr1DzQ0zkPfQddfw5vg.png)
 
-![]()
+![Optimistic Locking vs Pessimistic Locking](https://substackcdn.com/image/fetch/$s_!eE8a!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F381fb254-3d2b-4b8b-8b21-d6ae4ef9fa17_2484x3002.png)
