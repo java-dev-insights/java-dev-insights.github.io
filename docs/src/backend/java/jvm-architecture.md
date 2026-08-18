@@ -485,7 +485,95 @@ S0C|S1C|S0U|S1U|EC|EU|OC|OU|PC|PU|YGC|YGCT|FGC|FGCT|GCT
 
 The last argument for jstat is the time interval between each output, so it will print memory and garbage collection data every 1 second.
 
+Let’s go through each of the columns one by one.
+- **S0C and S1C**: current size of the Survivor0 and Survivor1 areas in KB.
+- **S0U and S1U**: current usage of the Survivor0 and Survivor1 areas in KB. Notice that one of the survivor areas are empty all the time.
+- **EC and EU**: current size and usage of Eden space in KB. Note that EU size is increasing and as soon as it crosses the EC, Minor GC is called and EU size is decreased.
+- **OC and OU**: current size and current usage of Old generation in KB.
+- **PC and PU**: current size and current usage of Perm Gen in KB.
+- **YGC and YGCT**: YGC column displays the number of GC event occurred in young generation. YGCT column displays the accumulated time for GC operations for Young generation. Notice that both of them are increased in the same row where EU value is dropped because of minor GC.
+- **FGC and FGCT**: FGC column displays the number of Full GC event occurred. FGCT column displays the accumulated time for Full GC operations. Notice that Full GC time is too high when compared to young generation GC timings.
+- **GCT**: This column displays the total accumulated time for GC operations. It’s sum of YGCT and FGCT column values.
+- The advantage of **jstat** is that it can be executed in remote servers too where we don’t have GUI. 
+- Notice that sum of S0C, S1C and EC is 10m as specified through **-Xmn10m** JVM option.
 
+### Java VisualVM with Visual GC
+- If you want to see memory and GC operations in GUI, then you can use **jvisualvm tool**. 
+- Java VisualVM is also part of JDK, so you don’t need to download it separately. 
+  - Just run **jvisualvm** command in the terminal to launch the Java **VisualVM** application. 
+  - Once launched, you need to install **Visual GC** plugin from Tools --> Plugins option.
+
+### Tuning GC
+- **Java Garbage Collection Tuning** should be the last option you should use for increasing the throughput of your application and only when you see drop in performance because of longer GC timings causing application timeout.
+- If you see **java.lang.OutOfMemoryError: PermGen space errors** in logs, then try to monitor and increase the Perm Gen memory space using **-XX:PermGen** and **-XX:MaxPermGen** JVM options. 
+- You might also try using **-XX:+CMSClassUnloadingEnabled** and check how it’s performing with CMS Garbage collector.
+- If you see a lot of Full GC operations, then you should try increasing Old generation memory space.
+- Overall garbage collection tuning takes a lot of effort and time and there is no hard and fast rule for that. You would need to try different options and compare them to find out the best one suitable for your application.
+
+### OutOfMemoryError - memory leaks
+
+#### Have you faced OutOfMemoryError in Java? How did you solved that?
+- Allowed limit of memory for java application is specified during application startup.
+- Heap space and Permgen (for Permanent Generation)
+- subclass of java.lang.VirtualMachineError and JVM throws java.lang.OutOfMemoryError when it ran out of memory in heap.
+- Two Types of OutOfMemoryError in Java:
+	- **Java.lang.OutOfMemoryError**: Java heap space : export JVM_ARGS="-Xms1024m -Xmx1024m"
+	- **Java.lang.OutOfMemoryError**: PermGen space : export JVM_ARGS="-XX:PermSize=64M -XX:MaxPermSize=256m"
+ 
+Now, Perm Gen is not there and moved to heap as metaSpace so no more option 2.
+
+<ImageComponent image-path='/java/jvm-architecture/outOfMemoryError.png' />
+
+#### Long Term Solution: 
+- Short Term Solution
+	- Increasing the Start/Max Heap size
+	- changing Garbage Collection options.
+	- increased Java heap space also increase the length of [GC pauses](https://plumbr.io/handbook/gc-tuning/example/tuning-for-throughput) affecting your application’s [throughput or latency](https://plumbr.io/handbook/gc-tuning/throughput-vs-latency-vs-capacity).
+- Best approach
+	- Understand the memory needs of your program 
+	- ensure memory is used wisely and does not have leaks. 
+- You can use a Java memory profiler to determine what methods in your program are allocating large number of objects and then determine if there is a way to make sure they are no longer referenced, or to not allocate them in the first place.
+
+#### What is causing it?
+- The application just requires more Java heap space than available to it to operate normally.
+- **Memory Footprint** – Runtime memory requirements.
+- **Spikes in usage/data volume**: Application recieves spikes of volume of data beyond expected threshold it is designed to handle.
+- **Memory leaks**: A particular type of programming error will lead your application to constantly consume more memory. Every time the leaking functionality of the application is used it leaves some objects behind into the Java heap space. 
+
+#### Example of memory leak
+below code does not contain a proper equals() implementation next to its hashCode() hence causes continuous creation of new objects for Key.
+```java
+public static void main(String[] args) {
+    Map m = new HashMap();
+    while (true)
+        for (int i = 0; i < 10000; i++)
+            if (!m.containsKey(new Key(i)))
+              m.put(new Key(i), "Number:" + i);
+}
+```
+```java
+@Override
+public boolean equals(Object o) {
+   boolean response = false;
+   if (o instanceof Key) {
+      response = (((Key)o).id).equals(this.id);
+   }
+   return response;
+}
+```
+To solve, you need to figure out which part of your code is responsible for allocating the most memory.
+1. Which objects occupy large portions of heap
+2. Where these objects are being allocated in source code
+
+Process outline that will help you answer the above questions:
+- Get security clearance in order to perform a heap dump from your JVM. 
+- “Dumps” are basically snapshot of heap contents that you can analyze. 
+- These snapshots can thus contain confidential information, such as passwords, credit card numbers etc, so acquiring such a dump might not even be possible for security reasons.
+- Get the dump at the right moment. Be prepared to get a few dumps, as when taken at a wrong time, heap dumps contain a significant amount of noise and can be practically useless. On the other hand, every heap dump “freezes” the JVM entirely, so don’t take too many of them or your end users start facing performance issues.
+- Find a machine that can load the dump. When your JVM-to-troubleshoot uses for example 8GB of heap, you need a machine with more than 8GB to be able to analyze heap contents. 
+- Fire up dump analysis software.
+- Detect the paths to GC roots of the biggest consumers of heap. 
+- Next, you need to figure out where in your source code the potentially hazardous large number of objects is being allocated. If you have good knowledge of your application’s source code, you’ll be able to do this in a couple searches.
 
 ### Issues : HL, Leaks, OOME
 
