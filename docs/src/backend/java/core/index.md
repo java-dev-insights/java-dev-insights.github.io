@@ -110,12 +110,14 @@
 
 ## Datatypes
 
-Java Data Type and Type Casting [here](./data-types.md)
-
-## Java Operators
-
-Java Operators [here](./operators.md)
-
-## Java Control Statement
-
-Java Control Statement [here](./control-statement.md)
+- [Java Data Type and Type Casting](data-types)
+- [Java Operators](operators)
+- [Java Control Statement](control-statement)
+- [Classes](classes)
+- [Methods](methods)
+- [packages](packages)
+- [Keywords and Identifiers](keywords)
+- [Interface](interface)
+- [Enums](enums)
+- [Inheritance](inheritance)
+- [Garbage Collection](garbage-collection)

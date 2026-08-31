@@ -200,7 +200,7 @@ twoD[2] = new int[5];
 twoD[3] = new int[5];
 ```
 
-![2d-array]({{site.cdn}}/java/core-java/2d-array.png)
+<ImageComponent image-path='/java/core-java/2d-array.png' />
 
 ### Irregular array – sparsely populated 2D array
 

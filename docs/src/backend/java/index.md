@@ -1,10 +1,12 @@
 # Java
 
-Java is a high-level, object-oriented programming language designed to let developers "write once, run anywhere." Its compiled code runs on any device equipped with a Java Virtual Machine (JVM), making it highly versatile, secure, and ideal for enterprise software, cloud services, and Android mobile apps. Refer [Jenkov](https://jenkov.com/)
+Java is a high-level, object-oriented programming language designed to let developers "write once, run anywhere." Its compiled code runs on any device equipped with a Java Virtual Machine (JVM), making it highly versatile, secure, and ideal for enterprise software, cloud services, and Android mobile apps.  
+
+Refer [Jenkov](https://jenkov.com/)
 
 - [OOP and OOD](oop-and-ood)
 - [JVM Architecture](jvm-architecture)
-- [Java Core](core)
+- [Java Core](core/)
 - [Strings](string)
 - [Exception](exception)
 - [Generics](generics)
@@ -19,4 +21,3 @@ Java is a high-level, object-oriented programming language designed to let devel
 - [Java 8](8)
 - [Annotation in Java](annotation)
 - [Reflection](reflection)
-
