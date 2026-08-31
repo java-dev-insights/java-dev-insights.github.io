@@ -43,3 +43,9 @@
 - [Scopes and Closures](https://www.youtube.com/watch?v=O312eN5J2bc&list=PLqq-6Pq4lTTZ_LyvzfrndUOkIvOF4y-_c){target="_blank"}
 - [Objects and Prototypes](https://www.youtube.com/watch?v=fBpPfPjxOhc&list=PLqq-6Pq4lTTaflXUL0v3TSm86nodn0c_u){target="_blank"}
 - [onload vs ondomcontentloaded](https://javascript.info/onload-ondomcontentloaded){target="_blank"}
+
+::: details Videos {open}
+<YouTubeEmbed video-id="eiC58R16hb8" /><br/>
+
+<YouTubeEmbed video-id="xKOyDDuQSVY" /><br/>
+:::

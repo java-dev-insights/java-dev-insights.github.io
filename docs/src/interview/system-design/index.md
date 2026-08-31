@@ -22,3 +22,40 @@
 
 ![Life of Redis Query](https://substackcdn.com/image/fetch/$s_!fGFd!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9ffab5bc-5857-4544-8e25-2dbf795e6f85_3000x3900.png)
 
+::: details System Design {open}
+<YouTubeEmbed video-id="SE2KF-vxvS0" /><br/>
+
+<YouTubeEmbed video-id="oYxTTirKY8M" /><br/>
+:::
+
+::: details Distributed Systems {open}
+<YouTubeEmbed video-id="DOFflggE_0Q" /><br/>
+:::
+
+::: details API {open}
+<YouTubeEmbed video-id="UXA8MJUWUqU" /><br/>
+
+<YouTubeEmbed video-id="GcVtElYa17s" /><br/>
+
+<YouTubeEmbed video-id="9JPnN1Z_iSY" /><br/>
+
+<YouTubeEmbed video-id="zvWKqUiovAM" /><br/>
+:::
+
+::: details Networking {open}
+<YouTubeEmbed video-id="bdeV_TjNfFA" /><br/>
+
+<YouTubeEmbed video-id="4I2AZ1by_sY" /><br/>
+
+<YouTubeEmbed video-id="Q7IxCEvXGvc" /><br/>
+:::
+
+::: details Linux {open}
+<YouTubeEmbed video-id="qvjRcZcW8CY" /><br/>
+
+<YouTubeEmbed video-id="V7Zcii8Syws" /><br/>
+:::
+
+::: details Draw io {open}
+<YouTubeEmbed video-id="yrghOH_1MuM" /><br/>
+:::

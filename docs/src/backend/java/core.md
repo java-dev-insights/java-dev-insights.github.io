@@ -146,8 +146,8 @@
 
 | Name    | bytes | bits | Range (From)               | Range (To)                | Deafult  | Note                           |
 | ------- | ----- | ---- | -------------------------- | ------------------------- | -------- | ------------------------------ |
-| byte    | 1     | 8    | –128                       | 127                       | 0        |
-| short   | 2     | 16   | –32,768                    | 32,767                    | 0        |
+| byte    | 1     | 8    | –128                       | 127                       | 0        |                                |
+| short   | 2     | 16   | –32,768                    | 32,767                    | 0        |                                |
 | int     | 4     | 32   | –2,147,483,648             | 2,147,483,647             | 0        | 2x10^9                         |
 | long    | 8     | 64   | –9,223,372,036,854,775,808 | 9,223,372,036,854,775,807 | 0        | 9x10^18                        |
 | float   | 4     | 32   | 1.4e–045                   | 3.4e+038                  | 0.0f     | 6-7 significant decimal digits |
@@ -155,8 +155,9 @@
 | char    | 2     | 16   | 0                          | 65,536                    | '\u0000' | unsigned                       |
 | boolean |       |      | true or false              |                           | false    |                                |
 
-* *byte*, *short*, *int*, and *long*. All of these are signed, positive and negative values. 
-* Java, highorder-bit managed by adding **unsigned right shift** (`>>>`) operator, need for unsigned integer eliminated.
+* *byte*, *short*, *int*, and *long*. All of these are signed (positive and negative values).
+* The leftmost bit (high-order bit) dictates the sign (0 for positive, 1 for negative) using Two's complement.
+* Java, highorder-bit managed by adding **unsigned right shift** (`>>>`) operator (3 arrows), need for unsigned integer eliminated.
 
 | Integers |                                                                                                                 |
 | -------- | --------------------------------------------------------------------------------------------------------------- |
@@ -166,6 +167,44 @@
 | float    | Single precision with less space, used for a fractional component, but not require a large degree of precision. |
 | double   | when need accuracy over many iterative calculations.                                                            |
 
-* Java uses **16-bit Unicode** for characters, for global portability ranging 0 to 65,536.
-	- ASCII are 0 to 127, extended 8-bit character set, ISO-Latin-1, ranges from 0 to 255. 
-	- can also be used as an integer type to perform arithmetic operations. example, add two chars or increment value.
+- Java's char is an **16-bit Unicode** for global portability ranging 0 to 65,536 (an unsigned 16-bit integer).
+  - ASCII are 0 to 127, extended 8-bit character set.
+  - ISO-Latin-1, ranges from 0 to 255.
+- we can also perform arithmetic operations on char same as we do with integer type. example, add two chars or increment value.
+
+### Type Wrappers
+
+Type wrappers - encapsulate a primitive type within an object.
+
+| Type Wrapper |                                                         | Get Primitive         |
+| ------------ | ------------------------------------------------------- | --------------------- |
+| Boolean      | Boolean(boolean boolValue) , Boolean(String boolString) |                       |
+| Double       |                                                         | double doubleValue( ) |
+| Integer      | Integer(int num) , Integer(String str)                  | int intValue( )       |
+| Float        |                                                         | float floatValue( )   |
+| Short        |                                                         | short shortValue( )   |
+| Long         |                                                         | long longValue( )     |
+| Byte         |                                                         | byte byteValue( )     |
+| Character    | Character(char ch)                                      | char charValue( )     |
+
+* If str is not a valid numeric value, NumberFormatException.
+* Byte, Short, Integer, Long, Float, Double - inherit the abstract class Number.
+* boxing – primitive to Object
+* unboxing – Object to primitive
+
+```java
+Integer iOb = new Integer(100);
+int i = iOb.intValue();
+```
+
+* **Autoboxing** - automatically primitive to Object (wrapper, encapsulated, boxed).
+* **Auto-unboxing** - boxed object value is automatically extracted (unboxed). No need to call intValue(), doubleValue() etc.
+
+```java
+Integer iOb = 100;        // autobox an int
+int i = iOb;              // auto-unbox
+++iOb;                    // unboxes iOb,performs the increment, and then Reboxes the result back into iOb.
+Double a, b, c;           // A bad use of autoboxing/unboxing!
+a = 10.0; b = 4.0;        // far less efficient than what could be written using double
+c = Math.sqrt(a*a + b*b);
+```
