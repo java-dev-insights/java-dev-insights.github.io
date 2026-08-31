@@ -7,3 +7,5 @@
 - Testing - [Jest](jest), [Vue Test Utils](vue-test-utils)
 - Module Bundler - [webpack](webpack), [vite](vite)
 - [Vue Test Utils](https://test-utils.vuejs.org/guide){:target="_blank"}
+
+<YouTubeEmbed video-id="9-r0RuX0pqk" /><br/>

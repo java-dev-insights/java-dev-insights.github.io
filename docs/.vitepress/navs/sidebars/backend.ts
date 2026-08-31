@@ -7,16 +7,17 @@ const SIDEBAR_DEFAULT_BACKEND = [
         items: [
           { 
             text: 'Java', 
-            // link: PATHS.BACKEND_INDEX+'java', 
-            collapsed: true,
-            items: [
-              { text: 'OOP and OOD', link: '/backend/java/oop-and-ood' },
-              { text: 'JVM Architecture', link: '/backend/java/jvm-architecture' },
-              { text: 'Replace_This', link: '/backend/java/replace_this' },
-            ]
+            link: PATHS.BACKEND_INDEX+'java/',
+            // collapsed: true,
+            // items: [
+            //   { text: 'Overview', link: PATHS.BACKEND_INDEX+'java/' },
+            //   { text: 'OOP and OOD', link: PATHS.BACKEND_INDEX+'java/oop-and-ood' },
+            //   { text: 'JVM Architecture', link: PATHS.BACKEND_INDEX+'java/jvm-architecture' },
+            //   { text: 'Core Java', collapsed: true, items: [{ text: 'ByteCode', link: PATHS.BACKEND_INDEX+'java/core' }] },
+            // ]
           },
-          { text: 'Spring', link: PATHS.BACKEND_INDEX+'spring' },
-          { text: 'Hibernate', link: PATHS.BACKEND_INDEX+'hibernate' },
+          { text: 'Spring', link: PATHS.BACKEND_INDEX+'spring/' },
+          { text: 'Hibernate', link: PATHS.BACKEND_INDEX+'hibernate/' },
         ]
       },
       {

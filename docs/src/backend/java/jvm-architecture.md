@@ -39,6 +39,10 @@ What to use when?
 
 ![](https://intexsoft.com/app/uploads/2019/10/jdk-1.jpg.webp)
 
+![](https://itsobes.com/assets/en/java/152.jpg)
+
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc1tkQFPdXQfEjmBi5zqHXDvRTt_1mYpAf9beySuE8-nCt0zi44GE8XFFe&s=10)
+
 ## JVM - Java Virual Machine
 
 An abstract computing machine to run a Java program.
@@ -55,6 +59,8 @@ An abstract computing machine to run a Java program.
 ### JVM Architecture
 
 <ImageComponent image-path='/java/jvm-architecture/jvm-architecture.png' />
+
+![JVM Architecture](https://miro.medium.com/v2/1*K2AmthJxslFa2-NwnT6zHw.png)
 
 ![JVM architecture](https://techvidvan.com/tutorials/wp-content/uploads/sites/2/2020/06/JVM-Model.jpg)
 
@@ -430,8 +436,218 @@ public class LargeObjectFinalizer extends PhantomReference < Object > {
 
 // referenceQueue – to keep track of enqueued references, references – to perform cleaning work afterward, largeObjects – a large data structure.
 ```
+
 - *System.gc()* isn’t triggering garbage collection immediately – it’s simply a hint for JVM to trigger the process.
 - The for loop demonstrates how to make sure that all references are enqueued – it will print out true for each reference.
 - Finally, we used a while loop to poll out the enqueued references and do cleaning work for each of them.
 
+## Garbage Collection Monitoring
 
+Garbage collection (GC) monitoring is the process of tracking automatic memory management in software runtimes (like the Java Virtual Machine) to measure pause times, frequency, and memory reclamation efficiency.  
+It helps prevent software stuttering or crashes caused by memory exhaustion.
+
+**Key Metrics to Track**
+- GC Pause Duration: How long application threads are frozen ("stop-the-world") to clean memory.
+- GC Frequency: How often minor or full collection cycles occur per minute.
+- Heap Utilization: The percentage of active memory used before and after a collection cycle.
+- Throughput: The total application running time versus time spent doing garbage collection.
+
+**Common Monitoring Tools**
+- Command Line / Native: Built-in runtime tools like jstat, jconsole, or jvisualvm for live metrics.
+- Log Analyzers: Dedicated parsers like Garbage Collection and Memory Visualizer (GCMV) or GCeasy to inspect verbose logs.
+- Application Performance Monitoring (APM): Enterprise systems like Dynatrace, Datadog, or Splunk AppDynamics for continuous production tracking.
+
+### CLI jstat
+
+We can use Java command line as well as UI tools for monitoring garbage collection activities of an application.
+
+```java
+~/Downloads/jdk1.7.0_55/demo/jfc/Java2D$ java -Xmx120m -Xms30m -Xmn10m -XX:PermSize=20m -XX:MaxPermSize=20m -XX:+UseSerialGC -jar Java2Demo.jar
+```
+
+- We can use **jstat command line tool** to monitor the JVM memory and garbage collection activities. 
+- It ships with standard JDK, so you don’t need to do anything else to get it. 
+- For executing jstat you need to know the process id of the application, you can get it easily using `ps -eaf | grep java` command.
+
+```java
+ps -eaf | grep Java2Demo.jar
+501 9582  11579   0  9:48PM ttys000    0:21.66 /usr/bin/java -Xmx120m -Xms30m -Xmn10m -XX:PermSize=20m -XX:MaxPermSize=20m -XX:+UseG1GC -jar Java2Demo.jar
+501 14073 14045   0  9:48PM ttys002    0:00.00 grep Java2Demo.jar
+```
+So the process id for my java application is 9582.
+```java
+jstat -gc 9582 1000
+```
+
+S0C|S1C|S0U|S1U|EC|EU|OC|OU|PC|PU|YGC|YGCT|FGC|FGCT|GCT
+---|---|---|---|---|---|---|---|---|---|---|---|---|---|---
+1024.0|1024.0|0.0 |0.0|8192.0|7933.3|42108.0|23401.3|20480.0|19990.9|157|0.274|40|1.381|1.654
+1024.0|1024.0|0.0 |0.0|8192.0|8026.5|42108.0|23401.3|20480.0|19990.9|157|0.274|40|1.381|1.654
+1024.0|1024.0|0.0 |0.0|8192.0|8030.0|42108.0|23401.3|20480.0|19990.9|157|0.274|40|1.381|1.654
+1024.0|1024.0|0.0 |0.0|8192.0|8122.2|42108.0|23401.3|20480.0|19990.9|157|0.274|40|1.381|1.654
+1024.0|1024.0|0.0 |0.0|8192.0|8171.2|42108.0|23401.3|20480.0|19990.9|157|0.274|40|1.381|1.654
+1024.0|1024.0|48.7|0.0|8192.0|106.7 |42108.0|23401.3|20480.0|19990.9|158|0.275|40|1.381|1.656
+1024.0|1024.0|48.7|0.0|8192.0|145.8 |42108.0|23401.3|20480.0|19990.9|158|0.275|40|1.381|1.656
+
+The last argument for jstat is the time interval between each output, so it will print memory and garbage collection data every 1 second.
+
+Let’s go through each of the columns one by one.
+- **S0C and S1C**: current size of the Survivor0 and Survivor1 areas in KB.
+- **S0U and S1U**: current usage of the Survivor0 and Survivor1 areas in KB. Notice that one of the survivor areas are empty all the time.
+- **EC and EU**: current size and usage of Eden space in KB. Note that EU size is increasing and as soon as it crosses the EC, Minor GC is called and EU size is decreased.
+- **OC and OU**: current size and current usage of Old generation in KB.
+- **PC and PU**: current size and current usage of Perm Gen in KB.
+- **YGC and YGCT**: YGC column displays the number of GC event occurred in young generation. YGCT column displays the accumulated time for GC operations for Young generation. Notice that both of them are increased in the same row where EU value is dropped because of minor GC.
+- **FGC and FGCT**: FGC column displays the number of Full GC event occurred. FGCT column displays the accumulated time for Full GC operations. Notice that Full GC time is too high when compared to young generation GC timings.
+- **GCT**: This column displays the total accumulated time for GC operations. It’s sum of YGCT and FGCT column values.
+- The advantage of **jstat** is that it can be executed in remote servers too where we don’t have GUI. 
+- Notice that sum of S0C, S1C and EC is 10m as specified through **-Xmn10m** JVM option.
+
+### Java VisualVM with Visual GC
+- If you want to see memory and GC operations in GUI, then you can use **jvisualvm tool**. 
+- Java VisualVM is also part of JDK, so you don’t need to download it separately. 
+  - Just run **jvisualvm** command in the terminal to launch the Java **VisualVM** application. 
+  - Once launched, you need to install **Visual GC** plugin from Tools --> Plugins option.
+
+### Tuning GC
+- **Java Garbage Collection Tuning** should be the last option you should use for increasing the throughput of your application and only when you see drop in performance because of longer GC timings causing application timeout.
+- If you see **java.lang.OutOfMemoryError: PermGen space errors** in logs, then try to monitor and increase the Perm Gen memory space using **-XX:PermGen** and **-XX:MaxPermGen** JVM options. 
+- You might also try using **-XX:+CMSClassUnloadingEnabled** and check how it’s performing with CMS Garbage collector.
+- If you see a lot of Full GC operations, then you should try increasing Old generation memory space.
+- Overall garbage collection tuning takes a lot of effort and time and there is no hard and fast rule for that. You would need to try different options and compare them to find out the best one suitable for your application.
+
+### OutOfMemoryError - memory leaks
+
+#### Have you faced OutOfMemoryError in Java? How did you solved that?
+- Allowed limit of memory for java application is specified during application startup.
+- Heap space and Permgen (for Permanent Generation)
+- subclass of java.lang.VirtualMachineError and JVM throws java.lang.OutOfMemoryError when it ran out of memory in heap.
+- Two Types of OutOfMemoryError in Java:
+	- **Java.lang.OutOfMemoryError**: Java heap space : export JVM_ARGS="-Xms1024m -Xmx1024m"
+	- **Java.lang.OutOfMemoryError**: PermGen space : export JVM_ARGS="-XX:PermSize=64M -XX:MaxPermSize=256m"
+ 
+Now, Perm Gen is not there and moved to heap as metaSpace so no more option 2.
+
+<ImageComponent image-path='/java/jvm-architecture/outOfMemoryError.png' />
+
+#### Long Term Solution: 
+- Short Term Solution
+	- Increasing the Start/Max Heap size
+	- changing Garbage Collection options.
+	- increased Java heap space also increase the length of [GC pauses](https://plumbr.io/handbook/gc-tuning/example/tuning-for-throughput) affecting your application’s [throughput or latency](https://plumbr.io/handbook/gc-tuning/throughput-vs-latency-vs-capacity).
+- Best approach
+	- Understand the memory needs of your program 
+	- ensure memory is used wisely and does not have leaks. 
+- You can use a Java memory profiler to determine what methods in your program are allocating large number of objects and then determine if there is a way to make sure they are no longer referenced, or to not allocate them in the first place.
+
+#### What is causing it?
+- The application just requires more Java heap space than available to it to operate normally.
+- **Memory Footprint** – Runtime memory requirements.
+- **Spikes in usage/data volume**: Application recieves spikes of volume of data beyond expected threshold it is designed to handle.
+- **Memory leaks**: A particular type of programming error will lead your application to constantly consume more memory. Every time the leaking functionality of the application is used it leaves some objects behind into the Java heap space. 
+
+#### Example of memory leak
+below code does not contain a proper equals() implementation next to its hashCode() hence causes continuous creation of new objects for Key.
+```java
+public static void main(String[] args) {
+    Map m = new HashMap();
+    while (true)
+        for (int i = 0; i < 10000; i++)
+            if (!m.containsKey(new Key(i)))
+              m.put(new Key(i), "Number:" + i);
+}
+```
+```java
+@Override
+public boolean equals(Object o) {
+   boolean response = false;
+   if (o instanceof Key) {
+      response = (((Key)o).id).equals(this.id);
+   }
+   return response;
+}
+```
+To solve, you need to figure out which part of your code is responsible for allocating the most memory.
+1. Which objects occupy large portions of heap
+2. Where these objects are being allocated in source code
+
+Process outline that will help you answer the above questions:
+- Get security clearance in order to perform a heap dump from your JVM. 
+- “Dumps” are basically snapshot of heap contents that you can analyze. 
+- These snapshots can thus contain confidential information, such as passwords, credit card numbers etc, so acquiring such a dump might not even be possible for security reasons.
+- Get the dump at the right moment. Be prepared to get a few dumps, as when taken at a wrong time, heap dumps contain a significant amount of noise and can be practically useless. On the other hand, every heap dump “freezes” the JVM entirely, so don’t take too many of them or your end users start facing performance issues.
+- Find a machine that can load the dump. When your JVM-to-troubleshoot uses for example 8GB of heap, you need a machine with more than 8GB to be able to analyze heap contents. 
+- Fire up dump analysis software.
+- Detect the paths to GC roots of the biggest consumers of heap. 
+- Next, you need to figure out where in your source code the potentially hazardous large number of objects is being allocated. If you have good knowledge of your application’s source code, you’ll be able to do this in a couple searches.
+
+### Issues : HL, Leaks, OOME
+
+To find the root cause of common issues like high latency, memory leaks, and OutOfMemoryErrors (OOMEs) in Java, you must analyze GC logs and Heap Dumps.
+Here is how to diagnose and fix each issue step-by-step.
+
+#### Step 1: Enable Comprehensive GC Logging
+
+You cannot diagnose these issues without detailed logs. Add these flags to your Java startup command (Java 9+):
+
+```javac
+-Xlog:gc*,gc+phases=debug:file=gc.log:time,uptime,pid:filecount=5,filesize=100M
+```
+
+### Scenario: High Latency (Long Pause Times)
+
+Your application freezes or stutters because the GC is taking too long to clean memory. [4, 5] 
+
+**How to Analyze**
+1. Upload your GC log to an online tool like GCeasy or open it in GCViewer.
+2. Check the phase breakdowns. Look for long "Concurrent Mark" or "Remark" phases.
+3. Check the allocation rate. High allocation rates force frequent, rushed GC cycles. [6, 7, 8] 
+
+**How to Fix**
+
+```javac
+# print current GC type used
+java -XX:+PrintCommandLineFlags -version
+
+# GC type
+-XX:+UseG1GC   # Low latency (under 200ms)
+-XX:+UseZGC    # Ultra-low latency (under 1ms)
+
+# Heap Sizes
+-Xms4g -Xmx4g
+```
+
+* Switch to a modern GC: If you are using Parallel GC, switch to G1GC or ZGC for low-latency targets.
+* Increase heap sizing: Give the GC more breathing room so it runs less frequently. ``
+* Optimize code: Reduce object creation in loops to lower the allocation rate.
+
+### Scenario: Memory Leaks
+Memory usage continuously climbs over time and never drops back to the baseline, even after a Full GC. [13, 14] 
+
+**How to Analyze**
+
+1. Capture a heap dump when memory is high but before the application crashes: `jcmd <pid> GC.heap_dump /path/to/heapdump.hprof`
+2. Open the dump in Eclipse Memory Analyzer (MAT).
+3. Run the "Leak Suspects" report. MAT will identify which objects are consuming the most memory.
+4. Trace the GC Roots. Look for objects held by static collections, long-lived threads, or unclosed database connections. [15, 16, 17, 18, 19] 
+
+**How to Fix**
+
+* Clear collections: Ensure List or Map objects are cleared or items removed when no longer needed.
+* Use WeakReferences: For caches, switch to WeakHashMap so the GC can reclaim entries automatically.
+* Close resources: Use try-with-resources blocks to ensure streams and connections close properly. [20, 21, 22, 23] 
+
+### Scenario: OutOfMemoryError (OOME)
+The JVM completely runs out of memory and crashes.
+
+**How to Analyze**
+1. Automate heap dumps on crash by adding this flag to your production startup script: `-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/path/to/dumps/`
+2. Identify the OOME type from your error logs:
+   * Java heap space: The heap is too small or there is a massive memory leak.
+   * Metaspace: Too many dynamic classes are being loaded (common with heavy reflection or Spring/Hibernate proxies).
+3. Analyze the crash dump in Eclipse MAT to find the exact object allocation that triggered the crash.
+
+**How to Fix**
+* For Heap Space: Increase -Xmx or fix the memory leak found via MAT.
+* For Metaspace: Increase the max metaspace limit: `-XX:MaxMetaspaceSize=512m`
+* Pagination: If a single database query loaded millions of rows into memory, implement pagination to stream data in smaller batches. [32, 33] 
