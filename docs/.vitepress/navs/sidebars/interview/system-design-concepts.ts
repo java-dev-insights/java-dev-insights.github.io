@@ -1,10 +1,12 @@
 import { default as PATHS } from "../../paths";
 
-const SIDEBAR_SYSTEM_DESIGN_INTERVIEW = [
+
+const SIDEBAR_SYSTEM_DESIGN_CONCEPTS = [
     { text: "<-- Interview Landscape", link: PATHS.INTERVIEW_INDEX },
-    { text: "System Design Interview", link: PATHS.SYSTEM_DESIGN_INTERVIEW },
+    { text: "System Design Concepts", link: PATHS.SYSTEM_DESIGN_CONCEPTS },
     {
         text: 'External Resources',
+        collapsed: true,
         items: [
             { text: "Blind 75 (Leetcode)", link: 'https://leetcode.com/problem-list/oizxjoit/' },
             { text: "Blind 75 (Neetcode)", link: 'https://neetcode.io/practice/practice/blind75' },
@@ -15,9 +17,7 @@ const SIDEBAR_SYSTEM_DESIGN_INTERVIEW = [
         text: 'Concepts',
         collapsed: false,
         items: [
-            { text: "Master Design Template", link: 'master-template' },
-            { text: "Back envelop Estimation", link: 'back-envelope-estimation' },
-            { text: "Trade Offs", link: 'trade-offs' },
+            { text: "One to Million", link: 'one-to-million' },
             { text: "CAP Theorem", link: 'cap-theorem' },
             { text: "Consistency Models", link: 'consistency-models' },
             { text: "Load Balancing", link: 'load-balancing' },
@@ -39,4 +39,4 @@ const SIDEBAR_SYSTEM_DESIGN_INTERVIEW = [
     },
 ];
 
-export default SIDEBAR_SYSTEM_DESIGN_INTERVIEW;
+export default SIDEBAR_SYSTEM_DESIGN_CONCEPTS;

@@ -7,6 +7,7 @@ export { default as SIDEBAR_DEFAULT_INTERVIEW } from './interview';
 export { default as SIDEBAR_INTERVIEW_CODING } from './interview/coding';
 export { default as SIDEBAR_INTERVIEW_LLD } from './interview/lld';
 export { default as SIDEBAR_SYSTEM_DESIGN_INTERVIEW } from './interview/system-design';
+export { default as SIDEBAR_SYSTEM_DESIGN_CONCEPTS } from './interview/system-design-concepts';
 export { default as SIDEBAR_INTERVIEW_CONCURRENCY } from './interview/concurrency';
 // AI
 export { default as SIDEBAR_DEFAULT_AI } from './ai';
