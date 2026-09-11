@@ -7,8 +7,10 @@ const SIDEBAR_DEFAULT_INTERVIEW = [
 		items: [
 			{ text: "Coding Interview", link: PATHS.INTERVIEW_CODING },
 			{ text: "LLD", link: PATHS.INTERVIEW_LLD },
-			{ text: "System Design", link: PATHS.INTERVIEW_SYSTEM_DESIGN },
-			{ text: "Concurrency", link: PATHS.INTERVIEW_CONCURRENCY },
+			{ text: "System Design", link: PATHS.SYSTEM_DESIGN_INDEX },
+			{ text: "System Design (Concepts)", link: PATHS.SYSTEM_DESIGN_CONCEPTS },
+			{ text: "System Design (Interview)", link: PATHS.SYSTEM_DESIGN_INTERVIEW },
+			{ text: "Concurrency", link: PATHS.CONCURRENCY_INTERVIEW },
 			{
 				text: "Other FAQs",
 				link: PATHS.INTERVIEW_FAQS,

@@ -2,7 +2,7 @@ import { default as PATHS } from "../../paths";
 
 const SIDEBAR_INTERVIEW_SYSTEM_DESIGN = [
     { text: "Interview Landscape", link: PATHS.INTERVIEW_INDEX },
-    { text: "System Design Interview", link: PATHS.INTERVIEW_SYSTEM_DESIGN },
+    { text: "System Design Interview", link: PATHS.SYSTEM_DESIGN_INTERVIEW },
     {
         text: 'External Resources',
         items: [
