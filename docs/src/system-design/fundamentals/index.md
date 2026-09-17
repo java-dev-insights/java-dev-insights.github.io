@@ -1,2 +1,26 @@
 # System Design Concepts
 
+- Scaling : Vertical vs Horizontal
+- LB and Reverse proxy
+- CDN (static files)
+- Caching
+- IP Addresses
+- TCP/IP + UDP = Layer 4
+- Http vs Websockets
+- DNS
+- http : TCP (too low level)
+- https : Application Layer
+- Application Layer Protocols
+- Client - Server (head+body)
+- API Paradiagm
+- REST vs GraphQL
+- gRPC - RPC framework
+- Protocols buffer vs json
+- web-sockets are bidirectional
+- RDS DB and SQL (BTress and SQL)
+  - ACID
+- NoSQL for key-value, doc-stores, graph-DB
+- Sharding
+- Replication (Lead -> Follow)
+- CAP Theorem (PAC and ELC)
+- Message Queues
