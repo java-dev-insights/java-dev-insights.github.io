@@ -1,0 +1,46 @@
+# My User Stories
+
+- [Paymemt KYC](payment-kyc)
+- [Negative Balance](negative-balance)
+- [User Signup](user-signup)
+- AWWS Migration
+- SIFT - Payment Protection - 
+- SIFT - Account Protection - Primary User
+- SIFT - Account Protection - Secondary User
+- Multi currency Invoicing using ZOHO
+  - what service used for conversion
+- Paypal to Braintree Paypal
+- Account Protection - 
+- [ ] BT Paypal
+- [ ] First and Recurring Payments
+- [ ] Auto reload Payment and Backup - turn off fter failure
+  - [ ] Secondary Payment Instrument
+- [ ] Negative Balance
+- [ ] SIFT Primary User
+  - [ ] Important for free credit giving
+- [ ] SIFT Secondary User : Account Fraud Protection
+  - [ ] Process Improve to sync all 3 options ad cd async
+  - [ ] Cleaner Data
+  - [ ] Backfilling Missing data
+  - [ ] optimize cleaning up data fed to SIFT fraud detection ML
+  - [ ] succes and failure metrics
+- [ ] SIFT Payment Protection
+- [ ] ATO Protection
+- [ ] Why SIFT - any other options explored?
+- [ ] Architecture and flow diagram fo SIFT
+- [ ] Notification template and SES
+- [ ] VAT ID validation and VIES implementation
+  - [ ] what about counries not covered
+- [ ] Payments blocked as per sanctioned countries example china hong kong etc
+- [ ] My SQL upgrade
+  - [ ] 5.x to 8.x
+  - [ ] Prod query caching
+  - [ ] Additional Indexing
+  - [ ] Slow query identification in AWS console and fixing it using index creation
+- [ ] Async Fraud Decision Handling
+- [ ] IP Whitelisting in APIGW
+- [ ] Domain whitelisting for k8s
+- Adding metrics and Grafana for all the DashboardHttpClient which earlier was a blind spot
+- Security and Vulnerability KTLO annual goal for team - Prisma (platform issues) and Mend issues
+- Prepaid USD : Braintree 3D secure flag
+- 
