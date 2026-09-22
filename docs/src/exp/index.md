@@ -11,9 +11,7 @@
 - [Roles](roles)
 - [Linked In](linkedin) - summary
 - [Resume](#profile-update) - update summary for recent experience
-- [ ] Tech stack updated
-
-## Understanding
-
-- Architecture Diagrams
+- [Appraisals](appraisals) Tech stack updated
+- Architecture Diagrams 
 - Understand how request flows and what components it touches
+- 

@@ -58,7 +58,9 @@ A highly capable engineer working at the P3 level who has demonstrated the abili
 ### Summary Statement
 An engineer who combines the technical depth of a P3 — complex application ownership, automated testing, API integration, and code standards — with the broader design, stakeholder communication and mentorship responsibilities of a P4. Consistently delivers beyond their current grade and is actively working towards promotion to Senior Software Engineer.
 
-## Full Stack Developer
+## LinkedIn & Resume Summary – Full Stack Developer (P3/P4)
+
+### Full Stack Developer
 
 A results-driven Full Stack Developer with a strong track record of delivering complex, high-impact software across distributed systems and APIs. Operating at a senior engineering level, I take ownership of end-to-end development across discrete, complex applications — from architecture and design through to testing, deployment, and cross-functional collaboration.
 
