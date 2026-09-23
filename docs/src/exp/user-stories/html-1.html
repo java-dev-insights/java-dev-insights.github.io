@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="glean-artifact-type" content="visual_content">
+  <title>Arpit Tripathi — Full-Tenure Architecture Diagram</title>
+  <style>
+    :root {
+      --artifact-background: #0a0b0e;
+      --artifact-background-light: #121419;
+      --artifact-background-mid: #181b22;
+      --artifact-border-light: #23262e;
+      --artifact-border-dark: #343844;
+      --artifact-primary-brand: #6a92ff;
+      --artifact-primary-highlight: #f5f7fb;
+      --artifact-primary-hover: #88a8ff;
+      --artifact-selected: #1a2030;
+      --artifact-text-primary: #eef0f4;
+      --artifact-text-secondary: #9aa0ad;
+      --artifact-text-highlight: #14213d;
+      --artifact-positive-background: #0e2a1d;
+      --artifact-positive-text: #c8f5da;
+      --artifact-positive: #46d39a;
+      --artifact-negative: #ff6b6b;
+      /* Domain colors */
+      --c-apigw: #6a92ff;
+      --c-dashboard: #a78bfa;
+      --c-user: #34d399;
+      --c-infra: #fb923c;
+      --c-kafka: #f59e0b;
+      --c-aws: #60a5fa;
+      --c-security: #f472b6;
+      --c-payments: #4ade80;
+      --c-csp: #e879f9;
+    }
+    html[data-theme='dark'] {
+      --artifact-background: #0a0b0e;
+      --artifact-background-light: #121419;
+      --artifact-background-mid: #181b22;
+      --artifact-border-light: #23262e;
+      --artifact-border-dark: #343844;
+      --artifact-primary-brand: #6a92ff;
+      --artifact-primary-highlight: #f5f7fb;
+      --artifact-primary-hover: #88a8ff;
+      --artifact-selected: #1a2030;
+      --artifact-text-primary: #eef0f4;
+      --artifact-text-secondary: #9aa0ad;
+      --artifact-text-highlight: #14213d;
+      --artifact-positive-background: #0e2a1d;
+      --artifact-positive-text: #c8f5da;
+      --artifact-positive: #46d39a;
+      --artifact-negative: #ff6b6b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--artifact-background);
+      color: var(--artifact-text-primary);
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    .page { max-width: 1280px; margin: 0 auto; padding: 40px 32px 80px; }
+
+    /* ── Header ── */
+    .hero { margin-bottom: 48px; }
+    .eyebrow {
+      font-family: "SF Mono","IBM Plex Mono","Consolas",monospace;
+      font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--artifact-text-secondary);
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 300;
+      letter-spacing: -0.025em; color: var(--artifact-text-primary);
+      line-height: 1.05; margin-bottom: 14px;
+    }
+    .hero h1 span { color: var(--artifact-primary-brand); }
+    .hero-sub {
+      color: var(--artifact-text-secondary); font-size: 15px; max-width: 680px;
+    }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .badge {
+      font-family: "SF Mono","IBM Plex Mono","Consolas",monospace;
+      font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 4px;
+      border: 1px solid; white-space: nowrap;
+    }
+    .badge-blue  { color: var(--c-apigw);    border-color: var(--c-apigw);    background: rgba(106,146,255,.08); }
+    .badge-purple{ color: var(--c-dashboard); border-color: var(--c-dashboard); background: rgba(167,139,250,.08); }
+    .badge-green { color: var(--c-user);      border-color: var(--c-user);      background: rgba(52,211,153,.08); }
+    .badge-orange{ color: var(--c-infra);     border-color: var(--c-infra);     background: rgba(251,146,60,.08); }
+    .badge-yellow{ color: var(--c-kafka);     border-color: var(--c-kafka);     background: rgba(245,158,11,.08); }
+    .badge-sky   { color: var(--c-aws);       border-color: var(--c-aws);       background: rgba(96,165,250,.08); }
+    .badge-pink  { color: var(--c-security);  border-color: var(--c-security);  background: rgba(244,114,182,.08); }
+    .badge-lime  { color: var(--c-payments);  border-color: var(--c-payments);  background: rgba(74,222,128,.08); }
+    .badge-fuchsia{ color: var(--c-csp);      border-color: var(--c-csp);       background: rgba(232,121,249,.08); }
+
+    /* ── Section headers ── */
+    .section-label {
+      font-family: "SF Mono","IBM Plex Mono","Consolas",monospace;
+      font-size: 10px; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--artifact-text-secondary);
+      margin-bottom: 16px; margin-top: 48px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--artifact-border-light);
+    }
+
+    /* ── Architecture canvas ── */
+    .arch-canvas {
+      background: var(--artifact-background-light);
+      border: 1px solid var(--artifact-border-light);
+      border-radius: 12px;
+      padding: 32px;
+      overflow-x: auto;
+    }
+
+    /* ── Layer rows ── */
+    .layer {
+      display: flex; flex-direction: column; gap: 0;
+      margin-bottom: 0;
+    }
+    .layer-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 12px;
+    }
+    .layer-title {
+      font-family: "SF Mono","IBM Plex Mono","Consolas",monospace;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .layer-line { flex: 1; height: 1px; background: var(--artifact-border-light); }
+
+    .layer-row {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    /* ── Connector arrows between layers ── */
+    .connector {
+      display: flex; justify-content: center; align-items: center;
+      height: 32px; gap: 6px; color: var(--artifact-text-secondary);
+      font-size: 11px;
+    }
+    .connector svg { opacity: 0.5; }
+
+    /* ── Service boxes ── */
+    .svc {
+      display: flex; flex-direction: column;
+      background: var(--artifact-background-mid);
+      border: 1px solid var(--artifact-border-light);
+      border-radius: 8px;
+      padding: 12px 14px;
+      min-width: 140px;
+      max-width: 200px;
+      flex: 1;
+      transition: border-color 0.15s, background 0.15s;
+      cursor: default;
+      position: relative;
+    }
+    .svc:hover {
+      border-color: var(--artifact-border-dark);
+      background: #1e2230;
+    }
+    .svc-icon { font-size: 18px; margin-bottom: 6px; }
+    .svc-name {
+      font-size: 12px; font-weight: 600;
+      color: var(--artifact-text-primary);
+      margin-bottom: 4px;
+    }
+    .svc-desc {
+      font-size: 10px; color: var(--artifact-text-secondary);
+      line-height: 1.4;
+    }
+    .svc-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+    .svc-tag {
+      font-family: "SF Mono","IBM Plex Mono","Consolas",monospace;
+      font-size: 9px; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 2px 6px; border-radius: 3px;
+      border: 1px solid;
+    }
+
+    /* Color variants for svc border-top accent */
+    .svc-apigw   { border-top: 2px solid var(--c-apigw); }
+    .svc-dashboard{ border-top: 2px solid var(--c-dashboard); }
+    .svc-user    { border-top: 2px solid var(--c-user); }
+    .svc-infra   { border-top: 2px solid var(--c-infra); }
+    .svc-kafka   { border-top: 2px solid var(--c-kafka); }
+    .svc-aws     { border-top: 2px solid var(--c-aws); }
+    .svc-security{ border-top: 2px solid var(--c-security); }
+    .svc-payments{ border-top: 2px solid var(--c-payments); }
+    .svc-csp     { border-top: 2px solid var(--c-csp); }
+
+    /* ── AWS region wrapper ── */
+    .aws-region {
+      border: 1px dashed var(--artifact-border-dark);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .aws-region-label {
+      position: absolute; top: -10px; left: 14px;
+      background: var(--artifact-background-light);
+      padding: 0 8px;
+      font-family: "SF Mono","IBM Plex Mono","Consolas",monospace;
+      font-size: 9px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--c-aws);
+    }
+
+    /* ── Legend ── */
+    .legend {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      margin-top: 24px; padding-top: 20px;
+      border-top: 1px solid var(--artifact-border-light);
+    }
+    .legend-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 11px; color: var(--artifact-text-secondary);
+    }
+    .legend-dot {
+      width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0;
+    }
+
+    /* ── Ticket summary table ── */
+    .ticket-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .ticket-card {
+      background: var(--artifact-background-mid);
+      border: 1px solid var(--artifact-border-light);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .ticket-card-title {
+      font-size: 12px; font-weight: 600;
+      color: var(--artifact-text-primary);
+      margin-bottom: 6px;
+    }
+    .ticket-list {
+      list-style: none; padding: 0;
+    }
+    .ticket-list li {
+      font-size: 11px; color: var(--artifact-text-secondary);
+      padding: 2px 0;
+      display: flex; align-items: flex-start; gap: 6px;
+    }
+    .ticket-list li::before {
+      content: '›'; color: var(--artifact-primary-brand);
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── Tech stack pills ── */
+    .tech-row {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;
+    }
+    .tech-pill {
+      font-size: 11px; font-weight: 500;
+      padding: 5px 12px; border-radius: 20px;
+      border: 1px solid var(--artifact-border-dark);
+      color: var(--artifact-text-secondary);
+      background: var(--artifact-background-mid);
+    }
+    .tech-pill.highlight {
+      color: var(--artifact-primary-brand);
+      border-color: rgba(106,146,255,.35);
+      background: rgba(106,146,255,.07);
+    }
+
+    /* ── Timeline strip ── */
+    .timeline {
+      display: flex; gap: 0; margin-top: 8px; overflow-x: auto;
+    }
+    .tl-item {
+      flex: 1; min-width: 120px;
+      border-left: 1px solid var(--artifact-border-light);
+      padding: 12px 14px;
+    }
+    .tl-item:first-child { border-left: none; }
+    .tl-year {
+      font-family: "SF Mono","IBM Plex Mono","Consolas",monospace;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--artifact-primary-brand);
+      margin-bottom: 8px;
+    }
+    .tl-items { list-style: none; padding: 0; }
+    .tl-items li {
+      font-size: 10px; color: var(--artifact-text-secondary);
+      padding: 2px 0; line-height: 1.4;
+    }
+
+    /* ── Tooltip ── */
+    .svc[data-tip]:hover::after {
+      content: attr(data-tip);
+      position: absolute; bottom: calc(100% + 6px); left: 50%;
+      transform: translateX(-50%);
+      background: #1e2230; border: 1px solid var(--artifact-border-dark);
+      color: var(--artifact-text-primary);
+      font-size: 10px; padding: 6px 10px; border-radius: 6px;
+      white-space: nowrap; z-index: 100; pointer-events: none;
+      max-width: 260px; white-space: normal; text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .page { padding: 24px 16px 60px; }
+      .layer-row { gap: 8px; }
+      .svc { min-width: 120px; }
+    }
+
+    @media print {
+      @page { size: auto !important; }
+      body { background: #fff; color: #111; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .arch-canvas { background: #f8f8f8; border-color: #ddd; }
+      .svc { background: #fff; border-color: #ccc; }
+      .aws-region { border-color: #aaa; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── HERO ── -->
+  <div class="hero" data-glean-id="hero">
+    <div class="eyebrow">Senior Software Engineer · Vonage API Engineering · 2022 – 2026</div>
+    <h1>Arpit Tripathi<br><span>Full-Tenure Architecture</span></h1>
+    <p class="hero-sub">
+      A holistic view of every system, service, and infrastructure layer touched across 4+ years —
+      from API Gateway routing and User Service ownership to Puppet/Terraform IaC, Kafka event streaming,
+      AWS multi-region deployments, and payment fraud integrations.
+    </p>
+    <div class="badge-row">
+      <span class="badge badge-blue">API Gateway</span>
+      <span class="badge badge-purple">Customer Dashboard</span>
+      <span class="badge badge-green">User Service</span>
+      <span class="badge badge-orange">Puppet · Terraform</span>
+      <span class="badge badge-yellow">Kafka</span>
+      <span class="badge badge-sky">AWS · Nomad · EKS</span>
+      <span class="badge badge-pink">VIAM · Security</span>
+      <span class="badge badge-lime">Payments · Sift</span>
+      <span class="badge badge-fuchsia">CSP / DT SSO</span>
+    </div>
+  </div>
+
+  <!-- ── ARCHITECTURE DIAGRAM ── -->
+  <div class="section-label" data-glean-id="arch-label">System Architecture</div>
+
+  <div class="arch-canvas" data-glean-id="arch-canvas">
+
+    <!-- LAYER 0: External Clients -->
+    <div class="layer" data-glean-id="layer-clients">
+      <div class="layer-header">
+        <span class="layer-title" style="color:var(--artifact-text-secondary)">External Clients &amp; Partners</span>
+        <div class="layer-line"></div>
+      </div>
+      <div class="layer-row">
+        <div class="svc svc-dashboard" data-glean-id="svc-browser" data-tip="Vonage Customer Dashboard (React/Angular frontend) — dashboard-frontend repo">
+          <div class="svc-icon">🌐</div>
+          <div class="svc-name">Browser / Dashboard FE</div>
+          <div class="svc-desc">React/Angular SPA — dashboard.vonage.com</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-dashboard);border-color:var(--c-dashboard)">React</span>
+            <span class="svc-tag" style="color:var(--c-dashboard);border-color:var(--c-dashboard)">Vivid</span>
+          </div>
+        </div>
+        <div class="svc svc-csp" data-glean-id="svc-csp" data-tip="Co-branded portals for CSPs: Deutsche Telekom (DT), Optus, etc. — IAP config, domain routing, SSO">
+          <div class="svc-icon">🤝</div>
+          <div class="svc-name">CSP Portals</div>
+          <div class="svc-desc">DT (developer.telekom.com), Optus — co-branded dashboards</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-csp);border-color:var(--c-csp)">DT SSO</span>
+            <span class="svc-tag" style="color:var(--c-csp);border-color:var(--c-csp)">IAP</span>
+          </div>
+        </div>
+        <div class="svc svc-security" data-glean-id="svc-devapi" data-tip="rest.nexmo.com — legacy DevAPI endpoint; VIAM token auth migration, JSONP XSS fix">
+          <div class="svc-icon">🔌</div>
+          <div class="svc-name">DevAPI / rest.nexmo.com</div>
+          <div class="svc-desc">Legacy API entry point; VIAM token auth migration</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-security);border-color:var(--c-security)">VIAM</span>
+            <span class="svc-tag" style="color:var(--c-security);border-color:var(--c-security)">JWT</span>
+          </div>
+        </div>
+        <div class="svc svc-payments" data-glean-id="svc-aws-marketplace" data-tip="AWS Marketplace login, email link fixes">
+          <div class="svc-icon">🛒</div>
+          <div class="svc-name">AWS Marketplace</div>
+          <div class="svc-desc">Login integration, email link fixes</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-payments);border-color:var(--c-payments)">OAuth</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector">
+      <svg width="16" height="24" viewBox="0 0 16 24"><path d="M8 0 L8 18 M4 14 L8 20 L12 14" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+      <span>HTTPS / TLS</span>
+    </div>
+
+    <!-- LAYER 1: API Gateway -->
+    <div class="layer" data-glean-id="layer-apigw">
+      <div class="layer-header">
+        <span class="layer-title" style="color:var(--c-apigw)">API Gateway Layer (1V APIGW)</span>
+        <div class="layer-line"></div>
+      </div>
+      <div class="layer-row">
+        <div class="svc svc-apigw" data-glean-id="svc-apigw-gloo" data-tip="Gloo Edge / Envoy-based API Gateway — 1vapigw-k8s repo. Route config: matchers + upstreams. Arpit contributed APIGW routes PRs (APIDB-5170, APIDB-8938, APICM-11059/68)">
+          <div class="svc-icon">🚦</div>
+          <div class="svc-name">APIGW (Gloo / Envoy)</div>
+          <div class="svc-desc">Route matchers, upstreams, VirtualServices — 1vapigw-k8s repo</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-apigw);border-color:var(--c-apigw)">Gloo</span>
+            <span class="svc-tag" style="color:var(--c-apigw);border-color:var(--c-apigw)">Envoy</span>
+            <span class="svc-tag" style="color:var(--c-apigw);border-color:var(--c-apigw)">K8s</span>
+          </div>
+        </div>
+        <div class="svc svc-apigw" data-glean-id="svc-apigw-routes" data-tip="1vapigw-routes repo — PR-based route changes for dashboard, devapi, DT CSP domains. CD failover testing with APIGW (APIDB-16539/40)">
+          <div class="svc-icon">🗺️</div>
+          <div class="svc-name">APIGW Routes</div>
+          <div class="svc-desc">1vapigw-routes — dashboard, devapi, DT domain routing PRs</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-apigw);border-color:var(--c-apigw)">Routes</span>
+            <span class="svc-tag" style="color:var(--c-apigw);border-color:var(--c-apigw)">Failover</span>
+          </div>
+        </div>
+        <div class="svc svc-security" data-glean-id="svc-iap" data-tip="Identity-Aware Proxy — new IAP config for DT domains (APICM-11059, APICM-11068). VIAM S-T-S auth on internal endpoints">
+          <div class="svc-icon">🔐</div>
+          <div class="svc-name">IAP / Auth Layer</div>
+          <div class="svc-desc">Identity-Aware Proxy, VIAM S-T-S, JWT validation</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-security);border-color:var(--c-security)">IAP</span>
+            <span class="svc-tag" style="color:var(--c-security);border-color:var(--c-security)">VIAM</span>
+            <span class="svc-tag" style="color:var(--c-security);border-color:var(--c-security)">JWT</span>
+          </div>
+        </div>
+        <div class="svc svc-apigw" data-glean-id="svc-apigw-vpc" data-tip="APIGW runs in a separate AWS account. VPC peering with Atmos accounts required for integration. Arpit worked on 1vAPIGW Atmos peering details">
+          <div class="svc-icon">🔗</div>
+          <div class="svc-name">VPC Peering</div>
+          <div class="svc-desc">Separate APIGW AWS account — VPC peering with Atmos</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">VPC</span>
+            <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">Atmos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector">
+      <svg width="16" height="24" viewBox="0 0 16 24"><path d="M8 0 L8 18 M4 14 L8 20 L12 14" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+      <span>Internal routing / service mesh</span>
+    </div>
+
+    <!-- LAYER 2: Application Services -->
+    <div class="layer" data-glean-id="layer-app">
+      <div class="layer-header">
+        <span class="layer-title" style="color:var(--c-dashboard)">Application Services (Nomad / EKS)</span>
+        <div class="layer-line"></div>
+      </div>
+
+      <div class="aws-region" data-glean-id="aws-region-euw1">
+        <span class="aws-region-label">AWS eu-west-1 (primary) + eu-west-2 (failover)</span>
+        <div class="layer-row">
+          <div class="svc svc-dashboard" data-glean-id="svc-cd-be" data-tip="Customer Dashboard backend (Java/Spring Boot) — dashboard repo. Arpit's primary service: payments, Sift, Kafka, Braintree PayPal, Zoho, account lifecycle, caching, FeignClient migration">
+            <div class="svc-icon">📊</div>
+            <div class="svc-name">Customer Dashboard BE</div>
+            <div class="svc-desc">Java/Spring Boot — payments, Sift, Kafka, Zoho, account lifecycle</div>
+            <div class="svc-tags">
+              <span class="svc-tag" style="color:var(--c-dashboard);border-color:var(--c-dashboard)">Spring Boot</span>
+              <span class="svc-tag" style="color:var(--c-dashboard);border-color:var(--c-dashboard)">Java</span>
+              <span class="svc-tag" style="color:var(--c-dashboard);border-color:var(--c-dashboard)">Nomad</span>
+            </div>
+          </div>
+          <div class="svc svc-dashboard" data-glean-id="svc-admin-dashboard" data-tip="Admin Dashboard — internal tooling for Vonage support staff. SSM port-forward fix, premium support flag, user suspension/deletion flows">
+            <div class="svc-icon">🛠️</div>
+            <div class="svc-name">Admin Dashboard</div>
+            <div class="svc-desc">Internal tooling — user search, suspension, premium support</div>
+            <div class="svc-tags">
+              <span class="svc-tag" style="color:var(--c-dashboard);border-color:var(--c-dashboard)">Internal</span>
+              <span class="svc-tag" style="color:var(--c-dashboard);border-color:var(--c-dashboard)">SSM</span>
+            </div>
+          </div>
+          <div class="svc svc-user" data-glean-id="svc-user-service" data-tip="User Service (Java/Spring Boot) — user-service repo. Arpit's core ownership: PATCH endpoint, lifecycle events, Kafka producer, VIAM auth, Artifactory migration, RDS, secondary users, org ID, SMPP account">
+            <div class="svc-icon">👤</div>
+            <div class="svc-name">User Service</div>
+            <div class="svc-desc">User CRUD, lifecycle events, JWT, org/sub-account management</div>
+            <div class="svc-tags">
+              <span class="svc-tag" style="color:var(--c-user);border-color:var(--c-user)">Spring Boot</span>
+              <span class="svc-tag" style="color:var(--c-user);border-color:var(--c-user)">Kafka</span>
+              <span class="svc-tag" style="color:var(--c-user);border-color:var(--c-user)">RDS</span>
+            </div>
+          </div>
+          <div class="svc svc-dashboard" data-glean-id="svc-devapi-svc" data-tip="DevApi service — dashboard repo. VIAM token auth migration, PHUB calls, Grafana alerts (APIDB-15170), Braintree PayPal feature flag">
+            <div class="svc-icon">⚡</div>
+            <div class="svc-name">DevApi Service</div>
+            <div class="svc-desc">API key/secret auth, PHUB calls, VIAM migration</div>
+            <div class="svc-tags">
+              <span class="svc-tag" style="color:var(--c-dashboard);border-color:var(--c-dashboard)">PHUB</span>
+              <span class="svc-tag" style="color:var(--c-dashboard);border-color:var(--c-dashboard)">VIAM</span>
+            </div>
+          </div>
+          <div class="svc svc-dashboard" data-glean-id="svc-scheduler" data-tip="Scheduler service — cron jobs: autoFraudScoreUpgrade, managerBalanceAndCreditLimit, negativeBalanceCheck, pricingRuleNotification. Migrated from Softlayer to Atmos (APIX-268)">
+            <div class="svc-icon">⏰</div>
+            <div class="svc-name">Scheduler</div>
+            <div class="svc-desc">Cron jobs: fraud score, balance checks, pricing notifications</div>
+            <div class="svc-tags">
+              <span class="svc-tag" style="color:var(--c-dashboard);border-color:var(--c-dashboard)">Cron</span>
+              <span class="svc-tag" style="color:var(--c-dashboard);border-color:var(--c-dashboard)">Atmos</span>
+            </div>
+          </div>
+          <div class="svc svc-dashboard" data-glean-id="svc-autoreload" data-tip="Autoreload service — auto top-up / balance management. Deployed alongside dashboard services">
+            <div class="svc-icon">🔄</div>
+            <div class="svc-name">Autoreload</div>
+            <div class="svc-desc">Auto top-up, balance management</div>
+            <div class="svc-tags">
+              <span class="svc-tag" style="color:var(--c-dashboard);border-color:var(--c-dashboard)">Payments</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="aws-region" data-glean-id="aws-region-use2" style="margin-top:10px">
+        <span class="aws-region-label">AWS us-east-2 / multi-region (Nomad OSS cluster)</span>
+        <div class="layer-row">
+          <div class="svc svc-infra" data-glean-id="svc-nomad" data-tip="Nomad workload orchestrator — goldrush resize OSS dev nomad cluster (eu-west-1). Nomad job deployments for dashboard services. Arpit worked on multi-region Nomad cluster config">
+            <div class="svc-icon">🏗️</div>
+            <div class="svc-name">Nomad Cluster</div>
+            <div class="svc-desc">Workload orchestration — dashboard, user-service, scheduler jobs</div>
+            <div class="svc-tags">
+              <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">Nomad</span>
+              <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">Multi-region</span>
+            </div>
+          </div>
+          <div class="svc svc-infra" data-glean-id="svc-eks" data-tip="EKS clusters — APIGW runs on K8s (1vapigw-k8s). Arpit contributed K8s cluster configs (apicc-centrifugo). EKS upgrade procedures, ArgoCD, Atlantis">
+            <div class="svc-icon">☸️</div>
+            <div class="svc-name">EKS / Kubernetes</div>
+            <div class="svc-desc">APIGW on K8s — ArgoCD, Atlantis, cluster upgrades</div>
+            <div class="svc-tags">
+              <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">EKS</span>
+              <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">ArgoCD</span>
+              <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">Atlantis</span>
+            </div>
+          </div>
+          <div class="svc svc-infra" data-glean-id="svc-jenkins" data-tip="Jenkins CI/CD pipelines — cache clear pipeline (APIDB-14122), scheduler smoke tests, Nomad deployments, Kafka group ID purger pipeline (APIDB-11968)">
+            <div class="svc-icon">🔧</div>
+            <div class="svc-name">Jenkins CI/CD</div>
+            <div class="svc-desc">Build, test, deploy pipelines — cache clear, smoke tests</div>
+            <div class="svc-tags">
+              <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">Jenkins</span>
+              <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">Pipelines</span>
+            </div>
+          </div>
+          <div class="svc svc-infra" data-glean-id="svc-grafana" data-tip="Grafana monitoring — Braintree PayPal payments board (APIDB-17064), DashboardHttpClient metrics (APIDB-15451), Redis prod alerts (APIDB-9513), devapi alerts (APIDB-9898)">
+            <div class="svc-icon">📈</div>
+            <div class="svc-name">Grafana / Monitoring</div>
+            <div class="svc-desc">Payments board, HTTP client metrics, Redis/Kafka lag alerts</div>
+            <div class="svc-tags">
+              <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">Grafana</span>
+              <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">OpsGenie</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector">
+      <svg width="16" height="24" viewBox="0 0 16 24"><path d="M8 0 L8 18 M4 14 L8 20 L12 14" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+      <span>Events / async messaging</span>
+    </div>
+
+    <!-- LAYER 3: Messaging & Events -->
+    <div class="layer" data-glean-id="layer-messaging">
+      <div class="layer-header">
+        <span class="layer-title" style="color:var(--c-kafka)">Event Streaming &amp; Messaging</span>
+        <div class="layer-line"></div>
+      </div>
+      <div class="layer-row">
+        <div class="svc svc-kafka" data-glean-id="svc-kafka-hermes" data-tip="Kafka Hermes cluster (AWS) — migrated from Softlayer Kiwi cluster (APIX-983). Topics: service_dashboard-email, -fraud, -marketing_user, -zoho-invoices, -ncco_user, -ws_notifications. Arpit: group ID rename, purger pipeline, consumer group UUID fix (APIDB-14429)">
+          <div class="svc-icon">📨</div>
+          <div class="svc-name">Kafka (Hermes Cluster)</div>
+          <div class="svc-desc">AWS Kafka — dashboard topics: email, fraud, marketing, Zoho, NCCO</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-kafka);border-color:var(--c-kafka)">Kafka</span>
+            <span class="svc-tag" style="color:var(--c-kafka);border-color:var(--c-kafka)">Hermes</span>
+            <span class="svc-tag" style="color:var(--c-kafka);border-color:var(--c-kafka)">AWS MSK</span>
+          </div>
+        </div>
+        <div class="svc svc-kafka" data-glean-id="svc-lifecycle-events" data-tip="Account/User lifecycle events — Arpit built: Account Billing event (APIDB-12324), User Finance event (APIDB-12178), Company lifecycle (APIDB-10625), DELETE secondary user event (APIDB-11074), centralise lifecycle in user-service (APIDB-11315)">
+          <div class="svc-icon">🔔</div>
+          <div class="svc-name">Lifecycle Events</div>
+          <div class="svc-desc">Account, User Finance, Company, Sub-account events via Kafka</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-kafka);border-color:var(--c-kafka)">Events</span>
+            <span class="svc-tag" style="color:var(--c-kafka);border-color:var(--c-kafka)">Transactional</span>
+          </div>
+        </div>
+        <div class="svc svc-kafka" data-glean-id="svc-fraud-kafka" data-tip="Fraud Kafka topic — service_dashboard-fraud. Sift fraud signals routed via Kafka. Arpit: Sift integration (APIDB-13081, APIDB-15378), BT PayPal Sift checks (APIDB-16847/16893/16943), secondary user Sift events (APIDB-17044)">
+          <div class="svc-icon">🛡️</div>
+          <div class="svc-name">Fraud Topic (Sift)</div>
+          <div class="svc-desc">Sift fraud signals — BT PayPal checks, account suspension</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-security);border-color:var(--c-security)">Sift</span>
+            <span class="svc-tag" style="color:var(--c-kafka);border-color:var(--c-kafka)">Kafka</span>
+          </div>
+        </div>
+        <div class="svc svc-kafka" data-glean-id="svc-ses" data-tip="Amazon SES — email engine migration from Mailgun/Mailchimp. Outbound email enhancements (APIDB email engine tickets). Payments email templates with account currency (APIDB-14744). Negative balance email disable in QA (APIDB-16211)">
+          <div class="svc-icon">📧</div>
+          <div class="svc-name">Amazon SES</div>
+          <div class="svc-desc">Email engine — payments templates, negative balance, outbound</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">SES</span>
+            <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">AWS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector">
+      <svg width="16" height="24" viewBox="0 0 16 24"><path d="M8 0 L8 18 M4 14 L8 20 L12 14" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+      <span>Persistence / data layer</span>
+    </div>
+
+    <!-- LAYER 4: Data & Storage -->
+    <div class="layer" data-glean-id="layer-data">
+      <div class="layer-header">
+        <span class="layer-title" style="color:var(--c-aws)">Data &amp; Storage Layer</span>
+        <div class="layer-line"></div>
+      </div>
+      <div class="layer-row">
+        <div class="svc svc-aws" data-glean-id="svc-rds-dashboard" data-tip="Dashboard RDS cluster (Aurora PostgreSQL) in Atmos — RDS migration, schema fix (APIDB-16232), CPU high alert (APIDB-17174), OpsGenie alerts. Arpit: DB users for CD backend, scheduler, user-service (APIDB-8010/12/14)">
+          <div class="svc-icon">🗄️</div>
+          <div class="svc-name">RDS Aurora (Dashboard)</div>
+          <div class="svc-desc">Aurora PostgreSQL — dashboard DB, schema migrations, CPU alerts</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">Aurora</span>
+            <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">PostgreSQL</span>
+            <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">Atmos</span>
+          </div>
+        </div>
+        <div class="svc svc-aws" data-glean-id="svc-rds-user" data-tip="User Service RDS — users-service-rds-1. CPU high alert (APIDB-16721). Deadlock fix on d_user_search (APIDB-10869). DB user setup (APIDB-8014). GDPR d_user/d_user_signup (AD-2793)">
+          <div class="svc-icon">🗄️</div>
+          <div class="svc-name">RDS (User Service)</div>
+          <div class="svc-desc">users-service-rds-1 — user data, GDPR, deadlock fixes</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">RDS</span>
+            <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">GDPR</span>
+          </div>
+        </div>
+        <div class="svc svc-aws" data-glean-id="svc-redis" data-tip="Redis cache — AccountCurrencyCache refactor (APIDB-15310), cache dependency fix (APIDB-16322), cache expiration fix (APIDB-14121), Jenkins pipeline to clear cache (APIDB-14122), Grafana Redis prod alert (APIDB-9513)">
+          <div class="svc-icon">⚡</div>
+          <div class="svc-name">Redis Cache</div>
+          <div class="svc-desc">AccountCurrencyCache, profile prefix cache, cache expiry fixes</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">Redis</span>
+            <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">Cache</span>
+          </div>
+        </div>
+        <div class="svc svc-aws" data-glean-id="svc-s3" data-tip="S3 — dataset inventory, archiving, log storage. SSM port-forward scripts. Arpit: ssm-port-forward for dashboard services (APIDB-16150/52/80/81/82)">
+          <div class="svc-icon">🪣</div>
+          <div class="svc-name">S3 / SSM</div>
+          <div class="svc-desc">Storage, archiving, SSM port-forward for local dev</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">S3</span>
+            <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">SSM</span>
+          </div>
+        </div>
+        <div class="svc svc-aws" data-glean-id="svc-vpc-subnet" data-tip="AWS VPC — multi-region (eu-west-1, eu-west-2, us-east-2). Atmos account management. VPC peering for APIGW. Security groups, IAM roles. Arpit: CD to AWS migration (APIX-200), Atmos-dev deploy">
+          <div class="svc-icon">🌐</div>
+          <div class="svc-name">VPC / Networking</div>
+          <div class="svc-desc">Multi-region VPCs, subnets, security groups, IAM — Atmos</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">VPC</span>
+            <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">IAM</span>
+            <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">Atmos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector">
+      <svg width="16" height="24" viewBox="0 0 16 24"><path d="M8 0 L8 18 M4 14 L8 20 L12 14" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+      <span>IaC provisioning</span>
+    </div>
+
+    <!-- LAYER 5: Infrastructure as Code -->
+    <div class="layer" data-glean-id="layer-iac">
+      <div class="layer-header">
+        <span class="layer-title" style="color:var(--c-infra)">Infrastructure as Code</span>
+        <div class="layer-line"></div>
+      </div>
+      <div class="layer-row">
+        <div class="svc svc-infra" data-glean-id="svc-puppet" data-tip="Puppet Master — puppet-master repo. Arpit: dashboard puppet vars (eyaml), Puppet infra assessment (JIRA), Numbering Plan host change (APIDB-16666/16729), Phub .hq domain update (APIDB-16200), HLR URL update (APIDB-9056), ID Server removal (APIDB-8569)">
+          <div class="svc-icon">🎭</div>
+          <div class="svc-name">Puppet Master</div>
+          <div class="svc-desc">Config management — dashboard vars, Numbering Plan, Phub domains</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">Puppet</span>
+            <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">eyaml</span>
+            <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">Hiera</span>
+          </div>
+        </div>
+        <div class="svc svc-infra" data-glean-id="svc-terraform" data-tip="Terraform / Atmos — ops-terraform repo. Vonage Terraform Definitions (VTD). Arpit: user-service Jenkins image tag update (APIDB-9807), ID Server ops-terraform removal (APIDB-9128), Atmos IaC config">
+          <div class="svc-icon">🏗️</div>
+          <div class="svc-name">Terraform / Atmos</div>
+          <div class="svc-desc">ops-terraform, VTD — AWS infra, EKS clusters, Nomad, RDS</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">Terraform</span>
+            <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">Atmos</span>
+            <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">HCL</span>
+          </div>
+        </div>
+        <div class="svc svc-infra" data-glean-id="svc-viam" data-tip="VIAM — Vonage Identity and Access Management. Service-to-service auth. Arpit: DevApi VIAM token auth migration (APIDB), CD APIs on VIAM S-T-S, DT dashboard URL update in VIAM (APICM-11619/21/22), VIAM auth on internal endpoints">
+          <div class="svc-icon">🔑</div>
+          <div class="svc-name">VIAM</div>
+          <div class="svc-desc">Vonage IAM — S-T-S auth, service mesh, DT URL config</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-security);border-color:var(--c-security)">VIAM</span>
+            <span class="svc-tag" style="color:var(--c-security);border-color:var(--c-security)">S-T-S</span>
+            <span class="svc-tag" style="color:var(--c-security);border-color:var(--c-security)">OAuth2</span>
+          </div>
+        </div>
+        <div class="svc svc-infra" data-glean-id="svc-artifactory" data-tip="Artifactory — User Service migration to new Artifactory (APIDB-14181). Gradle wrapper upgrade (APIDB-14227), fetch dependencies from new Artifactory (APIDB-14230), Dashboard us-client update (APIDB-14269)">
+          <div class="svc-icon">📦</div>
+          <div class="svc-name">Artifactory</div>
+          <div class="svc-desc">Artifact registry — user-service Gradle migration, dependency mgmt</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">Artifactory</span>
+            <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">Gradle</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector">
+      <svg width="16" height="24" viewBox="0 0 16 24"><path d="M8 0 L8 18 M4 14 L8 20 L12 14" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+      <span>3rd-party integrations</span>
+    </div>
+
+    <!-- LAYER 6: External Integrations -->
+    <div class="layer" data-glean-id="layer-integrations">
+      <div class="layer-header">
+        <span class="layer-title" style="color:var(--c-payments)">External Integrations &amp; 3rd-Party Services</span>
+        <div class="layer-line"></div>
+      </div>
+      <div class="layer-row">
+        <div class="svc svc-payments" data-glean-id="svc-braintree" data-tip="Braintree PayPal — full BT PP integration: Add Funds flow (APIDB-16513), 3D Secure flag (APIDB-15324), USD merchant ID (APIDB-14808), KWC success payment E2E (APIDB-17067), authorization-only PayPal flow (APIDB-16377), payment ID dropdown (APIDB-17289)">
+          <div class="svc-icon">💳</div>
+          <div class="svc-name">Braintree / PayPal</div>
+          <div class="svc-desc">Add Funds, 3DS, USD merchant, KWC, auth-only flow, Sift checks</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-payments);border-color:var(--c-payments)">Braintree</span>
+            <span class="svc-tag" style="color:var(--c-payments);border-color:var(--c-payments)">PayPal</span>
+            <span class="svc-tag" style="color:var(--c-payments);border-color:var(--c-payments)">3DS</span>
+          </div>
+        </div>
+        <div class="svc svc-security" data-glean-id="svc-sift" data-tip="Sift fraud management — full integration: missing fields fix (APIDB-16622), backfill (APIDB-17287), secondary user events (APIDB-17044), Sift rule fix (APIDB-15378), email field (APIDB-13081), PayPal Sift check flow (APIDB-13475), callback URL update (APIDB-13278)">
+          <div class="svc-icon">🔍</div>
+          <div class="svc-name">Sift (Fraud)</div>
+          <div class="svc-desc">Fraud scoring — BT PayPal checks, account events, backfill</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-security);border-color:var(--c-security)">Sift</span>
+            <span class="svc-tag" style="color:var(--c-security);border-color:var(--c-security)">Fraud</span>
+          </div>
+        </div>
+        <div class="svc svc-payments" data-glean-id="svc-zoho" data-tip="Zoho CRM — invoice sync, account creation, Prepaid USD multi-currency (APIX-1516), bank transfer templates (APIDB-14744/14760/14950), Zoho error fixes (APIDB-11417/11456/12357), minimise Zoho calls (APIDB-12240)">
+          <div class="svc-icon">📋</div>
+          <div class="svc-name">Zoho CRM</div>
+          <div class="svc-desc">Invoice sync, USD multi-currency, account creation, templates</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-payments);border-color:var(--c-payments)">Zoho</span>
+            <span class="svc-tag" style="color:var(--c-payments);border-color:var(--c-payments)">CRM</span>
+          </div>
+        </div>
+        <div class="svc svc-payments" data-glean-id="svc-phub" data-tip="PHUB (Platform Hub) — account/secret endpoints. FeignClient migration (APIDB-15740), PHUB URL update for Atmos (APIDB-9433), Phub .hq domain puppet update (APIDB-16200), pricing-group-id sync (APIDB-14102), externalId (APIDB-11778)">
+          <div class="svc-icon">🔗</div>
+          <div class="svc-name">PHUB</div>
+          <div class="svc-desc">Platform Hub — account secrets, FeignClient, pricing-group-id</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-payments);border-color:var(--c-payments)">PHUB</span>
+            <span class="svc-tag" style="color:var(--c-payments);border-color:var(--c-payments)">FeignClient</span>
+          </div>
+        </div>
+        <div class="svc svc-csp" data-glean-id="svc-dt-idp" data-tip="Deutsche Telekom IDP — SSO integration (APIDB-16458/16487), redirect user invite emails to DT IDP (APIDB-16483), 2FA phone number correction (APIDB-16493), DT domain change EPIC (APIX-1347/1435), VIAM URL update">
+          <div class="svc-icon">🏢</div>
+          <div class="svc-name">DT IDP (SSO)</div>
+          <div class="svc-desc">Deutsche Telekom SSO — invite redirect, 2FA, domain migration</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-csp);border-color:var(--c-csp)">SSO</span>
+            <span class="svc-tag" style="color:var(--c-csp);border-color:var(--c-csp)">SAML</span>
+            <span class="svc-tag" style="color:var(--c-csp);border-color:var(--c-csp)">IDP</span>
+          </div>
+        </div>
+        <div class="svc svc-payments" data-glean-id="svc-zendesk" data-tip="Zendesk — NPA update (APIDB-16331), automated provisioning ticket creation (APIDB-16610), KYC on payment failure zendesk creation (APIDB-15757)">
+          <div class="svc-icon">🎫</div>
+          <div class="svc-name">Zendesk</div>
+          <div class="svc-desc">Support tickets — NPA, KYC payment failure, auto provisioning</div>
+          <div class="svc-tags">
+            <span class="svc-tag" style="color:var(--c-payments);border-color:var(--c-payments)">Zendesk</span>
+            <span class="svc-tag" style="color:var(--c-payments);border-color:var(--c-payments)">KYC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend" data-glean-id="arch-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--c-apigw)"></div>API Gateway</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--c-dashboard)"></div>Dashboard Services</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--c-user)"></div>User Service</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--c-infra)"></div>Infrastructure / IaC</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--c-kafka)"></div>Kafka / Events</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--c-aws)"></div>AWS Services</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--c-security)"></div>Security / Auth</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--c-payments)"></div>Payments / Integrations</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--c-csp)"></div>CSP / SSO</div>
+    </div>
+  </div>
+
+  <!-- ── WORK DOMAINS ── -->
+  <div class="section-label" data-glean-id="domains-label">Key Work Domains &amp; Contributions</div>
+  <div class="ticket-grid" data-glean-id="ticket-grid">
+
+    <div class="ticket-card" data-glean-id="domain-apigw">
+      <div class="ticket-card-title" style="color:var(--c-apigw)">🚦 API Gateway (APIGW)</div>
+      <ul class="ticket-list">
+        <li>Route config PRs — matchers, upstreams, VirtualServices</li>
+        <li>CD failover testing with APIGW (QA + PROD)</li>
+        <li>DT CSP domain routing &amp; IAP config (new domains)</li>
+        <li>DevAPI traffic routing (APIDB-8938)</li>
+        <li>APIGW pointing to APIDB-5170 branch</li>
+        <li>VIAM S-T-S auth on internal endpoints</li>
+      </ul>
+    </div>
+
+    <div class="ticket-card" data-glean-id="domain-dashboard">
+      <div class="ticket-card-title" style="color:var(--c-dashboard)">📊 Customer Dashboard</div>
+      <ul class="ticket-list">
+        <li>CD to AWS migration (APIX-200) — Atmos-dev deploy</li>
+        <li>Kafka consumer group UUID fix (APIDB-14429)</li>
+        <li>Cache expiry, Jenkins cache-clear pipeline</li>
+        <li>FeignClient migration for AccountsClient</li>
+        <li>Prod log file size fix, SSM port-forward</li>
+        <li>CD failover — regional cache &amp; Jenkins pipeline</li>
+        <li>OneTrust Cookie Banner, GTM removal</li>
+        <li>Signup race condition fix (APIDB-14496)</li>
+        <li>Grafana DashboardHttpClient metrics</li>
+        <li>Mend security fixes (spring-kafka, jetty, h2, c3p0)</li>
+      </ul>
+    </div>
+
+    <div class="ticket-card" data-glean-id="domain-user-service">
+      <div class="ticket-card-title" style="color:var(--c-user)">👤 User Service</div>
+      <ul class="ticket-list">
+        <li>PATCH endpoint for user update (APIDB-12934)</li>
+        <li>Lifecycle events: Account Billing, User Finance, Company</li>
+        <li>Centralise lifecycle events in SubAccountListener</li>
+        <li>DELETE secondary user → DELETE event (APIDB-11074)</li>
+        <li>Org ID to subscriptions field (APIDB-11692)</li>
+        <li>SMPP account org ID &amp; externalId (APIDB-11731/77)</li>
+        <li>Artifactory migration (Gradle wrapper, new registry)</li>
+        <li>Kafka transactional producer, group ID purger</li>
+        <li>RDS CPU alert, deadlock fix on d_user_search</li>
+        <li>Secondary user Sift events (APIDB-17044)</li>
+        <li>Mend: spring-beans, kafka-clients, zookeeper, redis</li>
+      </ul>
+    </div>
+
+    <div class="ticket-card" data-glean-id="domain-payments">
+      <div class="ticket-card-title" style="color:var(--c-payments)">💳 Payments &amp; Fraud</div>
+      <ul class="ticket-list">
+        <li>Braintree PayPal full integration (Add Funds, 3DS)</li>
+        <li>Authorization-only PayPal + Sift conditional settlement</li>
+        <li>KWC success payment E2E (APIDB-17067)</li>
+        <li>Sift: missing fields, backfill, BT PayPal checks</li>
+        <li>Negative balance scheduler job + email</li>
+        <li>KYC on payment failure (frontend + backend)</li>
+        <li>Block non-sanctioned countries for payment/address</li>
+        <li>Sigma Prime — payment transaction search endpoints</li>
+        <li>Prepaid USD — Zoho multi-currency support</li>
+        <li>Grafana Braintree payments board</li>
+      </ul>
+    </div>
+
+    <div class="ticket-card" data-glean-id="domain-infra">
+      <div class="ticket-card-title" style="color:var(--c-infra)">🏗️ Infrastructure &amp; IaC</div>
+      <ul class="ticket-list">
+        <li>Puppet: dashboard vars (eyaml), Numbering Plan host</li>
+        <li>Puppet: Phub .hq domains, HLR URL, ID Server removal</li>
+        <li>Terraform: ops-terraform, user-service image tag</li>
+        <li>Nomad: multi-region cluster, OSS dev resize</li>
+        <li>Scheduler migration: Softlayer → Atmos (APIX-268)</li>
+        <li>Kafka migration: Kiwi → Hermes cluster (APIX-983)</li>
+        <li>EKS cluster configs, ArgoCD, Atlantis</li>
+        <li>Jenkins pipelines: cache clear, smoke tests, purger</li>
+        <li>SSM port-forward for all dashboard services</li>
+        <li>Atmos account IaC, VPC peering for APIGW</li>
+      </ul>
+    </div>
+
+    <div class="ticket-card" data-glean-id="domain-csp">
+      <div class="ticket-card-title" style="color:var(--c-csp)">🤝 CSP / DT SSO</div>
+      <ul class="ticket-list">
+        <li>DT domain migration: api.telekom.net → developer.telekom.com</li>
+        <li>DT SSO integration — hide My Addresses, read-only</li>
+        <li>DT IDP — redirect user invite emails (APIDB-16483)</li>
+        <li>2FA phone number correction for DT accounts</li>
+        <li>VIAM URL update for DT dashboard</li>
+        <li>Optus — disable pricing download, credit coupon fix</li>
+        <li>Cloud Runtime hidden for resell co-branded CSPs</li>
+        <li>Privacy Policy shown for CSP users (APIDB-14217)</li>
+      </ul>
+    </div>
+
+    <div class="ticket-card" data-glean-id="domain-security">
+      <div class="ticket-card-title" style="color:var(--c-security)">🔐 Security &amp; Auth</div>
+      <ul class="ticket-list">
+        <li>Remove hardcoded credentials from dashboard (APIDB-13735)</li>
+        <li>XSS fix — ATO via Password Manager (APIDB-13621)</li>
+        <li>JSONP endpoint callback validation (APIDB-13666)</li>
+        <li>Reflected XSS fix (APIDB-11309)</li>
+        <li>Remove G-Cloud creds from CD repo (APIDB-15458)</li>
+        <li>Mend security scans — spring, jetty, h2, wiremock</li>
+        <li>VIAM S-T-S auth migration across services</li>
+        <li>User removed from team security fix (APIDB-10990)</li>
+      </ul>
+    </div>
+
+    <div class="ticket-card" data-glean-id="domain-kafka">
+      <div class="ticket-card-title" style="color:var(--c-kafka)">📨 Kafka &amp; Events</div>
+      <ul class="ticket-list">
+        <li>Kafka topic migration: Kiwi → Hermes (APIX-983)</li>
+        <li>Consumer group UUID fix (APIDB-14429)</li>
+        <li>Group ID rename &amp; purger pipeline (APIDB-11968/12027)</li>
+        <li>Remove vBilling listeners from Kiwi (APIDB-13772/73)</li>
+        <li>Kafka brokers update for vBilling (APIDB-13682)</li>
+        <li>Transactional Kafka producer (APIDB-10754)</li>
+        <li>Fraud Kafka topic — Sift signal routing</li>
+        <li>Lifecycle events: Account, User Finance, Company</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ── TECH STACK ── -->
+  <div class="section-label" data-glean-id="stack-label">Full Technology Stack</div>
+  <div data-glean-id="tech-stack">
+    <div style="margin-bottom:10px">
+      <div class="eyebrow" style="margin-bottom:8px;margin-top:0">Languages &amp; Frameworks</div>
+      <div class="tech-row">
+        <span class="tech-pill highlight">Java</span>
+        <span class="tech-pill highlight">Spring Boot</span>
+        <span class="tech-pill highlight">Python</span>
+        <span class="tech-pill">React</span>
+        <span class="tech-pill">Angular</span>
+        <span class="tech-pill">Gradle</span>
+        <span class="tech-pill">JUnit</span>
+        <span class="tech-pill">Pytest</span>
+        <span class="tech-pill">Groovy (Jenkins)</span>
+      </div>
+    </div>
+    <div style="margin-bottom:10px;margin-top:16px">
+      <div class="eyebrow" style="margin-bottom:8px;margin-top:0">AWS Services</div>
+      <div class="tech-row">
+        <span class="tech-pill highlight">EKS</span>
+        <span class="tech-pill highlight">RDS Aurora</span>
+        <span class="tech-pill highlight">SES</span>
+        <span class="tech-pill highlight">S3</span>
+        <span class="tech-pill highlight">VPC</span>
+        <span class="tech-pill highlight">IAM</span>
+        <span class="tech-pill highlight">SSM</span>
+        <span class="tech-pill">MSK (Kafka)</span>
+        <span class="tech-pill">CloudWatch</span>
+        <span class="tech-pill">OpsGenie</span>
+      </div>
+    </div>
+    <div style="margin-bottom:10px;margin-top:16px">
+      <div class="eyebrow" style="margin-bottom:8px;margin-top:0">Orchestration &amp; IaC</div>
+      <div class="tech-row">
+        <span class="tech-pill highlight">Nomad</span>
+        <span class="tech-pill highlight">Kubernetes</span>
+        <span class="tech-pill highlight">Terraform</span>
+        <span class="tech-pill highlight">Puppet</span>
+        <span class="tech-pill highlight">Atmos</span>
+        <span class="tech-pill">ArgoCD</span>
+        <span class="tech-pill">Atlantis</span>
+        <span class="tech-pill">Jenkins</span>
+        <span class="tech-pill">Gloo / Envoy</span>
+      </div>
+    </div>
+    <div style="margin-bottom:10px;margin-top:16px">
+      <div class="eyebrow" style="margin-bottom:8px;margin-top:0">Data &amp; Messaging</div>
+      <div class="tech-row">
+        <span class="tech-pill highlight">Kafka</span>
+        <span class="tech-pill highlight">PostgreSQL</span>
+        <span class="tech-pill highlight">Redis</span>
+        <span class="tech-pill">Grafana</span>
+        <span class="tech-pill">Kibana</span>
+        <span class="tech-pill">Elasticsearch</span>
+      </div>
+    </div>
+    <div style="margin-bottom:10px;margin-top:16px">
+      <div class="eyebrow" style="margin-bottom:8px;margin-top:0">Security &amp; Auth</div>
+      <div class="tech-row">
+        <span class="tech-pill highlight">VIAM</span>
+        <span class="tech-pill highlight">JWT</span>
+        <span class="tech-pill highlight">IAP</span>
+        <span class="tech-pill">OAuth2</span>
+        <span class="tech-pill">SAML / SSO</span>
+        <span class="tech-pill">Mend (SCA)</span>
+        <span class="tech-pill">XSS / OWASP</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TIMELINE ── -->
+  <div class="section-label" data-glean-id="timeline-label">Work Timeline</div>
+  <div class="arch-canvas" style="padding:20px 24px" data-glean-id="timeline-canvas">
+    <div class="timeline" data-glean-id="timeline">
+      <div class="tl-item" data-glean-id="tl-2022">
+        <div class="tl-year">2022</div>
+        <ul class="tl-items">
+          <li>CD to AWS migration (APIX-200)</li>
+          <li>Scheduler Atmos migration (APIX-268)</li>
+          <li>Kafka Hermes migration (APIX-983)</li>
+          <li>10DLC campaigns, Buy Numbers</li>
+          <li>Verify Logs page</li>
+          <li>DB users setup (RDS)</li>
+          <li>APIGW devapi routes PR</li>
+        </ul>
+      </div>
+      <div class="tl-item" data-glean-id="tl-2023">
+        <div class="tl-year">2023</div>
+        <ul class="tl-items">
+          <li>User Service PATCH endpoint</li>
+          <li>Lifecycle events (Account, User Finance, Company)</li>
+          <li>Kafka group ID purger pipeline</li>
+          <li>DT domain change EPIC (APIX-1347)</li>
+          <li>XSS / security fixes</li>
+          <li>Zoho error fixes</li>
+          <li>Remove hardcoded credentials</li>
+          <li>Org ID / SMPP account work</li>
+        </ul>
+      </div>
+      <div class="tl-item" data-glean-id="tl-2024">
+        <div class="tl-year">2024</div>
+        <ul class="tl-items">
+          <li>Signup race condition fix</li>
+          <li>Artifactory migration (user-service)</li>
+          <li>Cache expiry &amp; Jenkins pipeline</li>
+          <li>OneTrust Cookie Banner</li>
+          <li>Sift PayPal check flow</li>
+          <li>Braintree 3DS flag</li>
+          <li>Prepaid USD Zoho multi-currency</li>
+          <li>DT SSO integration (APIX-1435)</li>
+        </ul>
+      </div>
+      <div class="tl-item" data-glean-id="tl-2025">
+        <div class="tl-year">2025</div>
+        <ul class="tl-items">
+          <li>KYC on payment failure</li>
+          <li>Negative balance scheduler job</li>
+          <li>Sigma Prime payment search</li>
+          <li>Mend security fixes (all services)</li>
+          <li>SSM port-forward for all services</li>
+          <li>Block non-sanctioned countries</li>
+          <li>Sift rule fix &amp; updates</li>
+          <li>Grafana DashboardHttpClient metrics</li>
+        </ul>
+      </div>
+      <div class="tl-item" data-glean-id="tl-2026">
+        <div class="tl-year">2026</div>
+        <ul class="tl-items">
+          <li>CD failover (Discovery → QA → PROD)</li>
+          <li>DT SSO — invite email redirect</li>
+          <li>Braintree PayPal full flow (PROD)</li>
+          <li>Sift backfill &amp; secondary user events</li>
+          <li>Numbering Plan Puppet (regions)</li>
+          <li>RDS CPU alerts</li>
+          <li>BT PayPal Grafana board</li>
+          <li>KWC E2E success payment</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  window.GleanBridge.postMessage({
+    actionId: 'export-pdf',
+    type: 'glean-add-menu',
+    metadata: { label: 'Export as PDF', icon: 'export' }
+  });
+  window.GleanBridge.onMessage('action', function(data) {
+    if (data.actionId === 'export-pdf') window.print();
+  });
+</script>
+</body>
+</html>

@@ -6,6 +6,10 @@
 - [Part 4 - 20 scenarios](20-scenarios)
 - [Part 4 - 25 scenarios](25-scenarios)
 - [Part 5 - 28 scenarios](28-scenarios)
+- [HTML 1](html-1.html)
+- [HTML 2](html-2.html)
+
+## Stories
 - [Paymemt KYC](payment-kyc)
 - [Negative Balance](negative-balance)
 - [User Signup](user-signup)
