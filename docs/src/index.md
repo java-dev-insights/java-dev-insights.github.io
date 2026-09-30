@@ -34,5 +34,10 @@ features:
     # icon: 🪐
     link: /frontend
     # linkText: Check frontend topics
+  - title: Exp
+    details: exp
+    # icon: 🪐
+    link: /exp
+    linkText: Check frontend topics
 ---
 
