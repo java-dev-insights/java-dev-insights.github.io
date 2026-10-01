@@ -1,7 +1,7 @@
 import { default as PATHS } from "../../paths";
 
 const SIDEBAR_INTERVIEW_LLD = [
-	{ text: "Interview Landscape", link: PATHS.INTERVIEW_INDEX },
+	{ text: "<-- Interview Landscape", link: PATHS.INTERVIEW_INDEX },
 	{ text: "LLD Interview", link: PATHS.INTERVIEW_LLD },
 	{
 		text: "External Resources",

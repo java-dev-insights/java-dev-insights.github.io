@@ -1,6 +1,7 @@
 // Tracks
 export { default as SIDEBAR_DEFAULT_FRONTEND } from './frontend'
 export { default as SIDEBAR_DEFAULT_BACKEND } from './backend';
+export { default as SIDEBAR_BACKEND_JAVA } from './backend/java';
 export { default as SIDEBAR_DEFAULT_DEVOPS } from './devops';
 // Interview
 export { default as SIDEBAR_DEFAULT_INTERVIEW } from './interview';

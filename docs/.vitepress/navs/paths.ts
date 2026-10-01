@@ -5,8 +5,11 @@ const enum PATH_ENUMS {
     HOME = "/",
     // Tracks
     FRONTEND_INDEX = "/frontend/",
-    BACKEND_INDEX = "/backend/",
     DEVOPS_INDEX = "/devops/",
+    // Backend
+    BACKEND_INDEX = "/backend/",
+    BACKEND_JAVA = BACKEND_INDEX + "java/",
+    BACKEND_SPRING = BACKEND_INDEX + "spring/",
     // Interview
     INTERVIEW_INDEX = "/interview/",
     INTERVIEW_CODING = INTERVIEW_INDEX + "coding/",
@@ -14,7 +17,7 @@ const enum PATH_ENUMS {
     SYSTEM_DESIGN_INDEX = "/system-design/",
     SYSTEM_DESIGN_CONCEPTS = SYSTEM_DESIGN_INDEX + "fundamentals/",
     SYSTEM_DESIGN_INTERVIEW = SYSTEM_DESIGN_INDEX + "interview/",
-    CONCURRENCY_INTERVIEW = INTERVIEW_INDEX + "concurrency/",
+    INTERVIEW_CONCURRENCY = INTERVIEW_INDEX + "concurrency/",
     INTERVIEW_FAQS = INTERVIEW_INDEX + "faqs/",
     INTERVIEW_BEHAVIORAL = INTERVIEW_INDEX + "behavioral",
     INTERVIEW_SALARY_NEGOTIATIONS = INTERVIEW_INDEX + "salary-negotiations",

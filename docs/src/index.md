@@ -37,7 +37,7 @@ features:
   - title: Exp
     details: exp
     # icon: 🪐
-    link: /exp
+    link: /interview/behavioral/exp
     linkText: Check frontend topics
 ---
 

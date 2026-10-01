@@ -20,7 +20,7 @@ const TOP_NAVBAR = [
 					{ text: "LLD", link: PATHS.INTERVIEW_LLD },
 					{ text: "System Design Concepts", link: PATHS.SYSTEM_DESIGN_CONCEPTS },
 					{ text: "System Design Interviews", link: PATHS.SYSTEM_DESIGN_INTERVIEW },
-					{ text: "Concurrency", link: PATHS.CONCURRENCY_INTERVIEW },
+					{ text: "Concurrency", link: PATHS.INTERVIEW_CONCURRENCY },
 					{ text: "FAQs", link: PATHS.INTERVIEW_FAQS },
 				],
 			},

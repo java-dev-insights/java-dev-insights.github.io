@@ -1,7 +1,7 @@
 import { default as PATHS } from "../../paths";
 
 const SIDEBAR_INTERVIEW_CONCURRENCY = [
-    { text: "Interview Landscape", link: PATHS.INTERVIEW_INDEX },
+    { text: "<-- ⬅️ Interview Landscape", link: PATHS.INTERVIEW_INDEX },
     { text: "Concurrency Interview", link: PATHS.INTERVIEW_CONCURRENCY },
     {
         text: 'External Resources',

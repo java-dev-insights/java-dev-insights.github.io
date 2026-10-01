@@ -10,7 +10,7 @@ const SIDEBAR_DEFAULT_INTERVIEW = [
 			{ text: "System Design", link: PATHS.SYSTEM_DESIGN_INDEX },
 			{ text: "System Design (Concepts)", link: PATHS.SYSTEM_DESIGN_CONCEPTS },
 			{ text: "System Design (Interview)", link: PATHS.SYSTEM_DESIGN_INTERVIEW },
-			{ text: "Concurrency", link: PATHS.CONCURRENCY_INTERVIEW },
+			{ text: "Concurrency", link: PATHS.INTERVIEW_CONCURRENCY },
 			{
 				text: "Other FAQs",
 				link: PATHS.INTERVIEW_FAQS,

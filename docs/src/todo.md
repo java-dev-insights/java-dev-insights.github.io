@@ -41,3 +41,48 @@
 
 ## AI 
 - [Large Language Models explained briefly](https://www.youtube.com/watch?v=LPZh9BOjkQs){:target="_blank"}
+- https://www.youtube.com/watch?v=ZIAzZtKWmbI
+
+# Others
+- https://www.youtube.com/watch?v=TyfdM3EmJuc
+- https://www.youtube.com/watch?v=DOFflggE_0Q&t=9s
+- https://www.youtube.com/watch?v=lvO88XxNAzs&t=4223s
+- https://www.youtube.com/watch?v=q6qG3CxbI3o
+- https://www.youtube.com/watch?v=RYT08CaYq6A&t=16s
+- https://www.youtube.com/watch?v=-40xErgJIBg&t=5s
+- https://www.youtube.com/watch?v=Q2D-rCyj2b0&t=86s
+- https://www.youtube.com/watch?v=7yNvsFrwpp0
+- https://www.youtube.com/watch?v=duSmc87gaUo
+- https://www.youtube.com/watch?v=UK0eFfSRd9s
+- https://www.youtube.com/watch?v=Y01eR7tUgnc
+- https://www.youtube.com/watch?v=tSTO9w3piAo
+- https://www.youtube.com/watch?v=LAnEeffb5zI&t=10s
+- https://www.youtube.com/watch?v=bPbuCAzzmUs
+- https://www.youtube.com/watch?v=qUHyCjOo8Z8
+- https://www.youtube.com/watch?v=hGIqNUXQlBU
+- https://www.youtube.com/watch?v=WZAL4SiW9e0
+- https://www.youtube.com/watch?v=06iRM1Ghr1k
+- https://www.youtube.com/watch?v=mllwvKDyS-o
+- https://www.youtube.com/watch?v=LAnEeffb5zI&t=10s
+- https://www.youtube.com/watch?v=bPbuCAzzmUs
+- https://www.youtube.com/watch?v=AU9tsGVnmvM&t=10s
+- https://www.youtube.com/watch?v=Ee7LcMaQO4Y
+- https://www.youtube.com/watch?v=Ak-fxEwAR14
+- https://www.youtube.com/watch?v=9k31KcQmS_U
+- https://www.youtube.com/watch?v=cidPApHyXhI
+- https://www.youtube.com/shorts/jTWbGuJcSI8
+- https://www.youtube.com/watch?v=AnbJxDpsYOo
+- https://www.youtube.com/watch?v=1a1VXDdIyrk
+- https://www.youtube.com/watch?v=yg55OIb5op0
+- https://www.youtube.com/watch?v=7zZy1QTvokM
+- https://www.youtube.com/watch?v=4biXYSNkn9Y
+- https://www.youtube.com/watch?v=vj7hysh0mOI
+- https://www.youtube.com/watch?v=tYchws8hpd8
+- https://www.youtube.com/watch?v=8jhN7RVNcpg
+- https://www.youtube.com/watch?v=u3AhtyPnWjA
+- https://www.youtube.com/watch?v=mViFYTwWvcM
+- https://www.youtube.com/watch?v=8ji5vURIllM
+- https://www.youtube.com/watch?v=iuRz0lqXTqU
+- https://www.youtube.com/watch?v=IauULFe1j-A&t=24s
+- https://www.youtube.com/watch?v=__NDDDbdKbw
+- 
