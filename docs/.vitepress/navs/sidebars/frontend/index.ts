@@ -1,4 +1,4 @@
-import { default as PATHS } from '../paths';
+import { default as PATHS } from '../../paths';
 
 const SIDEBAR_DEFAULT_FRONTEND = [
       { text: 'Overview', link: PATHS.FRONTEND_INDEX },

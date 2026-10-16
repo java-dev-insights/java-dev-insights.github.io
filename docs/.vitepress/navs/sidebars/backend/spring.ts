@@ -1,0 +1,83 @@
+import { default as PATHS } from "../../paths";
+
+const SIDEBAR_BACKEND_SPRING = [
+	{ text: "<-- Backend", link: PATHS.BACKEND_INDEX },
+	{ text: "Overview - Spring", link: PATHS.BACKEND_SPRING },
+	{
+		text: "Spring Core",
+    collapsed: true,
+		items: [
+			{
+				text: "Core Java",
+				link: PATHS.BACKEND_INDEX + "java/",
+				// collapsed: true,
+				// items: [
+				//   { text: 'Overview', link: PATHS.BACKEND_INDEX+'java/' },
+				//   { text: 'OOP and OOD', link: PATHS.BACKEND_INDEX+'java/oop-and-ood' },
+				//   { text: 'JVM Architecture', link: PATHS.BACKEND_INDEX+'java/jvm-architecture' },
+				//   { text: 'Core Java', collapsed: true, items: [{ text: 'ByteCode', link: PATHS.BACKEND_INDEX+'java/core' }] },
+				// ]
+			},
+			{ text: "Spring", link: PATHS.BACKEND_INDEX + "spring/" },
+			{ text: "Hibernate", link: PATHS.BACKEND_INDEX + "hibernate/" },
+		],
+	},
+	{
+		text: "Spring AOP",
+		items: [
+			{ text: "JUnit", link: PATHS.BACKEND_INDEX + "junit" },
+			// { text: 'Mockito', link: PATHS.BACKEND_INDEX+'mockito' },
+			{ text: "Cucumber", link: PATHS.BACKEND_INDEX + "cucumber" },
+		],
+	},
+	{
+		text: "Spring Boot",
+		items: [
+			{ text: "Object Mapper", link: PATHS.BACKEND_INDEX + "mapper" },
+			{ text: "Json", link: PATHS.BACKEND_INDEX + "json" },
+			{ text: "XML", link: PATHS.BACKEND_INDEX + "xml" },
+			{ text: "Lombok", link: PATHS.BACKEND_INDEX + "lombok" },
+			{ text: "Logger SLF4J", link: PATHS.BACKEND_INDEX + "logger" },
+			{ text: "Feign", link: PATHS.BACKEND_INDEX + "feign" },
+		],
+	},
+	{
+		text: "API",
+		items: [
+			{ text: "Http", link: PATHS.BACKEND_INDEX + "http" },
+			{ text: "CORS", link: PATHS.BACKEND_INDEX + "cors" },
+			{ text: "REST", link: PATHS.BACKEND_INDEX + "rest" },
+			{ text: "OWASP", link: PATHS.BACKEND_INDEX + "owasp" },
+		],
+	},
+	{
+		text: "Services",
+		items: [
+			{ text: "WebServices", link: PATHS.BACKEND_INDEX + "webservices" },
+			{ text: "Microservices", link: PATHS.BACKEND_INDEX + "microservices" },
+		],
+	},
+	{
+		text: "API Docs",
+		items: [
+			{ text: "Swagger", link: PATHS.BACKEND_INDEX + "swagger" },
+			{ text: "Open API", link: PATHS.BACKEND_INDEX + "openapi" },
+		],
+	},
+	{
+		text: "Messaging",
+		items: [
+			{ text: "Apache Kafka", link: PATHS.BACKEND_INDEX + "kafka" },
+			{ text: "Rabbit MQ", link: PATHS.BACKEND_INDEX + "rabbit-mq" },
+		],
+	},
+	{
+		// text: 'Next',
+		items: [
+			{ text: "References", link: PATHS.BACKEND_JAVA + "refs" },
+			{ text: "What's Next?", link: PATHS.BACKEND_JAVA + "whats-next" },
+		],
+	},
+];
+
+export default SIDEBAR_BACKEND_SPRING;

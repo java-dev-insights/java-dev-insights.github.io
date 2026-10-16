@@ -1,6 +1,6 @@
-import { default as PATHS } from "./paths.ts";
 import { DefaultTheme } from "vitepress";
 import * as SIDEBARS from './sidebars/index.ts';
+import { default as PATHS } from "./paths.ts";
 
 /** Custom Sidebar for URL */
 const ALL_SIDEBARS:DefaultTheme.SidebarMulti = {

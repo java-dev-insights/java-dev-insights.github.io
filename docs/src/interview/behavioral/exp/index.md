@@ -1,6 +1,5 @@
 # Summary of Past 5 years at work
 
-- [5 years at work](vonage-5y)
 - [Roles](roles)
 - [Linked In](linkedin) - summary
 - [Appraisals](appraisals) Tech stack updated

@@ -8,8 +8,8 @@ const SIDEBAR_BACKEND_JAVA = [
     collapsed: true,
 		items: [
 			{
-				text: "Core Java",
-				link: PATHS.BACKEND_INDEX + "java/",
+				text: "Bytecode & Classpath",
+				link: PATHS.BACKEND_JAVA + "core/",
 				// collapsed: true,
 				// items: [
 				//   { text: 'Overview', link: PATHS.BACKEND_INDEX+'java/' },
@@ -18,7 +18,7 @@ const SIDEBAR_BACKEND_JAVA = [
 				//   { text: 'Core Java', collapsed: true, items: [{ text: 'ByteCode', link: PATHS.BACKEND_INDEX+'java/core' }] },
 				// ]
 			},
-			{ text: "Spring", link: PATHS.BACKEND_INDEX + "spring/" },
+			{ text: "Data Types & Casting", link: PATHS.BACKEND_JAVA + "core/data-types" },
 			{ text: "Hibernate", link: PATHS.BACKEND_INDEX + "hibernate/" },
 		],
 	},

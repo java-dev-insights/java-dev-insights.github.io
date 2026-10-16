@@ -1,4 +1,4 @@
-import { default as PATHS } from '../paths';
+import { default as PATHS } from '../../paths';
 
 const SIDEBAR_DEFAULT_AI = [
       { text: 'Overview', link: PATHS.AI_INDEX },
