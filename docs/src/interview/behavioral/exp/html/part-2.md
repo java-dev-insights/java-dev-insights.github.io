@@ -19,10 +19,10 @@ Your work has centred on the **Dashboard Platform** team, spanning three major s
 You were a core contributor to migrating PayPal transactions to Braintree for improved reliability, fraud controls, and compliance. 
 
 - **Investigated and documented** the BT PayPal Add Funds 422 error in QA, authoring the Confluence analysis page. 
-- **Implemented the KWC success payment flow** (APIDB-17067) for CSP prepaid customers via Braintree PayPal. 
-- **Fixed the Add Funds dropdown UX** (APIDB-17289) to show unique payment IDs for multiple PayPal instruments. 
+- **Implemented the KWC success payment flow** (TICKET-17067) for CSP prepaid customers via Braintree PayPal. 
+- **Fixed the Add Funds dropdown UX** (TICKET-17289) to show unique payment IDs for multiple PayPal instruments. 
 - **Owned the production API update task** across Customer Dashboard, DevApi, Scheduler, and Auto-reload to support the BT PP flow with feature flags. 
-- **Authored the Q3 BT PayPal test plan** on Confluence (APIDB-17191). 
+- **Authored the Q3 BT PayPal test plan** on Confluence (TICKET-17191). 
 - **Improved AVS billing address UX** — fixed incorrect radio button display for vague address matches during new payment instrument setup. 
 - Personally **deployed the full BT PayPal feature flag release** across all Dashboard services (July 2026). 
 
@@ -31,11 +31,11 @@ You were a core contributor to migrating PayPal transactions to Braintree for im
 ## 2. SIFT Fraud Integration
 You led and contributed significantly to integrating SIFT fraud detection across the platform.
 
-- **Fixed missing SIFT API events** (APIDB-16622) causing fraud score, user type, and account ref to show as "N/A" in SIFT profiles. 
-- **Authored the Q3 SIFT Fraud Tasks test plan** on Confluence (APIDB-17088). 
-- **Implemented secondary user SIFT create-account events** (APIDB-17044) — aligning secondary users with primary user flows for better KYC integration and fraud detection. 
-- **Owned the SIFT backfill task** (APIDB-17250) — retrieving missing fields (account_ref, fraud_score, user_type, primary_id) for existing users and coordinating with the SIFT team. 
-- **Authored the AD vs SIFT suspend logic design doc** (APIDB-17010). 
+- **Fixed missing SIFT API events** (TICKET-16622) causing fraud score, user type, and account ref to show as "N/A" in SIFT profiles. 
+- **Authored the Q3 SIFT Fraud Tasks test plan** on Confluence (TICKET-17088). 
+- **Implemented secondary user SIFT create-account events** (TICKET-17044) — aligning secondary users with primary user flows for better KYC integration and fraud detection. 
+- **Owned the SIFT backfill task** (TICKET-17250) — retrieving missing fields (account_ref, fraud_score, user_type, primary_id) for existing users and coordinating with the SIFT team. 
+- **Authored the AD vs SIFT suspend logic design doc** (TICKET-17010). 
 - **Contributed to async suspension logic alignment** — ensuring secondary user suspensions don't impact primary users or API keys (critical for resellers). 
 - **Added a SIFT integration skill/runbook** to the team's GitHub repository. 
 
@@ -43,8 +43,8 @@ You led and contributed significantly to integrating SIFT fraud detection across
 
 ## 3. Platform Reliability, Performance & Bug Fixes
 
-- **Resolved RDS HighCPUUsage alerts** (APIDB-17174) — identified full table scans on `d_topup_transaction` due to missing indexes on `paymentId` and `requestId`, and deployed a Flyway migration to fix it. 
-- **Fixed the Search Account Numbers bug** (APIDB-17172) — endpoint returned blank responses at index=120 for large number pools. 
+- **Resolved RDS HighCPUUsage alerts** (TICKET-17174) — identified full table scans on `d_topup_transaction` due to missing indexes on `paymentId` and `requestId`, and deployed a Flyway migration to fix it. 
+- **Fixed the Search Account Numbers bug** (TICKET-17172) — endpoint returned blank responses at index=120 for large number pools. 
 - **Added a CD payment monitoring alert** — proactive alert for no successful payments in the last 2 hours. 
 - **Fixed QA environment AVS URL** after decommissioning of the old endpoint. 
 - **Fixed VAT ID validation status bug** on the redesigned Service Address page. 
@@ -55,10 +55,10 @@ You led and contributed significantly to integrating SIFT fraud detection across
 
 ## 4. Feature Development
 
-- **Optus co-branded dashboard cleanup** (APIDB-17021) — removed pages that violated contractual agreements with Optus. 
+- **Optus co-branded dashboard cleanup** (TICKET-17021) — removed pages that violated contractual agreements with Optus. 
 - **Subscription Hub MFE currency logic** — standardised currency handling across CD BE and FE and added product URL generation. 
 - **Voice Playground for corporate users** — enabled SSO/corporate users to manually enter a phone number, bypassing the standard registration flow. 
-- **Show exempt status on My Address page** (APIDB-17431) for prepaid users. 
+- **Show exempt status on My Address page** (TICKET-17431) for prepaid users. 
 
 ---
 
@@ -97,14 +97,14 @@ Over the past two years, Arpit has been a core contributor to the **Dashboard Pl
 One of the most significant initiatives, migrating PayPal transactions from the legacy payment path to Braintree to improve transaction reliability, fraud controls, and regulatory compliance.
 
 **Key contributions:**
-- **APIDB-16513 / BTPP Async flow** — Investigated and documented the Add Funds error in QA; authored the analysis of the Braintree PayPal 422 Unprocessable Entity issue with vaulted payment tokens.
-- **APIDB-17067 — BT PayPal KWC Success Payment** — Implemented and raised PR for the KWC (CSP prepaid) customer payment flow via Braintree PayPal.
-- **APIDB-17289 — BT PayPal UI Dropdown** — Fixed the Add Funds dropdown to show unique payment IDs for multiple PayPal instruments, improving UX for users with multiple accounts.
+- **TICKET-16513 / BTPP Async flow** — Investigated and documented the Add Funds error in QA; authored the analysis of the Braintree PayPal 422 Unprocessable Entity issue with vaulted payment tokens.
+- **TICKET-17067 — BT PayPal KWC Success Payment** — Implemented and raised PR for the KWC (CSP prepaid) customer payment flow via Braintree PayPal.
+- **TICKET-17289 — BT PayPal UI Dropdown** — Fixed the Add Funds dropdown to show unique payment IDs for multiple PayPal instruments, improving UX for users with multiple accounts.
 - **[PROD] Update existing APIs to support BT PP Flow** — Owned the production task to update APIs across Customer Dashboard, DevApi, Scheduler, and Auto-reload to support the Braintree PayPal flow with feature flags.
-- **APIDB-17191 — Moving PayPal Transactions via BT Q3 Test Plan** — Authored the Confluence test plan for the Q3 PayPal-to-Braintree migration epic.
+- **TICKET-17191 — Moving PayPal Transactions via BT Q3 Test Plan** — Authored the Confluence test plan for the Q3 PayPal-to-Braintree migration epic.
 - **Analysis of Braintree PayPal Add Funds Issue in QA** — Authored the Confluence investigation page documenting the root cause and resolution path.
 - **BrainTree 3D Secure Status** — Maintained documentation and data tracking for 3D Secure nonce status.
-- **AVS for Billing Address UX (APIDB-16513)** — Improved the address validation service (AVS) user experience for new payment instruments, fixing incorrect radio button display for vague address matches.
+- **AVS for Billing Address UX (TICKET-16513)** — Improved the address validation service (AVS) user experience for new payment instruments, fixing incorrect radio button display for vague address matches.
 - Deployed multiple full-stack releases across Customer Dashboard BE/FE, DevApi, Scheduler, and Auto-reload for the BT PayPal feature flag rollout (July 2026).
 
 ---
@@ -114,13 +114,13 @@ One of the most significant initiatives, migrating PayPal transactions from the 
 Led and contributed to the integration of SIFT fraud detection across the Customer Dashboard platform.
 
 **Key contributions:**
-- **APIDB-16622 — SIFT Integration: Missing API Events** — Identified and fixed missing API events causing fraud score, user type, and account ref to display as "N/A" in SIFT profiles. Raised the GitHub PR and authored the fix.
-- **APIDB-17088 — Sift Integration Fraud Tasks Q3 PLT Test Plan** — Authored the Confluence test plan for the Q3 SIFT fraud integration epic.
-- **APIDB-17044 — Secondary Users SYNC SIFT Check** — Implemented the change to send secondary users the same `create_account` event to SIFT as primary users, improving KYC integration and fraud detection for secondary accounts.
-- **APIDB-17287 — SIFT Backfill Fraud Score** — Raised the PR to backfill missing fraud score data for existing users.
-- **APIDB-17250 — SIFT Backfilling Missing Fields** — Owned the task to retrieve and provide the 4 missing SIFT fields (account_ref, fraud_score, user_type, primary_id) for existing users, coordinating with Snowflake data and the SIFT team.
-- **APIDB-17010 — AD vs SIFT Suspend Logic** — Authored the design document comparing Admin Dashboard and SIFT suspension logic.
-- **Change Async Suspension Logic (APIDB-17044 follow-up)** — Contributed to the story to align asynchronous user suspension logic with the synchronous flow, ensuring secondary user suspensions do not impact primary users or API keys (important for resellers).
+- **TICKET-16622 — SIFT Integration: Missing API Events** — Identified and fixed missing API events causing fraud score, user type, and account ref to display as "N/A" in SIFT profiles. Raised the GitHub PR and authored the fix.
+- **TICKET-17088 — Sift Integration Fraud Tasks Q3 PLT Test Plan** — Authored the Confluence test plan for the Q3 SIFT fraud integration epic.
+- **TICKET-17044 — Secondary Users SYNC SIFT Check** — Implemented the change to send secondary users the same `create_account` event to SIFT as primary users, improving KYC integration and fraud detection for secondary accounts.
+- **TICKET-17287 — SIFT Backfill Fraud Score** — Raised the PR to backfill missing fraud score data for existing users.
+- **TICKET-17250 — SIFT Backfilling Missing Fields** — Owned the task to retrieve and provide the 4 missing SIFT fields (account_ref, fraud_score, user_type, primary_id) for existing users, coordinating with Snowflake data and the SIFT team.
+- **TICKET-17010 — AD vs SIFT Suspend Logic** — Authored the design document comparing Admin Dashboard and SIFT suspension logic.
+- **Change Async Suspension Logic (TICKET-17044 follow-up)** — Contributed to the story to align asynchronous user suspension logic with the synchronous flow, ensuring secondary user suspensions do not impact primary users or API keys (important for resellers).
 - **add skill dashboard-fraud-sift-integration** — Contributed a GitHub PR to add a SIFT integration skill/runbook to the dashboard repository.
 - **SiftFraudJsonUtilsTest.java** — Authored/updated unit tests for SIFT fraud JSON utilities.
 
@@ -129,8 +129,8 @@ Led and contributed to the integration of SIFT fraud detection across the Custom
 ## 3. Platform Reliability, Performance & Bug Fixes
 
 **Key contributions:**
-- **CD RDS OpsGenie Alerts — HighCPUUsage (APIDB-17174)** — Investigated and resolved recurring RDS high CPU alerts caused by full table scans on `d_topup_transaction`. Identified missing indexes on `paymentId` and `requestId` columns, validated uniqueness, and deployed a Flyway migration to add the indexes.
-- **Search Account Numbers Bug (APIDB-17172)** — Identified and fixed a bug where the `/account/numbers` endpoint returned blank responses at index=120 for large number pools despite the count field showing more records.
+- **CD RDS OpsGenie Alerts — HighCPUUsage (TICKET-17174)** — Investigated and resolved recurring RDS high CPU alerts caused by full table scans on `d_topup_transaction`. Identified missing indexes on `paymentId` and `requestId` columns, validated uniqueness, and deployed a Flyway migration to add the indexes.
+- **Search Account Numbers Bug (TICKET-17172)** — Identified and fixed a bug where the `/account/numbers` endpoint returned blank responses at index=120 for large number pools despite the count field showing more records.
 - **fix(alert): CD alert for no success payment in last 2 hours** — Added a monitoring alert to detect payment failures proactively.
 - **Fix dashboard QA AVS URL issue** — Fixed a broken QA environment URL after decommissioning of the old AVS endpoint.
 - **Fix vonage AWS 400 error** — Resolved a 400 error in the AWS integration.
@@ -144,10 +144,10 @@ Led and contributed to the integration of SIFT fraud detection across the Custom
 
 ## 4. Feature Development
 
-- **Optus Co-branded Dashboard Cleanup (APIDB-17021)** — Owned and resolved the removal of new dashboard pages from the Optus co-branded dashboard that violated contractual agreements with Optus. Raised the GitHub PR and deployed the fix.
-- **[Sub-hub-MFE] Currency Logic & Product URL (APIDB-16847)** — Contributed to the Subscription Hub MFE story to standardize currency handling across CD BE and CD FE and generate public-facing URLs for support plans.
+- **Optus Co-branded Dashboard Cleanup (TICKET-17021)** — Owned and resolved the removal of new dashboard pages from the Optus co-branded dashboard that violated contractual agreements with Optus. Raised the GitHub PR and deployed the fix.
+- **[Sub-hub-MFE] Currency Logic & Product URL (TICKET-16847)** — Contributed to the Subscription Hub MFE story to standardize currency handling across CD BE and CD FE and generate public-facing URLs for support plans.
 - **Allow Corporate Users to Use Voice Playground** — Contributed to the story enabling corporate (SSO) users to manually enter a phone number in Voice Playground, bypassing the standard registration flow.
-- **APIDB-17431 — Show Exempt Status on My Address Page (Prepaid)** — Raised a PR to surface tax exemption status on the prepaid address page.
+- **TICKET-17431 — Show Exempt Status on My Address Page (Prepaid)** — Raised a PR to surface tax exemption status on the prepaid address page.
 - **Subscription Data Retrieval Endpoint** — Contributed to the backend endpoint connecting to vAccount/vService to retrieve active subscription data for the Subscription Hub MFE.
 
 ---
@@ -174,7 +174,7 @@ Arpit has been a consistent **peer reviewer** across the team, appearing as revi
 ## 7. Documentation & Knowledge Sharing
 
 - Authored multiple Confluence pages: SIFT Q3 test plan, BT PayPal Q3 test plan, Braintree PayPal Add Funds QA analysis.
-- Maintained OneDrive working documents for JIRA tickets, release tracking, and investigation notes (APIDB-16513, APIDB-16622, APIDB-16847, BTPP async flow, AD vs SIFT suspend logic).
+- Maintained OneDrive working documents for JIRA tickets, release tracking, and investigation notes (TICKET-16513, TICKET-16622, TICKET-16847, BTPP async flow, AD vs SIFT suspend logic).
 - Contributed a SIFT integration skill/runbook to the team's GitHub repository.
 
 ---
@@ -229,7 +229,7 @@ Arpit joined Vonage in April 2021 as a Full Stack Developer in the API Engineeri
 ### User Service — Built from the Ground Up
 One of the most significant early contributions was the design and delivery of the **User Service** — a new microservice to centralise user management across the Dashboard platform.
 
-- Authored the **initial version of user-service** (APIDB-5629), including REST endpoints, DB schema, and CI/CD pipelines.
+- Authored the **initial version of user-service** (TICKET-5629), including REST endpoints, DB schema, and CI/CD pipelines.
 - Implemented **Query Users** endpoints: `getUserByEmail`, user list methods, and HATEOAS support.
 - Integrated **Redis caching** (`@Cacheable`) for user lookups, including environment variable setup for Atmos DEV and PROD on AWS ElastiCache.
 - Added **Hikari Connection Pool** for improved DB performance.
@@ -241,17 +241,17 @@ One of the most significant early contributions was the design and delivery of t
 - Fixed **Linked Numbers pagination** bug.
 - Fixed **Analytics Detailed sort by Cost** (values treated as strings).
 - Fixed **Search Operation** minimum parameter validation.
-- Implemented **WhatsApp Embedded Signup** (APIDB-6874).
-- Implemented **Kafka async send** for `UserFraudDecisionService` and `UserFraudEventService` (APIDB-6501/6503).
+- Implemented **WhatsApp Embedded Signup** (TICKET-6874).
+- Implemented **Kafka async send** for `UserFraudDecisionService` and `UserFraudEventService` (TICKET-6501/6503).
 - Fixed **3D Secure payment error** (`authenticate_frictionless_failed`).
 - Fixed **AI Studio documentation link** for users without access.
-- Implemented **Team Invite Screen Split** — paginated API key selection component and filtering (APIDB-7111/7147/7148).
+- Implemented **Team Invite Screen Split** — paginated API key selection component and filtering (TICKET-7111/7147/7148).
 - Deployed CD Frontend versions **4.2.0** and **4.9.0**.
 
 ### Infrastructure & DevOps
-- Updated **quota load balancer** for all applications (APIDB-6531).
+- Updated **quota load balancer** for all applications (TICKET-6531).
 - Set up **production deploy alerts** to the dashboard production Slack channel.
-- Replaced SpringFox with SpringDoc for API documentation (APIDB-6640).
+- Replaced SpringFox with SpringDoc for API documentation (TICKET-6640).
 - Fixed **SonarCloud CI** for master branch.
 
 ---
@@ -285,10 +285,10 @@ A major platform-wide initiative to migrate all Dashboard services from Softlaye
 - Deployed Campaign MFE versions **0.0.9 through 0.0.22**.
 
 ### Bug Fixes & Maintenance
-- Fixed **Invoice sent to primary email** instead of updated invoice email (APIDB-9372).
+- Fixed **Invoice sent to primary email** instead of updated invoice email (TICKET-9372).
 - Fixed **Postpaid payment data** not refreshing on API key change.
 - Fixed **Video Addons** 403 error for vCatalog call.
-- Fixed **skippable address** issue (APIDB-8195).
+- Fixed **skippable address** issue (TICKET-8195).
 - Updated **HLR URL** in dashboard and puppet.
 - Fixed **Postpaid Low Balance Notification** not being sent.
 - Removed **CDR client config** for Customer Dashboard.
@@ -300,44 +300,44 @@ A major platform-wide initiative to migrate all Dashboard services from Softlaye
 ### Lifecycle Events Framework
 Built and extended the **Lifecycle Events** system — a Kafka-based event framework for propagating user and account state changes across the platform.
 
-- Implemented **Company Lifecycle Events** (APIDB-10625).
-- Implemented **User Finance Lifecycle Event** (APIDB-12178).
-- Implemented **Account Billing Lifecycle Event** (APIDB-12324/11936).
+- Implemented **Company Lifecycle Events** (TICKET-10625).
+- Implemented **User Finance Lifecycle Event** (TICKET-12178).
+- Implemented **Account Billing Lifecycle Event** (TICKET-12324/11936).
 - Fixed **DELETE secondary user** to publish DELETE event instead of UPDATE.
 - Added **CLEAR_TEST_ACCOUNT_WATERMARK** enum and handler.
-- Used **Transactional Event Listener** in Kafka producer for reliability (APIDB-10754).
+- Used **Transactional Event Listener** in Kafka producer for reliability (TICKET-10754).
 - Authored Confluence page: **LifeCycle Events** documentation.
 - Added lifecycle events section to **VCP Core Documentation**.
 
 ### User Service — Continued Development
-- Centralised account creation and modification in User Service (APIDB-10887/10888).
-- Implemented **patch endpoint** for user updates (APIDB-12934).
-- Integrated patch user endpoint in dashboard repo (APIDB-13080).
-- Fixed **deadlock writing d_user_search** (APIDB-10869).
+- Centralised account creation and modification in User Service (TICKET-10887/10888).
+- Implemented **patch endpoint** for user updates (TICKET-12934).
+- Integrated patch user endpoint in dashboard repo (TICKET-13080).
+- Fixed **deadlock writing d_user_search** (TICKET-10869).
 - Fixed **Zoho Update — No primary user found for NEW users**.
 - Simplified `getPrimaryUserBySubAccount` implementation.
 - Refactored signup package and test suite.
-- Added **Redis monitoring** for Dashboard (APIDB-10521).
+- Added **Redis monitoring** for Dashboard (TICKET-10521).
 - Deployed User Service versions **1.53.0 through 1.92.0**.
 
 ### Platform Reliability & Bug Fixes
-- Fixed **NPE in SMS Logs page** (APIDB-12104/12105/12110).
-- Fixed **SMS Logs missing date_start** for SMS_WEBHOOK (APIDB-11755).
-- Fixed **SMS Logs Download Issue** (APIDB-11976).
-- Fixed **My Address — updated tax number not displayed** (APIDB-12357).
-- Fixed **AD — failed to update notification period** (APIDB-12399).
-- Fixed **AD — remove enum UPDATE_CUSTOMER** (APIDB-12361/12362).
-- Fixed **Buy Numbers — Country doesn't update** (APIDB-9998/10050).
-- Fixed **Number Update returning 500** for `IllegalArgumentException` (APIDB-9977).
-- Fixed **Fix User Finance not present** log error (APIDB-12586).
-- Fixed **Failed to unlink application** (APIDB-12590).
-- Fixed **PayPal error in logs** (APIDB-12662).
-- Fixed **Delete application button not working** (APIDB-12665).
-- Fixed **Cancel number timeout error** (APIDB-12660).
-- Added **OpsGenie alert** for CustomerDashboardDatabaseCPUUsage (APIDB-11170).
+- Fixed **NPE in SMS Logs page** (TICKET-12104/12105/12110).
+- Fixed **SMS Logs missing date_start** for SMS_WEBHOOK (TICKET-11755).
+- Fixed **SMS Logs Download Issue** (TICKET-11976).
+- Fixed **My Address — updated tax number not displayed** (TICKET-12357).
+- Fixed **AD — failed to update notification period** (TICKET-12399).
+- Fixed **AD — remove enum UPDATE_CUSTOMER** (TICKET-12361/12362).
+- Fixed **Buy Numbers — Country doesn't update** (TICKET-9998/10050).
+- Fixed **Number Update returning 500** for `IllegalArgumentException` (TICKET-9977).
+- Fixed **Fix User Finance not present** log error (TICKET-12586).
+- Fixed **Failed to unlink application** (TICKET-12590).
+- Fixed **PayPal error in logs** (TICKET-12662).
+- Fixed **Delete application button not working** (TICKET-12665).
+- Fixed **Cancel number timeout error** (TICKET-12660).
+- Added **OpsGenie alert** for CustomerDashboardDatabaseCPUUsage (TICKET-11170).
 - Added **Maintenance Callout** banners for planned maintenance windows.
-- Removed unused user statuses (APIDB-12009).
-- Added **DeleteStaleKafkaGroupIds** Jenkins pipeline (APIDB-11929/11968).
+- Removed unused user statuses (TICKET-12009).
+- Added **DeleteStaleKafkaGroupIds** Jenkins pipeline (TICKET-11929/11968).
 - Authored Confluence pages: **How-To: Release**, **How To: env localhost/QA/Production**, **Kafka Events documentation**.
 
 ---
@@ -355,24 +355,24 @@ Led a large cross-service initiative to migrate Vonage's white-label platform fo
 - Authored Confluence page: **How to Update Organisation Settings**.
 
 ### Security & Compliance
-- Led **Secret Security Scan** remediation — fixed secrets in git history across multiple parts (APIDB-13852), using BFG cleaner.
+- Led **Secret Security Scan** remediation — fixed secrets in git history across multiple parts (TICKET-13852), using BFG cleaner.
 - Fixed **Mend (WhiteSource) security vulnerabilities**: wiremock, nexmo-auth-springboot, messaging-dashboard, tomcat-embed-core, zookeeper, spring-web, hibernate-core, spring-kafka.
-- Fixed **DevApi JSONP endpoint callback validation** (XSS prevention, APIDB-13666).
-- Fixed **DevApi XSS ATO (Account Take Over)** vulnerability (APIDB-13621).
+- Fixed **DevApi JSONP endpoint callback validation** (XSS prevention, TICKET-13666).
+- Fixed **DevApi XSS ATO (Account Take Over)** vulnerability (TICKET-13621).
 - Removed secrets from local/NPE YAML files.
 
 ### Platform Features & Bug Fixes
-- Implemented **Organisation Configuration** in Config Service (APIDB-12871/12995).
-- Implemented **Make Profile Prefix Cacheable** (APIDB-12764).
-- Fixed **Account not upgraded after topup** (clearCacheEvent, APIDB-13879).
-- Fixed **Fix lower case externalId** in PHub response (APIDB-13857).
-- Fixed **dashboard.qa.nexmo.io** domain in QA (APIDB-13829).
-- Fixed **Kibana log errors** — Kafka Listener null pointer exception (APIDB-12904).
-- Fixed **Buy Numbers error for Latvia** (APIDB-12974).
-- Updated **Kafka brokers for vBilling Listeners** and removed old Kiwi cluster consumers (APIDB-13682/13772).
-- Added **Adobe Analytics userId** identifiers (APIDB-12725).
-- Fixed **Optus — Disable Pricing Download** for all dashboard users (APIDB-13782).
-- Renamed and deleted accounts for SSO re-use (APIDB-13960).
+- Implemented **Organisation Configuration** in Config Service (TICKET-12871/12995).
+- Implemented **Make Profile Prefix Cacheable** (TICKET-12764).
+- Fixed **Account not upgraded after topup** (clearCacheEvent, TICKET-13879).
+- Fixed **Fix lower case externalId** in PHub response (TICKET-13857).
+- Fixed **dashboard.qa.nexmo.io** domain in QA (TICKET-13829).
+- Fixed **Kibana log errors** — Kafka Listener null pointer exception (TICKET-12904).
+- Fixed **Buy Numbers error for Latvia** (TICKET-12974).
+- Updated **Kafka brokers for vBilling Listeners** and removed old Kiwi cluster consumers (TICKET-13682/13772).
+- Added **Adobe Analytics userId** identifiers (TICKET-12725).
+- Fixed **Optus — Disable Pricing Download** for all dashboard users (TICKET-13782).
+- Renamed and deleted accounts for SSO re-use (TICKET-13960).
 - Added **Bangladesh** to countries list for SMS Delivery page.
 - Added **Saint Martin** country code fix.
 - Deployed CD Backend versions **1277 through 1373**, CD Frontend **12.x through 14.x**.
@@ -384,25 +384,25 @@ Led a large cross-service initiative to migrate Vonage's white-label platform fo
 *(See the 2-Year Summary for full detail — highlights below)*
 
 ### SIFT Fraud Integration
-- Fixed missing SIFT API events causing fraud score/user type/account ref to show as "N/A" (APIDB-16622).
-- Implemented secondary user SIFT `create_account` events aligned with primary users (APIDB-17044).
-- Owned SIFT backfill task for existing users (APIDB-17250/17287).
-- Authored SIFT Q3 test plan on Confluence (APIDB-17088).
+- Fixed missing SIFT API events causing fraud score/user type/account ref to show as "N/A" (TICKET-16622).
+- Implemented secondary user SIFT `create_account` events aligned with primary users (TICKET-17044).
+- Owned SIFT backfill task for existing users (TICKET-17250/17287).
+- Authored SIFT Q3 test plan on Confluence (TICKET-17088).
 - Contributed async suspension logic alignment for reseller safety.
 - Added SIFT integration skill/runbook to the team's GitHub repository.
 
 ### Braintree PayPal Migration
-- Implemented KWC success payment flow via Braintree PayPal (APIDB-17067).
-- Fixed Add Funds dropdown UX for multiple PayPal instruments (APIDB-17289).
+- Implemented KWC success payment flow via Braintree PayPal (TICKET-17067).
+- Fixed Add Funds dropdown UX for multiple PayPal instruments (TICKET-17289).
 - Owned production API updates across all Dashboard services for BT PP flow.
 - Authored BT PayPal Q3 test plan and Add Funds QA analysis on Confluence.
-- Improved AVS billing address UX (APIDB-16513).
+- Improved AVS billing address UX (TICKET-16513).
 - Deployed full BT PayPal feature flag release across all services (July 2026).
 
 ### Platform Reliability
-- Resolved RDS HighCPUUsage alerts via Flyway index migration (APIDB-17174).
-- Fixed Search Account Numbers blank response bug (APIDB-17172).
-- Fixed Optus co-branded dashboard contractual compliance (APIDB-17021).
+- Resolved RDS HighCPUUsage alerts via Flyway index migration (TICKET-17174).
+- Fixed Search Account Numbers blank response bug (TICKET-17172).
+- Fixed Optus co-branded dashboard contractual compliance (TICKET-17021).
 - Added CD payment monitoring alert.
 - Fixed VAT ID validation status on redesigned Service Address page.
 - Upgraded common-collections security vulnerability.

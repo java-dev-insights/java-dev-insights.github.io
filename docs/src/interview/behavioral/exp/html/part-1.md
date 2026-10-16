@@ -292,10 +292,10 @@ Now I have your complete personal JIRA ticket log. Here is the fully comprehensi
 
 Your tenure began with foundational infrastructure work, migrating the entire Dashboard platform from legacy Softlayer (AMS3) to AWS Atmos (Nomad). 
 
-**AWS Migration (EPIC: APIX-268 & APIX-200)**
+**AWS Migration (EPIC: EPIC-268 & EPIC-200)**
 - Led the **Scheduler service migration** end-to-end: Nomad config, Jenkins pipelines, smoke tests, Grafana/alerting, day-of execution, and post-migration cleanup. 
 - Drove **Customer Dashboard (CD) migration to AWS**: deployed to `atmos-dev`, ran manual regression tests and nightlies, moved 100% of QA traffic to the new environment, and deprecated the Softlayer QA instance. 
-- Migrated all Dashboard **Kafka topics to the AWS Hermes cluster** (EPIC: APIX-983): `service_dashboard-email`, `service_dashboard-fraud`, `service_dashboard-marketing_user`, `service_dashboard-zoho-invoices`, `service_dashboard-ncco_user`, `service_dashboard-ws_notifications`. 
+- Migrated all Dashboard **Kafka topics to the AWS Hermes cluster** (EPIC: EPIC-983): `service_dashboard-email`, `service_dashboard-fraud`, `service_dashboard-marketing_user`, `service_dashboard-zoho-invoices`, `service_dashboard-ncco_user`, `service_dashboard-ws_notifications`. 
 
 **Early Feature Work**
 - Added the **Verify Logs page** to the Customer Dashboard. 
@@ -312,148 +312,148 @@ Your tenure began with foundational infrastructure work, migrating the entire Da
 A year of deep platform engineering focused on the User Service, Kafka lifecycle events, and Zoho integration. 
 
 **User Service Separation & Refactoring**
-- Centralised account creation and modification in the User Service (`APIDB-10887`). 
-- Centralised account lifecycle events in `SubAccountListener` (`APIDB-11315`). 
-- Created a **PATCH endpoint for user-service** to update users (`APIDB-12934`), and integrated it into the Dashboard repo (`APIDB-13080`). 
+- Centralised account creation and modification in the User Service (`TICKET-10887`). 
+- Centralised account lifecycle events in `SubAccountListener` (`TICKET-11315`). 
+- Created a **PATCH endpoint for user-service** to update users (`TICKET-12934`), and integrated it into the Dashboard repo (`TICKET-13080`). 
 - Refactored user-service signup package, simplified `getPrimaryUserBySubAccount`, and cleaned up `UserSearchRSQLBuilder`. 
-- Fixed **deadlock writing `d_user_search`** (`APIDB-10869`). 
+- Fixed **deadlock writing `d_user_search`** (`TICKET-10869`). 
 - Added `externalId` to `PhubAccountJson`, `AccountDTO`, and `SmppAccount`; added `organisationId` to SmppAccount. 
 - Moved `orgId` labels to subscriptions field in the `user/info` endpoint. 
 
 **Kafka Lifecycle Events**
-- Delivered **New LifeCycle Event — Account Billing** (`APIDB-12324`) and **User Finance** (`APIDB-12178`). 
-- Extended lifecycle events with `oldValue`/`newValue` fields for users, companies, and capabilities (`APIDB-10804`). 
+- Delivered **New LifeCycle Event — Account Billing** (`TICKET-12324`) and **User Finance** (`TICKET-12178`). 
+- Extended lifecycle events with `oldValue`/`newValue` fields for users, companies, and capabilities (`TICKET-10804`). 
 - Refactored `AccountLifeCycleEvent` and published lifecycle event schema documentation to VCP Core Documentation. 
 - Fixed Kafka consumer group rename for `volga_dashboard_events`, created a stale group ID purger pipeline, and reverted SRE alerting. 
 
 **Zoho & Integrations**
 - Fixed Zoho errors: "account not yet associated", "No primary user found for NEW users", and minimised Zoho calls. 
-- Migrated `internal_manager_balance_check_alert.vm` to the notification service (`APIDB-12084`). 
-- Deleted Stripe from Integrations (`APIDB-11600`). 
+- Migrated `internal_manager_balance_check_alert.vm` to the notification service (`TICKET-12084`). 
+- Deleted Stripe from Integrations (`TICKET-11600`). 
 
 **10DLC Campaigns**
 - Fixed 10DLC campaign errors (TCR alphanumeric validation, insufficient balance UI, subscriber opt-out for 2FA campaigns, campaign deactivation date display). 
 - Added **AI Studio card** on the "Let's get started" page for new API dashboard users. 
 
 **Security**
-- Fixed **Reflected XSS** (`APIDB-11309`) and a security issue where removed users could still create agents in AI Studio. 
+- Fixed **Reflected XSS** (`TICKET-11309`) and a security issue where removed users could still create agents in AI Studio. 
 
 ---
 
 ## 2024 · CPaaS Resell, Domain Migration, Payments & Security
 
-**CSP Deutsche Telekom Domain Migration (EPIC: APIX-1347 & APIX-1435)**
+**CSP Deutsche Telekom Domain Migration (EPIC: EPIC-1347 & EPIC-1435)**
 - Led the full migration from `dashboard.api.telekom.net` → `dashboard.developer.telekom.com` across APIGW routes, Puppet, Kubernetes, frontend, notification templates, and developer portal. 
-- Enabled DT password change on My Profile page (`APIDB-12909`). 
+- Enabled DT password change on My Profile page (`TICKET-12909`). 
 
 **Payments & SIFT**
-- Updated **PayPal payment SIFT check flow** (`APIDB-13475`) and investigated why the email field was not being passed to SIFT (`APIDB-13081`). 
-- Fixed **XSS to ATO via Password Manager** on `rest.nexmo.com` (`APIDB-13621`). 
-- Fixed **Devapi JSONP endpoint callback validation** (`APIDB-13666`). 
+- Updated **PayPal payment SIFT check flow** (`TICKET-13475`) and investigated why the email field was not being passed to SIFT (`TICKET-13081`). 
+- Fixed **XSS to ATO via Password Manager** on `rest.nexmo.com` (`TICKET-13621`). 
+- Fixed **Devapi JSONP endpoint callback validation** (`TICKET-13666`). 
 
 **Kafka & Infrastructure**
-- Migrated Kafka brokers for vBilling Listeners from Kiwi cluster to Hermes (`APIDB-13682`, `APIDB-13772`, `APIDB-13773`). 
-- Removed Softlayer Kafka layer references (`APIDB-12945`). 
-- Fixed **CD Signup Race Condition** (BSS vaccounts + provisioning service, APIDB-14496). 
-- Fixed **Kafka Consumer Group UUID causing lag on restart** (`APIDB-14429`). 
-- Fixed **Dashboard Cache expiration issues** and added a Jenkins pipeline to clear cache (`APIDB-14121`, `APIDB-14122`). 
-- Synced PHUB changes with vAccount (`APIDB-14102`). 
+- Migrated Kafka brokers for vBilling Listeners from Kiwi cluster to Hermes (`TICKET-13682`, `TICKET-13772`, `TICKET-13773`). 
+- Removed Softlayer Kafka layer references (`TICKET-12945`). 
+- Fixed **CD Signup Race Condition** (BSS vaccounts + provisioning service, TICKET-14496). 
+- Fixed **Kafka Consumer Group UUID causing lag on restart** (`TICKET-14429`). 
+- Fixed **Dashboard Cache expiration issues** and added a Jenkins pipeline to clear cache (`TICKET-14121`, `TICKET-14122`). 
+- Synced PHUB changes with vAccount (`TICKET-14102`). 
 
 **Security**
-- Removed all **hardcoded credentials** from the dashboard project (`APIDB-13735`, `APIDB-13852`, `APIDB-13944`). 
+- Removed all **hardcoded credentials** from the dashboard project (`TICKET-13735`, `TICKET-13852`, `TICKET-13944`). 
 - Fixed Mend issues for dashboard backend (wiremock, nexmo-auth-springboot, spring-kafka-test). 
 
 **User & Account Management**
-- Updated organisation configuration to point to new domain (`APIDB-14388`), including Zuora callback URL, marketplace links, and Sift callback URL. 
-- Fixed premium support flag in Admin Dashboard (`APIDB-14214`). 
-- Added legal links dedicated section to Customer Dashboard (`APIDB-13818`). 
-- Renamed and deleted accounts for SSO re-use (`APIDB-13960`). 
+- Updated organisation configuration to point to new domain (`TICKET-14388`), including Zuora callback URL, marketplace links, and Sift callback URL. 
+- Fixed premium support flag in Admin Dashboard (`TICKET-14214`). 
+- Added legal links dedicated section to Customer Dashboard (`TICKET-13818`). 
+- Renamed and deleted accounts for SSO re-use (`TICKET-13960`). 
 
 ---
 
 ## 2025 Q1–Q2 · Multi-Currency, Security & Payments Expansion
 
-**Prepaid USD / Multi-Currency Support (EPIC: APIX-1516)**
+**Prepaid USD / Multi-Currency Support (EPIC: EPIC-1516)**
 - Delivered full **Zoho multi-currency support**: added currency to Zoho account creation, payment email templates, bank transfer details for USD accounts, and fixed template mismatches between QA and PROD. 
-- Refactored `AccountCurrencyCache` before USD deploy (`APIDB-15310`). 
-- Activated **Braintree 3D Secure flag for Prepaid USD** (`APIDB-15324`). 
-- Found and populated **Braintree USD merchant ID** in production (`APIDB-14808`). 
+- Refactored `AccountCurrencyCache` before USD deploy (`TICKET-15310`). 
+- Activated **Braintree 3D Secure flag for Prepaid USD** (`TICKET-15324`). 
+- Found and populated **Braintree USD merchant ID** in production (`TICKET-14808`). 
 
 **User Service Artifactory Migration**
-- Migrated `user-service` to new Vonage CC Artifactory: Gradle 8.12 upgrade, new publishing pipeline, CI/CD refactoring (`APIDB-14181`, `APIDB-14227`, `APIDB-14230`, `APIDB-14938`, `APIDB-14269`). 
+- Migrated `user-service` to new Vonage CC Artifactory: Gradle 8.12 upgrade, new publishing pipeline, CI/CD refactoring (`TICKET-14181`, `TICKET-14227`, `TICKET-14230`, `TICKET-14938`, `TICKET-14269`). 
 
 **Payments & Fraud**
-- Blocked **non-sanctioned countries** when adding new payment methods (`APIDB-15482`). 
-- Fixed `autoFraudScoreUpgradeJob` `HttpClientTimeOutException` for audit events (`APIDB-15382`). 
-- Updated **Sift rule blocking** for payment flows (`APIDB-15378`). 
-- Added **DevAPI PHUB call P3 alert** (`APIDB-15170`). 
-- Added **DashboardHttpClient Grafana metrics** (`APIDB-15451`). 
-- Implemented **release deleted email address** flow (`APIDB-15466`, `APIDB-15467`, `APIDB-15468`). 
-- Fixed **DevRel Pricing API** modifications (`APIDB-14896`). 
+- Blocked **non-sanctioned countries** when adding new payment methods (`TICKET-15482`). 
+- Fixed `autoFraudScoreUpgradeJob` `HttpClientTimeOutException` for audit events (`TICKET-15382`). 
+- Updated **Sift rule blocking** for payment flows (`TICKET-15378`). 
+- Added **DevAPI PHUB call P3 alert** (`TICKET-15170`). 
+- Added **DashboardHttpClient Grafana metrics** (`TICKET-15451`). 
+- Implemented **release deleted email address** flow (`TICKET-15466`, `TICKET-15467`, `TICKET-15468`). 
+- Fixed **DevRel Pricing API** modifications (`TICKET-14896`). 
 
 **Security**
-- Resolved Prisma issues for `user-service` (Python and Tomcat) and `dashboard` (`APIDB-15002`, `APIDB-15291`). 
-- Added **git message on PR creation** workflow (`APIDB-14964`). 
+- Resolved Prisma issues for `user-service` (Python and Tomcat) and `dashboard` (`TICKET-15002`, `TICKET-15291`). 
+- Added **git message on PR creation** workflow (`TICKET-14964`). 
 
 ---
 
 ## 2025 Q3–Q4 · Negative Balance Notification, KYC on Payment Failure & Service Ownership
 
-**🔴 Negative Balance Notification (EPIC-level: APIDB-15822)**
-- Designed and delivered the **Negative Balance Scheduler Job** end-to-end: a new scheduler job to detect accounts with negative balances, trigger email notifications, and alert the team. Created full documentation for the job (`APIDB-16005`). Also fixed the email disable configuration for QA env (`APIDB-16211`). 
+**🔴 Negative Balance Notification (EPIC-level: TICKET-15822)**
+- Designed and delivered the **Negative Balance Scheduler Job** end-to-end: a new scheduler job to detect accounts with negative balances, trigger email notifications, and alert the team. Created full documentation for the job (`TICKET-16005`). Also fixed the email disable configuration for QA env (`TICKET-16211`). 
 
-**🔴 KYC on Payment Failure (EPIC-level: APIDB-15778)**
-- Delivered the full **KYC on Payment Failure** feature: backend changes to trigger KYC flow on payment failure (`APIDB-15778`), frontend changes for Zendesk ticket creation (`APIDB-15757`), and removal of the feature flag to go GA (`APIDB-15944`). 
+**🔴 KYC on Payment Failure (EPIC-level: TICKET-15778)**
+- Delivered the full **KYC on Payment Failure** feature: backend changes to trigger KYC flow on payment failure (`TICKET-15778`), frontend changes for Zendesk ticket creation (`TICKET-15757`), and removal of the feature flag to go GA (`TICKET-15944`). 
 
 **Security & Vulnerability Management**
-- Fixed critical Mend vulnerabilities: Spring Beans (`APIDB-15615`), Kafka clients (`APIDB-15630`), embedded-redis (`APIDB-15004`), Jetty (`APIDB-15683`), H2 (`APIDB-15733`), c3p0 (`APIDB-13910`), Zookeeper (`APIDB-13994`). 
-- Removed G-Cloud credentials from CD repo (`APIDB-15458`). 
-- Fixed ignored JUnit tests (`APIDB-15474`). 
+- Fixed critical Mend vulnerabilities: Spring Beans (`TICKET-15615`), Kafka clients (`TICKET-15630`), embedded-redis (`TICKET-15004`), Jetty (`TICKET-15683`), H2 (`TICKET-15733`), c3p0 (`TICKET-13910`), Zookeeper (`TICKET-13994`). 
+- Removed G-Cloud credentials from CD repo (`TICKET-15458`). 
+- Fixed ignored JUnit tests (`TICKET-15474`). 
 
 **Scheduler Ownership**
-- Fixed `pricingRuleNotificationCreatorJob` failures (`APIDB-16363`). 
-- Fixed `managerBalanceAndCreditLimitJob` taking too long (`APIDB-16386`). 
-- Fixed fraud score downgrade for auto-upgraded accounts (`APIDB-16208`). 
+- Fixed `pricingRuleNotificationCreatorJob` failures (`TICKET-16363`). 
+- Fixed `managerBalanceAndCreditLimitJob` taking too long (`TICKET-16386`). 
+- Fixed fraud score downgrade for auto-upgraded accounts (`TICKET-16208`). 
 
 **Infrastructure & Developer Tooling**
-- Fixed all **ssm-port-forward localhost** issues across `dashboard`, `user-service`, `admin-dashboard`, `dashboard-developer-gateway`, and `qatests_dashboard` (`APIDB-16150`–`APIDB-16182`). 
-- Updated Puppet config for Phub `.hq` domains (`APIDB-16200`). 
-- Updated Zendesk NPA (`APIDB-16331`). 
-- Discovery on **PayPal payment blocking option** (`APIDB-16110`). 
+- Fixed all **ssm-port-forward localhost** issues across `dashboard`, `user-service`, `admin-dashboard`, `dashboard-developer-gateway`, and `qatests_dashboard` (`TICKET-16150`–`TICKET-16182`). 
+- Updated Puppet config for Phub `.hq` domains (`TICKET-16200`). 
+- Updated Zendesk NPA (`TICKET-16331`). 
+- Discovery on **PayPal payment blocking option** (`TICKET-16110`). 
 
 ---
 
 ## 2026 Q1 · CD Failover, DT SSO & BT PayPal Foundation
 
 **CD Failover (Multi-ticket delivery)**
-- Designed and delivered the full **Customer Dashboard multi-region failover** (eu-west-1 ↔ eu-central-1): discovery, regional cache + Jenkins pipeline, QA APIGW validation, and PROD APIGW validation (`APIDB-16351`, `APIDB-16529`, `APIDB-16539`, `APIDB-16540`). 
+- Designed and delivered the full **Customer Dashboard multi-region failover** (eu-west-1 ↔ eu-central-1): discovery, regional cache + Jenkins pipeline, QA APIGW validation, and PROD APIGW validation (`TICKET-16351`, `TICKET-16529`, `TICKET-16539`, `TICKET-16540`). 
 
 **Deutsche Telekom SSO Integration**
-- Delivered **DT SSO read-only My Profile and My Addresses** pages, user invite email redirects to DT IDP, and 2FA phone number corrections (`APIDB-16458`, `APIDB-16483`, `APIDB-16487`, `APIDB-16493`). 
+- Delivered **DT SSO read-only My Profile and My Addresses** pages, user invite email redirects to DT IDP, and 2FA phone number corrections (`TICKET-16458`, `TICKET-16483`, `TICKET-16487`, `TICKET-16493`). 
 
 **Payments**
-- Exposed internal endpoints for **payment transaction search** for Sigma Prime (`APIDB-16561`). 
-- Implemented **Authorization-Only PayPal Flow with conditional SIFT-based settlement** (`APIDB-16377`). 
-- Migrated `AccountsClient` to use FeignClient (`APIDB-15740`). 
-- Fixed prod logs file size issue (`APIDB-16445`) and cache dependency (`APIDB-16322`). 
+- Exposed internal endpoints for **payment transaction search** for Sigma Prime (`TICKET-16561`). 
+- Implemented **Authorization-Only PayPal Flow with conditional SIFT-based settlement** (`TICKET-16377`). 
+- Migrated `AccountsClient` to use FeignClient (`TICKET-15740`). 
+- Fixed prod logs file size issue (`TICKET-16445`) and cache dependency (`TICKET-16322`). 
 
 ---
 
 ## 2026 Q2–Q3 · Braintree PayPal Full Delivery & SIFT Integration
 
 **🔴 Braintree PayPal (BT_PAYPAL) — End-to-End Delivery**
-- Delivered the complete BT_PAYPAL payment method: checkout, add-funds, auto-reload, SIFT fraud checks with authorize → settle flow, failure/cancellation handling, frontend UI, Grafana board updates, and production release (`APIDB-16513`, `APIDB-16847`, `APIDB-16893`, `APIDB-16943`, `APIDB-17067`, `APIDB-17289`). 
+- Delivered the complete BT_PAYPAL payment method: checkout, add-funds, auto-reload, SIFT fraud checks with authorize → settle flow, failure/cancellation handling, frontend UI, Grafana board updates, and production release (`TICKET-16513`, `TICKET-16847`, `TICKET-16893`, `TICKET-16943`, `TICKET-17067`, `TICKET-17289`). 
 
 **🔴 SIFT Fraud Integration**
-- Fixed **SIFT integration missing fields** (`APIDB-16622`). 
-- Integrated **secondary user account creation events into SIFT** (`APIDB-17044`). 
-- Performed **SIFT data backfill** for existing users missing fields (`APIDB-17287`). 
-- Investigated and documented **AD vs. SIFT suspension behaviour** (`APIDB-17010`). 
+- Fixed **SIFT integration missing fields** (`TICKET-16622`). 
+- Integrated **secondary user account creation events into SIFT** (`TICKET-17044`). 
+- Performed **SIFT data backfill** for existing users missing fields (`TICKET-17287`). 
+- Investigated and documented **AD vs. SIFT suspension behaviour** (`TICKET-17010`). 
 
 **Other**
-- Fixed **RDS OpsGenie HighCPUUsage alerts** (`APIDB-17174`). 
-- Fixed blank response for account number search index 120 (`APIDB-17172`). 
-- Removed Optus co-branded dashboard changes (`APIDB-17021`). 
+- Fixed **RDS OpsGenie HighCPUUsage alerts** (`TICKET-17174`). 
+- Fixed blank response for account number search index 120 (`TICKET-17172`). 
+- Removed Optus co-branded dashboard changes (`TICKET-17021`). 
 
 ---
 

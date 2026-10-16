@@ -73,11 +73,11 @@ Vonage's Customer Dashboard accepted PayPal payments via Braintree. The existing
 I was assigned to design and implement an **Authorization-Only PayPal flow** that would hold funds in a pending state, consult Sift's fraud decision in real time, and then either settle or void the transaction based on the outcome — all without degrading the customer payment experience.
 
 ### Action
-* Conducted a discovery spike (APIDB-16110) to map the full Braintree + Sift integration, documenting the gap between card payments (which already had Sift checks) and PayPal.
+* Conducted a discovery spike (TICKET-16110) to map the full Braintree + Sift integration, documenting the gap between card payments (which already had Sift checks) and PayPal.
 * Designed a two-phase flow: (1) Braintree `authorize` call instead of `sale`, (2) asynchronous Sift evaluation, (3) conditional `submitForSettlement` or `void` based on Sift's `BLOCK` / `ALLOW` decision.
-* Implemented the backend changes across the `dashboard` service (Java/Spring Boot), adding new Sift event types, updating `SiftFraudJsonUtils`, and wiring the conditional settlement logic (APIDB-16377, APIDB-16847).
-* Built the frontend failure-scenario UI (APIDB-16893) so customers received a clear, actionable message when a payment was blocked, rather than a generic error.
-* Added Grafana monitoring panels for the new payment flow (APIDB-17064) and wrote SQL test queries for QA validation.
+* Implemented the backend changes across the `dashboard` service (Java/Spring Boot), adding new Sift event types, updating `SiftFraudJsonUtils`, and wiring the conditional settlement logic (TICKET-16377, TICKET-16847).
+* Built the frontend failure-scenario UI (TICKET-16893) so customers received a clear, actionable message when a payment was blocked, rather than a generic error.
+* Added Grafana monitoring panels for the new payment flow (TICKET-17064) and wrote SQL test queries for QA validation.
 * Coordinated with the Payments and Fraud teams to ensure the Sift rule configuration matched the new event schema.
 
 ### Result
@@ -98,14 +98,14 @@ I learned that integrating two third-party payment systems (Braintree + Sift) re
 Vonage's Finance team was manually identifying ~190,000 prepaid accounts with negative balances and sending reminder emails by hand. This was error-prone, time-consuming, and not scalable. There was no automated system, no audit trail, and no escalation path — accounts could remain negative indefinitely without action.
 
 ### Task
-I took end-to-end ownership of designing and delivering an automated scheduler job to replace this manual process entirely (APIDB-15822). This was part of my 2025 objective to become the team's subject-matter expert on the Scheduler service.
+I took end-to-end ownership of designing and delivering an automated scheduler job to replace this manual process entirely (TICKET-15822). This was part of my 2025 objective to become the team's subject-matter expert on the Scheduler service.
 
 ### Action
 * Wrote the discovery document and Confluence page ("Negative Balance Jobs — Details") defining the job logic, DB queries, and notification schedule.
 * Implemented `prepaidAccountsIdentificationJob` in the Scheduler service (Java/Spring), querying `d_account_billing` and `d_topup_transaction` to identify accounts with balance < 0.
 * Configured the job to run on the 10th, 18th, and 25th of each month, with three escalating reminder emails sent to the primary user, manager, and finance contact.
 * Added logic to skip accounts where `negative_balance_notification = false` and to suspend accounts after three unanswered reminders.
-* Raised GitHub PR #4139 with full unit test coverage; fixed a production page-size issue in the quota call post-deployment (APIDB-16211).
+* Raised GitHub PR #4139 with full unit test coverage; fixed a production page-size issue in the quota call post-deployment (TICKET-16211).
 * Created documentation and Grafana alerts for the new job.
 
 ### Result
@@ -126,13 +126,13 @@ Owning a service end-to-end — from DB query design to deployment monitoring �
 When a customer's payment was blocked by Sift's fraud engine, the only recourse was to open a Zendesk support ticket manually and submit KYC (Know Your Customer) documents by email. This was a frustrating, opaque experience for customers and created a backlog for the support team. There was no self-service path.
 
 ### Task
-Design and implement a KYC form directly within the Customer Dashboard's payment summary screen, allowing customers to submit KYC details inline — automatically creating a Zendesk ticket in the background (APIDB-15778).
+Design and implement a KYC form directly within the Customer Dashboard's payment summary screen, allowing customers to submit KYC details inline — automatically creating a Zendesk ticket in the background (TICKET-15778).
 
 ### Action
 * Analysed the existing Zendesk integration and the payment failure flow to identify the correct injection point for the KYC form.
-* Implemented backend changes to accept KYC form submissions and programmatically create Zendesk tickets with the correct metadata (APIDB-15778).
-* Built the frontend KYC form on the payment summary screen, including field validation and a clear post-submission confirmation state (APIDB-15757).
-* Added a feature flag to control rollout; later removed the flag once the feature was stable in production (APIDB-15944).
+* Implemented backend changes to accept KYC form submissions and programmatically create Zendesk tickets with the correct metadata (TICKET-15778).
+* Built the frontend KYC form on the payment summary screen, including field validation and a clear post-submission confirmation state (TICKET-15757).
+* Added a feature flag to control rollout; later removed the flag once the feature was stable in production (TICKET-15944).
 * Coordinated with the Support team to validate the Zendesk ticket format and ensure agents could action them efficiently.
 
 ### Result
@@ -150,7 +150,7 @@ I learned that the best customer experience improvements often come from removin
 **Primary ALP:** Dive Deep | **Secondary:** Are Right A Lot, Problem Solving
 
 ### Situation
-Vonage's Customer Dashboard signup flow involved multiple asynchronous services: the dashboard frontend, user-service, PHub (pricing hub), BSS vAccounts, and a provisioning service. Intermittently, newly signed-up users would land in a broken state — unable to buy numbers or access features — because downstream services hadn't finished processing when the dashboard assumed they had. This was a race condition that was hard to reproduce and had been open for some time (APIDB-14496).
+Vonage's Customer Dashboard signup flow involved multiple asynchronous services: the dashboard frontend, user-service, PHub (pricing hub), BSS vAccounts, and a provisioning service. Intermittently, newly signed-up users would land in a broken state — unable to buy numbers or access features — because downstream services hadn't finished processing when the dashboard assumed they had. This was a race condition that was hard to reproduce and had been open for some time (TICKET-14496).
 
 ### Task
 Investigate the root cause of the race condition across multiple services, propose a fix, and implement it without disrupting the live signup flow.
@@ -158,7 +158,7 @@ Investigate the root cause of the race condition across multiple services, propo
 ### Action
 * Traced the full signup event sequence across Kafka topics and service logs, mapping the exact timing dependencies between user-service, PHub, and BSS vAccounts.
 * Identified that the dashboard was reading account state before PHub had finished writing the pricing group, causing the "upgrade required" state to persist incorrectly.
-* Implemented a fix in the BSS vAccounts service (APIDB-14281) and the provisioning service (APIDB-14498) to introduce proper event ordering and retry logic.
+* Implemented a fix in the BSS vAccounts service (TICKET-14281) and the provisioning service (TICKET-14498) to introduce proper event ordering and retry logic.
 * Added detailed logging at each step of the signup flow to make future race conditions diagnosable from Kibana without needing to reproduce locally.
 
 ### Result
@@ -175,18 +175,18 @@ Distributed systems race conditions are rarely obvious from a single service's l
 **Primary ALP:** Bias for Action | **Secondary:** Deliver Results, Ownership
 
 ### Situation
-The Scheduler service — responsible for critical background jobs (fraud score upgrades, balance checks, email notifications) — was running on Softlayer (legacy on-premise infrastructure). Vonage had a strategic initiative to migrate all services to AWS (Atmos). The Scheduler was a high-risk migration target because it ran time-sensitive cron jobs and any downtime would directly impact customers and Finance operations (EPIC APIX-268).
+The Scheduler service — responsible for critical background jobs (fraud score upgrades, balance checks, email notifications) — was running on Softlayer (legacy on-premise infrastructure). Vonage had a strategic initiative to migrate all services to AWS (Atmos). The Scheduler was a high-risk migration target because it ran time-sensitive cron jobs and any downtime would directly impact customers and Finance operations (EPIC EPIC-268).
 
 ### Task
 Lead the end-to-end migration of the Scheduler service from Softlayer to AWS Atmos, including deployment, testing, monitoring, and deprecation of the old environment.
 
 ### Action
-* Deployed Scheduler to `atmos-dev` (APIDB-8239) and ran full regression tests with all cron jobs disabled to validate the environment.
-* Updated smoke tests to target atmos-dev (APIDB-8467) and validated all job configurations.
-* Deployed to Atmos production with tasks disabled first (APIDB-8459), monitored for 48 hours, then enabled all tasks (APIDB-8810).
-* Set up Grafana monitoring and OpsGenie alerts for the Atmos production instance (APIDB-8770).
+* Deployed Scheduler to `atmos-dev` (TICKET-8239) and ran full regression tests with all cron jobs disabled to validate the environment.
+* Updated smoke tests to target atmos-dev (TICKET-8467) and validated all job configurations.
+* Deployed to Atmos production with tasks disabled first (TICKET-8459), monitored for 48 hours, then enabled all tasks (TICKET-8810).
+* Set up Grafana monitoring and OpsGenie alerts for the Atmos production instance (TICKET-8770).
 * Coordinated with the Admin Dashboard team (a dependent consumer) to align on the migration date.
-* Deprecated the Softlayer QA instance (APIDB-8464) and performed post-migration cleanup (APIDB-8847).
+* Deprecated the Softlayer QA instance (TICKET-8464) and performed post-migration cleanup (TICKET-8847).
 * Documented the full migration in Confluence: "[DONE] AWS Migration — Scheduler".
 
 ### Result
@@ -204,16 +204,16 @@ I learned that the key to a safe infrastructure migration is the "deploy disable
 **Primary ALP:** Think Big | **Secondary:** Deliver Results, Ownership
 
 ### Situation
-The Customer Dashboard was consuming Kafka topics from the legacy Kiwi cluster (Softlayer). As part of Vonage's cloud-first strategy, all Kafka topics needed to migrate to the Hermes cluster on AWS (EPIC APIX-983). This affected six critical topics: `service_dashboard-email`, `service_dashboard-fraud`, `service_dashboard-marketing_user`, `service_dashboard-zoho-invoices`, `service_dashboard-ncco_user`, and `service_dashboard-ws_notifications`.
+The Customer Dashboard was consuming Kafka topics from the legacy Kiwi cluster (Softlayer). As part of Vonage's cloud-first strategy, all Kafka topics needed to migrate to the Hermes cluster on AWS (EPIC EPIC-983). This affected six critical topics: `service_dashboard-email`, `service_dashboard-fraud`, `service_dashboard-marketing_user`, `service_dashboard-zoho-invoices`, `service_dashboard-ncco_user`, and `service_dashboard-ws_notifications`.
 
 ### Task
 Migrate all six Kafka consumer groups from Kiwi to Hermes without message loss or consumer lag, and clean up the legacy cluster configuration.
 
 ### Action
-* Updated Kafka broker configurations for all six topics to point to the Hermes cluster (APIDB-13682).
-* Coordinated the stop of vBilling listeners on the Kiwi cluster (APIDB-13773) and their removal (APIDB-13772) in a sequenced, zero-downtime manner.
-* Fixed false-positive Kafka lag alerts in the SRE alerting system that were firing for the `dashboard-vaccounts-sync` group ID during the transition (APIDB-12037, GitHub PR #3144 in `sre-alerting`).
-* Created a `DeleteStaleKafkaGroupIds` Jenkins pipeline (APIDB-11968) and a `groupId purger` script for production (APIDB-12027) to clean up stale consumer group IDs left over from the migration.
+* Updated Kafka broker configurations for all six topics to point to the Hermes cluster (TICKET-13682).
+* Coordinated the stop of vBilling listeners on the Kiwi cluster (TICKET-13773) and their removal (TICKET-13772) in a sequenced, zero-downtime manner.
+* Fixed false-positive Kafka lag alerts in the SRE alerting system that were firing for the `dashboard-vaccounts-sync` group ID during the transition (TICKET-12037, GitHub PR #3144 in `sre-alerting`).
+* Created a `DeleteStaleKafkaGroupIds` Jenkins pipeline (TICKET-11968) and a `groupId purger` script for production (TICKET-12027) to clean up stale consumer group IDs left over from the migration.
 * Updated Grafana dashboards to reflect the new cluster topology.
 
 ### Result
@@ -231,18 +231,18 @@ Kafka migrations require treating consumer group IDs as first-class infrastructu
 **Primary ALP:** Earn Trust | **Secondary:** Are Right A Lot, Dive Deep
 
 ### Situation
-A secret security scan identified **15 places** in the Customer Dashboard GitHub repository where credentials (API keys, passwords, tokens) were hardcoded in source code (APIDB-13735). This was a critical security vulnerability — any developer with repository access, or any attacker who gained access, could extract live credentials. The issue was flagged as a VRR (Vulnerability Risk Rating) finding.
+A secret security scan identified **15 places** in the Customer Dashboard GitHub repository where credentials (API keys, passwords, tokens) were hardcoded in source code (TICKET-13735). This was a critical security vulnerability — any developer with repository access, or any attacker who gained access, could extract live credentials. The issue was flagged as a VRR (Vulnerability Risk Rating) finding.
 
 ### Task
 Remediate all 15 credential leaks: remove secrets from the codebase, migrate them to AWS Secrets Manager, and clean the Git history to ensure the credentials were not recoverable from past commits.
 
 ### Action
 * Audited all 15 GitHub issues raised by the security scan, categorising them by severity and service.
-* Replaced hardcoded credentials with references to AWS Secrets Manager across the dashboard and related services (APIDB-13852 — Part 1).
-* Rewrote Git history to remove the credentials from all historical commits (APIDB-13944 — Fix History Part 1), using `git filter-branch` / BFG Repo Cleaner.
-* Resolved a reopened GitHub security issue that persisted after the initial fix (APIDB-14078).
+* Replaced hardcoded credentials with references to AWS Secrets Manager across the dashboard and related services (TICKET-13852 — Part 1).
+* Rewrote Git history to remove the credentials from all historical commits (TICKET-13944 — Fix History Part 1), using `git filter-branch` / BFG Repo Cleaner.
+* Resolved a reopened GitHub security issue that persisted after the initial fix (TICKET-14078).
 * Verified all VRR findings were closed and confirmed with the security team.
-* Also fixed a separate XSS vulnerability in the `devapi` JSONP endpoint callback parameter (APIDB-13666), implementing proper input validation to prevent reflected XSS and Account Takeover (ATO) attacks (APIDB-13621, APIDB-11309).
+* Also fixed a separate XSS vulnerability in the `devapi` JSONP endpoint callback parameter (TICKET-13666), implementing proper input validation to prevent reflected XSS and Account Takeover (ATO) attacks (TICKET-13621, TICKET-11309).
 
 ### Result
 * All 15 credential leaks remediated and VRR findings closed.
@@ -259,17 +259,17 @@ Security debt compounds silently. I learned that hardcoded credentials are often
 **Primary ALP:** Customer Obsession | **Secondary:** Earn Trust, Deliver Results
 
 ### Situation
-Deutsche Telekom (DT), a major Vonage CSP (Communications Service Provider) partner, was migrating their users to their own Identity Provider (IDP) using SSO. Once migrated, DT would manage the full user lifecycle — meaning Vonage's Customer Dashboard needed to stop allowing DT users to edit their profile and addresses directly, and instead redirect them to DT's IDP portal (EPIC APIX-1347).
+Deutsche Telekom (DT), a major Vonage CSP (Communications Service Provider) partner, was migrating their users to their own Identity Provider (IDP) using SSO. Once migrated, DT would manage the full user lifecycle — meaning Vonage's Customer Dashboard needed to stop allowing DT users to edit their profile and addresses directly, and instead redirect them to DT's IDP portal (EPIC EPIC-1347).
 
 ### Task
 Implement SSO integration changes for DT across multiple tickets: hide/redirect My Profile and My Addresses for DT users, handle user invite email redirects, fix 2FA phone numbers on CSP DT accounts, and ensure the domain name change was handled cleanly.
 
 ### Action
-* Implemented UI changes to hide the My Addresses and My Profile edit links for DT SSO users, replacing them with redirects to `https://auth.api.telekom.com/realms/dtmaceretail/account` (APIDB-16458, APIDB-16487).
-* Updated the user invite email flow to redirect DT users to the DT IDP instead of the Vonage password reset flow (APIDB-16483).
-* Fixed 2FA phone numbers on specific CSP DT accounts that had incorrect data (APIDB-16493).
-* Handled the account rename/delete flow for SSO re-use cases where a user needed to log in with a specific email already associated with a different API key (APIDB-13960).
-* Enabled the My Profile password change page specifically for DT users (APIDB-12909).
+* Implemented UI changes to hide the My Addresses and My Profile edit links for DT SSO users, replacing them with redirects to `https://auth.api.telekom.com/realms/dtmaceretail/account` (TICKET-16458, TICKET-16487).
+* Updated the user invite email flow to redirect DT users to the DT IDP instead of the Vonage password reset flow (TICKET-16483).
+* Fixed 2FA phone numbers on specific CSP DT accounts that had incorrect data (TICKET-16493).
+* Handled the account rename/delete flow for SSO re-use cases where a user needed to log in with a specific email already associated with a different API key (TICKET-13960).
+* Enabled the My Profile password change page specifically for DT users (TICKET-12909).
 * Coordinated directly with the DT technical team to validate redirect URLs and confirm the migration timeline.
 
 ### Result
@@ -286,7 +286,7 @@ Enterprise partner integrations require treating the partner's technical constra
 **Primary ALP:** Dive Deep | **Secondary:** Invent & Simplify, Ownership
 
 ### Situation
-The Customer Dashboard was experiencing sporadic cache-related issues: stale data being served to users after account updates, and cache entries not expiring correctly. Investigation revealed that many Redis cache beans were configured with `AFTER_READ` expiration strategy instead of `AFTER_WRITE`, meaning a frequently-read cache entry could live indefinitely (APIDB-14121). Additionally, there was no Jenkins pipeline to manually clear specific cache keys in production when needed (APIDB-14122).
+The Customer Dashboard was experiencing sporadic cache-related issues: stale data being served to users after account updates, and cache entries not expiring correctly. Investigation revealed that many Redis cache beans were configured with `AFTER_READ` expiration strategy instead of `AFTER_WRITE`, meaning a frequently-read cache entry could live indefinitely (TICKET-14121). Additionally, there was no Jenkins pipeline to manually clear specific cache keys in production when needed (TICKET-14122).
 
 ### Task
 Fix the cache expiration strategy across all affected cache beans, add `deleteAfterLogout` for user-specific caches, and build operational tooling to manage the cache in production.
@@ -294,9 +294,9 @@ Fix the cache expiration strategy across all affected cache beans, add `deleteAf
 ### Action
 * Audited all cache bean configurations in `DashboardCacheCommonConfiguration` and `DashboardCacheConfigurationMany`, identifying all beans using the incorrect `AFTER_READ` strategy.
 * Updated all affected beans to `AFTER_WRITE` expiration and added `deleteAfterLogout(true)` for user-specific caches (e.g., `organisationSettingsCache`, `viamTokenCache`, `getOrganisationById`).
-* Built Jenkins pipelines for QA and Production to list cache keys by name and delete specific keys on demand (APIDB-14122).
+* Built Jenkins pipelines for QA and Production to list cache keys by name and delete specific keys on demand (TICKET-14122).
 * Validated the fix by monitoring Kibana logs for the `[load] calling cache loader for key={}` pattern to confirm cache refresh behaviour.
-* Also investigated and fixed the `clear_cache_entry` Kafka topic flow that was causing accounts to not be upgraded after top-up (APIDB-13879), creating a new `service_dashboard-clear_cache_entry` topic and `ClearCacheEntryListener`.
+* Also investigated and fixed the `clear_cache_entry` Kafka topic flow that was causing accounts to not be upgraded after top-up (TICKET-13879), creating a new `service_dashboard-clear_cache_entry` topic and `ClearCacheEntryListener`.
 
 ### Result
 * Stale cache issues eliminated; users now see updated account state immediately after changes.
@@ -318,14 +318,14 @@ Multiple internal teams (VServices, billing, analytics) needed to react to chang
 Design and implement a comprehensive Lifecycle Events system using Kafka, providing a clean, versioned event contract for all downstream consumers. This spanned multiple quarters and tickets.
 
 ### Action
-* Implemented **Company Lifecycle Events** (APIDB-10625): created Kafka topic, event and event-type classes, and wired create/update events in the company service.
-* Implemented **Account Billing Lifecycle Events** (APIDB-12324): replaced the direct Volga listener with a Kafka event, decoupling the billing service from the dashboard.
-* Implemented **User Finance Lifecycle Events** (APIDB-12178): added a new event type for user finance state changes.
-* Refactored the `AccountLifeCycleEvent` structure (APIDB-11929) to standardise the event schema across all event types.
-* Added `externalId` to `PhubAccountJson` and `AccountDTO` (APIDB-11778) and to `SmppAccount` (APIDB-11777) to enrich events with the data downstream consumers needed.
-* Centralised account lifecycle event publishing in `user-service SubAccountListener` (APIDB-11315) to eliminate duplicate event publishing.
+* Implemented **Company Lifecycle Events** (TICKET-10625): created Kafka topic, event and event-type classes, and wired create/update events in the company service.
+* Implemented **Account Billing Lifecycle Events** (TICKET-12324): replaced the direct Volga listener with a Kafka event, decoupling the billing service from the dashboard.
+* Implemented **User Finance Lifecycle Events** (TICKET-12178): added a new event type for user finance state changes.
+* Refactored the `AccountLifeCycleEvent` structure (TICKET-11929) to standardise the event schema across all event types.
+* Added `externalId` to `PhubAccountJson` and `AccountDTO` (TICKET-11778) and to `SmppAccount` (TICKET-11777) to enrich events with the data downstream consumers needed.
+* Centralised account lifecycle event publishing in `user-service SubAccountListener` (TICKET-11315) to eliminate duplicate event publishing.
 * Wrote the Confluence documentation for the Lifecycle Events system, which became the canonical reference for all consuming teams.
-* Generated JSON Schema for lifecycle events (APIDB-12721) to provide a machine-readable contract.
+* Generated JSON Schema for lifecycle events (TICKET-12721) to provide a machine-readable contract.
 
 ### Result
 * A clean, documented Kafka-based event system replaced ad-hoc direct service calls.
@@ -342,7 +342,7 @@ Event-driven architecture is only as good as its contract. I learned that invest
 **Primary ALP:** Are Right A Lot | **Secondary:** Earn Trust, Customer Obsession
 
 ### Situation
-Vonage's Customer Dashboard was allowing users from sanctioned countries (Russia, Syria, Iran, Cuba, North Korea, China/Hong Kong — per CFIUS requirements) to add new payment methods and service addresses. This was a direct violation of US trade regulations and Vonage's internal compliance policies, creating legal and financial risk for the company (APIDB-15482, APIDB-15483).
+Vonage's Customer Dashboard was allowing users from sanctioned countries (Russia, Syria, Iran, Cuba, North Korea, China/Hong Kong — per CFIUS requirements) to add new payment methods and service addresses. This was a direct violation of US trade regulations and Vonage's internal compliance policies, creating legal and financial risk for the company (TICKET-15482, TICKET-15483).
 
 ### Task
 Implement country-level blocking for both the payment method form and the service address form, ensuring sanctioned countries cannot be selected, while minimising disruption to legitimate users.
@@ -370,7 +370,7 @@ Compliance requirements are non-negotiable constraints, not feature requests. I 
 **Primary ALP:** Invent & Simplify | **Secondary:** Customer Obsession, Deliver Results
 
 ### Situation
-When Vonage accounts were suspended (e.g., due to the China exit), customers could not log into the dashboard to delete their saved payment methods. This led to a backlog of support tickets requiring manual database-level deletions by engineers — a time-consuming, error-prone, and audit-free process (APIDB-15536).
+When Vonage accounts were suspended (e.g., due to the China exit), customers could not log into the dashboard to delete their saved payment methods. This led to a backlog of support tickets requiring manual database-level deletions by engineers — a time-consuming, error-prone, and audit-free process (TICKET-15536).
 
 ### Task
 Build a secure internal API endpoint (for the Sigma Prime admin tool) that allows authorised admin users to retrieve and delete payment methods for suspended accounts, with full audit logging.
@@ -380,7 +380,7 @@ Build a secure internal API endpoint (for the Sigma Prime admin tool) that allow
 * Implemented validation logic: only prepaid accounts pass; subaccounts and accounts with auto-reload enabled are rejected with appropriate errors.
 * Added comprehensive audit logging: recording which admin user performed the action, which payment methods were deleted, and the timestamp.
 * Clarified with the Braintree/PayPal integration that only payment tokens (not full card details) are stored, ensuring GDPR compliance.
-* Exposed the endpoint via the internal API gateway (APIDB-16561 — Sigma Prime payment transaction search was a related parallel effort).
+* Exposed the endpoint via the internal API gateway (TICKET-16561 — Sigma Prime payment transaction search was a related parallel effort).
 * Wrote QA test cases with specific account references for each validation scenario.
 
 ### Result
@@ -398,17 +398,17 @@ Internal tooling deserves the same design rigour as customer-facing features. I 
 **Primary ALP:** Deliver Results | **Secondary:** Bias for Action, Ownership
 
 ### Situation
-The User Service was still publishing its client library (`us-client`) to the old Vonage Artifactory instance, which was scheduled for decommission. All dashboard projects needed to migrate to the new `vonagecc` Artifactory. The User Service had a complication: its Gradle wrapper version was too old to support the new Artifactory's publishing protocol (APIDB-14181).
+The User Service was still publishing its client library (`us-client`) to the old Vonage Artifactory instance, which was scheduled for decommission. All dashboard projects needed to migrate to the new `vonagecc` Artifactory. The User Service had a complication: its Gradle wrapper version was too old to support the new Artifactory's publishing protocol (TICKET-14181).
 
 ### Task
 Migrate the User Service and all its consumers (Customer Dashboard, Admin Dashboard) to the new Artifactory, including upgrading the Gradle wrapper and updating all dependency resolution configurations.
 
 ### Action
-* Upgraded the Gradle wrapper version in the User Service to support the new Artifactory publishing protocol (APIDB-14227) — this was a prerequisite for all subsequent steps.
-* Updated the User Service to fetch all dependencies from the new Artifactory (APIDB-14230).
-* Published the updated `us-client` to the new Artifactory and updated the Customer Dashboard to consume it (APIDB-14269).
-* Updated the Admin Dashboard similarly (APIDB-14269).
-* Created a transitional step where the Dashboard consumed the updated `us-client` from the old Artifactory during the migration window (APIDB-14938), ensuring no service disruption.
+* Upgraded the Gradle wrapper version in the User Service to support the new Artifactory publishing protocol (TICKET-14227) — this was a prerequisite for all subsequent steps.
+* Updated the User Service to fetch all dependencies from the new Artifactory (TICKET-14230).
+* Published the updated `us-client` to the new Artifactory and updated the Customer Dashboard to consume it (TICKET-14269).
+* Updated the Admin Dashboard similarly (TICKET-14269).
+* Created a transitional step where the Dashboard consumed the updated `us-client` from the old Artifactory during the migration window (TICKET-14938), ensuring no service disruption.
 * Verified the full dependency chain in QA before promoting to production.
 
 ### Result
@@ -426,7 +426,7 @@ Infrastructure migrations that touch build systems require extra care because a 
 **Primary ALP:** Dive Deep | **Secondary:** Ownership, Bias for Action
 
 ### Situation
-During my on-call rotation, I received OpsGenie alerts for `users-service-rds-1` showing high CPU usage. The alerts were intermittent but recurring, and the team had no clear root cause. Left unresolved, this could cause query timeouts and degrade the login experience for all Vonage dashboard users (APIDB-16721).
+During my on-call rotation, I received OpsGenie alerts for `users-service-rds-1` showing high CPU usage. The alerts were intermittent but recurring, and the team had no clear root cause. Left unresolved, this could cause query timeouts and degrade the login experience for all Vonage dashboard users (TICKET-16721).
 
 ### Task
 Investigate the root cause of the RDS CPU spikes, identify the offending query, and implement a permanent fix.
@@ -454,7 +454,7 @@ Database performance issues are often invisible until they hit production scale.
 **Primary ALP:** Invent & Simplify | **Secondary:** Dive Deep, Earn Trust
 
 ### Situation
-Every time the Customer Dashboard was restarted (e.g., during a deployment), the `ClearCacheEntryKafkaListener` generated a new UUID as its consumer group ID. This meant each restart created a new, orphaned consumer group in Kafka — the old group ID became stale and triggered Kafka lag alerts in OpsGenie, even though no actual message lag existed. The on-call team was receiving false-positive alerts on every deployment (APIDB-14429).
+Every time the Customer Dashboard was restarted (e.g., during a deployment), the `ClearCacheEntryKafkaListener` generated a new UUID as its consumer group ID. This meant each restart created a new, orphaned consumer group in Kafka — the old group ID became stale and triggered Kafka lag alerts in OpsGenie, even though no actual message lag existed. The on-call team was receiving false-positive alerts on every deployment (TICKET-14429).
 
 ### Task
 Fix the consumer group ID generation so that restarts reuse the same group ID, eliminating the false-positive lag alerts without changing the cache-clearing behaviour.
@@ -463,7 +463,7 @@ Fix the consumer group ID generation so that restarts reuse the same group ID, e
 * Traced the `ClearCacheEntryKafkaListenerConfig` to find where the UUID was being generated.
 * Investigated whether the allocation ID or host IP could be used as a stable, deterministic group ID component — confirming that the host IP was stable across restarts within the same allocation.
 * Implemented the fix to use a deterministic group ID (based on host IP or allocation ID) instead of a random UUID, ensuring restarts reuse the same consumer group.
-* Updated the SRE alerting configuration (building on the work from APIDB-12037) to correctly handle the group ID pattern.
+* Updated the SRE alerting configuration (building on the work from TICKET-12037) to correctly handle the group ID pattern.
 * Validated in QA by performing multiple restarts and confirming no new stale group IDs were created.
 
 ### Result

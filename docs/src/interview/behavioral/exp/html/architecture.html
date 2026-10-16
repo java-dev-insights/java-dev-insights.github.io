@@ -409,7 +409,7 @@
         <div class="layer-line"></div>
       </div>
       <div class="layer-row">
-        <div class="svc svc-apigw" data-glean-id="svc-apigw-gloo" data-tip="Gloo Edge / Envoy-based API Gateway — 1vapigw-k8s repo. Route config: matchers + upstreams. Arpit contributed APIGW routes PRs (APIDB-5170, APIDB-8938, APICM-11059/68)">
+        <div class="svc svc-apigw" data-glean-id="svc-apigw-gloo" data-tip="Gloo Edge / Envoy-based API Gateway — 1vapigw-k8s repo. Route config: matchers + upstreams. Arpit contributed APIGW routes PRs (TICKET-5170, TICKET-8938, APICM-11059/68)">
           <div class="svc-icon">🚦</div>
           <div class="svc-name">APIGW (Gloo / Envoy)</div>
           <div class="svc-desc">Route matchers, upstreams, VirtualServices — 1vapigw-k8s repo</div>
@@ -419,7 +419,7 @@
             <span class="svc-tag" style="color:var(--c-apigw);border-color:var(--c-apigw)">K8s</span>
           </div>
         </div>
-        <div class="svc svc-apigw" data-glean-id="svc-apigw-routes" data-tip="1vapigw-routes repo — PR-based route changes for dashboard, devapi, DT CSP domains. CD failover testing with APIGW (APIDB-16539/40)">
+        <div class="svc svc-apigw" data-glean-id="svc-apigw-routes" data-tip="1vapigw-routes repo — PR-based route changes for dashboard, devapi, DT CSP domains. CD failover testing with APIGW (TICKET-16539/40)">
           <div class="svc-icon">🗺️</div>
           <div class="svc-name">APIGW Routes</div>
           <div class="svc-desc">1vapigw-routes — dashboard, devapi, DT domain routing PRs</div>
@@ -494,7 +494,7 @@
               <span class="svc-tag" style="color:var(--c-user);border-color:var(--c-user)">RDS</span>
             </div>
           </div>
-          <div class="svc svc-dashboard" data-glean-id="svc-devapi-svc" data-tip="DevApi service — dashboard repo. VIAM token auth migration, PHUB calls, Grafana alerts (APIDB-15170), Braintree PayPal feature flag">
+          <div class="svc svc-dashboard" data-glean-id="svc-devapi-svc" data-tip="DevApi service — dashboard repo. VIAM token auth migration, PHUB calls, Grafana alerts (TICKET-15170), Braintree PayPal feature flag">
             <div class="svc-icon">⚡</div>
             <div class="svc-name">DevApi Service</div>
             <div class="svc-desc">API key/secret auth, PHUB calls, VIAM migration</div>
@@ -503,7 +503,7 @@
               <span class="svc-tag" style="color:var(--c-dashboard);border-color:var(--c-dashboard)">VIAM</span>
             </div>
           </div>
-          <div class="svc svc-dashboard" data-glean-id="svc-scheduler" data-tip="Scheduler service — cron jobs: autoFraudScoreUpgrade, managerBalanceAndCreditLimit, negativeBalanceCheck, pricingRuleNotification. Migrated from Softlayer to Atmos (APIX-268)">
+          <div class="svc svc-dashboard" data-glean-id="svc-scheduler" data-tip="Scheduler service — cron jobs: autoFraudScoreUpgrade, managerBalanceAndCreditLimit, negativeBalanceCheck, pricingRuleNotification. Migrated from Softlayer to Atmos (EPIC-268)">
             <div class="svc-icon">⏰</div>
             <div class="svc-name">Scheduler</div>
             <div class="svc-desc">Cron jobs: fraud score, balance checks, pricing notifications</div>
@@ -545,7 +545,7 @@
               <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">Atlantis</span>
             </div>
           </div>
-          <div class="svc svc-infra" data-glean-id="svc-jenkins" data-tip="Jenkins CI/CD pipelines — cache clear pipeline (APIDB-14122), scheduler smoke tests, Nomad deployments, Kafka group ID purger pipeline (APIDB-11968)">
+          <div class="svc svc-infra" data-glean-id="svc-jenkins" data-tip="Jenkins CI/CD pipelines — cache clear pipeline (TICKET-14122), scheduler smoke tests, Nomad deployments, Kafka group ID purger pipeline (TICKET-11968)">
             <div class="svc-icon">🔧</div>
             <div class="svc-name">Jenkins CI/CD</div>
             <div class="svc-desc">Build, test, deploy pipelines — cache clear, smoke tests</div>
@@ -554,7 +554,7 @@
               <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">Pipelines</span>
             </div>
           </div>
-          <div class="svc svc-infra" data-glean-id="svc-grafana" data-tip="Grafana monitoring — Braintree PayPal payments board (APIDB-17064), DashboardHttpClient metrics (APIDB-15451), Redis prod alerts (APIDB-9513), devapi alerts (APIDB-9898)">
+          <div class="svc svc-infra" data-glean-id="svc-grafana" data-tip="Grafana monitoring — Braintree PayPal payments board (TICKET-17064), DashboardHttpClient metrics (TICKET-15451), Redis prod alerts (TICKET-9513), devapi alerts (TICKET-9898)">
             <div class="svc-icon">📈</div>
             <div class="svc-name">Grafana / Monitoring</div>
             <div class="svc-desc">Payments board, HTTP client metrics, Redis/Kafka lag alerts</div>
@@ -579,7 +579,7 @@
         <div class="layer-line"></div>
       </div>
       <div class="layer-row">
-        <div class="svc svc-kafka" data-glean-id="svc-kafka-hermes" data-tip="Kafka Hermes cluster (AWS) — migrated from Softlayer Kiwi cluster (APIX-983). Topics: service_dashboard-email, -fraud, -marketing_user, -zoho-invoices, -ncco_user, -ws_notifications. Arpit: group ID rename, purger pipeline, consumer group UUID fix (APIDB-14429)">
+        <div class="svc svc-kafka" data-glean-id="svc-kafka-hermes" data-tip="Kafka Hermes cluster (AWS) — migrated from Softlayer Kiwi cluster (EPIC-983). Topics: service_dashboard-email, -fraud, -marketing_user, -zoho-invoices, -ncco_user, -ws_notifications. Arpit: group ID rename, purger pipeline, consumer group UUID fix (TICKET-14429)">
           <div class="svc-icon">📨</div>
           <div class="svc-name">Kafka (Hermes Cluster)</div>
           <div class="svc-desc">AWS Kafka — dashboard topics: email, fraud, marketing, Zoho, NCCO</div>
@@ -589,7 +589,7 @@
             <span class="svc-tag" style="color:var(--c-kafka);border-color:var(--c-kafka)">AWS MSK</span>
           </div>
         </div>
-        <div class="svc svc-kafka" data-glean-id="svc-lifecycle-events" data-tip="Account/User lifecycle events — Arpit built: Account Billing event (APIDB-12324), User Finance event (APIDB-12178), Company lifecycle (APIDB-10625), DELETE secondary user event (APIDB-11074), centralise lifecycle in user-service (APIDB-11315)">
+        <div class="svc svc-kafka" data-glean-id="svc-lifecycle-events" data-tip="Account/User lifecycle events — Arpit built: Account Billing event (TICKET-12324), User Finance event (TICKET-12178), Company lifecycle (TICKET-10625), DELETE secondary user event (TICKET-11074), centralise lifecycle in user-service (TICKET-11315)">
           <div class="svc-icon">🔔</div>
           <div class="svc-name">Lifecycle Events</div>
           <div class="svc-desc">Account, User Finance, Company, Sub-account events via Kafka</div>
@@ -598,7 +598,7 @@
             <span class="svc-tag" style="color:var(--c-kafka);border-color:var(--c-kafka)">Transactional</span>
           </div>
         </div>
-        <div class="svc svc-kafka" data-glean-id="svc-fraud-kafka" data-tip="Fraud Kafka topic — service_dashboard-fraud. Sift fraud signals routed via Kafka. Arpit: Sift integration (APIDB-13081, APIDB-15378), BT PayPal Sift checks (APIDB-16847/16893/16943), secondary user Sift events (APIDB-17044)">
+        <div class="svc svc-kafka" data-glean-id="svc-fraud-kafka" data-tip="Fraud Kafka topic — service_dashboard-fraud. Sift fraud signals routed via Kafka. Arpit: Sift integration (TICKET-13081, TICKET-15378), BT PayPal Sift checks (TICKET-16847/16893/16943), secondary user Sift events (TICKET-17044)">
           <div class="svc-icon">🛡️</div>
           <div class="svc-name">Fraud Topic (Sift)</div>
           <div class="svc-desc">Sift fraud signals — BT PayPal checks, account suspension</div>
@@ -607,7 +607,7 @@
             <span class="svc-tag" style="color:var(--c-kafka);border-color:var(--c-kafka)">Kafka</span>
           </div>
         </div>
-        <div class="svc svc-kafka" data-glean-id="svc-ses" data-tip="Amazon SES — email engine migration from Mailgun/Mailchimp. Outbound email enhancements (APIDB email engine tickets). Payments email templates with account currency (APIDB-14744). Negative balance email disable in QA (APIDB-16211)">
+        <div class="svc svc-kafka" data-glean-id="svc-ses" data-tip="Amazon SES — email engine migration from Mailgun/Mailchimp. Outbound email enhancements (APIDB email engine tickets). Payments email templates with account currency (TICKET-14744). Negative balance email disable in QA (TICKET-16211)">
           <div class="svc-icon">📧</div>
           <div class="svc-name">Amazon SES</div>
           <div class="svc-desc">Email engine — payments templates, negative balance, outbound</div>
@@ -631,7 +631,7 @@
         <div class="layer-line"></div>
       </div>
       <div class="layer-row">
-        <div class="svc svc-aws" data-glean-id="svc-rds-dashboard" data-tip="Dashboard RDS cluster (Aurora PostgreSQL) in Atmos — RDS migration, schema fix (APIDB-16232), CPU high alert (APIDB-17174), OpsGenie alerts. Arpit: DB users for CD backend, scheduler, user-service (APIDB-8010/12/14)">
+        <div class="svc svc-aws" data-glean-id="svc-rds-dashboard" data-tip="Dashboard RDS cluster (Aurora PostgreSQL) in Atmos — RDS migration, schema fix (TICKET-16232), CPU high alert (TICKET-17174), OpsGenie alerts. Arpit: DB users for CD backend, scheduler, user-service (TICKET-8010/12/14)">
           <div class="svc-icon">🗄️</div>
           <div class="svc-name">RDS Aurora (Dashboard)</div>
           <div class="svc-desc">Aurora PostgreSQL — dashboard DB, schema migrations, CPU alerts</div>
@@ -641,7 +641,7 @@
             <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">Atmos</span>
           </div>
         </div>
-        <div class="svc svc-aws" data-glean-id="svc-rds-user" data-tip="User Service RDS — users-service-rds-1. CPU high alert (APIDB-16721). Deadlock fix on d_user_search (APIDB-10869). DB user setup (APIDB-8014). GDPR d_user/d_user_signup (AD-2793)">
+        <div class="svc svc-aws" data-glean-id="svc-rds-user" data-tip="User Service RDS — users-service-rds-1. CPU high alert (TICKET-16721). Deadlock fix on d_user_search (TICKET-10869). DB user setup (TICKET-8014). GDPR d_user/d_user_signup (AD-2793)">
           <div class="svc-icon">🗄️</div>
           <div class="svc-name">RDS (User Service)</div>
           <div class="svc-desc">users-service-rds-1 — user data, GDPR, deadlock fixes</div>
@@ -650,7 +650,7 @@
             <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">GDPR</span>
           </div>
         </div>
-        <div class="svc svc-aws" data-glean-id="svc-redis" data-tip="Redis cache — AccountCurrencyCache refactor (APIDB-15310), cache dependency fix (APIDB-16322), cache expiration fix (APIDB-14121), Jenkins pipeline to clear cache (APIDB-14122), Grafana Redis prod alert (APIDB-9513)">
+        <div class="svc svc-aws" data-glean-id="svc-redis" data-tip="Redis cache — AccountCurrencyCache refactor (TICKET-15310), cache dependency fix (TICKET-16322), cache expiration fix (TICKET-14121), Jenkins pipeline to clear cache (TICKET-14122), Grafana Redis prod alert (TICKET-9513)">
           <div class="svc-icon">⚡</div>
           <div class="svc-name">Redis Cache</div>
           <div class="svc-desc">AccountCurrencyCache, profile prefix cache, cache expiry fixes</div>
@@ -659,7 +659,7 @@
             <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">Cache</span>
           </div>
         </div>
-        <div class="svc svc-aws" data-glean-id="svc-s3" data-tip="S3 — dataset inventory, archiving, log storage. SSM port-forward scripts. Arpit: ssm-port-forward for dashboard services (APIDB-16150/52/80/81/82)">
+        <div class="svc svc-aws" data-glean-id="svc-s3" data-tip="S3 — dataset inventory, archiving, log storage. SSM port-forward scripts. Arpit: ssm-port-forward for dashboard services (TICKET-16150/52/80/81/82)">
           <div class="svc-icon">🪣</div>
           <div class="svc-name">S3 / SSM</div>
           <div class="svc-desc">Storage, archiving, SSM port-forward for local dev</div>
@@ -668,7 +668,7 @@
             <span class="svc-tag" style="color:var(--c-aws);border-color:var(--c-aws)">SSM</span>
           </div>
         </div>
-        <div class="svc svc-aws" data-glean-id="svc-vpc-subnet" data-tip="AWS VPC — multi-region (eu-west-1, eu-west-2, us-east-2). Atmos account management. VPC peering for APIGW. Security groups, IAM roles. Arpit: CD to AWS migration (APIX-200), Atmos-dev deploy">
+        <div class="svc svc-aws" data-glean-id="svc-vpc-subnet" data-tip="AWS VPC — multi-region (eu-west-1, eu-west-2, us-east-2). Atmos account management. VPC peering for APIGW. Security groups, IAM roles. Arpit: CD to AWS migration (EPIC-200), Atmos-dev deploy">
           <div class="svc-icon">🌐</div>
           <div class="svc-name">VPC / Networking</div>
           <div class="svc-desc">Multi-region VPCs, subnets, security groups, IAM — Atmos</div>
@@ -693,7 +693,7 @@
         <div class="layer-line"></div>
       </div>
       <div class="layer-row">
-        <div class="svc svc-infra" data-glean-id="svc-puppet" data-tip="Puppet Master — puppet-master repo. Arpit: dashboard puppet vars (eyaml), Puppet infra assessment (JIRA), Numbering Plan host change (APIDB-16666/16729), Phub .hq domain update (APIDB-16200), HLR URL update (APIDB-9056), ID Server removal (APIDB-8569)">
+        <div class="svc svc-infra" data-glean-id="svc-puppet" data-tip="Puppet Master — puppet-master repo. Arpit: dashboard puppet vars (eyaml), Puppet infra assessment (JIRA), Numbering Plan host change (TICKET-16666/16729), Phub .hq domain update (TICKET-16200), HLR URL update (TICKET-9056), ID Server removal (TICKET-8569)">
           <div class="svc-icon">🎭</div>
           <div class="svc-name">Puppet Master</div>
           <div class="svc-desc">Config management — dashboard vars, Numbering Plan, Phub domains</div>
@@ -703,7 +703,7 @@
             <span class="svc-tag" style="color:var(--c-infra);border-color:var(--c-infra)">Hiera</span>
           </div>
         </div>
-        <div class="svc svc-infra" data-glean-id="svc-terraform" data-tip="Terraform / Atmos — ops-terraform repo. Vonage Terraform Definitions (VTD). Arpit: user-service Jenkins image tag update (APIDB-9807), ID Server ops-terraform removal (APIDB-9128), Atmos IaC config">
+        <div class="svc svc-infra" data-glean-id="svc-terraform" data-tip="Terraform / Atmos — ops-terraform repo. Vonage Terraform Definitions (VTD). Arpit: user-service Jenkins image tag update (TICKET-9807), ID Server ops-terraform removal (TICKET-9128), Atmos IaC config">
           <div class="svc-icon">🏗️</div>
           <div class="svc-name">Terraform / Atmos</div>
           <div class="svc-desc">ops-terraform, VTD — AWS infra, EKS clusters, Nomad, RDS</div>
@@ -723,7 +723,7 @@
             <span class="svc-tag" style="color:var(--c-security);border-color:var(--c-security)">OAuth2</span>
           </div>
         </div>
-        <div class="svc svc-infra" data-glean-id="svc-artifactory" data-tip="Artifactory — User Service migration to new Artifactory (APIDB-14181). Gradle wrapper upgrade (APIDB-14227), fetch dependencies from new Artifactory (APIDB-14230), Dashboard us-client update (APIDB-14269)">
+        <div class="svc svc-infra" data-glean-id="svc-artifactory" data-tip="Artifactory — User Service migration to new Artifactory (TICKET-14181). Gradle wrapper upgrade (TICKET-14227), fetch dependencies from new Artifactory (TICKET-14230), Dashboard us-client update (TICKET-14269)">
           <div class="svc-icon">📦</div>
           <div class="svc-name">Artifactory</div>
           <div class="svc-desc">Artifact registry — user-service Gradle migration, dependency mgmt</div>
@@ -747,7 +747,7 @@
         <div class="layer-line"></div>
       </div>
       <div class="layer-row">
-        <div class="svc svc-payments" data-glean-id="svc-braintree" data-tip="Braintree PayPal — full BT PP integration: Add Funds flow (APIDB-16513), 3D Secure flag (APIDB-15324), USD merchant ID (APIDB-14808), KWC success payment E2E (APIDB-17067), authorization-only PayPal flow (APIDB-16377), payment ID dropdown (APIDB-17289)">
+        <div class="svc svc-payments" data-glean-id="svc-braintree" data-tip="Braintree PayPal — full BT PP integration: Add Funds flow (TICKET-16513), 3D Secure flag (TICKET-15324), USD merchant ID (TICKET-14808), KWC success payment E2E (TICKET-17067), authorization-only PayPal flow (TICKET-16377), payment ID dropdown (TICKET-17289)">
           <div class="svc-icon">💳</div>
           <div class="svc-name">Braintree / PayPal</div>
           <div class="svc-desc">Add Funds, 3DS, USD merchant, KWC, auth-only flow, Sift checks</div>
@@ -757,7 +757,7 @@
             <span class="svc-tag" style="color:var(--c-payments);border-color:var(--c-payments)">3DS</span>
           </div>
         </div>
-        <div class="svc svc-security" data-glean-id="svc-sift" data-tip="Sift fraud management — full integration: missing fields fix (APIDB-16622), backfill (APIDB-17287), secondary user events (APIDB-17044), Sift rule fix (APIDB-15378), email field (APIDB-13081), PayPal Sift check flow (APIDB-13475), callback URL update (APIDB-13278)">
+        <div class="svc svc-security" data-glean-id="svc-sift" data-tip="Sift fraud management — full integration: missing fields fix (TICKET-16622), backfill (TICKET-17287), secondary user events (TICKET-17044), Sift rule fix (TICKET-15378), email field (TICKET-13081), PayPal Sift check flow (TICKET-13475), callback URL update (TICKET-13278)">
           <div class="svc-icon">🔍</div>
           <div class="svc-name">Sift (Fraud)</div>
           <div class="svc-desc">Fraud scoring — BT PayPal checks, account events, backfill</div>
@@ -766,7 +766,7 @@
             <span class="svc-tag" style="color:var(--c-security);border-color:var(--c-security)">Fraud</span>
           </div>
         </div>
-        <div class="svc svc-payments" data-glean-id="svc-zoho" data-tip="Zoho CRM — invoice sync, account creation, Prepaid USD multi-currency (APIX-1516), bank transfer templates (APIDB-14744/14760/14950), Zoho error fixes (APIDB-11417/11456/12357), minimise Zoho calls (APIDB-12240)">
+        <div class="svc svc-payments" data-glean-id="svc-zoho" data-tip="Zoho CRM — invoice sync, account creation, Prepaid USD multi-currency (EPIC-1516), bank transfer templates (TICKET-14744/14760/14950), Zoho error fixes (TICKET-11417/11456/12357), minimise Zoho calls (TICKET-12240)">
           <div class="svc-icon">📋</div>
           <div class="svc-name">Zoho CRM</div>
           <div class="svc-desc">Invoice sync, USD multi-currency, account creation, templates</div>
@@ -775,7 +775,7 @@
             <span class="svc-tag" style="color:var(--c-payments);border-color:var(--c-payments)">CRM</span>
           </div>
         </div>
-        <div class="svc svc-payments" data-glean-id="svc-phub" data-tip="PHUB (Platform Hub) — account/secret endpoints. FeignClient migration (APIDB-15740), PHUB URL update for Atmos (APIDB-9433), Phub .hq domain puppet update (APIDB-16200), pricing-group-id sync (APIDB-14102), externalId (APIDB-11778)">
+        <div class="svc svc-payments" data-glean-id="svc-phub" data-tip="PHUB (Platform Hub) — account/secret endpoints. FeignClient migration (TICKET-15740), PHUB URL update for Atmos (TICKET-9433), Phub .hq domain puppet update (TICKET-16200), pricing-group-id sync (TICKET-14102), externalId (TICKET-11778)">
           <div class="svc-icon">🔗</div>
           <div class="svc-name">PHUB</div>
           <div class="svc-desc">Platform Hub — account secrets, FeignClient, pricing-group-id</div>
@@ -784,7 +784,7 @@
             <span class="svc-tag" style="color:var(--c-payments);border-color:var(--c-payments)">FeignClient</span>
           </div>
         </div>
-        <div class="svc svc-csp" data-glean-id="svc-dt-idp" data-tip="Deutsche Telekom IDP — SSO integration (APIDB-16458/16487), redirect user invite emails to DT IDP (APIDB-16483), 2FA phone number correction (APIDB-16493), DT domain change EPIC (APIX-1347/1435), VIAM URL update">
+        <div class="svc svc-csp" data-glean-id="svc-dt-idp" data-tip="Deutsche Telekom IDP — SSO integration (TICKET-16458/16487), redirect user invite emails to DT IDP (TICKET-16483), 2FA phone number correction (TICKET-16493), DT domain change EPIC (EPIC-1347/1435), VIAM URL update">
           <div class="svc-icon">🏢</div>
           <div class="svc-name">DT IDP (SSO)</div>
           <div class="svc-desc">Deutsche Telekom SSO — invite redirect, 2FA, domain migration</div>
@@ -794,7 +794,7 @@
             <span class="svc-tag" style="color:var(--c-csp);border-color:var(--c-csp)">IDP</span>
           </div>
         </div>
-        <div class="svc svc-payments" data-glean-id="svc-zendesk" data-tip="Zendesk — NPA update (APIDB-16331), automated provisioning ticket creation (APIDB-16610), KYC on payment failure zendesk creation (APIDB-15757)">
+        <div class="svc svc-payments" data-glean-id="svc-zendesk" data-tip="Zendesk — NPA update (TICKET-16331), automated provisioning ticket creation (TICKET-16610), KYC on payment failure zendesk creation (TICKET-15757)">
           <div class="svc-icon">🎫</div>
           <div class="svc-name">Zendesk</div>
           <div class="svc-desc">Support tickets — NPA, KYC payment failure, auto provisioning</div>
@@ -830,8 +830,8 @@
         <li>Route config PRs — matchers, upstreams, VirtualServices</li>
         <li>CD failover testing with APIGW (QA + PROD)</li>
         <li>DT CSP domain routing &amp; IAP config (new domains)</li>
-        <li>DevAPI traffic routing (APIDB-8938)</li>
-        <li>APIGW pointing to APIDB-5170 branch</li>
+        <li>DevAPI traffic routing (TICKET-8938)</li>
+        <li>APIGW pointing to TICKET-5170 branch</li>
         <li>VIAM S-T-S auth on internal endpoints</li>
       </ul>
     </div>
@@ -839,14 +839,14 @@
     <div class="ticket-card" data-glean-id="domain-dashboard">
       <div class="ticket-card-title" style="color:var(--c-dashboard)">📊 Customer Dashboard</div>
       <ul class="ticket-list">
-        <li>CD to AWS migration (APIX-200) — Atmos-dev deploy</li>
-        <li>Kafka consumer group UUID fix (APIDB-14429)</li>
+        <li>CD to AWS migration (EPIC-200) — Atmos-dev deploy</li>
+        <li>Kafka consumer group UUID fix (TICKET-14429)</li>
         <li>Cache expiry, Jenkins cache-clear pipeline</li>
         <li>FeignClient migration for AccountsClient</li>
         <li>Prod log file size fix, SSM port-forward</li>
         <li>CD failover — regional cache &amp; Jenkins pipeline</li>
         <li>OneTrust Cookie Banner, GTM removal</li>
-        <li>Signup race condition fix (APIDB-14496)</li>
+        <li>Signup race condition fix (TICKET-14496)</li>
         <li>Grafana DashboardHttpClient metrics</li>
         <li>Mend security fixes (spring-kafka, jetty, h2, c3p0)</li>
       </ul>
@@ -855,16 +855,16 @@
     <div class="ticket-card" data-glean-id="domain-user-service">
       <div class="ticket-card-title" style="color:var(--c-user)">👤 User Service</div>
       <ul class="ticket-list">
-        <li>PATCH endpoint for user update (APIDB-12934)</li>
+        <li>PATCH endpoint for user update (TICKET-12934)</li>
         <li>Lifecycle events: Account Billing, User Finance, Company</li>
         <li>Centralise lifecycle events in SubAccountListener</li>
-        <li>DELETE secondary user → DELETE event (APIDB-11074)</li>
-        <li>Org ID to subscriptions field (APIDB-11692)</li>
-        <li>SMPP account org ID &amp; externalId (APIDB-11731/77)</li>
+        <li>DELETE secondary user → DELETE event (TICKET-11074)</li>
+        <li>Org ID to subscriptions field (TICKET-11692)</li>
+        <li>SMPP account org ID &amp; externalId (TICKET-11731/77)</li>
         <li>Artifactory migration (Gradle wrapper, new registry)</li>
         <li>Kafka transactional producer, group ID purger</li>
         <li>RDS CPU alert, deadlock fix on d_user_search</li>
-        <li>Secondary user Sift events (APIDB-17044)</li>
+        <li>Secondary user Sift events (TICKET-17044)</li>
         <li>Mend: spring-beans, kafka-clients, zookeeper, redis</li>
       </ul>
     </div>
@@ -874,7 +874,7 @@
       <ul class="ticket-list">
         <li>Braintree PayPal full integration (Add Funds, 3DS)</li>
         <li>Authorization-only PayPal + Sift conditional settlement</li>
-        <li>KWC success payment E2E (APIDB-17067)</li>
+        <li>KWC success payment E2E (TICKET-17067)</li>
         <li>Sift: missing fields, backfill, BT PayPal checks</li>
         <li>Negative balance scheduler job + email</li>
         <li>KYC on payment failure (frontend + backend)</li>
@@ -892,8 +892,8 @@
         <li>Puppet: Phub .hq domains, HLR URL, ID Server removal</li>
         <li>Terraform: ops-terraform, user-service image tag</li>
         <li>Nomad: multi-region cluster, OSS dev resize</li>
-        <li>Scheduler migration: Softlayer → Atmos (APIX-268)</li>
-        <li>Kafka migration: Kiwi → Hermes cluster (APIX-983)</li>
+        <li>Scheduler migration: Softlayer → Atmos (EPIC-268)</li>
+        <li>Kafka migration: Kiwi → Hermes cluster (EPIC-983)</li>
         <li>EKS cluster configs, ArgoCD, Atlantis</li>
         <li>Jenkins pipelines: cache clear, smoke tests, purger</li>
         <li>SSM port-forward for all dashboard services</li>
@@ -906,38 +906,38 @@
       <ul class="ticket-list">
         <li>DT domain migration: api.telekom.net → developer.telekom.com</li>
         <li>DT SSO integration — hide My Addresses, read-only</li>
-        <li>DT IDP — redirect user invite emails (APIDB-16483)</li>
+        <li>DT IDP — redirect user invite emails (TICKET-16483)</li>
         <li>2FA phone number correction for DT accounts</li>
         <li>VIAM URL update for DT dashboard</li>
         <li>Optus — disable pricing download, credit coupon fix</li>
         <li>Cloud Runtime hidden for resell co-branded CSPs</li>
-        <li>Privacy Policy shown for CSP users (APIDB-14217)</li>
+        <li>Privacy Policy shown for CSP users (TICKET-14217)</li>
       </ul>
     </div>
 
     <div class="ticket-card" data-glean-id="domain-security">
       <div class="ticket-card-title" style="color:var(--c-security)">🔐 Security &amp; Auth</div>
       <ul class="ticket-list">
-        <li>Remove hardcoded credentials from dashboard (APIDB-13735)</li>
-        <li>XSS fix — ATO via Password Manager (APIDB-13621)</li>
-        <li>JSONP endpoint callback validation (APIDB-13666)</li>
-        <li>Reflected XSS fix (APIDB-11309)</li>
-        <li>Remove G-Cloud creds from CD repo (APIDB-15458)</li>
+        <li>Remove hardcoded credentials from dashboard (TICKET-13735)</li>
+        <li>XSS fix — ATO via Password Manager (TICKET-13621)</li>
+        <li>JSONP endpoint callback validation (TICKET-13666)</li>
+        <li>Reflected XSS fix (TICKET-11309)</li>
+        <li>Remove G-Cloud creds from CD repo (TICKET-15458)</li>
         <li>Mend security scans — spring, jetty, h2, wiremock</li>
         <li>VIAM S-T-S auth migration across services</li>
-        <li>User removed from team security fix (APIDB-10990)</li>
+        <li>User removed from team security fix (TICKET-10990)</li>
       </ul>
     </div>
 
     <div class="ticket-card" data-glean-id="domain-kafka">
       <div class="ticket-card-title" style="color:var(--c-kafka)">📨 Kafka &amp; Events</div>
       <ul class="ticket-list">
-        <li>Kafka topic migration: Kiwi → Hermes (APIX-983)</li>
-        <li>Consumer group UUID fix (APIDB-14429)</li>
-        <li>Group ID rename &amp; purger pipeline (APIDB-11968/12027)</li>
-        <li>Remove vBilling listeners from Kiwi (APIDB-13772/73)</li>
-        <li>Kafka brokers update for vBilling (APIDB-13682)</li>
-        <li>Transactional Kafka producer (APIDB-10754)</li>
+        <li>Kafka topic migration: Kiwi → Hermes (EPIC-983)</li>
+        <li>Consumer group UUID fix (TICKET-14429)</li>
+        <li>Group ID rename &amp; purger pipeline (TICKET-11968/12027)</li>
+        <li>Remove vBilling listeners from Kiwi (TICKET-13772/73)</li>
+        <li>Kafka brokers update for vBilling (TICKET-13682)</li>
+        <li>Transactional Kafka producer (TICKET-10754)</li>
         <li>Fraud Kafka topic — Sift signal routing</li>
         <li>Lifecycle events: Account, User Finance, Company</li>
       </ul>
@@ -1023,9 +1023,9 @@
       <div class="tl-item" data-glean-id="tl-2022">
         <div class="tl-year">2022</div>
         <ul class="tl-items">
-          <li>CD to AWS migration (APIX-200)</li>
-          <li>Scheduler Atmos migration (APIX-268)</li>
-          <li>Kafka Hermes migration (APIX-983)</li>
+          <li>CD to AWS migration (EPIC-200)</li>
+          <li>Scheduler Atmos migration (EPIC-268)</li>
+          <li>Kafka Hermes migration (EPIC-983)</li>
           <li>10DLC campaigns, Buy Numbers</li>
           <li>Verify Logs page</li>
           <li>DB users setup (RDS)</li>
@@ -1038,7 +1038,7 @@
           <li>User Service PATCH endpoint</li>
           <li>Lifecycle events (Account, User Finance, Company)</li>
           <li>Kafka group ID purger pipeline</li>
-          <li>DT domain change EPIC (APIX-1347)</li>
+          <li>DT domain change EPIC (EPIC-1347)</li>
           <li>XSS / security fixes</li>
           <li>Zoho error fixes</li>
           <li>Remove hardcoded credentials</li>
@@ -1055,7 +1055,7 @@
           <li>Sift PayPal check flow</li>
           <li>Braintree 3DS flag</li>
           <li>Prepaid USD Zoho multi-currency</li>
-          <li>DT SSO integration (APIX-1435)</li>
+          <li>DT SSO integration (EPIC-1435)</li>
         </ul>
       </div>
       <div class="tl-item" data-glean-id="tl-2025">
