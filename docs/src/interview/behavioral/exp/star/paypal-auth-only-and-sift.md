@@ -12,11 +12,15 @@ Vonage's payment platform was suffering from a critical fraud gap: PayPal transa
 
 Fraudulent actors were exploiting this window to top up accounts and immediately use the communications credits before any manual review could intervene. The business was absorbing direct financial losses and compliance risk.
 
+Vonage's Customer Dashboard accepted PayPal payments via Braintree. The existing flow immediately settled every PayPal transaction — even when Sift's fraud-detection engine flagged it as high-risk. This caused a wave of PayPal disputes and chargebacks, directly impacting Vonage's merchant standing and resulting in real financial losses. The problem was invisible until disputes arrived, sometimes weeks later.
+
 ## Task
 
 I was assigned to design and implement an Authorization-Only PayPal flow — a fundamental change to the payment lifecycle — so that SIFT's fraud decision could conditionally void or settle a transaction before funds were captured.
 
 I was assigned to design and implement an authorization-only PayPal flow (TICKET-16377) — a fundamental change to the payment lifecycle — so that funds would only be captured *after* SIFT returned a "safe" decision, and voided otherwise.
+
+I was assigned to design and implement an **Authorization-Only PayPal flow** that would hold funds in a pending state, consult Sift's fraud decision in real time, and then either settle or void the transaction based on the outcome — all without degrading the customer payment experience.
 
 ## Action
 
@@ -28,6 +32,12 @@ I led the full-stack implementation across the backend (Java/Spring) and fronten
 * Coordinated with the Frontend team on `PaymentFailureKycForm.java` and `PaymentFailureKYCForm.spec.ts` to surface a KYC self-service form (TICKET-15778) when a payment was blocked — replacing a manual Zendesk ticket process.
 * Wrote SQL test queries for QA validation and documented the full flow in Confluence.
 * Deployed via canary release (BTPP QA env → canary → prod), monitoring Grafana boards (TICKET-17064) throughout.
+* Conducted a discovery spike (TICKET-16110) to map the full Braintree + Sift integration, documenting the gap between card payments (which already had Sift checks) and PayPal.
+* Designed a two-phase flow: (1) Braintree `authorize` call instead of `sale`, (2) asynchronous Sift evaluation, (3) conditional `submitForSettlement` or `void` based on Sift's `BLOCK` / `ALLOW` decision.
+* Implemented the backend changes across the `dashboard` service (Java/Spring Boot), adding new Sift event types, updating `SiftFraudJsonUtils`, and wiring the conditional settlement logic (TICKET-16377, TICKET-16847).
+* Built the frontend failure-scenario UI (TICKET-16893) so customers received a clear, actionable message when a payment was blocked, rather than a generic error.
+* Added Grafana monitoring panels for the new payment flow (TICKET-17064) and wrote SQL test queries for QA validation.
+* Coordinated with the Payments and Fraud teams to ensure the Sift rule configuration matched the new event schema.
 
 ## Result
 
@@ -37,12 +47,18 @@ Fraudulent PayPal payments could now be blocked before funds were captured, elim
 * The KYC self-service form reduced manual support ticket volume for payment-blocked customers.
 * The Grafana board gave the team real-time visibility into BT PayPal payment flows for the first time.
 * SIFT's fraud analyst confirmed improved detection accuracy after receiving enriched transaction data.
+* Fraudulent PayPal transactions are now blocked **before settlement**, eliminating the chargeback loop.
+* The feature shipped across QA → Production with zero rollback incidents.
+* Grafana dashboards gave the team real-time visibility into authorization vs. settlement rates for the first time.
+* Reduced manual fraud-review workload for the Finance team.
 
 ## Learning
 
 I learned that payment fraud prevention requires thinking end-to-end — from the payment gateway API contract, through the fraud-scoring engine, to the customer-facing UX. Changing a single API call (`SALE` → `AUTHORIZE`) had cascading implications across settlement, notification templates, and error handling that required careful cross-team coordination.
 
 I learned that payment security is not a single feature but a layered system — authorization, fraud scoring, and customer communication must all be redesigned together. I also learned to work closely with a third-party fraud platform (SIFT) as a product partner, not just an API endpoint.
+
+I learned that integrating two third-party payment systems (Braintree + Sift) requires treating the integration contract as a first-class design concern — not an afterthought. I also learned to always instrument new payment flows with observability from day one, not after the first production incident.
 
 ## Deeper Dive (Technical Detail from Jira/GitHub)
 

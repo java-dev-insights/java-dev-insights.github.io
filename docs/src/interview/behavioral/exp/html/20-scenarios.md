@@ -31,39 +31,6 @@ Learned the value of a phased migration approach: dev → QA → prod with disab
 
 ---
 
-## Story 6 — Lifecycle Events Platform: Building the Event-Driven Architecture Foundation
-**Amazon Leadership Principles:** Think Big · Invent and Simplify · Customer Obsession
-
-### Situation
-Downstream teams (marketing, billing, fraud, provisioning) needed real-time notifications when users, accounts, sub-accounts, and companies changed state. The existing approach was ad-hoc: each team polled databases or relied on brittle point-to-point integrations. There was no standardised event schema, no documentation, and no reliable delivery guarantee.
-
-### Task
-Design and implement a comprehensive Lifecycle Events platform on Kafka Hermes, covering User, Account, Sub-Account, Company, and UserFinance entities, and publish documentation to the VCP Core Developer Hub.
-
-### Action
-* Designed the event schema for each entity type: `UserLifeCycleEvent.java`, `AccountBillingLifeCycleEvent.java`, `UserFinanceLifeCycleEvent.java`, `SubAccountLifeCycleEvent.java`, with corresponding `*EventType` enums.
-* Implemented Kafka producers in User Service and Dashboard, with `UserLifeCycleEventsListenerTest.java` and `VaccountLifeCycleListenerTest.java` for test coverage.
-* Centralised account lifecycle event publishing in User Service's `SubAccountListener` (TICKET-11315), replacing scattered ad-hoc publishers across the codebase.
-* Added new lifecycle events: Account Billing (TICKET-12324), User Finance (TICKET-12178), Company (TICKET-10625), and enriched existing events with more fields (TICKET-10804).
-* Refactored the `AccountLifeCycle` event structure (TICKET-11929) for consistency.
-* Published developer documentation to the VCP Core Developer Hub (TICKET-13191, TICKET-12697) — the external-facing API documentation for teams outside Dashboard.
-* Added lifecycle events section to Confluence: "LifeCycle Events" page covering all topics, event bodies, producers, and consumers.
-
-### Result
-* Downstream teams (marketing/Pardot, billing/Zoho, fraud/SIFT, provisioning) could now consume standardised, reliable lifecycle events from a single Kafka cluster.
-* The VCP Core documentation became the authoritative reference for external teams integrating with Vonage's user lifecycle.
-* Reduced point-to-point integrations and database polling across the platform.
-
-### Learning
-Learned that event-driven architecture requires as much investment in documentation and schema design as in code. A poorly documented event schema becomes a maintenance burden for every consumer team.
-
-### Deeper Dive (Technical Evidence)
-* **JIRA:** TICKET-10625 (Company lifecycle events), TICKET-12324 (Account Billing), TICKET-12178 (User Finance), TICKET-10804 (Send more info in events), TICKET-11315 (Centralise account lifecycle events), TICKET-11929 (Refactor AccountLifeCycle), TICKET-13191 (VCP Core Documentation update), TICKET-12697 (Add Lifecycle Events to VCP Core Documentation)
-* **GitHub:** `UserLifeCycleEvent.java`, `AccountBillingLifeCycleEvent.java`, `UserFinanceLifeCycleEvent.java`, `SubAccountLifeCycleEvent.java`, `UserLifeCycleEventType.java`, `UserFinanceLifeCycleEventType.java`, `VAccountCompanySyncEventListener.java`, `UserFinanceLifeCycleEventsListener.java`, `TICKET-11315 centralise volga event listener (#235)`, `TICKET-12697 add section lifecycle events (#54)`
-* **Confluence:** "LifeCycle Events" — full topic catalogue with event bodies, producers, consumers
-
----
-
 ## Story 7 — Security Hardening: Removing Hardcoded Credentials & Fixing XSS Vulnerabilities
 **Amazon Leadership Principles:** Earn Trust · Ownership · Are Right, A Lot
 
@@ -261,99 +228,6 @@ Learned that enterprise customer migrations require meticulous coordination acro
 
 ---
 
-## Story 13 — User Service Ownership: Artifactory Migration & Gradle Modernisation
-**Amazon Leadership Principles:** Ownership · Deliver Results · Frugality
-
-### Situation
-The User Service was using an old Artifactory instance that was being decommissioned. All dashboard projects needed to migrate to the new `vonagecc` Artifactory. The User Service had additional complexity: it published a client library (`userservice-client`) consumed by Dashboard and Admin Dashboard — so the migration required coordinating changes across three repositories simultaneously.
-
-### Task
-Migrate User Service to the new Artifactory (TICKET-14181 Epic), upgrade the Gradle wrapper (required for the new publish mechanism), and ensure all downstream consumers (Dashboard, Admin Dashboard) were updated to read from the new Artifactory.
-
-### Action
-* Upgraded the Gradle wrapper version in User Service (TICKET-14227) — a prerequisite for publishing to the new Artifactory.
-* Migrated User Service to fetch all dependencies from the new `vonagecc` Artifactory (TICKET-14230), updating `build.gradle` and `settings.gradle`.
-* Updated Dashboard to consume the updated `userservice-client` from the old Artifactory during the transition (TICKET-14938).
-* Updated Dashboard and Admin Dashboard to read `userservice-client` from the new Artifactory (TICKET-14269).
-* Validated the full build pipeline: User Service build → publish to vonagecc → Dashboard consumes → nightly tests pass.
-* GitHub PR: `build(deployment): publish to vonagecc new artifactory (TICKET-14227) (#406)`, `TICKET-14230 fetch from new artifactory vonagecc (#373)`.
-
-### Result
-* User Service fully migrated to new Artifactory — old Artifactory dependency eliminated.
-* All downstream consumers (Dashboard, Admin Dashboard) updated without service disruption.
-* Nightly tests passed post-migration, confirming end-to-end build pipeline integrity.
-
-### Learning
-Learned that library migrations require a "strangler fig" approach — keep the old and new working simultaneously until all consumers are updated. Rushing the cutover risks breaking downstream builds.
-
-### Deeper Dive (Technical Evidence)
-* **JIRA Epic:** TICKET-14181 — "User service migration to new Artifactory"
-* **JIRA:** TICKET-14227 (Gradle wrapper), TICKET-14230 (fetch from new artifactory), TICKET-14938 (Dashboard consume from old), TICKET-14269 (Dashboard/AD from new)
-* **GitHub:** `build(deployment): publish to vonagecc new artifactory (TICKET-14227) (#406)`, `TICKET-14230 fetch from new artifactory vonagecc (#373)`
-
----
-
-## Story 14 — Kafka Consumer Group UUID Bug: Eliminating False Production Alerts
-**Amazon Leadership Principles:** Dive Deep · Operational Excellence · Are Right, A Lot
-
-### Situation
-The Customer Dashboard's Clear Cache Event Listener was generating a new UUID as its Kafka consumer group ID on every restart. This meant that every time an allocation restarted (routine in a containerised environment), a new stale consumer group was left behind, triggering Kafka lag alerts in production. The on-call team was receiving false-positive alerts, eroding trust in the alerting system and causing alert fatigue.
-
-### Task
-Diagnose the root cause of the false Kafka lag alerts (TICKET-14429) and implement a fix that produced stable, deterministic consumer group IDs across restarts.
-
-### Action
-* Traced the issue to `ClearCacheEntryKafkaListenerConfiguration` where `UUID.randomUUID()` was used as the group ID.
-* Investigated alternatives: allocation ID and host IP as stable identifiers that survive restarts.
-* Implemented a fix to use the allocation/host identifier as the group ID suffix, ensuring that restarting an allocation reuses the same group ID.
-* Validated in canary: restarted the allocation, confirmed the same group ID was generated, and verified Kafka lag returned to zero.
-* Added log statement `"[clearCacheEntryKafkaEventListener] Initializing clear cache kafka consumer factory with group ID:"` for future debugging.
-
-### Result
-* False Kafka lag alerts in production eliminated.
-* On-call alert fatigue reduced — the team could trust that a Kafka lag alert meant a real problem.
-* The fix was generalised as a pattern for other Kafka listeners in the codebase.
-
-### Learning
-Learned that alert quality is as important as alert coverage. A false-positive alert is not just noise — it trains engineers to ignore alerts, which is dangerous. Fixing the root cause of false alerts is a high-value operational improvement.
-
-### Deeper Dive (Technical Evidence)
-* **JIRA:** TICKET-14429 (3 story points) — "CD - Kafka Consumer Group UUID causing lag on restart allocation"
-* **Code:** `ClearCacheEntryKafkaListenerConfiguration` — consumer group ID fix
-* **Related:** TICKET-12037 (exclude false alerts for kafka lag in hermes cluster), TICKET-12039 (rename groupID)
-
----
-
-## Story 15 — Sigma Prime Integration: Exposing Internal Payment Transaction Search APIs
-**Amazon Leadership Principles:** Customer Obsession · Invent and Simplify · Deliver Results
-
-### Situation
-Vonage's internal Sigma Prime analytics platform needed access to payment transaction data (payment methods, topup transactions) from the Customer Dashboard. There was no internal API for this — Sigma Prime was either scraping data or relying on manual exports. This was inefficient and created data freshness issues for the analytics team.
-
-### Task
-Expose internal API endpoints for payment transaction search (TICKET-16561) and payment method retrieval (TICKET-15536) to enable Sigma Prime to query data programmatically.
-
-### Action
-* Implemented `PostpaidService.getPaymentMethods()` and exposed it via a new internal API endpoint (TICKET-15536 — "Get Payment Methods - Sigma Integration - DB").
-* Implemented a topup transaction search endpoint (TICKET-16561 — "Expose internal endpoints for payment transaction search") with filtering by account, date range, and transaction type.
-* GitHub PR: `TICKET-16561 sigma search topup transactions (#4320)`, `TICKET-15536 sigma get payment methods (#4174)`.
-* Ensured endpoints were internal-only (not exposed via APIGW to external customers).
-* Added appropriate logging and metrics.
-
-### Result
-* Sigma Prime analytics team gained programmatic access to payment data, eliminating manual exports.
-* Data freshness improved — Sigma Prime could query real-time transaction data.
-* Internal API pattern established for future analytics integrations.
-
-### Learning
-Learned that internal APIs deserve the same design rigour as external APIs — proper authentication, rate limiting, and documentation. An undocumented internal API quickly becomes a maintenance burden.
-
-### Deeper Dive (Technical Evidence)
-* **JIRA:** TICKET-16561 — "Expose internal endpoints for payment transaction search (Sigma Prime)"; TICKET-15536 — "Get Payment Methods - Sigma Integration - DB"
-* **GitHub:** `TICKET-16561 sigma search topup transactions (#4320)`, `TICKET-15536 sigma get payment methods (#4174)`
-
----
-
 ## Story 16 — APICM Ticket Automation: Eliminating Manual Deployment Ticket Creation
 **Amazon Leadership Principles:** Invent and Simplify · Frugality · Deliver Results
 
@@ -381,36 +255,6 @@ Learned that automation of repetitive processes has a compounding return — the
 * **JIRA:** TICKET-14964 — "Add git message on PR creation"; "Add APICM GitHub Workflow for Dashboard Frontend Repo"
 * **GitHub:** `pr-comment.yml`, `pr-instructions-common.yml`, `update slack msg (#987)`
 * **Confluence:** "APICM Ticket Automation — Developer Guide", "Automated APICM ticket creation"
-
----
-
-## Story 17 — Dashboard Cache Resilience: Fixing Expiration Issues & Jenkins Pipeline
-**Amazon Leadership Principles:** Dive Deep · Operational Excellence · Customer Obsession
-
-### Situation
-The Customer Dashboard's caching layer was experiencing expiration issues (TICKET-14121) — cached data was not being invalidated correctly after account updates, causing customers to see stale data (wrong balance, wrong account status). Additionally, there was no operational tool to manually clear the cache in production when needed, forcing engineers to restart services as a blunt instrument.
-
-### Task
-Fix the cache expiration logic (TICKET-14121) and build a Jenkins pipeline to allow controlled cache clearing in production (TICKET-14122).
-
-### Action
-* Diagnosed the cache expiration bug: the `AccountCurrencyCache` and related caches were not respecting TTL correctly under certain update patterns.
-* Fixed the expiration logic (TICKET-14121) and added the `clearCacheEvent` Kafka topic consumer to handle cache invalidation triggered by account updates (TICKET-13879 — "Account not upgraded after topup (clearCacheEvent)").
-* Built a Jenkins pipeline (TICKET-14122) that allowed the team to clear specific cache keys or the entire cache without a service restart.
-* Fixed the `AccountsClient` to use `FeignClient` instead of `HttpRequester` (TICKET-15740) — improving connection pooling and timeout handling.
-* Fixed a cache dependency issue (TICKET-16322) that was causing cascading cache failures.
-
-### Result
-* Cache expiration issues resolved — customers saw up-to-date account data after top-ups and account changes.
-* Jenkins cache-clearing pipeline gave the team a surgical tool for production incidents, reducing MTTR.
-* `FeignClient` migration improved resilience of downstream service calls.
-
-### Learning
-Learned that caching bugs are particularly insidious because they cause intermittent, hard-to-reproduce issues. The key is to have both correct expiration logic *and* an operational escape hatch (the Jenkins pipeline) for when things go wrong in production.
-
-### Deeper Dive (Technical Evidence)
-* **JIRA:** TICKET-14121 (cache expiration fix), TICKET-14122 (Jenkins pipeline), TICKET-13879 (clearCacheEvent), TICKET-15740 (FeignClient migration), TICKET-16322 (cache dependency fix)
-* **GitHub:** `config_customer_dashboard.py`, `TICKET-16322` related PRs
 
 ---
 

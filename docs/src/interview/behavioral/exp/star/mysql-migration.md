@@ -2,6 +2,7 @@
 
 <-- [Back](./..)  
 ::: info About
+**On-Call: RDS CPU Spike Investigation & Database Index Fix**.  
 **MySQL 5.7 → 8.0 Migration: Schema Fixes, Missing Index & Performance Recovery**   
 Amazon LP: <Badge type="warning" text="Dive Deep" /> <Badge type="tip" text="Deliver Results" />  
 **Ticket:** TICKET-16623 (Maintenance Banner), TICKET-16232 (QA Schema Fix), TICKET-16386 (Scheduler Performance), TICKET-17174 (Missing Index / RDS CPU)
@@ -11,9 +12,13 @@ Amazon LP: <Badge type="warning" text="Dive Deep" /> <Badge type="tip" text="Del
 
 AWS Aurora was ending support for MySQL 5.7, requiring Vonage's Customer Dashboard and User Service databases to be migrated to MySQL 8.0. MySQL 8.0 introduced several breaking changes: it removed the query cache entirely (which MySQL 5.7 had used implicitly), enforced stricter schema validation, and changed default behaviours around indexing and SQL mode. These changes caused a cascade of issues: nightly QA tests began failing with `GenericJDBCException` errors, a critical scheduler job that previously ran in 2 hours started taking 10+ hours, and production RDS CPU spiked to 97%+ due to full table scans on a high-traffic table that was missing an index.
 
+During my on-call rotation, I received OpsGenie alerts for `users-service-rds-1` showing high CPU usage. The alerts were intermittent but recurring, and the team had no clear root cause. Left unresolved, this could cause query timeouts and degrade the login experience for all Vonage dashboard users (TICKET-16721).
+
 ## Task
 
 I was responsible for diagnosing and fixing the MySQL 8.0 migration issues across three distinct problem areas: QA schema incompatibilities, scheduler performance degradation, and a production missing-index crisis causing RDS CPU alerts.
+
+Investigate the root cause of the RDS CPU spikes, identify the offending query, and implement a permanent fix.
 
 ## Action
 
@@ -25,13 +30,27 @@ I was responsible for diagnosing and fixing the MySQL 8.0 migration issues acros
 
 *Missing index / RDS CPU crisis (TICKET-17174):* Production RDS CPU was hitting 97%+ during peak hours, triggering OpsGenie alerts. I investigated using Kibana logs and identified two API calls causing full table scans on `d_topup_transaction`: (1) `/api/v1/braintree/webhook` calling `topUpTransactionFinder.getTopUpTransactionWithPaymentId` — the `paymentId` column had no index; (2) the payment summary page calling `topUpTransactionFinder.getTopUpTransaction` with a `requestId` where clause — also unindexed. I added the missing indexes via a Flyway migration script (Draft PR #4519), eliminating the full table scans.
 
+* Analysed the OpsGenie alert timeline and correlated it with Kibana logs and RDS Performance Insights.
+* Identified the `findDistinctAccountReferenceBySubAccountReference` method in the User Service as the source of a full-table scan on `d_user_sub_account`.
+* Discovered that while a composite index existed on `d_user_sub_account`, there was no single-column index on `d_user_sub_account` alone — causing the query planner to perform a full scan for single-column lookups.
+* Created a Flyway migration to add the missing index (GitHub PR #499 in `user-service`).
+* Validated the fix in QA by running the query with `EXPLAIN` before and after the index addition.
+* Documented the investigation in the JIRA ticket with Slack thread references and query analysis for future on-call engineers.
+
 ## Result
 
 The MySQL 8.0 migration was completed without customer-facing downtime. QA nightly tests resumed passing. The `managerBalanceAndCreditLimitJob` returned to its expected ~2-hour runtime. Production RDS CPU alerts were eliminated after the missing indexes were added. The maintenance banner kept customers informed throughout the migration window.
 
+* RDS CPU spikes eliminated after the index was deployed to production.
+* Query execution time for `findDistinctAccountReferenceBySubAccountReference` reduced significantly.
+* The investigation documentation became a reference for the team on how to approach RDS performance issues.
+* No further OpsGenie alerts for this issue post-deployment.
+
 ## Learning
 
 Database version migrations are never just an infrastructure task — they have application-level consequences that only surface under production load. The MySQL 8.0 query cache removal was a silent performance regression that only became visible at scale. I learned to always review the "removed features" section of a database version's release notes before migration, and to treat any scheduler job performance change post-migration as a potential query cache dependency.
+
+Database performance issues are often invisible until they hit production scale. I learned to always check query execution plans (`EXPLAIN`) when investigating slow queries, and that a missing single-column index on a frequently-queried column is one of the most common and easily fixed performance issues.
 
 ## Deeper Dive (Technical Detail from Jira/GitHub)
 
