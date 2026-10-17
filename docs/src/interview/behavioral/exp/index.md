@@ -71,3 +71,26 @@ An additional **"Deeper Dive"** section follows each story with the actual techn
 * You are being made redundant due to organisational restructuring — this is a neutral, common event in the UK tech market.
 * Frame it positively: *"Vonage/Ericsson is going through a strategic restructuring, and my role is being made redundant. I'm now looking for my next challenge where I can bring this depth of experience in Java/Spring, payments, and distributed systems."*
 * Under UK employment law, you are entitled to a redundancy payment and a reference — ensure you have both before your last day.
+
+## Extra
+
+| Theme                     | Stories                                                                                            |
+| ------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Fraud & Payments**      | PayPal Auth-Only SIFT, KYC Self-Service, Negative Balance Scheduler, Sigma Prime APIs              |
+| **AWS/Cloud Migration**   | Scheduler to AWS, Kafka Hermes Migration, SSM Port-Forward                                         |
+| **Security & Compliance** | Hardcoded Credentials, XSS Remediation, Sanctioned Countries, Mend/Prisma Programme, OneTrust GDPR |
+| **Architecture & Design** | Lifecycle Events, User Service PATCH, Org Config Migration, CD Failover                            |
+| **Partner Integrations**  | Deutsche Telekom SSO, Prepaid USD/Zoho, DevRel Pricing API                                         |
+| **Feature Delivery**      | 10DLC Campaigns, Verify Logs, Artifactory Migration, Kafka UUID Fix                                |
+
+
+## Quick-Reference: Key Technologies Demonstrated
+
+* **Languages & Frameworks:** Java (Spring Boot, Spring Kafka, Feign, Micrometer), TypeScript/JavaScript (Vue.js frontend), Python (deployment scripts, pytest)
+* **Messaging:** Apache Kafka (Hermes AWS cluster), event-driven architecture, consumer group management
+* **Payments:** Braintree (3D Secure, PayPal, card payments), Zoho CRM, SIFT fraud detection
+* **Cloud & Infrastructure:** AWS (Atmos/Nomad), Jenkins CI/CD, Docker, Puppet, APIGW, VIAM routing
+* **Databases:** MySQL/RDS (Flyway migrations), Redis (caching), AWS RDS Proxy
+* **Observability:** Grafana, OpsGenie, Kibana, Micrometer metrics
+* **Security:** Mend (SCA), Prisma (CSPM), GitHub Secret Scanning, XSS remediation, Git history rewriting
+* **Collaboration:** JIRA, Confluence, GitHub, Slack, Microsoft Teams

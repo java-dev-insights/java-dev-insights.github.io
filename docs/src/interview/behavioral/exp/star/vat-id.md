@@ -30,9 +30,13 @@ Feature flags are only as good as the regression testing that covers them. The r
 
 ## Deeper Dive (Technical Detail from Jira/GitHub)
 
-
 * The BSS endpoint `GET /NEXMO/account/{account_id}/v1/detail` returned `taxInfo.exemptStatus` — Arpit mapped this to a `vatIdValidationStatus` display label in the Angular component.
 * The feature flag `vies-validation` was checked in the Angular template using the existing feature flag service, ensuring the validation status was only shown to accounts in the rollout cohort.
 * The regression root cause (TICKET-17132): "For a user with a saved service address, `shouldShowSummary` is always `true` (read-only summary view), so the edit form branch never mounts and `vatStatusLabel` was never in the DOM at all. The feature flag and `taxExemptStatus` data were both fine the entire time. The status label just lived in the wrong branch of the template."
 * Fix PR: dashboard-frontend #2809 — confirmed by Svetlana Nazarenko (reporter): "Fixed it now."
 * The GitHub release commit b3636336 — "Release cdfront 16.31.0: fix TICKET-17132 [CD - Service Address Page] New Design Lost VAT ID Validation Status" — confirms the production fix.
+
+## Context
+
+surfacing the validation status on the postpaid My Address page, plus diagnosing a regression where a page redesign silently dropped the status display. 
+The root-cause analysis is verbatim from the ticket: *"vatStatusLabel lived in the wrong branch of the template — edit form instead of summary view. That's all it was."*

@@ -41,3 +41,13 @@ Database version migrations are never just an infrastructure task — they have 
 * The Flyway migration script added `CREATE INDEX idx_topup_txn_payment_id ON d_topup_transaction(paymentId)` and `CREATE INDEX idx_topup_txn_request_id ON d_topup_transaction(requestId)`.
 * The GitHub commit 1330aef — "TICKET-16152 update LB urls for Pulse VPN: local container mysql8" — confirms the local development environment was also updated to use MySQL 8.0 containers for parity.
 * A Teams message from Arpit (2026-08-24): `SHOW TABLES LIKE '%d_user' IN ACCOUNT;` — evidence of active production DB investigation during the migration.
+
+## Context
+
+**MySQL 5.7 → 8.0 migration** — TICKET-16623 (maintenance banner), TICKET-16232 (QA schema/Flyway fix), TICKET-16386 (scheduler job 10hrs→2hrs due to MySQL8 query cache removal), TICKET-17174 (missing index on `d_topup_transaction.paymentId` causing full table scans + RDS CPU alerts)
+
+four interconnected problems from the same migration:
+* **Maintenance banner** — customer communication for the migration window
+* **QA schema fix** — Flyway migrations to resolve `GenericJDBCException` in nightly tests
+* **Scheduler 10hrs→2hrs** — MySQL 8.0 removed query cache; fixed N+1 pattern with `accountOwnerCache`
+* **Missing index / 97% RDS CPU** — `d_topup_transaction.paymentId` and `requestId` had no indexes, causing full table scans on every Braintree webhook and payment summary page load

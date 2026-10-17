@@ -35,3 +35,12 @@ Integrating with a third-party government API taught me to design for unreliabil
 * Metrics were added to track VIES API call success/failure rates in Grafana, enabling monitoring of VIES availability.
 * The Phase 2 bug fix (TICKET-17132) was diagnosed by Arpit: "The root cause was simply misplaced code. `vatStatusLabel` was in the edit form branch of the template — edit form instead of summary view. That's all it was." — a clean, precise root-cause analysis under pressure.
 * The GitHub release commit b422ef3 — "Release 1477: TICKET-15546 Add VATID validation of specific EU countries" — confirms the production deployment.
+
+## Context
+
+**VIES/VAT ID** — Two-phase work: TICKET-15546 (Phase 1: VIES FeignClient integration, validation statuses) + TICKET-16117 (Phase 2: BSS/vAccount integration, show validation status on postpaid My Address page) + TICKET-17132 (bug fix: validation status lost after page redesign)
+
+Built from the full backend integration with the EU Commission's VIES API. Key technical details captured:
+* New `ViesClient` FeignClient with retry logic, metrics, and graceful degradation (never breaks existing flow)
+* Four-state `vatIdValidationStatus` enum: `NOT_APPLICABLE`, `SAME_AS_EXISTING`, `VALID_VAT_ID`, `INVALID_VAT_ID`
+* Static list of 26 applicable EU countries; QA bypass to avoid hitting live VIES in nightlies
