@@ -8,11 +8,16 @@ Amazon LP: <Badge type="warning" text="Dive Deep" /> <Badge type="tip" text="Cus
 
 ## Situation
 
+
+
 Vonage's payment platform was suffering from a critical fraud gap: PayPal transactions via Braintree were always settled immediately, even when SIFT's fraud-detection engine flagged them as high-risk. This meant fraudulent payments were captured before any intervention was possible, leading to PayPal disputes, financial losses, and reputational damage with PayPal as a payment partner.
 
 Fraudulent actors were exploiting this window to top up accounts and immediately use the communications credits before any manual review could intervene. The business was absorbing direct financial losses and compliance risk.
 
 Vonage's Customer Dashboard accepted PayPal payments via Braintree. The existing flow immediately settled every PayPal transaction — even when Sift's fraud-detection engine flagged it as high-risk. This caused a wave of PayPal disputes and chargebacks, directly impacting Vonage's merchant standing and resulting in real financial losses. The problem was invisible until disputes arrived, sometimes weeks later.
+
+- Paypal to Braintree Paypal
+- First and Recurring Payments
 
 ## Task
 

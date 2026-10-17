@@ -1,18 +1,10 @@
 import { default as PATHS } from "../../paths";
 
+const INTERVIEW_LLD_DESIGN_PATTERNS =  PATHS.INTERVIEW_LLD + "design-patterns/";
+
 const SIDEBAR_INTERVIEW_LLD = [
 	{ text: "<-- Interview Landscape", link: PATHS.INTERVIEW_INDEX },
 	{ text: "LLD Interview", link: PATHS.INTERVIEW_LLD },
-	{
-		text: "External Resources",
-		collapsed: true,
-		items: [
-			{ text: "Hello Interview", link: "https://www.hellointerview.com/learn/low-level-design/in-a-hurry/introduction" },
-			{ text: "Algo Expert", link: "https://www.algoexpert.io/systems/fundamentals" },
-			{ text: "AlgoMaster", link: "https://algomaster.io/learn/lld/course-introduction" },
-			{ text: "FB guy LLD HLD", link: "https://livecohortbypradeep.com/index.html#curriculum" },
-		],
-	},
 	{
 		text: "Core Concepts",
 		items: [
@@ -24,12 +16,12 @@ const SIDEBAR_INTERVIEW_LLD = [
 	},
 	{
 		text: "Design Patterns",
-		link: "design-patterns",
 		items: [
-			{ text: "Creational", link: "design-patterns/creational", collapsed: true, },
-			{ text: "Structural", link: "design-patterns/structural", collapsed: true, },
-			{ text: "Behavioral", link: "design-patterns/behavioral", collapsed: true, },
-			{ text: "Pattern Selection (Interview)", link: "design-patterns/pattern-selection" },
+			{ text: "Overview", link: INTERVIEW_LLD_DESIGN_PATTERNS, collapsed: true, },
+			{ text: "Creational", link: INTERVIEW_LLD_DESIGN_PATTERNS + "creational/", collapsed: true, },
+			{ text: "Structural", link: INTERVIEW_LLD_DESIGN_PATTERNS + "structural/", collapsed: true, },
+			{ text: "Behavioral", link: INTERVIEW_LLD_DESIGN_PATTERNS + "behavioral/", collapsed: true, },
+			{ text: "Pattern Selection (Interview)", link: INTERVIEW_LLD_DESIGN_PATTERNS + "pattern-selection" },
 		],
 	},
 	{
@@ -39,6 +31,13 @@ const SIDEBAR_INTERVIEW_LLD = [
 			{ text: "Parking Lot", link: "parking-lot" },
 			{ text: "LRU Cache", link: "lru-cache" },
 			{ text: "Chess Game", link: "chess-game" },
+		],
+	},
+	{
+		text: 'Next Steps',
+		items: [
+			{ text: "References", link: PATHS.INTERVIEW_LLD + "refs" },
+			{ text: "What's Next?", link: PATHS.INTERVIEW_LLD + "whats-next" },
 		],
 	},
 ];

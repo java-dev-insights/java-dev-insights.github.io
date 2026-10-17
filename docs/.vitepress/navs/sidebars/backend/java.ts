@@ -72,7 +72,7 @@ const SIDEBAR_BACKEND_JAVA = [
 		],
 	},
 	{
-		// text: 'Next',
+		text: 'Next Steps',
 		items: [
 			{ text: "References", link: PATHS.BACKEND_JAVA + "refs" },
 			{ text: "What's Next?", link: PATHS.BACKEND_JAVA + "whats-next" },

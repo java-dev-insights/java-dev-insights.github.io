@@ -1,4 +1,6 @@
-# SIFT Fraud Check for Secondary User Invite
+# Secondary User : Fraud Check and cleaner Data
+
+SIFT Fraud Check for Secondary User Invite
 
 QA Acceptance Criteria 
 - No SIFT update immediately on inviting the secondary user

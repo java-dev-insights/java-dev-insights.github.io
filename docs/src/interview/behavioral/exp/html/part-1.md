@@ -87,10 +87,6 @@ This paints a picture of a highly active full-stack contributor with deep owners
 
 Would you like me to turn this into a formatted document (e.g. for a performance review, CV update, or LinkedIn summary)?
 
-
-
-
-
 # Part 1 - 5-year
 
 Here is a comprehensive summary of your full tenure at Vonage, from **April 2021 to September 2026** (~5.5 years), as a Full Stack Developer in the API Engineering / Dashboard Platform team.
