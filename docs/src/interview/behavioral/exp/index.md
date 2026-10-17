@@ -29,24 +29,24 @@ An additional **"Deeper Dive"** section follows each story with the actual techn
 | 6   | [CD Signup Race Condition](star/cd-signup-race-condition)                            | Dive Deep                       | Are Right, A Lot            |
 | 7   | [Hardcoded Credentials Security](star/hardcoded-creds)                               | Earn Trust                      | Dive Deep                   |
 | 8   | [SIFT Missing Fields & Backfill](star/sift-backfilling)                              | Dive Deep                       | Insist on Highest Standards |
-| 9   | Deutsche Telekom SSO                                                                 | Customer Obsession              | Earn Trust                  |
-| 10  | Prepaid USD Zoho & Templates                                                         | Deliver Results                 | Think Big                   |
-| 11  | Sanctioned Countries Compliance                                                      | Insist on Highest Standards     | Earn Trust                  |
-| 12  | Lifecycle Events Architecture                                                        | Think Big                       | Dive Deep                   |
-| 13  | User Service PATCH Endpoint                                                          | Invent and Simplify             | Dive Deep                   |
-| 14  | XSS Vulnerability Remediation                                                        | Insist on Highest Standards     | Earn Trust                  |
-| 15  | CD Failover Testing                                                                  | Dive Deep                       | Bias for Action             |
-| 16  | Sigma Prime Internal APIs                                                            | Customer Obsession              | Invent and Simplify         |
-| 17  | Mend/Prisma Vulnerability Programme                                                  | Insist on Highest Standards     | Deliver Results             |
-| 18  | Kafka Consumer Group UUID Fix                                                        | Dive Deep                       | Bias for Action             |
-| 19  | DevRel Pricing API vPricing                                                          | Think Big                       | Customer Obsession          |
-| 20  | Artifactory Migration                                                                | Deliver Results                 | Bias for Action             |
-| 21  | OneTrust Cookie Banner GDPR                                                          | Insist on Highest Standards     | Customer Obsession          |
-| 22  | 10DLC Campaign Management                                                            | Customer Obsession              | Deliver Results             |
-| 23  | SSM Port-Forward Infrastructure                                                      | Invent and Simplify             | Dive Deep                   |
-| 24  | Verify Logs Page                                                                     | Customer Obsession              | Deliver Results             |
-| 25  | [Organisation Config Migration](star/org-config-migration)                                                        | Think Big                       | Invent and Simplify         |
-| 26  | [VIES FeignClient: EU VAT ID Validation (Phase 1)](star/vies-integration)                                     | Insist on the Highest Standards | Customer Obsession          |
+| 9   | [Deutsche Telekom SSO](star/dt-sso)                                                  | Customer Obsession              | Earn Trust                  |
+| 10  | [Prepaid USD Zoho & Templates](star/prepaid-usd-zoho)                                | Deliver Results                 | Think Big                   |
+| 11  | [Sanctioned Countries Compliance](star/sanctioned-countries)                         | Insist on Highest Standards     | Earn Trust                  |
+| 12  | [Lifecycle Events Architecture](star/lifecycle-events)                               | Think Big                       | Dive Deep                   |
+| 13  | [User Service PATCH Endpoint](star/user-service-patch)                               | Invent and Simplify             | Dive Deep                   |
+| 14  | [XSS Vulnerability Remediation](star/xss-fixing)                                     | Insist on Highest Standards     | Earn Trust                  |
+| 15  | [CD Failover Testing](star/cd-failover)                                              | Dive Deep                       | Bias for Action             |
+| 16  | [Sigma Prime Internal APIs](star/sigma-prime-internal-apis)                          | Customer Obsession              | Invent and Simplify         |
+| 17  | [Mend/Prisma Vulnerability Programme](star/mend-scan)                                | Insist on Highest Standards     | Deliver Results             |
+| 18  | [Kafka Consumer Group UUID Fix](star/kafka-group-id)                                 | Dive Deep                       | Bias for Action             |
+| 19  | [DevRel Pricing API vPricing](star/devrel-pricing)                                   | Think Big                       | Customer Obsession          |
+| 20  | [Artifactory Migration](star/artifactory-migration)                                  | Deliver Results                 | Bias for Action             |
+| 21  | [OneTrust Cookie Banner GDPR](star/onetrust-cookie-banner)                           | Insist on Highest Standards     | Customer Obsession          |
+| 22  | [10DLC Campaign Management](star/tendlc-campaign)                                    | Customer Obsession              | Deliver Results             |
+| 23  | [SSM Port-Forward Infrastructure](star/ssm-port-forwarding)                          | Invent and Simplify             | Dive Deep                   |
+| 24  | [Verify Logs Page](star/verify-logs)                                                 | Customer Obsession              | Deliver Results             |
+| 25  | [Organisation Config Migration](star/org-config-migration)                           | Think Big                       | Invent and Simplify         |
+| 26  | [VIES FeignClient: EU VAT ID Validation (Phase 1)](star/vies-integration)            | Insist on the Highest Standards | Customer Obsession          |
 | 27  | [VAT ID Status Display: BSS Integration & Regression Fix (Phase 2)](star/vat-id)     | Customer Obsession              | Dive Deep                   |
 | 28  | [MySQL 5.7→8.0 Migration: Schema, Missing Index & Performance](star/mysql-migration) | Dive Deep                       | Deliver Results             |
 
