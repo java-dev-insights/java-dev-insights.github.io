@@ -15,3 +15,5 @@
 - https://algo.monster/subscribe 
 - https://www.geeksforgeeks.org/interview-prep/interview-corner/ 
 :::
+
+- [Glasgow Companies](gla)

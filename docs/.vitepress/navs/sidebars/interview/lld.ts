@@ -8,10 +8,10 @@ const SIDEBAR_INTERVIEW_LLD = [
 	{
 		text: "Core Concepts",
 		items: [
-			{ text: " OOP", link: "oop" },
-			{ text: "SOLID", link: "solid" },
-			{ text: "5 Step Framework", link: "5-step-framework" },
-			{ text: "OOD", link: "ood" },
+			{ text: " OOP", link: PATHS.INTERVIEW_LLD + "oop" },
+			{ text: "SOLID", link: PATHS.INTERVIEW_LLD + "solid" },
+			{ text: "5 Step Framework", link: PATHS.INTERVIEW_LLD + "5-step-framework" },
+			{ text: "OOD", link: PATHS.INTERVIEW_LLD + "ood" },
 		],
 	},
 	{

@@ -17,11 +17,16 @@ const TOP_NAVBAR = [
 			{
 				items: [
 					{ text: "Coding", link: PATHS.INTERVIEW_CODING },
-					{ text: "LLD", link: PATHS.INTERVIEW_LLD },
-					{ text: "System Design Concepts", link: PATHS.SYSTEM_DESIGN_CONCEPTS },
-					{ text: "System Design Interviews", link: PATHS.SYSTEM_DESIGN_INTERVIEW },
 					{ text: "Concurrency", link: PATHS.INTERVIEW_CONCURRENCY },
 					{ text: "FAQs", link: PATHS.INTERVIEW_FAQS },
+				],
+			},
+			{
+				text: "System Design",
+				items: [
+					{ text: "LLD", link: PATHS.INTERVIEW_LLD },
+					{ text: "HLD Concepts", link: PATHS.HLD_CONCEPTS },
+					{ text: "HLD Interviews", link: PATHS.HLD_INTERVIEW },
 				],
 			},
 			{ text: "Behavioral", link: PATHS.INTERVIEW_BEHAVIORAL },

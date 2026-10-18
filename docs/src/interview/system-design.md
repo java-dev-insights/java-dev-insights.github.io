@@ -1,8 +1,8 @@
 # System Design
 
-::: details Ace system design
-![Ace system design](https://miro.medium.com/v2/resize:fit:1400/1*T9CFIuoIO24UcNRGRpi7dQ.png)
-:::
+System design, software architecture, and distributed systems are often used interchangeably, but they represent distinct scales and focuses of engineering.  
+At a high level, Software Architecture defines the blueprint and structural boundaries, System Design translates those blueprints into a workable, deployable plan, and Distributed Systems act as the underlying computing infrastructure that makes your system highly scalable.
+
 
 ::: details One to Million Users
 ![one-to-million](https://bytebytego.com/images/courses/system-design-interview/scale-from-zero-to-millions-of-users/figure-1-11-VI5Z74Q2.png)

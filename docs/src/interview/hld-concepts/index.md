@@ -1,4 +1,6 @@
-# System Design Concepts
+# HLD (Concepts)
+
+<YouTubeEmbed video-id="E60Fs-DQQOg" /><br/>
 
 - Scaling : Vertical vs Horizontal
 - LB and Reverse proxy
@@ -24,3 +26,4 @@
 - Replication (Lead -> Follow)
 - CAP Theorem (PAC and ELC)
 - Message Queues
+

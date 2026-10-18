@@ -3,16 +3,19 @@ import { default as PATHS } from "../../paths";
 const SIDEBAR_DEFAULT_INTERVIEW = [
 	{ text: "Interview Landscape", link: PATHS.INTERVIEW_INDEX },
 	{
-		text: "Areas of Focus",
+		text: "Coding & Concurrency",
 		items: [
 			{ text: "Coding Interview", link: PATHS.INTERVIEW_CODING },
-			{ text: "LLD", link: PATHS.INTERVIEW_LLD },
-			{ text: "System Design", link: PATHS.SYSTEM_DESIGN_INDEX },
-			{ text: "System Design (Concepts)", link: PATHS.SYSTEM_DESIGN_CONCEPTS },
-			{ text: "System Design (Interview)", link: PATHS.SYSTEM_DESIGN_INTERVIEW },
 			{ text: "Concurrency", link: PATHS.INTERVIEW_CONCURRENCY },
-			{ text: "Behavioral", link: PATHS.INTERVIEW_BEHAVIORAL },
-			{ text: "Salary Negotiations", link: PATHS.INTERVIEW_SALARY_NEGOTIATIONS },
+		],
+	},
+	{
+		text: "System Design",
+		items: [
+			{ text: "System Design", link: PATHS.SYSTEM_DESIGN_INDEX },
+			{ text: "LLD", link: PATHS.INTERVIEW_LLD },
+			{ text: "HLD (Concepts)", link: PATHS.HLD_CONCEPTS },
+			{ text: "HLD (Interview)", link: PATHS.HLD_INTERVIEW },
 		],
 	},
 	{
@@ -21,6 +24,12 @@ const SIDEBAR_DEFAULT_INTERVIEW = [
 		items: [
 			{ text: "Java", link: PATHS.INTERVIEW_FAQS + "java" },
 			{ text: "Spring", link: PATHS.INTERVIEW_FAQS + "spring" },
+		],
+	},
+	{
+		items: [
+			{ text: "Behavioral", link: PATHS.INTERVIEW_BEHAVIORAL },
+			{ text: "Salary Negotiations", link: PATHS.INTERVIEW_SALARY_NEGOTIATIONS },
 		],
 	},
 	{

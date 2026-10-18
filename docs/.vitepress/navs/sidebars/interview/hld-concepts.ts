@@ -1,23 +1,40 @@
 import { default as PATHS } from "../../paths";
 
-const SIDEBAR_SYSTEM_DESIGN_INTERVIEW = [
+const HLD_CONCEPTS_DISTRIBUTED_SYSTEMS = PATHS.SYSTEM_DESIGN_CONCEPTS+'distributed-systems/';
+
+const SIDEBAR_HLD_CONCEPTS = [
     { text: "<-- Interview Landscape", link: PATHS.INTERVIEW_INDEX },
-    { text: "System Design Interview", link: PATHS.SYSTEM_DESIGN_INTERVIEW },
+    { text: "HLD Concepts", link: PATHS.SYSTEM_DESIGN_CONCEPTS },
     {
         text: 'External Resources',
+        collapsed: true,
         items: [
             { text: "Blind 75 (Leetcode)", link: 'https://leetcode.com/problem-list/oizxjoit/' },
             { text: "Blind 75 (Neetcode)", link: 'https://neetcode.io/practice/practice/blind75' },
             { text: "Neetcode Roadmap", link: 'https://neetcode.io/roadmap' },
+            { text: "How it works (bytebytego)", link: 'https://bytebytego.com/guides/how-it-works/' },
+        ],
+    },
+    {
+        text: 'Distributed Systems',
+        collapsed: false,
+        items: [
+            { text: "Overview", link: HLD_CONCEPTS_DISTRIBUTED_SYSTEMS },
+            { text: "ACID vs BASE transactions", link: HLD_CONCEPTS_DISTRIBUTED_SYSTEMS+'acid-vs-base' },
+            { text: "Communication", link: HLD_CONCEPTS_DISTRIBUTED_SYSTEMS+'communication' },
+            { text: "Load Balancing", link: HLD_CONCEPTS_DISTRIBUTED_SYSTEMS+'load-balancing' },
+            { text: "Caching", link: HLD_CONCEPTS_DISTRIBUTED_SYSTEMS+'caching' },
+            { text: "Database Sharding", link: HLD_CONCEPTS_DISTRIBUTED_SYSTEMS+'database-sharding' },
+            { text: "Message Queues", link: HLD_CONCEPTS_DISTRIBUTED_SYSTEMS+'message-queues' },
+            { text: "Pub/Sub Systems", link: HLD_CONCEPTS_DISTRIBUTED_SYSTEMS+'pub-sub-systems' },
+            { text: "Distributed Systems", link: HLD_CONCEPTS_DISTRIBUTED_SYSTEMS+'distributed-systems' },
         ],
     },
     {
         text: 'Concepts',
         collapsed: false,
         items: [
-            { text: "Master Design Template", link: 'master-template' },
-            { text: "Back envelop Estimation", link: 'back-envelope-estimation' },
-            { text: "Trade Offs", link: 'trade-offs' },
+            { text: "One to Million", link: 'one-to-million' },
             { text: "CAP Theorem", link: 'cap-theorem' },
             { text: "Consistency Models", link: 'consistency-models' },
             { text: "Load Balancing", link: 'load-balancing' },
@@ -39,4 +56,4 @@ const SIDEBAR_SYSTEM_DESIGN_INTERVIEW = [
     },
 ];
 
-export default SIDEBAR_SYSTEM_DESIGN_INTERVIEW;
+export default SIDEBAR_HLD_CONCEPTS;

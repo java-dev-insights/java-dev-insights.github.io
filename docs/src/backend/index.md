@@ -19,3 +19,5 @@ Back-end developers are responsible for building and maintaining these systems, 
 - Messaging - [Apache Kafka](kafka), [RabbitMQ](rabbit-mq), SQS
 - Security - [OWASP](owasp)
 - [Clean Code](clean-code)
+
+<YouTubeEmbed video-id="mZ27vUoOEB0" /><br/>

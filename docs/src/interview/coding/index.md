@@ -1,15 +1,6 @@
 # Coding Interview
 
-- [Blind 75 (Leetcode)](https://leetcode.com/problem-list/oizxjoit/)
-- [Blind 75 (Neetcode)](https://neetcode.io/practice/practice/blind75)
-- [Neetcode Roadmap](https://neetcode.io/roadmap)
-- [Practice Hackerrank](https://www.hackerrank.com/domains/data-structures)
-
-<YouTubeEmbed video-id="vVL6NFzr0Rg" /><br/>
-
 <YouTubeEmbed video-id="RpLnQnurpLY" /><br/>
-
-<YouTubeEmbed video-id="RYT08CaYq6A" /><br/>
 
 <YouTubeEmbed video-id="lvO88XxNAzs" /><br/>
 
@@ -27,4 +18,5 @@
 
 ![](https://media.licdn.com/dms/image/v2/D5622AQEmecCboR8ZVQ/feedshare-shrink_1280/B56Z7rDBYqGgAM-/0/1782059898675?e=2147483647&v=beta&t=0XD4Ad5lWqndIbWhtH7hAFTKjhUxdvQA98NS0iNsirE)
 
-<YouTubeEmbed video-id="RYT08CaYq6A" />
+
+
