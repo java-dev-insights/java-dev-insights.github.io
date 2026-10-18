@@ -21,3 +21,5 @@ Back-end developers are responsible for building and maintaining these systems, 
 - [Clean Code](clean-code)
 
 <YouTubeEmbed video-id="mZ27vUoOEB0" /><br/>
+
+<YouTubeEmbed video-id="rq3iOcOa7jk" /><br/>

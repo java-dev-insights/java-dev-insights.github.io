@@ -2,6 +2,10 @@
 
 <YouTubeEmbed video-id="E60Fs-DQQOg" /><br/>
 
+<YouTubeEmbed video-id="umdwWa2PP2I" /><br/>
+
+<YouTubeEmbed video-id="s9Qh9fWeOAk" /><br/>
+
 - Scaling : Vertical vs Horizontal
 - LB and Reverse proxy
 - CDN (static files)
