@@ -29,6 +29,6 @@ API versioning and migration strategies require careful thought about backward c
 
 ## Deeper Dive (Technical Detail from Jira/GitHub)
 
-* The GitHub PR [TICKET-14896 devrel pricing api modifications](https://github.com/vonage-technology/dashboard/pull/...) implemented the capability check in the API gateway.
+* implemented the capability check in the API gateway.
 * The response code matrix was: `get-pricing/outbound` → 406 (vPricing), 403 (no voice), 403 (no SMS); `get-pricing/outbound/sms` → 406, 200, 403; `get-pricing/outbound/voice` → 406, 403, 200.
 * The PHub capability check used the existing `PlatformHubClient` (FeignClient) to query the `rtc-voice-enable-vpricing` capability.

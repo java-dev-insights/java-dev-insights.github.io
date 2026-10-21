@@ -67,7 +67,7 @@ Enterprise partner integrations require treating the partner's technical constra
 * The DT IDP redirect URL was `https://auth.api.telekom.com/realms/dtmaceretail/account` — confirmed by the DT team after a coordination call.
 * The conditional logic used the existing CSP/organisation configuration to identify DT-branded users.
 * TICKET-16493 required direct database-level fixes for 2FA phone numbers on specific accounts — a production data fix coordinated with the DT team.
-* The EPIC [EPIC-1347](https://jira.vonage.com/browse/EPIC-1347) (CSP DT domain name change) was the broader context, with Arpit's tickets being the dashboard-side implementation.
+* The EPIC-1347 (CSP DT domain name change) was the broader context, with Arpit's tickets being the dashboard-side implementation.
 * **JIRA Epics:** EPIC-1435 (CSP DT domain migration), EPIC-1347 (CPAAS update URLs for dashboard)
 * **JIRA:** TICKET-12909 (DT My Profile), TICKET-16483 (DT IDP redirect), TICKET-16487 (DT SSO read-only addresses), TICKET-13960 (rename/delete account for SSO reuse)
 * **GitHub PRs:** `EPIC-1347 cpaas update urls for dashboard new domains (#1475) (#1483)`, `TICKET-13152 CSP DT - Developer Portal url update`, `TICKET-14069 please update urls in dt co branded dashboard`

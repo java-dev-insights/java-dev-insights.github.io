@@ -4,7 +4,6 @@
 ::: info About
 **KYC on Payment Failure: Self-Service Support Ticket Flow**   
 Amazon LP: <Badge type="warning" text="Customer Obsession" /> <Badge type="tip" text="Invent and Simplify" />  
-**Ticket:** [TICKET-15778](https://jira.vonage.com/browse/TICKET-15778), [TICKET-15757](https://jira.vonage.com/browse/TICKET-15757), [TICKET-15944](https://jira.vonage.com/browse/TICKET-15944)
 :::
 
 ## Situation

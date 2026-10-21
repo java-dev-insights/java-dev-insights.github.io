@@ -133,7 +133,7 @@ Led and contributed to the integration of SIFT fraud detection across the Custom
 - **Search Account Numbers Bug (TICKET-17172)** — Identified and fixed a bug where the `/account/numbers` endpoint returned blank responses at index=120 for large number pools despite the count field showing more records.
 - **fix(alert): CD alert for no success payment in last 2 hours** — Added a monitoring alert to detect payment failures proactively.
 - **Fix dashboard QA AVS URL issue** — Fixed a broken QA environment URL after decommissioning of the old AVS endpoint.
-- **Fix vonage AWS 400 error** — Resolved a 400 error in the AWS integration.
+- **Fix AWS 400 error** — Resolved a 400 error in the AWS integration.
 - **Remove tendlc from nightlies pipeline** — Cleaned up the CI/CD nightly pipeline.
 - **Fix deploy error test compilation** — Fixed a test compilation error caused by deprecated `verifyZeroInteractions` → `verifyNoMoreInteractions` migration.
 - **Vulnerability fix: common-collections 3.2.1 → 3.2.2** — Addressed a security vulnerability by upgrading the Apache Commons Collections dependency.
@@ -347,11 +347,11 @@ Built and extended the **Lifecycle Events** system — a Kafka-based event frame
 ### CSP Deutsche Telekom (DT) Domain Migration
 Led a large cross-service initiative to migrate Vonage's white-label platform for Deutsche Telekom from old domains to new ones, touching 10+ repositories.
 
-- Updated URLs across: **dashboard-frontend**, **developer-portal-cms**, **bifrost-dev-docs-mfe**, **viam**, **numbers-mfe**, **organisation-service**, **vonage-dt-live-video-ad/fe**, **5g-slice subdomains**.
+- Updated URLs across: **dashboard-frontend**, **developer-portal-cms**, **bifrost-dev-docs-mfe**, **viam**, **numbers-mfe**, **organisation-service**, **dt-live-video-ad/fe**, **5g-slice subdomains**.
 - Configured **new IAP (Identity-Aware Proxy)** for new Telekom domains in production.
 - Managed **TLS certificate approval** and DNS cutover for new Telekom domains.
 - Deployed new wildcard SSL certificate for Telekom.
-- Updated **nginx routing** to accept traffic from both nexmo and vonage domains.
+- Updated **nginx routing** to accept traffic from both nexmo and vng domains.
 - Authored Confluence page: **How to Update Organisation Settings**.
 
 ### Security & Compliance

@@ -4,7 +4,6 @@
 ::: info About
 **Kafka Topic Migration to AWS Hermes Cluster**   
 Amazon LP: <Badge type="warning" text="Dive Deep" /> <Badge type="tip" text="Deliver Results" />  
-**Ticket:** [EPIC-983](https://jira.vonage.com/browse/EPIC-983), TICKET-13772, TICKET-13773, TICKET-13682
 :::
 
 ## Situation

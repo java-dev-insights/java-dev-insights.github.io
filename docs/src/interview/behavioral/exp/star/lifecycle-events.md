@@ -66,7 +66,7 @@ Learned that event-driven architecture requires as much investment in documentat
 ## Deeper Dive (Technical Detail from Jira/GitHub)
 
 * `AccountBillingLifeCycleEvent.java` was added to the `customer-dashboard` module with fields: `type`, `account_ref`, `oldValue`, `newValue`, `billing_type`, `payment_type`.
-* The Confluence [LifeCycle Events](https://confluence.vonage.com/display/DAS/LifeCycle+Events) page documents the full event catalogue — Arpit contributed the Account Billing, User Finance, and Company sections.
+* The Confluence LifeCycle Events page documents the full event catalogue — Arpit contributed the Account Billing, User Finance, and Company sections.
 * The `SubAccountListener` was refactored (TICKET-11315) to centralise account lifecycle event publishing, replacing scattered event publishing across multiple services.
 * JSON schema generation for lifecycle events was explored (TICKET-12721) to provide a formal contract for downstream consumers.
 * **JIRA:** TICKET-10625 (Company lifecycle events), TICKET-12324 (Account Billing), TICKET-12178 (User Finance), TICKET-10804 (Send more info in events), TICKET-11315 (Centralise account lifecycle events), TICKET-11929 (Refactor AccountLifeCycle), TICKET-13191 (VCP Core Documentation update), TICKET-12697 (Add Lifecycle Events to VCP Core Documentation)

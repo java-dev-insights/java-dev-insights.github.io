@@ -27,7 +27,7 @@ Summarizing my year below:
 - Security and Vulnerability KTLO annual goal for team - Prisma (platform issues) and Mend issues - link to SPOG grafana
 - Prepaid USD : Braintree 3D secure flag
 - STORY for Multi-currency : Prepaid USD - Zoho Support and currency templates
-- User Service : artifactory migration to vonagecc and gradlew upgrade
+- User Service : artifactory migration to vcc and gradlew upgrade
 - Adding github actions on PR creation
 - Block non-sanctioned countries when adding new Payment Method for CIFIUS compliance
 - DevRel Pricing API Modifications
@@ -60,7 +60,7 @@ Addressing the review comments from previous year
 - Started creating backlog tickets for any improvements found while working on a ticket to be prioritized later, keeping focus on delivering the current feature on time.
 - Asking for help to get unblocked faster and also sharing the findings within team in case anyone else faces the same issue.
 - Taking ownership, brainstorming and suggesting solution for review - example Payment KYC, Negative Balance Notification, ssm-port-forward (localhost using both gradle and docker) etc
-- Along the way, learning better ways to breakdown the tasks at hand to have on-time delivery at sprint level not just on monthly or quarterly level - excluding external factors like code freeze, change in mandatory tools (like we had for vonage-aws and lb urls not accessible using any vpn)
+- Along the way, learning better ways to breakdown the tasks at hand to have on-time delivery at sprint level not just on monthly or quarterly level - excluding external factors like code freeze, change in mandatory tools (like we had for v-aws and lb urls not accessible using any vpn)
 ```
 :::
 

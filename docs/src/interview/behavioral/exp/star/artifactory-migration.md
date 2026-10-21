@@ -9,11 +9,11 @@ Amazon LP: <Badge type="warning" text="Deliver Results" /> <Badge type="tip" tex
 
 ## Situation
 
-Vonage was migrating its artifact repository from the old Artifactory instance to a new one (`vonagecc`). The `user-service` and its client library needed to be migrated to fetch dependencies from and publish to the new Artifactory, while the `dashboard` needed to be updated to consume the new client library version.
+Vonage was migrating its artifact repository from the old Artifactory instance to a new one (`vcc`). The `user-service` and its client library needed to be migrated to fetch dependencies from and publish to the new Artifactory, while the `dashboard` needed to be updated to consume the new client library version.
 
-The User Service was still publishing its client library (`us-client`) to the old Vonage Artifactory instance, which was scheduled for decommission. All dashboard projects needed to migrate to the new `vonagecc` Artifactory. The User Service had a complication: its Gradle wrapper version was too old to support the new Artifactory's publishing protocol (TICKET-14181).
+The User Service was still publishing its client library (`us-client`) to the old Vonage Artifactory instance, which was scheduled for decommission. All dashboard projects needed to migrate to the new `vcc` Artifactory. The User Service had a complication: its Gradle wrapper version was too old to support the new Artifactory's publishing protocol (TICKET-14181).
 
-The User Service was using an old Artifactory instance that was being decommissioned. All dashboard projects needed to migrate to the new `vonagecc` Artifactory. The User Service had additional complexity: it published a client library (`userservice-client`) consumed by Dashboard and Admin Dashboard — so the migration required coordinating changes across three repositories simultaneously.
+The User Service was using an old Artifactory instance that was being decommissioned. All dashboard projects needed to migrate to the new `vcc` Artifactory. The User Service had additional complexity: it published a client library (`userservice-client`) consumed by Dashboard and Admin Dashboard — so the migration required coordinating changes across three repositories simultaneously.
 
 ## Task
 
@@ -34,11 +34,11 @@ I upgraded the Gradle wrapper version in `user-service` (TICKET-14227) — a pre
 * Created a transitional step where the Dashboard consumed the updated `us-client` from the old Artifactory during the migration window (TICKET-14938), ensuring no service disruption.
 * Verified the full dependency chain in QA before promoting to production.
 * Upgraded the Gradle wrapper version in User Service (TICKET-14227) — a prerequisite for publishing to the new Artifactory.
-* Migrated User Service to fetch all dependencies from the new `vonagecc` Artifactory (TICKET-14230), updating `build.gradle` and `settings.gradle`.
+* Migrated User Service to fetch all dependencies from the new `vcc` Artifactory (TICKET-14230), updating `build.gradle` and `settings.gradle`.
 * Updated Dashboard to consume the updated `userservice-client` from the old Artifactory during the transition (TICKET-14938).
 * Updated Dashboard and Admin Dashboard to read `userservice-client` from the new Artifactory (TICKET-14269).
-* Validated the full build pipeline: User Service build → publish to vonagecc → Dashboard consumes → nightly tests pass.
-* GitHub PR: `build(deployment): publish to vonagecc new artifactory (TICKET-14227) (#406)`, `TICKET-14230 fetch from new artifactory vonagecc (#373)`.
+* Validated the full build pipeline: User Service build → publish to vcc → Dashboard consumes → nightly tests pass.
+* GitHub PR: `build(deployment): publish to vcc new artifactory (TICKET-14227) (#406)`, `TICKET-14230 fetch from new artifactory vcc (#373)`.
 
 ## Result
 
@@ -47,7 +47,7 @@ The `user-service` and its client library were successfully migrated to the new 
 * User Service fully migrated to new Artifactory with zero service disruption.
 * Old Artifactory dependency eliminated, unblocking its decommission.
 * The migration was completed in a carefully sequenced set of PRs that could be individually rolled back if needed.
-* GitHub commit `33e53e1` in `user-service` marks the successful publish to `vonagecc` Artifactory.
+* GitHub commit `33e53e1` in `user-service` marks the successful publish to `vcc` Artifactory.
 * User Service fully migrated to new Artifactory — old Artifactory dependency eliminated.
 * All downstream consumers (Dashboard, Admin Dashboard) updated without service disruption.
 * Nightly tests passed post-migration, confirming end-to-end build pipeline integrity.
@@ -67,4 +67,4 @@ Learned that library migrations require a "strangler fig" approach — keep the 
 * GitHub workflows were updated (as noted in Arpit's 2025 objectives) to use the new Artifactory credentials from AWS Secrets Manager.
 * **JIRA Epic:** TICKET-14181 — "User service migration to new Artifactory"
 * **JIRA:** TICKET-14227 (Gradle wrapper), TICKET-14230 (fetch from new artifactory), TICKET-14938 (Dashboard consume from old), TICKET-14269 (Dashboard/AD from new)
-* **GitHub:** `build(deployment): publish to vonagecc new artifactory (TICKET-14227) (#406)`, `TICKET-14230 fetch from new artifactory vonagecc (#373)`
+* **GitHub:** `build(deployment): publish to vcc new artifactory (TICKET-14227) (#406)`, `TICKET-14230 fetch from new artifactory vcc (#373)`
