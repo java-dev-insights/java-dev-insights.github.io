@@ -6,12 +6,21 @@ const SIDEBAR_INTERVIEW_LLD = [
 	{ text: "<-- Interview Landscape", link: PATHS.INTERVIEW_INDEX },
 	{ text: "LLD Interview", link: PATHS.INTERVIEW_LLD },
 	{
-		text: "Core Concepts",
+		text: "OOP & OOD",
 		items: [
-			{ text: " OOP", link: PATHS.INTERVIEW_LLD + "oop" },
-			{ text: "SOLID", link: PATHS.INTERVIEW_LLD + "solid" },
-			{ text: "5 Step Framework", link: PATHS.INTERVIEW_LLD + "5-step-framework" },
-			{ text: "OOD", link: PATHS.INTERVIEW_LLD + "ood" },
+			{ text: "Overview", link: PATHS.INTERVIEW_LLD + "ood/" },
+			{ text: "OOP", link: PATHS.INTERVIEW_LLD + "oop" },
+			{ text: "SOLID Principles", link: PATHS.INTERVIEW_LLD + "ood/solid" },
+			{ text: "Design Philosophies", link: PATHS.INTERVIEW_LLD + "ood/design-philosophies" },
+			{ text: "Delegation Principles", link: PATHS.INTERVIEW_LLD + "ood/delegation-principles" },
+			{ text: "FURPS+ Quality Model", link: PATHS.INTERVIEW_LLD + "ood/furps" },
+			{ text: "GRASP Patterns", link: PATHS.INTERVIEW_LLD + "ood/grasp" },
+		],
+	},
+	{
+		text: "Diagrams",
+		items: [
+			{ text: " UML", link: PATHS.INTERVIEW_LLD + "diagrams/uml" },
 		],
 	},
 	{
@@ -27,6 +36,7 @@ const SIDEBAR_INTERVIEW_LLD = [
 	{
 		text: "Design Examples",
 		items: [
+			{ text: "5 Step Framework", link: PATHS.INTERVIEW_LLD + "5-step-framework" },
 			{ text: "LLD Concurrency Control", link: "concurrency-control" },
 			{ text: "Parking Lot", link: "parking-lot" },
 			{ text: "LRU Cache", link: "lru-cache" },

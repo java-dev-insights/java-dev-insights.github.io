@@ -1,4 +1,9 @@
-# O'reilly
+# Tools
+
+- [Homebrew for mac](https://brew.sh/)
+- [sdkman](https://sdkman.io/install/) : For installing and managing multiple java and gradle versions
+- [nvm manager](https://github.com/nvm-sh/nvm) : For installing and managing multiple node versions
+
 
 ```bash
 #!/bin/bash
