@@ -37,10 +37,11 @@ const SIDEBAR_INTERVIEW_LLD = [
 		text: "Design Examples",
 		items: [
 			{ text: "5 Step Framework", link: PATHS.INTERVIEW_LLD + "5-step-framework" },
-			{ text: "LLD Concurrency Control", link: "concurrency-control" },
-			{ text: "Parking Lot", link: "parking-lot" },
-			{ text: "LRU Cache", link: "lru-cache" },
-			{ text: "Chess Game", link: "chess-game" },
+			{ text: "LLD Concurrency Control", link: PATHS.INTERVIEW_LLD + "concurrency-control" },
+			{ text: "Elevator System", link: PATHS.INTERVIEW_LLD + "problems/elevator-system" },
+			{ text: "Parking Lot", link: PATHS.INTERVIEW_LLD + "problems/parking-lot" },
+			{ text: "LRU Cache", link: PATHS.INTERVIEW_LLD + "problems/lru-cache" },
+			{ text: "Chess Game", link: PATHS.INTERVIEW_LLD + "problems/chess-game" },
 		],
 	},
 	{

@@ -2,32 +2,34 @@ import { default as PATHS } from "../../paths";
 
 const SIDEBAR_BACKEND_JAVA = [
 	{ text: "<-- Backend", link: PATHS.BACKEND_INDEX },
+	{ text: "OOP + OOD (LLD) -->", link: PATHS.INTERVIEW_LLD + "oop" },
 	{ text: "Overview - Java", link: PATHS.BACKEND_JAVA },
 	{
 		text: "Core Java",
-    collapsed: true,
+		collapsed: true,
 		items: [
-			{
-				text: "Bytecode & Classpath",
-				link: PATHS.BACKEND_JAVA + "core/",
-				// collapsed: true,
-				// items: [
-				//   { text: 'Overview', link: PATHS.BACKEND_INDEX+'java/' },
-				//   { text: 'OOP and OOD', link: PATHS.BACKEND_INDEX+'java/oop-and-ood' },
-				//   { text: 'JVM Architecture', link: PATHS.BACKEND_INDEX+'java/jvm-architecture' },
-				//   { text: 'Core Java', collapsed: true, items: [{ text: 'ByteCode', link: PATHS.BACKEND_INDEX+'java/core' }] },
-				// ]
-			},
+			{ text: "Java Buzzwords", link: PATHS.BACKEND_JAVA + "core/" },
 			{ text: "Data Types & Casting", link: PATHS.BACKEND_JAVA + "core/data-types" },
-			{ text: "Hibernate", link: PATHS.BACKEND_INDEX + "hibernate/" },
+			{ text: "Operators", link: PATHS.BACKEND_JAVA + "core/operators" },
+			{ text: "Control Statements", link: PATHS.BACKEND_JAVA + "core/control-statements" },
+			{ text: "Classes", link: PATHS.BACKEND_JAVA + "core/classes" },
+			{ text: "Methods", link: PATHS.BACKEND_JAVA + "core/methods" },
+			{ text: "Packages", link: PATHS.BACKEND_JAVA + "core/packages" },
+			{ text: "Keywords & Identifiers", link: PATHS.BACKEND_JAVA + "core/keywords" },
+			{ text: "Interfaces", link: PATHS.BACKEND_JAVA + "core/interface" },
+			{ text: "Enums", link: PATHS.BACKEND_JAVA + "core/enums" },
+			{ text: "Inheritance", link: PATHS.BACKEND_JAVA + "core/inheritance" },
+			{ text: "Garbage Collection (API)", link: PATHS.BACKEND_JAVA + "core/garbage-collection" },
 		],
 	},
 	{
-		text: "Testing",
+		text: "JVM & GC",
 		items: [
-			{ text: "JUnit", link: PATHS.BACKEND_INDEX + "junit" },
-			// { text: 'Mockito', link: PATHS.BACKEND_INDEX+'mockito' },
-			{ text: "Cucumber", link: PATHS.BACKEND_INDEX + "cucumber" },
+			{ text: "JVM Architecture", link: PATHS.BACKEND_JAVA + "jvm-architecture" },
+			{ text: "Bytecode & Classpath", link: PATHS.BACKEND_JAVA + "jvm/bytecode-and-classpath" },
+			{ text: "JVM Architecture", link: PATHS.BACKEND_JAVA + "jvm/architecture" },
+			{ text: "JVM Memory Management", link: PATHS.BACKEND_JAVA + "jvm/memory-management" },
+			{ text: "Garbage Collection (GC)", link: PATHS.BACKEND_JAVA + "jvm/garbage-collection" },
 		],
 	},
 	{
@@ -72,7 +74,7 @@ const SIDEBAR_BACKEND_JAVA = [
 		],
 	},
 	{
-		text: 'Next Steps',
+		text: "Next Steps",
 		items: [
 			{ text: "References", link: PATHS.BACKEND_JAVA + "refs" },
 			{ text: "What's Next?", link: PATHS.BACKEND_JAVA + "whats-next" },

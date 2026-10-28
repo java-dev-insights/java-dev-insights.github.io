@@ -2,26 +2,36 @@
 
 ## Identifiers
 
+* Identifiers are the custom names created by developers to identify variables, methods, classes, interfaces, and packages.
+* Rules: Java enforces strict rules on how you can name an identifier:
+  * It can contain letters (A-Z or a-z), digits (0-9), underscores (_), and symbols ($).
+  * It must not start with a digit (e.g., int 1number; is illegal).
+  * It is case-sensitive (myVariable and myvariable are treated as completely different identifiers).
+  * It cannot be a keyword.
 * **valid identifiers** - AvgTemp, count, a4, $test, this_is_ok
 * **Invalid identifier** - 2count, high-temp, Not/ok
-* **Java Keywords**: 50 keywords, cannot be used as identifiers.
-    * There are also some reserved keywords but not used, example - const and goto.
 
-| identifiers |          |            |          |              |
-| ----------- | -------- | ---------- | -------- | ------------ |
-| package     | import   |
-| interface   | abstract | class      | extends  | implements   |
-| private     | default  | protected  | public   |              |
-| final       | static   | transient  | volatile | synchronized |
-| return      | new      | void       |          |              |
-| if          | else     | switch     | case     |              |
-| do          | while    | for        | continue | break        |
-| short       | byte     | int        | long     | double       |
-| boolean     | strictfp | float      | char     |              |
-| try         | catch    | finally    | throw    | throws       |
-| assert      | const    | instanceof |          |              |
-| this        | super    |            |          |              |
-| goto        | native   | enum       |          |              |
+## Keywords
+
+* Keywords are reserved words that form the foundation of Java's syntax. The Java compiler already knows exactly what these words mean, and you cannot alter their definition.
+* **Java Keywords**: 50 keywords, cannot be used as identifiers.
+* There are also some reserved keywords but not used, example - const and goto.
+
+| keywords  |          |            |          |              |
+| --------- | -------- | ---------- | -------- | ------------ |
+| package   | import   |
+| interface | abstract | class      | extends  | implements   |
+| private   | default  | protected  | public   |              |
+| final     | static   | transient  | volatile | synchronized |
+| return    | new      | void       |          |              |
+| if        | else     | switch     | case     |              |
+| do        | while    | for        | continue | break        |
+| short     | byte     | int        | long     | double       |
+| boolean   | strictfp | float      | char     |              |
+| try       | catch    | finally    | throw    | throws       |
+| assert    | const    | instanceof |          |              |
+| this      | super    |            |          |              |
+| goto      | native   | enum       |          |              |
 
 ## Primitive Datatype
 

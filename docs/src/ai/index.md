@@ -9,6 +9,7 @@
 
 ## Notes for Oreilly Courses
 
+- [TODO in AI nav](todo)
 - [Using AI as Personal Learning Coach](ai-learning-coach)
 - [GitHub Copilot](github-copilot)
 - [Spring AI](spring-ai) : [Introduction](introduction)
