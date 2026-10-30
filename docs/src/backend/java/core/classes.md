@@ -3,11 +3,34 @@
 * Defines a new data type, works as a template.
 * class is logical construct while object has physical reality.
   * object occupies space in memory.
-* variables defined within a class are called ***instance variables***.
-* ***constructor*** used for initialization on creation.
+* **instance variables** : variables defined within a class.
+* ***constructor*** : used for initialization on creation.
 
 ```java
-ClassName(){ }
+class Car {
+    // Instance variables (Attributes)
+    String model;
+    int year;
+
+    // 1. No-Argument Constructor (Sets default values)
+    public Car() {
+        this.model = "Unknown Model";
+        this.year = 2000;
+        System.out.println("No-argument constructor called!");
+    }
+
+    // 2. Parameterized Constructor (Sets custom values)
+    public Car(String model, int modelYear) {
+        this.model = model; // 'this' resolves conflict if names match
+        this.year = modelYear;
+        System.out.println("Parameterized constructor called!");
+    }
+
+    // Helper method to display car details
+    public void displayDetails() {
+        System.out.println("Car Model: " + model + ", Year: " + year);
+    }
+}
 ```
 
 ## Assigning Object reference variables
@@ -20,18 +43,41 @@ ClassName(){ }
 * default constructor initializes all instance variables to their default values. (0, null, false).
 
 **Why Java Static Constructor is not allowed?**
+
 - ***Static Belongs to Class, Constructor to Object.***
   - Constructor is not class property, it makes sense that it’s not allowed to be static.
 - ***Static Block/Method can’t access non-static variables***
-  - while constructors are used to initialize instance variables.
-  - this - Cannot use this in a static context.
+  - while constructors are used to initialize instance variables and it can use `this`.
+  - Static Block/Method cannot use `this` in a static context.
 - ***Static Constructor will break inheritance***
   - In java class hierarchy, subclass constructor calls superclass constructor using super() method (JVM calls implicitly).
-  - super() method, it’s not static. So if the constructor becomes static, we won’t be able to use it and that will break inheritance in java.
+  - super() method is not static. So if the constructor becomes static, we won’t be able to use it and that will break inheritance in java.
 
 **Java Static Constructor Alternative**
+
 - To initialize some static variables in the class, you can use static block.
+  - Static Blocks run once: A static block executes exactly once when the class is first loaded into memory by the Java Virtual Machine (JVM). This happens before any objects are created.
 - We can’t pass arguments to the static block, so if you want to initialize static variables then you can do that in the normal constructor too.
+
+```java
+class RoleManager {
+    // Static variable shared across the entire class
+    public static List<String> systemRoles = new ArrayList<>();
+
+    // Static Initialization Block
+    static {
+        System.out.println("-> Static block, Initializing system roles.");
+        systemRoles.add("Admin");
+        systemRoles.add("Editor");
+        systemRoles.add("Viewer");
+    }
+
+    // Normal Constructor
+    public RoleManager() {
+        System.out.println("-> new RoleManager object was created.");
+    }
+}
+```
 
 ## Variables and scopes
 
@@ -48,6 +94,9 @@ ClassName(){ }
 | private         | accessed by other members of its class.                        |
 | default         | no access modifier, cannot be accessed outside of its package. |
 
+![](https://upload.wikimedia.org/wikipedia/commons/2/20/JavaAccessSpecifier.jpg)
+![](https://storage.googleapis.com/algodailyrandomassets/curriculum/object_oriented_programming/advanced_oop_class_access_modifiers_overloading/visibility-as-boundaries-65949821.png)
+
 * Now you can understand why **main( )** has always been preceded by the **public** modifier.
   * It is called by code that is outside the program—that is, by the Java run-time system.
 * In most real-world classes, you will need to allow operations on data only through methods (getX and setX).
@@ -55,8 +104,23 @@ ClassName(){ }
 ## Object Class
 
 * Object - superclass of all classes.
-* reference variable of type Object can refer to any object, even to an array.
-* getClass(), notify(), notifyAll(), and wait() are declared as final. You may override the others.
+* A reference variable of type Object can refer to any object, even to an array.
+* Object class has 4 methods declared as final : getClass(), notify(), notifyAll(), and wait().
+* You may override the others, for example hashCode(), equals(), toString(), clone()
+
+```java
+// 1. Pointing to a primitive int array
+int[] numbers = {1, 2, 3};
+Object obj1 = numbers; 
+
+// 2. Pointing to a String array (Object array)
+String[] words = {"Hello", "World"};
+Object obj2 = words; 
+
+// 3. Pointing to a standard class instance
+String singleWord = "Java";
+Object obj3 = singleWord;
+```
 
 ### Methods for class : Object
 
@@ -71,8 +135,8 @@ ClassName(){ }
 ### Ways to create Object
 
 1. Using the new keyword
-2. Using Class.newInstance() from class Class, It calls the no-arg constructor to create the object.
-3. newInstance() method of Constructor class
+2. Using newInstance() method of `Class` class, It calls the no-arg constructor to create the object.
+3. newInstance() method of `Constructor` class
 4. Using clone() method
 5. Using deserialization
 
@@ -91,7 +155,8 @@ Emp emp3 = constructor.newInstance();
 ```
 
 ```java
-ObjectInputStream in = new ObjectInputStream(new FileInputStream("data.obj")); 
+FileInputStream fis = new FileInputStream("data.obj");
+ObjectInputStream in = new ObjectInputStream(fis); 
 Employee emp5 = (Employee) in.readObject();
 ```
 
@@ -108,20 +173,23 @@ In above bytecodes all 4 methods call get converted to invokevirtual (object c
   * In fact newInstance() method of Class class internally uses newInstance() method of Constructor class.
 * Whenever we call clone() on any object JVM actually creates a new object for us and copy all content of the previous object into it. 
   * Creating an object using clone method does not invoke any constructor.
-  * To use clone() method on an object we need to implements Cloneable and define clone() method in it.
+  * To use clone() method on an object we need to implements `Cloneable` interface and define clone() method in it.
 * Whenever we serialize and then deserialize an object JVM creates a separate object for us.
   * In deserialization, JVM doesn’t use any constructor to create the object.
-  * To deserialize an object we need to implement the Serializable interface in our class.
+  * To deserialize an object we need to implement the `Serializable` interface in our class.
 
 ## Math class - Math.pow
 
-## Inner class
+- Defined in  `java.lang.Math` class as a static method, you do not need to create an object to use it; you call it directly using the class name.
+- `public static double pow(double base, double exponent)`
+
+## Nested classes
 
 * define class within a class, ***nested classes***. 
 * It is a member of its enclosing class.
   * scope is bounded by the scope of its enclosing class. 
 * B defined within A, then B ***does not exist independently*** of A.
-* **nested class can access even private members of the container class but not vice-versa**. 
+* **nested class can access even private members of the container class but not vice-versa**.
 * They are **particularly helpful when handling events**.
 
 ### Static nested class

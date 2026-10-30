@@ -2,7 +2,7 @@
 
 ## Identifiers
 
-* Identifiers are the custom names created by developers to identify variables, methods, classes, interfaces, and packages.
+* These are the custom names created by developers to identify variables, methods, classes, interfaces, and packages.
 * Rules: Java enforces strict rules on how you can name an identifier:
   * It can contain letters (A-Z or a-z), digits (0-9), underscores (_), and symbols ($).
   * It must not start with a digit (e.g., int 1number; is illegal).
@@ -13,8 +13,9 @@
 
 ## Keywords
 
-* Keywords are reserved words that form the foundation of Java's syntax. The Java compiler already knows exactly what these words mean, and you cannot alter their definition.
-* **Java Keywords**: 50 keywords, cannot be used as identifiers.
+* These are reserved words used as Java's syntax.
+* Java compiler already knows exactly what these words mean, and you cannot alter their definition.
+* Java has 50 keywords, cannot be used as identifiers.
 * There are also some reserved keywords but not used, example - const and goto.
 
 | keywords  |          |            |          |              |
@@ -29,31 +30,32 @@
 | short     | byte     | int        | long     | double       |
 | boolean   | strictfp | float      | char     |              |
 | try       | catch    | finally    | throw    | throws       |
-| assert    | const    | instanceof |          |              |
+| assert    | native   | instanceof | enum     |              |
 | this      | super    |            |          |              |
-| goto      | native   | enum       |          |              |
+| goto      | const    |            |          |              |
 
 ## Primitive Datatype
 
 * 8 primitive types represent single values, used for efficiency.
 * Wrapper objects degrade performance for basic operations.
-* Due to portability requirement, all data types have a strictly defined range.
+* Due to portability requirement on all platforms, all data types have a strictly defined range.
   * example, int always 32 bits on all platform.
+  * In C++, int might be 16 bits on an older microcontroller, 32 bits on a standard PC, or even 64 bits on other architectures.
 * **Integers** : byte, short, int, long
 * **Floating-point** : float, double
 * **Characters** : char
 * **Boolean** : boolean
 
-| Name    | bytes | bits | Range (From)               | Range (To)                | Deafult  | Note                           |
-| ------- | ----- | ---- | -------------------------- | ------------------------- | -------- | ------------------------------ |
-| byte    | 1     | 8    | –128                       | 127                       | 0        |                                |
-| short   | 2     | 16   | –32,768                    | 32,767                    | 0        |                                |
-| int     | 4     | 32   | –2,147,483,648             | 2,147,483,647             | 0        | 2x10^9                         |
-| long    | 8     | 64   | –9,223,372,036,854,775,808 | 9,223,372,036,854,775,807 | 0        | 9x10^18                        |
-| float   | 4     | 32   | 1.4e–045                   | 3.4e+038                  | 0.0f     | 6-7 significant decimal digits |
-| double  | 8     | 64   | 4.9e–324                   | 1.8e+308                  | 0.0d     | 15 significant decimal digits  |
-| char    | 2     | 16   | 0                          | 65,536                    | '\u0000' | unsigned                       |
-| boolean |       |      | true or false              |                           | false    |                                |
+| Name    | bytes | bits | Range (From)               and Range (To)                  | Deafult  | Note                           |
+| ------- | ----- | ---- | ---------------------------------------------------------- | -------- | ------------------------------ |
+| byte    | 1     | 8    | –128                       <br/> 127                       | 0        |                                |
+| short   | 2     | 16   | –32,768                    <br/> 32,767                    | 0        |                                |
+| int     | 4     | 32   | –2,147,483,648             <br/> 2,147,483,647             | 0        | 2x10^9                         |
+| long    | 8     | 64   | –9,223,372,036,854,775,808 <br/> 9,223,372,036,854,775,807 | 0        | 9x10^18                        |
+| float   | 4     | 32   | 1.4e–045                   <br/> 3.4e+038                  | 0.0f     | 6-7 significant decimal digits |
+| double  | 8     | 64   | 4.9e–324                   <br/> 1.8e+308                  | 0.0d     | 15 significant decimal digits  |
+| char    | 2     | 16   | 0                          <br/> 65,536                    | '\u0000' | unsigned                       |
+| boolean |       |      | true or false              <br/>                           | false    |                                |
 
 * *byte*, *short*, *int*, and *long*. All of these are signed (positive and negative values).
 * The leftmost bit (high-order bit) dictates the sign (0 for positive, 1 for negative) using Two's complement.
@@ -68,24 +70,25 @@
 | double   | when need accuracy over many iterative calculations.                                                            |
 
 - Java's char is an **16-bit Unicode** for global portability ranging 0 to 65,536 (an unsigned 16-bit integer).
-  - ASCII are 0 to 127, extended 8-bit character set.
-  - ISO-Latin-1, ranges from 0 to 255.
+  - ASCII (0 to 127): This is a 7-bit character set created for English letters, numbers, and basic punctuation.
+  - ISO-Latin-1 / Extended ASCII (0 to 255): This 8-bit character set includes standard ASCII plus extra characters needed for Western European languages (like ñ, é, or ü).
+  - Unicode (0 to 65,535 for the original 16-bit standard): To achieve global portability, Java needed to support non-Western languages like Chinese, Japanese, Arabic, Cyrillic, and Hebrew. An 8-bit data type (max 255) cannot hold tens of thousands of international characters.
 - we can also perform arithmetic operations on char same as we do with integer type. example, add two chars or increment value.
 
 ## Type Wrappers
 
-Type wrappers - encapsulate a primitive type within an object.
+Encapsulate a primitive type within an object.
 
-| Type Wrapper |                                                         | Get Primitive         |
-| ------------ | ------------------------------------------------------- | --------------------- |
-| Boolean      | Boolean(boolean boolValue) , Boolean(String boolString) |                       |
-| Double       |                                                         | double doubleValue( ) |
-| Integer      | Integer(int num) , Integer(String str)                  | int intValue( )       |
-| Float        |                                                         | float floatValue( )   |
-| Short        |                                                         | short shortValue( )   |
-| Long         |                                                         | long longValue( )     |
-| Byte         |                                                         | byte byteValue( )     |
-| Character    | Character(char ch)                                      | char charValue( )     |
+| Type Wrapper |                                                             | Get Primitive         |
+| ------------ | ----------------------------------------------------------- | --------------------- |
+| Boolean      | Boolean(boolean boolValue) <br/> Boolean(String boolString) |                       |
+| Double       |                                                             | double doubleValue( ) |
+| Integer      | Integer(int num) <br/> Integer(String str)                  | int intValue( )       |
+| Float        |                                                             | float floatValue( )   |
+| Short        |                                                             | short shortValue( )   |
+| Long         |                                                             | long longValue( )     |
+| Byte         |                                                             | byte byteValue( )     |
+| Character    | Character(char ch)                                          | char charValue( )     |
 
 * If str is not a valid numeric value, NumberFormatException.
 * Byte, Short, Integer, Long, Float, Double - inherit the abstract class Number.
@@ -103,13 +106,24 @@ int i = iOb.intValue();
 ```java
 Integer iOb = 100;        // autobox an int
 int i = iOb;              // auto-unbox
-++iOb;                    // unboxes iOb,performs the increment, and then Reboxes the result back into iOb.
-Double a, b, c;           // A bad use of autoboxing/unboxing!
-a = 10.0; b = 4.0;        // far less efficient than what could be written using double
+++iOb;                    
+// unboxes iOb, performs the increment
+// and then Reboxes the result back into iOb.
+```
+
+```java
+// A bad use of autoboxing/unboxing!
+Double a, b, c;           
+a = 10.0; b = 4.0;        // using primitive would be far more efficient
 c = Math.sqrt(a*a + b*b);
+// a and b unboxed for multiplication
+// sqrt returns double which needs boxed to Double
+// objects created on heap unlike the primitive on stack
 ```
 
 ## Literal Representation
+
+These represent constant values that require no computation and are assigned to variables or used directly in expressions.
 
 | Representation |                                                                  |
 | -------------- | ---------------------------------------------------------------- |
@@ -119,7 +133,7 @@ c = Math.sqrt(a*a + b*b);
 | Binary         | prefix the value with 0b or 0B.                                  |
 
 ```java
-int x = 123_456_789;            // the value given to x will be 123,456,789.
+int x = 123_456_789;            // x will be 123,456,789.
 int x = 0b1101_0101_0001_1010;  // underscores discarded on compile
 ```
 
@@ -166,11 +180,7 @@ b = (byte) b * 2;
 double result=(f*b)+(i/c)-(d*s);
 ```
 
-- boolean --> int
-- byte --> int
-- char --> int
-- short --> int
-- int --> int
+- boolean, byte, char, short, int --> int
 - long --> long
 - float --> float
 - double --> double
@@ -217,4 +227,12 @@ twoD[3] = new int[5];
 ```java
 char twod1[][] = new char[3][4];
 char[][] twod2 = new char[3][4];
+```
+
+```java
+Integer[][] sparseMatrix = new Integer[4][];
+sparseMatrix[0] = new Integer[2]; // Row 0 has 2 slots
+sparseMatrix[1] = new Integer[5]; // Row 1 has 5 slots
+sparseMatrix[2] = new Integer[1]; // Row 2 has 1 slot
+sparseMatrix[3] = new Integer[3]; // Row 3 has 3 slots
 ```

@@ -22,17 +22,3 @@
 * Pointers would have made garbage collection impossible.
 * **main()** - simply a starting place for your program, in some cases not needed. For example – web apps.
 :::
-
-## Datatypes
-
-- [Java Data Type and Type Casting](data-types)
-- [Java Operators](operators)
-- [Java Control Statement](control-statement)
-- [Classes](classes)
-- [Methods](methods)
-- [packages](packages)
-- [Keywords and Identifiers](keywords)
-- [Interface](interface)
-- [Enums](enums)
-- [Inheritance](inheritance)
-- [Garbage Collection](garbage-collection)

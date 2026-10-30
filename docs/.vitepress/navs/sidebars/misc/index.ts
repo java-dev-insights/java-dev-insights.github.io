@@ -5,9 +5,10 @@ const SIDEBAR_MISC_DEFAULT = [
       {
         text: 'Miscellaneous',
         items: [
-          { text: 'References', link: PATHS.MISC_REFS },
+          { text: 'References (Links)', link: PATHS.MISC_REFS + "links" },
+          { text: 'References (Images)', link: PATHS.MISC_REFS + "images" },
+          { text: 'References (Videos)', link: PATHS.MISC_REFS + "videos" },
           { text: 'Jekyll', link: PATHS.MISC_JEKYLL },
-          { text: 'temp', link: PATHS.MISC_TEMP },
         ]
       },
       {

@@ -40,9 +40,14 @@ const TOP_NAVBAR = [
 	{
 		text: "Misc",
 		items: [
-			{ text: "References", link: PATHS.MISC_REFS },
+			{text: "References",
+			items: [
+				{ text: "Links", link: PATHS.MISC_REFS + "links" },
+				{ text: "Images", link: PATHS.MISC_REFS + "images" },
+				{ text: "Videos", link: PATHS.MISC_REFS + "videos" },
+			]},
 			{ text: "Jekyll", link: PATHS.MISC_JEKYLL },
-			{ text: "temp", link: PATHS.MISC_TEMP },
+			{ text: "Tools", link: "tools" },
 		],
 	},
 ];

@@ -7,9 +7,9 @@
 * default statement is optional. 
 * **break for each case in switch to terminate a statement sequence.**
 * break statement is optional. 
-* **omit break, execution will continue on into the next case.**
+* If **omit break, execution will continue on into the next case.**
 * **switch can test for equality only.**
-* switch **more efficient** than nested if **as its pre-compiled because compiler prepares a jump-table**.
+* switch **more efficient** than nested if consitions **as its pre-compiled because compiler prepares a jump-table**.
 
 ```java
 switch (expression) {
@@ -56,9 +56,10 @@ for(int x: nums) { x = x * 10;}    // no effect on nums
 ## Iterating Over Multidimensional Arrays
 ```java
 for (int x[]: nums) {
-    for (int y: x)
+    for (int y: x) {
         System.out.println("Value is: " + y);
-    sum += y;
+        sum += y;
+    }
 }
 ```
 ```java
@@ -94,7 +95,7 @@ class Break {
     }
 }
 ```
-Since the loop labeled **one** does not enclose the **break** statement, it is not possible to transfer control out of that block.
+
 ```java
 // This program contains an error.
 class BreakErr {
@@ -110,12 +111,14 @@ class BreakErr {
 }
 ```
 
+Since `break one` is called outside the loop labeled **one**, it is not possible to transfer control out of that block. Hence it will be a compilation error `undefinied label: one`.
+
 ### Continue
 
-* continue loop but skip further processing for this particular iteration. 
-* For while and do-while loops, continue gives control to conditional expression of the loop. 
+* continue loop but skip further processing for this particular iteration.
+* while and do-while loops, `continue` gives control to conditional expression of the loop.
 
 ### Return
 
-* explicitly return from a method to transfer back to the caller of the method. 
-* return statement immediately terminates the method. 
+* explicitly return from a method to transfer back to the caller of the method.
+* return statement immediately terminates the method.

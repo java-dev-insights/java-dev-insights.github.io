@@ -4,22 +4,7 @@
 - [sdkman](https://sdkman.io/install/) : For installing and managing multiple java and gradle versions
 - [nvm manager](https://github.com/nvm-sh/nvm) : For installing and managing multiple node versions
 - gitdiagram for any github repo [example](https://gitdiagram.com/arpit04tripathi/data-structures-and-algorithms){target="_blank"}
-
-
-```bash
-#!/bin/bash
-
-# 1. Define the SDKMAN directory
-export SDKMAN_DIR="$HOME/.sdkman"
-
-# 2. Source the initialization script to load the 'sdk' function
-if [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]]; then
-    source "$SDKMAN_DIR/bin/sdkman-init.sh"
-else
-    echo "Error: SDKMAN! not found at $SDKMAN_DIR"
-    exit 1
-fi
-
-# 3. Now you can use your sdk commands safely
-sdk current
-```
+- github profile
+  - [beautify-github-profile](https://github.com/rzashakeri/beautify-github-profile)
+  - [shields.io badges](https://shields.io/badges)
+  - [Badges4-README](https://github.com/alexandresanlim/Badges4-README.md-Profile)

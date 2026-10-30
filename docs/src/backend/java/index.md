@@ -7,8 +7,8 @@ Java is a high-level, object-oriented programming language designed to let devel
 :::
 
 - [OOP and OOD](/interview/lld/oop) :arrow_upper_right:
+- [Java Core](core/) : Data Types, Operators, Control Statements, Keywords/Identifiers, Class/Interface/Method/Package/Enums, Inheritance, GC api
 - [JVM Architecture](jvm-architecture) : Bytecode & Classpath, JVM Architecture + Memory, Garbage Collection Types
-- [Java Core](core/)
 - [Strings](string)
 - [Exceptions](exception)
 - [Generics](generics)

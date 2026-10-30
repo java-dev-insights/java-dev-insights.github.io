@@ -2,7 +2,7 @@
 outline: deep
 ---
 
-# References
+# References - Links
 
 - Draw - [excalidraw]{target="_blank"}, [diagrams_net]{target="_blank"}
 - **Online Tools** - [java formatter]{target="_blank"}, [java compiler]{target="_blank"}, [collabedit]{target="_blank"}, 
@@ -45,3 +45,9 @@ outline: deep
 [excalidraw]: https://excalidraw.com/
 [tania rascia]: https://www.taniarascia.com
 [yuya uzu]: https://uzu.works
+
+
+- [O'reilly](https://learning.oreilly.com/live-events/your-recordings/?page=1){target="_blank"} and [Udemy](https://www.udemy.com/home/my-courses/learning/){target="_blank"}
+- [tutorials.jenkov.com](https://tutorials.jenkov.com/){target="_blank"}
+- [yangshun](https://github.com/yangshun){target="_blank"} : Creator of Docusaurus 2 
+  - [Tech Interview Handbook](https://www.techinterviewhandbook.org/){target="_blank"} and   - [Front End Interview Handbook](https://www.frontendinterviewhandbook.com/){target="_blank"}

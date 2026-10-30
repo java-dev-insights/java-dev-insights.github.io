@@ -26,9 +26,8 @@ const enum PATH_ENUMS {
     AI_INTRO = "/ai/intro",
     // Miscellaneous
     MISC_INDEX = "/misc/",
-    MISC_REFS = MISC_INDEX+"refs",
+    MISC_REFS = MISC_INDEX+"refs/",
     MISC_JEKYLL = MISC_INDEX+"jekyll",
-    MISC_TEMP = MISC_INDEX+"temp",
 }
 
 export default PATH_ENUMS;
