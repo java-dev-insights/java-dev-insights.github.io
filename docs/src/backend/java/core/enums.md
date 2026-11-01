@@ -33,11 +33,26 @@ enum Apple {
 * An enumeration can’t inherit another class.
 * An enum cannot be a superclass.
 
-## Enumerations Inherit Enum
+## java.lang.Enum
+
 * all enumerations inherit **java.lang.Enum**, hence cannot inherit any other class.
 
-## Methods in java.lang.Enum: 
+### Methods in java.lang.Enum: 
 - **final int ordinal( )** – enum’s position in list of constants, begins at zero.
 - **final int compareTo(enum-type e)** – [a minus e]
 - **equals()** - true if both refer to same constant of same enumeration, can also use ==.
-	* having same ordinal values will not guarantee **equals( )** as enums can be from different enumerations.
+  - having same ordinal values will not guarantee **equals( )** as enums can be from different enumerations.
+
+```java
+enum TrafficLight {
+    RED,    // ordinal 0
+    YELLOW, // ordinal 1
+    GREEN   // ordinal 2
+}
+
+enum Currency {
+    USD,    // ordinal 0
+    EUR,    // ordinal 1
+    GBP   // ordinal 2
+}
+```

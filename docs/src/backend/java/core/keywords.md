@@ -11,7 +11,7 @@ Box(double w, double h, double d) {
 ```
 
 * **this** - refer to the object that invoked it.
-* **Instance Variable Hiding** - local variable with same name as an instance variable, hides the instance variable.
+* **Instance Variable Hiding** - local variable hides the instance variable with same name.
 
 ## static
 
@@ -20,13 +20,13 @@ Box(double w, double h, double d) {
 * static variables are **shared among all instances of the class**.
 * When objects of its class are declared, **no copy of a static variable is made**.
 
-**static methods restrictions**
+### static methods restrictions
+
 * Can call only other static methods.
 * Can only access static data. 
 * cannot refer to this or super in any way.
 
-**static block**
-> Read full article on [static block](https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html){:target="_blank"}.
+### static block
 
 * executed before the main() at class load time, 
 * used to do computation for initializing your static variables.
@@ -43,31 +43,40 @@ static {
 Alternative to static blocks
 - you can write a **private static method**.
 - **Advantage** : can be reused later if you need to reinitialize the class variable.
+  - example : loadSettingsFromDisk() at start and again called by refreshConfiguration()
 
 ```java
-class Whatever {
-    public static varType myVar = initializeClassVariable();
-    private static varType initializeClassVariable() {
+class ConfigurationManager {
+    private static Map<String, String> appSettings;
+    // Initialized automatically when the class loads using the helper
+    static {
+        appSettings = loadSettingsFromDisk();
+    }
+    private static Map<String, String> loadSettingsFromDisk() {
         // initialization code goes here
+    }
+    public static void refreshConfiguration() { 
+        loadSettingsFromDisk();
     }
 }
 ```
 
-**Static class**
+### Static class
+
 * can use only with inner class. 
 * nested class which is a static member of the outer class.
-* Accessed as OuterClass.*
+* Accessed as OuterClass.* - `Computer.Builder`
 * static nested class does not have access to the instance variables and methods of the outer class.
 
 ## final
 
 * final in java are by **default read-only**.
-* class, method, and variables. 
+* Used with class, method, and variables.
 * static final constant.
 * **Cannot change reference after assigning (compile error)**.
 * final member variable must be **initialized on declaration or via constructor**.
 * Only final variable is accessible inside anonymous class in Java. (Anonymous Inner Class without a name)
-* **interface variables are implicitly final**.
+* Variables in an Interface are **implicitly final**.
 
 ### final variables in Java
 
@@ -82,20 +91,20 @@ LOAN = new String("loan")                   //invalid compilation error
 private final List loans = new ArrayList();
 loans.add("home loan");                     //valid
 loans.add("personal loan");                 //valid
-loans = new Vector();                       //not valid
+loans = new ArrayList();                    //not valid
 ```
 
 ### final method in Java
-* can not be overridden.
-* when method is complete and its behavior should remain constant in sub-classes. 
-* final methods are faster than non-final methods because they are not required to be resolved during run-time.
-* final methods are bonded **during compile time** also called **static binding**.
+
+* These can not be overridden.
+* Used when method is complete and its behavior should remain constant in sub-classes.
 
 ```java
 class PersonalLoan{
     public final String getName(){return "personal loan";}
 }
 ```
+
 ```java
 class CheapPersonalLoan extends PersonalLoan{
     @Override
@@ -104,13 +113,15 @@ class CheapPersonalLoan extends PersonalLoan{
 }     
 ```
 
-* Inlining is an option only with final methods. 
-* Normally, **methods calls are dynamically resolved at run time**, called **late binding**. 
-* As final methods cannot be overridden, method call can be **resolved at compile time**, called **early binding**.
+#### final methods Inlining
+
+* Normally, **methods calls are dynamically resolved at run time**, called **late binding** or **dynamic binding**.
+* As final methods cannot be overridden, method call can be **resolved at compile time**, called **early binding** or **static binding**, hence faster than usual methods.
 * Here, Compiler is free to inline calls to final methods as they cannot be overridden by a subclass.
 * When a small final method is called, often the **Java compiler can copy the bytecode for the subroutine directly inline with the compiled code of the calling method**, thus eliminating the costly overhead associated with a method call.
 
 ### final Class in Java
+
 * **cannot be inherited**.
 * example: **String, Integer and other wrapper classes**.
 * **methods of final class are implicitly final**. 
@@ -122,12 +133,43 @@ class CheapPersonalLoan extends PersonalLoan {
 }
 ```
 
-### Benefits of final keyword 
+### Benefits of final keyword
+
 * final keyword improves performance.
 * JVM and application can cache final variable.
-* **Safe to share in [multi-threading](https://javarevisited.blogspot.com/2011/02/how-to-implement-thread-in-java.html) environment without additional synchronization overhead**.
+* **Safe to share in [multi-threading](https://javarevisited.blogspot.com/2011/02/how-to-implement-thread-in-java.html) environment without additional synchronization overhead** in certain conditions only.
+  * If a final method only reads data, works with local variables, or modifies completely immutable state, it is perfectly thread-safe.
+
+```java
+public class Calculator {
+    private final int baseline = 10;
+    // A standard, non-thread-safe shared map
+    private final Map<String, Integer> sharedMap = new HashMap<>();
+
+    // 100% THREAD-SAFE
+    public final int compute(int input) {
+        // 'input' lives on the thread's private stack.
+        // 'baseline' is an immutable final primitive.
+        int result = input * 2 + baseline; 
+        return result;
+    }
+
+    // ❌ NOT THREAD-SAFE!
+    // Multiple threads executing this concurrently corrupt the HashMap
+    public final void addCalculation(String key, int value) {
+        sharedMap.put(key, value); 
+    }
+}
+```
 
 ### final and Immutable Class in Java
-* can not be modified once created. Example – **String**. 
+
+* It can not be modified once created. Example – **String**.
 * required to **make a class immutable** in java.
 * Immutable classes are read-only and safely shared in between multiple threads without any synchronization overhead.
+
+### Summary Rule
+
+- final on a variable means: The pointer cannot point to a different object.
+- final on a method means: A subclass cannot override the logic.
+- final on a class means: No other class can extend it.

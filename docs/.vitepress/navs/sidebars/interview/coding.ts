@@ -5,25 +5,20 @@ const SIDEBAR_INTERVIEW_CODING = [
 	{ text: "Coding Interview", link: PATHS.INTERVIEW_CODING },
 	{
 		text: "Data Structures",
+		collapsed: false,
 		items: [
 			{ text: "Overview", link: PATHS.INTERVIEW_CODING + "ds/" },
-			{
-				text: "Linear",
-				collapsed: false,
-				items: [
-					{ text: "Arrays", link: "arrays" },
-					{ text: "Strings", link: "strings" },
-					{ text: "Linked Lists", link: "linked-lists" },
-				],
-			},
-			{
-				text: "Non-Linear",
-				collapsed: false,
-				items: [
-					{ text: "Trees", link: PATHS.INTERVIEW_CODING + "ds/trees" },
-					{ text: "Graphs", link: PATHS.INTERVIEW_CODING + "ds/graphs" },
-				],
-			},
+			{ text: "Arrays", link: "arrays" },
+			{ text: "Stacks", link: PATHS.INTERVIEW_CODING + "ds/stacks" },
+			{ text: "Queues", link: PATHS.INTERVIEW_CODING + "ds/queues" },
+			{ text: "Linked Lists", link: "linked-lists" },
+			{ text: "Trees", link: PATHS.INTERVIEW_CODING + "ds/trees" },
+			{ text: "Graphs", link: PATHS.INTERVIEW_CODING + "ds/graphs" },
+			{ text: "Hash Tables", link: PATHS.INTERVIEW_CODING + "ds/hash-tables" },
+			{ text: "Heaps", link: PATHS.INTERVIEW_CODING + "ds/heaps" },
+			{ text: "Tries", link: PATHS.INTERVIEW_CODING + "ds/tries" },
+			{ text: "Disjoint Sets", link: PATHS.INTERVIEW_CODING + "ds/disjoint-sets" },
+			{ text: "Strings", link: "strings" },
 		],
 	},
 	{

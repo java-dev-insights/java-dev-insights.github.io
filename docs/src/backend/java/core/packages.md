@@ -14,4 +14,4 @@
 ## Importing Packages
 * import statement **brings certain classes, or entire packages, into visibility**.
 * **can use Class names (instead of fully qualified names)**.
-* 2 class of same name for 2 packages, use fully qualified for one of them.
+* 2 class of same name for 2 packages, use fully qualified name for one of them.

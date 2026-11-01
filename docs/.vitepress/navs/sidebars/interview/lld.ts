@@ -1,12 +1,13 @@
 import { default as PATHS } from "../../paths";
 
-const INTERVIEW_LLD_DESIGN_PATTERNS =  PATHS.INTERVIEW_LLD + "design-patterns/";
+const INTERVIEW_LLD_DESIGN_PATTERNS = PATHS.INTERVIEW_LLD + "design-patterns/";
 
 const SIDEBAR_INTERVIEW_LLD = [
 	{ text: "<-- Interview Landscape", link: PATHS.INTERVIEW_INDEX },
 	{ text: "LLD Interview", link: PATHS.INTERVIEW_LLD },
 	{
 		text: "OOP & OOD",
+		collapsed: true,
 		items: [
 			{ text: "Overview", link: PATHS.INTERVIEW_LLD + "ood/" },
 			{ text: "OOP", link: PATHS.INTERVIEW_LLD + "oop" },
@@ -19,33 +20,46 @@ const SIDEBAR_INTERVIEW_LLD = [
 	},
 	{
 		text: "Diagrams",
-		items: [
-			{ text: " UML", link: PATHS.INTERVIEW_LLD + "diagrams/uml" },
-		],
+		collapsed: true,
+		items: [{ text: " UML", link: PATHS.INTERVIEW_LLD + "diagrams/uml" }],
 	},
 	{
 		text: "Design Patterns",
+		collapsed: true,
 		items: [
-			{ text: "Overview", link: INTERVIEW_LLD_DESIGN_PATTERNS, collapsed: true, },
-			{ text: "Creational", link: INTERVIEW_LLD_DESIGN_PATTERNS + "creational/", collapsed: true, },
-			{ text: "Structural", link: INTERVIEW_LLD_DESIGN_PATTERNS + "structural/", collapsed: true, },
-			{ text: "Behavioral", link: INTERVIEW_LLD_DESIGN_PATTERNS + "behavioral/", collapsed: true, },
+			{ text: "Overview", link: INTERVIEW_LLD_DESIGN_PATTERNS, collapsed: true },
+			{ text: "Creational", link: INTERVIEW_LLD_DESIGN_PATTERNS + "creational/", collapsed: true },
+			{ text: "Structural", link: INTERVIEW_LLD_DESIGN_PATTERNS + "structural/", collapsed: true },
+			{ text: "Behavioral", link: INTERVIEW_LLD_DESIGN_PATTERNS + "behavioral/", collapsed: true },
 			{ text: "Pattern Selection (Interview)", link: INTERVIEW_LLD_DESIGN_PATTERNS + "pattern-selection" },
 		],
 	},
 	{
-		text: "Design Examples",
+		text: "Interview Questions",
 		items: [
 			{ text: "5 Step Framework", link: PATHS.INTERVIEW_LLD + "5-step-framework" },
 			{ text: "LLD Concurrency Control", link: PATHS.INTERVIEW_LLD + "concurrency-control" },
-			{ text: "Elevator System", link: PATHS.INTERVIEW_LLD + "problems/elevator-system" },
+			{
+				text: "Games",
+				items: [
+					{ text: "Tic Tac Toe", link: PATHS.INTERVIEW_LLD + "problems/tic-tac-toe" },
+					{ text: "Chess Game", link: PATHS.INTERVIEW_LLD + "problems/chess-game" },
+				],
+			},
+			{
+				text: "Manage State",
+				items: [
+					{ text: "Elevator System", link: PATHS.INTERVIEW_LLD + "problems/elevator-system" },
+					{ text: "ATM Machine", link: PATHS.INTERVIEW_LLD + "problems/atm-machine" },
+					{ text: "Vending Machine", link: PATHS.INTERVIEW_LLD + "problems/vending-machine" },
+				],
+			},
 			{ text: "Parking Lot", link: PATHS.INTERVIEW_LLD + "problems/parking-lot" },
 			{ text: "LRU Cache", link: PATHS.INTERVIEW_LLD + "problems/lru-cache" },
-			{ text: "Chess Game", link: PATHS.INTERVIEW_LLD + "problems/chess-game" },
 		],
 	},
 	{
-		text: 'Next Steps',
+		text: "Next Steps",
 		items: [
 			{ text: "References", link: PATHS.INTERVIEW_LLD + "refs" },
 			{ text: "What's Next?", link: PATHS.INTERVIEW_LLD + "whats-next" },
