@@ -1,22 +1,20 @@
 import { default as PATHS } from "../../paths";
 
 const SIDEBAR_INTERVIEW_CONCURRENCY = [
-    { text: "Interview Landscape", link: PATHS.INTERVIEW_INDEX },
+    { text: "<-- ⬅️ Interview Landscape", link: PATHS.INTERVIEW_INDEX },
     { text: "Concurrency Interview", link: PATHS.INTERVIEW_CONCURRENCY },
     {
-        text: 'External Resources',
+        text: 'Introduction',
         items: [
-            { text: "Blind 75 (Leetcode)", link: 'https://leetcode.com/problem-list/oizxjoit/' },
-            { text: "Blind 75 (Neetcode)", link: 'https://neetcode.io/practice/practice/blind75' },
-            { text: "Neetcode Roadmap", link: 'https://neetcode.io/roadmap' },
+            { text: "Intro to Concurrency", link: PATHS.INTERVIEW_CONCURRENCY + "intro" },
+            { text: "Concurrency vs Parallelism", link: PATHS.INTERVIEW_CONCURRENCY + "concurrency-vs-parallelism" },
         ],
-    },
-    
+    },    
     {
-        // text: 'Version Control',
+        text: 'Locking Strategies',
         items: [
-            { text: "Git", link: 'git' },
-            { text: "Gradle", link: 'gradle' },
+            { text: "Optimistic Locking", link: PATHS.INTERVIEW_CONCURRENCY + "optimistic-locking" },
+            { text: "Pessimistic Locking", link: PATHS.INTERVIEW_CONCURRENCY + "pessimistic-locking" },
         ],
     },
 ];

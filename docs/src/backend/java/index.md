@@ -1,21 +1,27 @@
 # Java
 
-Java is a high-level, object-oriented programming language designed to let developers "write once, run anywhere." Its compiled code runs on any device equipped with a Java Virtual Machine (JVM), making it highly versatile, secure, and ideal for enterprise software, cloud services, and Android mobile apps.
+Java is a high-level, object-oriented programming language designed to let developers "write once, run anywhere." Its compiled code runs on any device equipped with a Java Virtual Machine (JVM), making it highly versatile, secure, and ideal for enterprise software, cloud services, and Android mobile apps.  
 
-- [OOP and OOD](oop-and-ood)
-- [JVM Architecture](jvm-architecture)
-- [Java Core](core)
+::: details Java Ecosystem
+<YouTubeEmbed video-id="KBkHNI_nRLY" /><br/>
+:::
+
+- [OOP and OOD](/interview/lld/oop) :arrow_upper_right:
+- [Java Core](core/) : Data Types, Operators, Control Statements, Keywords/Identifiers, Class/Interface/Method/Package/Enums, Inheritance, GC api
+- [JVM Architecture](jvm-architecture) : Bytecode & Classpath, JVM Architecture + Memory, Garbage Collection Types
 - [Strings](string)
-- [Exception](exception)
+- [Exceptions](exception)
 - [Generics](generics)
 - [Collection Framework](collections)
-- [Java Memory Model](jmm)
-- [Java Concurrency](concurrency)
-- [Threading](threading)
+- CONCURRENCY
+  - [Java Memory Model](jmm)
+  - [Java Concurrency](concurrency)
+  - [Threading](threading)
+  - [Multi Threading](multi-threading)
 - [Marker Interface](marker-interface)
-- [Multi Threading](multi-threading)
 - [Annotations](annotations)
 - [RegEx - Regular Expressions](regex)
-- [Java 8](8)
 - [Annotation in Java](annotation)
 - [Reflection](reflection)
+- [Java 8](8)
+- [What's new in Java](whats-new-in-java)

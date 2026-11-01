@@ -1,0 +1,39 @@
+# HLD (Concepts)
+
+<YouTubeEmbed video-id="soTfFFIQQ8U" /><br/>
+
+<YouTubeEmbed video-id="E60Fs-DQQOg" /><br/>
+
+<YouTubeEmbed video-id="umdwWa2PP2I" /><br/>
+
+<YouTubeEmbed video-id="s9Qh9fWeOAk" /><br/>
+
+<YouTubeEmbed video-id="4RJ_GtoHhrs" /><br/>
+
+<YouTubeEmbed video-id="21Q3yxco4B8" /><br/>
+
+- Scaling : Vertical vs Horizontal
+- LB and Reverse proxy
+- CDN (static files)
+- Caching
+- IP Addresses
+- TCP/IP + UDP = Layer 4
+- Http vs Websockets
+- DNS
+- http : TCP (too low level)
+- https : Application Layer
+- Application Layer Protocols
+- Client - Server (head+body)
+- API Paradiagm
+- REST vs GraphQL
+- gRPC - RPC framework
+- Protocols buffer vs json
+- web-sockets are bidirectional
+- RDS DB and SQL (BTress and SQL)
+  - ACID
+- NoSQL for key-value, doc-stores, graph-DB
+- Sharding
+- Replication (Lead -> Follow)
+- CAP Theorem (PAC and ELC)
+- Message Queues
+

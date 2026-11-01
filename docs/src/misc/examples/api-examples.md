@@ -36,7 +36,7 @@ const { site, theme, page, frontmatter } = useData()
 ## Results
 
 ### Theme Data
-<pre>{{ theme }}</pre>
+<pre>Keys in theme = {{ Object.keys(theme) }}</pre>
 
 ### Page Data
 <pre>{{ page }}</pre>

@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="glean-artifact-type" content="visual_content">
+<title>AWS Architecture — Dashboard Platform</title>
+<style>
+:root {
+  --artifact-background: #0a0b0e;
+  --artifact-background-light: #121419;
+  --artifact-background-mid: #181b22;
+  --artifact-border-light: #23262e;
+  --artifact-border-dark: #343844;
+  --artifact-primary-brand: #6a92ff;
+  --artifact-primary-highlight: #f5f7fb;
+  --artifact-primary-hover: #88a8ff;
+  --artifact-selected: #1a2030;
+  --artifact-text-primary: #eef0f4;
+  --artifact-text-secondary: #9aa0ad;
+  --artifact-positive: #46d39a;
+  --artifact-negative: #ff6b6b;
+  --artifact-warning: #f5a623;
+  /* Layer colors */
+  --layer-client: rgba(106,146,255,0.07);
+  --layer-edge: rgba(70,211,154,0.07);
+  --layer-api: rgba(245,166,35,0.07);
+  --layer-compute: rgba(106,146,255,0.09);
+  --layer-data: rgba(255,107,107,0.07);
+  --layer-pipeline: rgba(70,211,154,0.07);
+  --layer-ops: rgba(150,100,255,0.07);
+  /* AWS service colors */
+  --aws-orange: #FF9900;
+  --aws-blue: #4A90D9;
+  --aws-green: #3DAA6A;
+  --aws-purple: #A45CDE;
+  --aws-teal: #1FA7A7;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--artifact-background);
+  color: var(--artifact-text-primary);
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* ── Header ── */
+.header {
+  padding: 36px 48px 24px;
+  border-bottom: 1px solid var(--artifact-border-light);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+.header-left .eyebrow {
+  font-family: "SF Mono", Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--artifact-primary-brand);
+  margin-bottom: 8px;
+}
+.header-left h1 {
+  font-size: 1.9rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--artifact-text-primary);
+  line-height: 1.1;
+}
+.header-left .subtitle {
+  font-size: 0.85rem;
+  color: var(--artifact-text-secondary);
+  margin-top: 6px;
+}
+.header-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-top: 4px;
+}
+.badge {
+  font-family: "SF Mono", Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid;
+}
+.badge-blue { color: var(--artifact-primary-brand); border-color: rgba(106,146,255,0.3); background: rgba(106,146,255,0.07); }
+.badge-green { color: var(--artifact-positive); border-color: rgba(70,211,154,0.3); background: rgba(70,211,154,0.07); }
+.badge-orange { color: var(--aws-orange); border-color: rgba(255,153,0,0.3); background: rgba(255,153,0,0.07); }
+
+/* ── Main canvas ── */
+.canvas {
+  padding: 32px 48px 48px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ── Layer Row ── */
+.layer {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.layer-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: "SF Mono", Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--artifact-text-secondary);
+  padding: 12px 6px;
+  min-width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.layer-content {
+  flex: 1;
+  padding: 16px 16px 16px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--artifact-border-light);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-start;
+  position: relative;
+  min-height: 80px;
+}
+
+.layer-client .layer-content   { background: var(--layer-client);  border-color: rgba(106,146,255,0.18); }
+.layer-edge .layer-content     { background: var(--layer-edge);    border-color: rgba(70,211,154,0.18); }
+.layer-api .layer-content      { background: var(--layer-api);     border-color: rgba(245,166,35,0.18); }
+.layer-compute .layer-content  { background: var(--layer-compute); border-color: rgba(106,146,255,0.2); }
+.layer-data .layer-content     { background: var(--layer-data);    border-color: rgba(255,107,107,0.18); }
+.layer-pipeline .layer-content { background: var(--layer-pipeline);border-color: rgba(70,211,154,0.18); }
+.layer-ops .layer-content      { background: var(--layer-ops);     border-color: rgba(150,100,255,0.18); }
+
+/* Layer connector arrows between layers */
+.connector-row {
+  display: flex;
+  justify-content: center;
+  padding: 4px 48px 4px 76px;
+  gap: 60px;
+}
+.connector-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.connector-arrow .line {
+  width: 1px;
+  height: 18px;
+  background: var(--artifact-border-dark);
+}
+.connector-arrow .arrowhead {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--artifact-border-dark);
+}
+.connector-arrow.bidirectional .arrowhead-up {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 6px solid var(--artifact-border-dark);
+}
+.connector-label {
+  font-size: 10px;
+  color: var(--artifact-text-secondary);
+  font-family: "SF Mono", Consolas, monospace;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* ── Service Box ── */
+.svc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: var(--artifact-background-mid);
+  border: 1px solid var(--artifact-border-dark);
+  min-width: 100px;
+  cursor: default;
+  transition: border-color 0.15s, background 0.15s;
+  position: relative;
+}
+.svc:hover {
+  border-color: var(--artifact-primary-brand);
+  background: rgba(106,146,255,0.08);
+  z-index: 2;
+}
+.svc:hover .svc-tooltip { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+.svc-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.svc-name {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--artifact-text-primary);
+  text-align: center;
+  line-height: 1.3;
+}
+.svc-sub {
+  font-family: "SF Mono", Consolas, monospace;
+  font-size: 9.5px;
+  color: var(--artifact-text-secondary);
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+.svc-badge {
+  font-size: 8.5px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: "SF Mono", Consolas, monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.managed { background: rgba(70,211,154,0.12); color: var(--artifact-positive); }
+.serverless { background: rgba(106,146,255,0.12); color: var(--artifact-primary-brand); }
+.critical { background: rgba(255,153,0,0.12); color: var(--aws-orange); }
+
+/* Tooltip */
+.svc-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: #1e2230;
+  border: 1px solid var(--artifact-border-dark);
+  border-radius: 6px;
+  padding: 10px 14px;
+  min-width: 200px;
+  max-width: 260px;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s, transform 0.15s;
+}
+.svc-tooltip h4 {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--artifact-text-primary);
+  margin-bottom: 5px;
+}
+.svc-tooltip p {
+  font-size: 11px;
+  color: var(--artifact-text-secondary);
+  line-height: 1.5;
+}
+.svc-tooltip ul {
+  margin-top: 6px;
+  padding-left: 14px;
+  font-size: 10.5px;
+  color: var(--artifact-text-secondary);
+  line-height: 1.6;
+}
+
+/* VPC wrapper */
+.vpc-wrapper {
+  border: 1px dashed rgba(106,146,255,0.3);
+  border-radius: 8px;
+  padding: 12px 16px 16px;
+  position: relative;
+  margin: 0 0;
+  flex: 1;
+}
+.vpc-label {
+  position: absolute;
+  top: -10px;
+  left: 14px;
+  background: var(--artifact-background);
+  padding: 0 8px;
+  font-family: "SF Mono", Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(106,146,255,0.7);
+}
+.vpc-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+/* Subnet wrapper */
+.subnet {
+  border: 1px dashed rgba(70,211,154,0.2);
+  border-radius: 6px;
+  padding: 8px 10px 10px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: flex-start;
+}
+.subnet-label {
+  position: absolute;
+  top: -9px;
+  left: 10px;
+  background: var(--artifact-background);
+  padding: 0 6px;
+  font-family: "SF Mono", Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(70,211,154,0.6);
+}
+.subnet.private { border-color: rgba(255,107,107,0.2); }
+.subnet.private .subnet-label { color: rgba(255,107,107,0.6); }
+
+/* ── Flow arrows section ── */
+.flow-section {
+  margin-top: 32px;
+  padding: 24px 28px;
+  border: 1px solid var(--artifact-border-light);
+  border-radius: 8px;
+  background: var(--artifact-background-light);
+}
+.flow-title {
+  font-family: "SF Mono", Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--artifact-text-secondary);
+  margin-bottom: 16px;
+}
+.flows {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+.flow-card {
+  padding: 14px 16px;
+  border: 1px solid var(--artifact-border-dark);
+  border-radius: 6px;
+  background: var(--artifact-background-mid);
+}
+.flow-card h4 {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--artifact-text-primary);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.flow-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  flex-shrink: 0;
+}
+.flow-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.flow-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--artifact-text-secondary);
+}
+.flow-step .num {
+  font-family: "SF Mono", Consolas, monospace;
+  font-size: 9px;
+  color: var(--artifact-primary-brand);
+  min-width: 14px;
+}
+.flow-step .arrow { color: var(--artifact-border-dark); font-size: 10px; }
+
+/* ── Design decisions ── */
+.decisions {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+.decision-card {
+  padding: 14px 16px;
+  border: 1px solid var(--artifact-border-dark);
+  border-radius: 6px;
+  background: var(--artifact-background-mid);
+}
+.decision-card .label {
+  font-family: "SF Mono", Consolas, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--artifact-primary-brand);
+  margin-bottom: 6px;
+}
+.decision-card p {
+  font-size: 12px;
+  color: var(--artifact-text-secondary);
+  line-height: 1.6;
+}
+
+/* ── Divider ── */
+.divider {
+  height: 1px;
+  background: var(--artifact-border-light);
+  margin: 28px 0;
+}
+
+/* ── Down-arrow between layers ── */
+.layer-connector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 28px;
+  margin-left: 28px;
+  gap: 40px;
+}
+.layer-connector svg {
+  opacity: 0.35;
+}
+
+/* icon colors */
+.icon-orange { background: rgba(255,153,0,0.15); }
+.icon-blue   { background: rgba(74,144,217,0.15); }
+.icon-green  { background: rgba(61,170,106,0.15); }
+.icon-purple { background: rgba(164,92,222,0.15); }
+.icon-teal   { background: rgba(31,167,167,0.15); }
+.icon-red    { background: rgba(255,107,107,0.15); }
+.icon-brand  { background: rgba(106,146,255,0.15); }
+
+@media print {
+  @page { size: auto !important; }
+  body { background: #fff; color: #111; padding: 0.4in 0.5in; }
+  .svc-tooltip { display: none; }
+  .layer-content { border: 1px solid #ddd; }
+  .vpc-wrapper { border: 1px dashed #aaa; }
+  .subnet { border: 1px dashed #bbb; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<div class="header" data-glean-id="header">
+  <div class="header-left">
+    <div class="eyebrow">AWS Architecture · Senior Software Engineer Proposal</div>
+    <h1>Dashboard Platform</h1>
+    <div class="subtitle">Scalable, real-time analytics dashboard — multi-tenant, serverless-first, AWS-native</div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+    <div class="header-badges">
+      <span class="badge badge-blue">Multi-Tenant</span>
+      <span class="badge badge-green">Serverless-First</span>
+      <span class="badge badge-orange">High Availability</span>
+    </div>
+    <div class="header-badges">
+      <span class="badge badge-blue">Auto-Scaling</span>
+      <span class="badge badge-green">Real-Time Streaming</span>
+    </div>
+    <div style="font-family:monospace;font-size:11px;color:var(--artifact-text-secondary);margin-top:4px;">
+      Hover any service to learn more
+    </div>
+  </div>
+</div>
+
+<div class="canvas">
+
+<!-- ═══════════════════════════════════════════════
+     LAYER 1: CLIENT
+═══════════════════════════════════════════════ -->
+<div class="layer layer-client" data-glean-id="layer-client">
+  <div class="layer-label" style="color:rgba(106,146,255,0.7)">Client</div>
+  <div class="layer-content">
+
+    <div class="svc" data-glean-id="svc-browser">
+      <div class="svc-icon icon-blue">🌐</div>
+      <div class="svc-name">Web Browser</div>
+      <div class="svc-sub">React / Next.js SPA</div>
+      <div class="svc-tooltip">
+        <h4>Web Browser Client</h4>
+        <p>React + Next.js SPA delivered via CloudFront. SSR for initial page load performance, CSR for dashboard interactivity.</p>
+        <ul>
+          <li>WebSocket for real-time widget updates</li>
+          <li>JWT tokens managed in httpOnly cookies</li>
+          <li>Code splitting per dashboard module</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-mobile">
+      <div class="svc-icon icon-blue">📱</div>
+      <div class="svc-name">Mobile App</div>
+      <div class="svc-sub">React Native / PWA</div>
+      <div class="svc-tooltip">
+        <h4>Mobile Client</h4>
+        <p>Progressive Web App or React Native app for on-the-go dashboard access.</p>
+        <ul>
+          <li>Same API Gateway endpoints</li>
+          <li>Push notifications via SNS</li>
+          <li>Offline mode with local cache</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-embed">
+      <div class="svc-icon icon-brand">🔗</div>
+      <div class="svc-name">Embedded Widgets</div>
+      <div class="svc-sub">iframe / SDK</div>
+      <div class="svc-tooltip">
+        <h4>Embedded Dashboard Widgets</h4>
+        <p>Third-party teams can embed dashboard widgets in their own portals using an iframe or a lightweight JS SDK.</p>
+        <ul><li>Signed JWT for cross-origin auth</li><li>Postmessage API for widget interaction</li></ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- connector -->
+<div class="layer-connector">
+  <svg width="200" height="28" viewBox="0 0 200 28">
+    <defs><marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#343844"/></marker></defs>
+    <line x1="40" y1="4" x2="40" y2="22" stroke="#343844" stroke-width="1" marker-end="url(#arr)"/>
+    <line x1="100" y1="4" x2="100" y2="22" stroke="#343844" stroke-width="1" marker-end="url(#arr)"/>
+    <line x1="160" y1="4" x2="160" y2="22" stroke="#343844" stroke-width="1" marker-end="url(#arr)"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     LAYER 2: EDGE / CDN
+═══════════════════════════════════════════════ -->
+<div class="layer layer-edge" data-glean-id="layer-edge">
+  <div class="layer-label" style="color:rgba(70,211,154,0.7)">Edge</div>
+  <div class="layer-content">
+
+    <div class="svc" data-glean-id="svc-cloudfront">
+      <div class="svc-icon icon-orange">☁️</div>
+      <div class="svc-name">CloudFront CDN</div>
+      <div class="svc-sub">Static + API Cache</div>
+      <span class="svc-badge managed">Managed</span>
+      <div class="svc-tooltip">
+        <h4>Amazon CloudFront</h4>
+        <p>Global CDN serving static assets from S3 and caching API responses at the edge.</p>
+        <ul>
+          <li>Edge locations reduce latency globally</li>
+          <li>Origin Shield reduces load on origins</li>
+          <li>Cache-Control headers per resource type</li>
+          <li>Signed URLs for private dashboard exports</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-waf">
+      <div class="svc-icon icon-red">🛡️</div>
+      <div class="svc-name">AWS WAF</div>
+      <div class="svc-sub">DDoS + Bot Protection</div>
+      <span class="svc-badge critical">Security</span>
+      <div class="svc-tooltip">
+        <h4>AWS WAF + Shield</h4>
+        <p>Web Application Firewall protecting against OWASP Top 10, rate limiting, and DDoS attacks.</p>
+        <ul>
+          <li>Rate-limit per IP and per user</li>
+          <li>Managed rule groups (SQLi, XSS)</li>
+          <li>AWS Shield Standard included</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-route53">
+      <div class="svc-icon icon-teal">🌍</div>
+      <div class="svc-name">Route 53</div>
+      <div class="svc-sub">DNS + Health Checks</div>
+      <span class="svc-badge managed">Managed</span>
+      <div class="svc-tooltip">
+        <h4>Amazon Route 53</h4>
+        <p>DNS with latency-based routing and health-check failover.</p>
+        <ul>
+          <li>Alias records to CloudFront and ALB</li>
+          <li>Failover routing for DR</li>
+          <li>Private hosted zones within VPC</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-s3-static">
+      <div class="svc-icon icon-green">🪣</div>
+      <div class="svc-name">S3 Static</div>
+      <div class="svc-sub">Frontend Assets</div>
+      <span class="svc-badge managed">Managed</span>
+      <div class="svc-tooltip">
+        <h4>S3 Static Website Origin</h4>
+        <p>Hosts compiled React/Next.js build artifacts: JS bundles, CSS, images, fonts.</p>
+        <ul>
+          <li>Versioned deployments per build hash</li>
+          <li>Object-level ACL blocked; served via CloudFront OAI only</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- connector -->
+<div class="layer-connector">
+  <svg width="300" height="28" viewBox="0 0 300 28">
+    <defs><marker id="arr2" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#343844"/></marker></defs>
+    <line x1="60" y1="4" x2="60" y2="22" stroke="#343844" stroke-width="1" marker-end="url(#arr2)"/>
+    <line x1="150" y1="4" x2="150" y2="22" stroke="#343844" stroke-width="1" marker-end="url(#arr2)"/>
+    <line x1="240" y1="4" x2="240" y2="22" stroke="#343844" stroke-width="1" marker-end="url(#arr2)"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     LAYER 3: AUTH + API
+═══════════════════════════════════════════════ -->
+<div class="layer layer-api" data-glean-id="layer-api">
+  <div class="layer-label" style="color:rgba(245,166,35,0.7)">API</div>
+  <div class="layer-content">
+
+    <div class="svc" data-glean-id="svc-cognito">
+      <div class="svc-icon icon-blue">🔐</div>
+      <div class="svc-name">Amazon Cognito</div>
+      <div class="svc-sub">AuthN / AuthZ</div>
+      <span class="svc-badge serverless">Serverless</span>
+      <div class="svc-tooltip">
+        <h4>Amazon Cognito</h4>
+        <p>Handles authentication, JWT issuance, and RBAC for multi-tenant access.</p>
+        <ul>
+          <li>User Pools for sign-up / sign-in</li>
+          <li>Identity Pools for AWS resource access</li>
+          <li>SAML/OIDC federation for SSO</li>
+          <li>Custom scopes per tenant</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-apigw">
+      <div class="svc-icon icon-orange">🚪</div>
+      <div class="svc-name">API Gateway</div>
+      <div class="svc-sub">REST + WebSocket</div>
+      <span class="svc-badge serverless">Serverless</span>
+      <div class="svc-tooltip">
+        <h4>Amazon API Gateway</h4>
+        <p>Unified entry point for all backend services.</p>
+        <ul>
+          <li>REST API for CRUD operations</li>
+          <li>WebSocket API for real-time widget pushes</li>
+          <li>Cognito Authorizer for JWT validation</li>
+          <li>Throttling: 10k RPS per stage</li>
+          <li>Usage plans per API key / tenant</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-apigw-http">
+      <div class="svc-icon icon-orange">⚡</div>
+      <div class="svc-name">HTTP API</div>
+      <div class="svc-sub">Low-latency Routes</div>
+      <span class="svc-badge serverless">Serverless</span>
+      <div class="svc-tooltip">
+        <h4>API Gateway HTTP API</h4>
+        <p>Lighter-weight, lower-cost alternative to REST API for high-frequency widget data endpoints.</p>
+        <ul>
+          <li>~70% cheaper than REST API</li>
+          <li>JWT authorizer for lightweight auth</li>
+          <li>Used for widget data polling endpoints</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- connector -->
+<div class="layer-connector">
+  <svg width="300" height="28" viewBox="0 0 300 28">
+    <defs><marker id="arr3" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#343844"/></marker></defs>
+    <line x1="80" y1="4" x2="80" y2="22" stroke="#343844" stroke-width="1" marker-end="url(#arr3)"/>
+    <line x1="180" y1="4" x2="180" y2="22" stroke="#343844" stroke-width="1" marker-end="url(#arr3)"/>
+    <line x1="260" y1="4" x2="260" y2="22" stroke="#343844" stroke-width="1" marker-end="url(#arr3)"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     LAYER 4: COMPUTE (within VPC)
+═══════════════════════════════════════════════ -->
+<div class="layer layer-compute" data-glean-id="layer-compute">
+  <div class="layer-label" style="color:rgba(106,146,255,0.7)">Compute</div>
+  <div class="layer-content" style="flex-direction:column;gap:14px;">
+
+    <div class="vpc-wrapper" data-glean-id="vpc">
+      <div class="vpc-label">VPC — 10.0.0.0/16</div>
+      <div class="vpc-inner">
+
+        <!-- Public Subnet -->
+        <div class="subnet" data-glean-id="subnet-public">
+          <div class="subnet-label">Public Subnet</div>
+
+          <div class="svc" data-glean-id="svc-alb">
+            <div class="svc-icon icon-orange">⚖️</div>
+            <div class="svc-name">ALB</div>
+            <div class="svc-sub">App Load Balancer</div>
+            <span class="svc-badge managed">Managed</span>
+            <div class="svc-tooltip">
+              <h4>Application Load Balancer</h4>
+              <p>L7 load balancer for ECS Fargate services. Routes based on path and host headers.</p>
+              <ul>
+                <li>Health checks per target group</li>
+                <li>Weighted target groups for blue/green</li>
+                <li>TLS termination (ACM certificates)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="svc" data-glean-id="svc-nat">
+            <div class="svc-icon icon-teal">🔄</div>
+            <div class="svc-name">NAT Gateway</div>
+            <div class="svc-sub">Outbound Internet</div>
+            <span class="svc-badge managed">Managed</span>
+            <div class="svc-tooltip">
+              <h4>NAT Gateway</h4>
+              <p>Allows private subnet resources to initiate outbound connections (e.g. third-party APIs, AWS services).</p>
+              <ul><li>Per-AZ for HA</li><li>Fixed Elastic IP per gateway</li></ul>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Private Subnet - Services -->
+        <div class="subnet private" data-glean-id="subnet-private">
+          <div class="subnet-label">Private Subnet — ECS Fargate</div>
+
+          <div class="svc" data-glean-id="svc-dashboard-svc">
+            <div class="svc-icon icon-blue">📊</div>
+            <div class="svc-name">Dashboard Service</div>
+            <div class="svc-sub">ECS Fargate · Node.js</div>
+            <span class="svc-badge critical">Core</span>
+            <div class="svc-tooltip">
+              <h4>Dashboard Microservice</h4>
+              <p>Core service: CRUD for dashboards, layouts, widget config.</p>
+              <ul>
+                <li>Horizontal scaling: 2–20 tasks</li>
+                <li>Reads from RDS (write) + ElastiCache (read)</li>
+                <li>Publishes events to SNS on mutations</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="svc" data-glean-id="svc-widget-svc">
+            <div class="svc-icon icon-purple">🧩</div>
+            <div class="svc-name">Widget Service</div>
+            <div class="svc-sub">ECS Fargate · Node.js</div>
+            <span class="svc-badge critical">Core</span>
+            <div class="svc-tooltip">
+              <h4>Widget Data Service</h4>
+              <p>Fetches and aggregates widget data, applies transformations, and serves to frontend.</p>
+              <ul>
+                <li>Query builder for Athena / DynamoDB</li>
+                <li>Response cached in ElastiCache per widget config hash</li>
+                <li>WebSocket broadcaster via API GW</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="svc" data-glean-id="svc-user-svc">
+            <div class="svc-icon icon-teal">👤</div>
+            <div class="svc-name">User / Tenant Service</div>
+            <div class="svc-sub">ECS Fargate · Node.js</div>
+            <div class="svc-tooltip">
+              <h4>User & Tenant Service</h4>
+              <p>Multi-tenant management: workspaces, roles, permissions, sharing.</p>
+              <ul>
+                <li>Row-level security per tenant_id</li>
+                <li>Syncs with Cognito User Pools</li>
+                <li>Audit log to DynamoDB</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="svc" data-glean-id="svc-notification-lambda">
+            <div class="svc-icon icon-orange">🔔</div>
+            <div class="svc-name">Notification Lambda</div>
+            <div class="svc-sub">AWS Lambda · Node.js</div>
+            <span class="svc-badge serverless">Serverless</span>
+            <div class="svc-tooltip">
+              <h4>Notification Lambda</h4>
+              <p>SNS-triggered Lambda that dispatches alerts (threshold breaches, scheduled reports) via SES email or push.</p>
+              <ul>
+                <li>Triggered by SNS topic events</li>
+                <li>SES for email delivery</li>
+                <li>Dead-letter queue via SQS DLQ</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="svc" data-glean-id="svc-export-lambda">
+            <div class="svc-icon icon-green">📤</div>
+            <div class="svc-name">Export Lambda</div>
+            <div class="svc-sub">AWS Lambda · Python</div>
+            <span class="svc-badge serverless">Serverless</span>
+            <div class="svc-tooltip">
+              <h4>Export / Report Lambda</h4>
+              <p>Generates PDF/CSV/PNG exports of dashboards on demand or on a schedule.</p>
+              <ul>
+                <li>Uses headless Chromium layer</li>
+                <li>Output uploaded to S3, signed URL returned</li>
+                <li>EventBridge for scheduled reports</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Messaging layer -->
+    <div style="display:flex;flex-wrap:wrap;gap:10px;padding-top:4px;" data-glean-id="messaging-layer">
+      <div class="svc" data-glean-id="svc-sns">
+        <div class="svc-icon icon-orange">📢</div>
+        <div class="svc-name">Amazon SNS</div>
+        <div class="svc-sub">Pub/Sub Fan-out</div>
+        <span class="svc-badge managed">Managed</span>
+        <div class="svc-tooltip">
+          <h4>Amazon SNS</h4>
+          <p>Fan-out pub/sub. Decouples dashboard mutations from downstream consumers (notifications, audit, analytics).</p>
+        </div>
+      </div>
+      <div class="svc" data-glean-id="svc-sqs">
+        <div class="svc-icon icon-orange">📬</div>
+        <div class="svc-name">Amazon SQS</div>
+        <div class="svc-sub">Queue + DLQ</div>
+        <span class="svc-badge managed">Managed</span>
+        <div class="svc-tooltip">
+          <h4>Amazon SQS</h4>
+          <p>Standard + FIFO queues for async processing. DLQ captures failed messages for replay.</p>
+          <ul><li>Visibility timeout: 30s</li><li>DLQ after 3 retries</li></ul>
+        </div>
+      </div>
+      <div class="svc" data-glean-id="svc-eventbridge">
+        <div class="svc-icon icon-teal">⏱️</div>
+        <div class="svc-name">EventBridge</div>
+        <div class="svc-sub">Scheduler + Rules</div>
+        <span class="svc-badge managed">Managed</span>
+        <div class="svc-tooltip">
+          <h4>Amazon EventBridge</h4>
+          <p>Event bus for cross-service routing + scheduler for cron-based reports and cache refresh.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- connector -->
+<div class="layer-connector">
+  <svg width="300" height="28" viewBox="0 0 300 28">
+    <defs><marker id="arr4" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#343844"/></marker></defs>
+    <line x1="80" y1="4" x2="80" y2="22" stroke="#343844" stroke-width="1" marker-end="url(#arr4)"/>
+    <line x1="160" y1="4" x2="160" y2="22" stroke="#343844" stroke-width="1" marker-end="url(#arr4)"/>
+    <line x1="240" y1="4" x2="240" y2="22" stroke="#343844" stroke-width="1" marker-end="url(#arr4)"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     LAYER 5: DATA STORE
+═══════════════════════════════════════════════ -->
+<div class="layer layer-data" data-glean-id="layer-data">
+  <div class="layer-label" style="color:rgba(255,107,107,0.7)">Data</div>
+  <div class="layer-content">
+
+    <div class="svc" data-glean-id="svc-rds">
+      <div class="svc-icon icon-blue">🗄️</div>
+      <div class="svc-name">Amazon RDS</div>
+      <div class="svc-sub">PostgreSQL · Multi-AZ</div>
+      <span class="svc-badge critical">Primary DB</span>
+      <div class="svc-tooltip">
+        <h4>Amazon RDS PostgreSQL</h4>
+        <p>Relational store for dashboards, widgets, permissions, and tenant config.</p>
+        <ul>
+          <li>Multi-AZ for automatic failover</li>
+          <li>Read replicas for dashboard query separation</li>
+          <li>Encrypted at rest (KMS) and in transit (TLS)</li>
+          <li>Automated backups — 7-day retention</li>
+          <li>db.r6g.xlarge → scale up on demand</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-elasticache">
+      <div class="svc-icon icon-red">⚡</div>
+      <div class="svc-name">ElastiCache</div>
+      <div class="svc-sub">Redis · Cluster Mode</div>
+      <span class="svc-badge critical">Cache</span>
+      <div class="svc-tooltip">
+        <h4>Amazon ElastiCache for Redis</h4>
+        <p>In-memory cache for widget data, user sessions, and rate-limit counters.</p>
+        <ul>
+          <li>Widget data TTL: 30s–5min based on refresh rate</li>
+          <li>Session store for stateless services</li>
+          <li>Pub/Sub for WebSocket connection management</li>
+          <li>Cluster mode: 3 shards × 2 replicas</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-dynamodb">
+      <div class="svc-icon icon-orange">⚡</div>
+      <div class="svc-name">DynamoDB</div>
+      <div class="svc-sub">Audit · Sessions · Prefs</div>
+      <span class="svc-badge serverless">Serverless</span>
+      <div class="svc-tooltip">
+        <h4>Amazon DynamoDB</h4>
+        <p>NoSQL for high-throughput, low-latency writes: audit events, user preferences, WebSocket connection registry.</p>
+        <ul>
+          <li>On-demand capacity for spiky writes</li>
+          <li>TTL on session records</li>
+          <li>DynamoDB Streams → Lambda for event triggers</li>
+          <li>Global Tables for multi-region DR</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-s3-lake">
+      <div class="svc-icon icon-green">🪣</div>
+      <div class="svc-name">S3 Data Lake</div>
+      <div class="svc-sub">Parquet · Partitioned</div>
+      <span class="svc-badge managed">Managed</span>
+      <div class="svc-tooltip">
+        <h4>S3 Data Lake</h4>
+        <p>Raw and processed analytics data in Parquet format, partitioned by date/tenant.</p>
+        <ul>
+          <li>Lifecycle: Standard → IA (30d) → Glacier (180d)</li>
+          <li>Bucket versioning enabled</li>
+          <li>Queried via Athena (serverless SQL)</li>
+          <li>Crawled by AWS Glue</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-secrets">
+      <div class="svc-icon icon-red">🔑</div>
+      <div class="svc-name">Secrets Manager</div>
+      <div class="svc-sub">DB Creds · API Keys</div>
+      <span class="svc-badge managed">Managed</span>
+      <div class="svc-tooltip">
+        <h4>AWS Secrets Manager</h4>
+        <p>Centralized secrets management with automatic rotation.</p>
+        <ul>
+          <li>RDS credentials auto-rotated every 30 days</li>
+          <li>Referenced in ECS task definitions via ARN</li>
+          <li>No secrets in environment variables or code</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- connector -->
+<div class="layer-connector">
+  <svg width="300" height="28" viewBox="0 0 300 28">
+    <defs><marker id="arr5" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#343844"/></marker></defs>
+    <line x1="100" y1="4" x2="100" y2="22" stroke="#343844" stroke-width="1" marker-end="url(#arr5)"/>
+    <line x1="200" y1="4" x2="200" y2="22" stroke="#343844" stroke-width="1" marker-end="url(#arr5)"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     LAYER 6: DATA PIPELINE
+═══════════════════════════════════════════════ -->
+<div class="layer layer-pipeline" data-glean-id="layer-pipeline">
+  <div class="layer-label" style="color:rgba(70,211,154,0.7)">Pipeline</div>
+  <div class="layer-content">
+
+    <div class="svc" data-glean-id="svc-kinesis-streams">
+      <div class="svc-icon icon-orange">🌊</div>
+      <div class="svc-name">Kinesis Data Streams</div>
+      <div class="svc-sub">Real-time Event Ingest</div>
+      <span class="svc-badge managed">Managed</span>
+      <div class="svc-tooltip">
+        <h4>Amazon Kinesis Data Streams</h4>
+        <p>Real-time ingestion of dashboard events, user interactions, and widget data points.</p>
+        <ul>
+          <li>4 shards × 1 MB/s = 4 MB/s ingestion</li>
+          <li>24-hour retention (extendable to 7 days)</li>
+          <li>Consumers: Firehose + Lambda analytics</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-firehose">
+      <div class="svc-icon icon-orange">🔥</div>
+      <div class="svc-name">Kinesis Firehose</div>
+      <div class="svc-sub">Stream → S3</div>
+      <span class="svc-badge serverless">Serverless</span>
+      <div class="svc-tooltip">
+        <h4>Amazon Kinesis Data Firehose</h4>
+        <p>Buffers and delivers Kinesis stream data to S3 in Parquet format.</p>
+        <ul>
+          <li>Buffer: 128 MB or 60s (whichever first)</li>
+          <li>Inline Lambda transformation for enrichment</li>
+          <li>Automatic compression (GZIP)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-glue">
+      <div class="svc-icon icon-blue">🔧</div>
+      <div class="svc-name">AWS Glue</div>
+      <div class="svc-sub">ETL + Data Catalog</div>
+      <span class="svc-badge managed">Managed</span>
+      <div class="svc-tooltip">
+        <h4>AWS Glue</h4>
+        <p>Serverless ETL and Data Catalog for S3 data lake.</p>
+        <ul>
+          <li>Glue Crawlers auto-infer schemas</li>
+          <li>Glue Jobs for batch transformations (PySpark)</li>
+          <li>Data Catalog shared with Athena for SQL access</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-athena">
+      <div class="svc-icon icon-teal">🔍</div>
+      <div class="svc-name">Amazon Athena</div>
+      <div class="svc-sub">Serverless SQL on S3</div>
+      <span class="svc-badge serverless">Serverless</span>
+      <div class="svc-tooltip">
+        <h4>Amazon Athena</h4>
+        <p>Serverless SQL engine for querying Parquet data in S3. Used by Widget Service for historical analytics queries.</p>
+        <ul>
+          <li>Pay per TB scanned (~$5/TB)</li>
+          <li>Partition pruning reduces cost by 80%+</li>
+          <li>Results cached in S3 for repeated queries</li>
+          <li>Workgroup per tenant for cost isolation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-lambda-stream">
+      <div class="svc-icon icon-orange">⚡</div>
+      <div class="svc-name">Stream Processor</div>
+      <div class="svc-sub">Lambda · Real-time Agg</div>
+      <span class="svc-badge serverless">Serverless</span>
+      <div class="svc-tooltip">
+        <h4>Stream Processing Lambda</h4>
+        <p>Consumes from Kinesis, aggregates metrics in real time, and updates ElastiCache for live widget data.</p>
+        <ul>
+          <li>Batch window: 1s</li>
+          <li>Bisect-on-error for partial failures</li>
+          <li>Writes aggregates to DynamoDB + ElastiCache</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- connector -->
+<div class="layer-connector">
+  <svg width="300" height="28" viewBox="0 0 300 28">
+    <defs><marker id="arr6" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#343844"/></marker></defs>
+    <line x1="100" y1="4" x2="100" y2="22" stroke="#343844" stroke-width="1" marker-end="url(#arr6)"/>
+    <line x1="200" y1="4" x2="200" y2="22" stroke="#343844" stroke-width="1" marker-end="url(#arr6)"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     LAYER 7: OBSERVABILITY + CI/CD
+═══════════════════════════════════════════════ -->
+<div class="layer layer-ops" data-glean-id="layer-ops">
+  <div class="layer-label" style="color:rgba(150,100,255,0.7)">Ops</div>
+  <div class="layer-content">
+
+    <div class="svc" data-glean-id="svc-cloudwatch">
+      <div class="svc-icon icon-brand">📈</div>
+      <div class="svc-name">CloudWatch</div>
+      <div class="svc-sub">Metrics · Logs · Alarms</div>
+      <span class="svc-badge managed">Managed</span>
+      <div class="svc-tooltip">
+        <h4>Amazon CloudWatch</h4>
+        <p>Centralized observability: metrics dashboards, structured log aggregation, alarms to SNS → PagerDuty.</p>
+        <ul>
+          <li>Custom metrics: p50/p95/p99 latency per service</li>
+          <li>Log Insights for structured query of logs</li>
+          <li>Composite alarms to reduce alert noise</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-xray">
+      <div class="svc-icon icon-purple">🔭</div>
+      <div class="svc-name">AWS X-Ray</div>
+      <div class="svc-sub">Distributed Tracing</div>
+      <span class="svc-badge managed">Managed</span>
+      <div class="svc-tooltip">
+        <h4>AWS X-Ray</h4>
+        <p>End-to-end distributed tracing across API Gateway → ECS → RDS → ElastiCache.</p>
+        <ul>
+          <li>Service maps for dependency visibility</li>
+          <li>Trace sampling: 5% in prod</li>
+          <li>Integration with CloudWatch ServiceLens</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-codepipeline">
+      <div class="svc-icon icon-blue">🚀</div>
+      <div class="svc-name">CodePipeline</div>
+      <div class="svc-sub">CI/CD Orchestration</div>
+      <span class="svc-badge managed">Managed</span>
+      <div class="svc-tooltip">
+        <h4>AWS CodePipeline</h4>
+        <p>Orchestrates the full deployment pipeline: source → build → test → deploy.</p>
+        <ul>
+          <li>GitHub source → CodeBuild → ECR → ECS rolling deploy</li>
+          <li>Blue/green deployments via CodeDeploy</li>
+          <li>Manual approval gate before prod</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-ecr">
+      <div class="svc-icon icon-orange">📦</div>
+      <div class="svc-name">Amazon ECR</div>
+      <div class="svc-sub">Container Registry</div>
+      <span class="svc-badge managed">Managed</span>
+      <div class="svc-tooltip">
+        <h4>Amazon ECR</h4>
+        <p>Private Docker image registry for all microservices.</p>
+        <ul>
+          <li>Image scanning on push (ECR Enhanced Scanning)</li>
+          <li>Lifecycle policy: keep last 10 images per service</li>
+          <li>Cross-account access for staging/prod</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-iam">
+      <div class="svc-icon icon-red">🛡️</div>
+      <div class="svc-name">IAM + KMS</div>
+      <div class="svc-sub">Least Privilege · Encryption</div>
+      <span class="svc-badge critical">Security</span>
+      <div class="svc-tooltip">
+        <h4>IAM + KMS</h4>
+        <p>Fine-grained IAM roles per ECS task. KMS for encryption of RDS, S3, DynamoDB, and Secrets Manager.</p>
+        <ul>
+          <li>No long-lived access keys — IAM roles only</li>
+          <li>SCPs via AWS Organizations</li>
+          <li>CloudTrail for all API calls</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc" data-glean-id="svc-terraform">
+      <div class="svc-icon icon-purple">🏗️</div>
+      <div class="svc-name">Terraform / CDK</div>
+      <div class="svc-sub">Infrastructure as Code</div>
+      <div class="svc-tooltip">
+        <h4>Infrastructure as Code</h4>
+        <p>All infrastructure defined in Terraform (or CDK). No manual console changes in production.</p>
+        <ul>
+          <li>State stored in S3 + DynamoDB lock</li>
+          <li>Separate workspaces for dev/staging/prod</li>
+          <li>Module-based structure per service</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── DIVIDER ── -->
+<div class="divider"></div>
+
+<!-- ── REQUEST FLOWS ── -->
+<div class="flow-section" data-glean-id="flow-section">
+  <div class="flow-title">Request & Data Flows</div>
+  <div class="flows">
+
+    <div class="flow-card" data-glean-id="flow-dashboard-load">
+      <h4><span class="flow-dot" style="background:var(--artifact-primary-brand)"></span>Dashboard Page Load</h4>
+      <div class="flow-steps">
+        <div class="flow-step"><span class="num">1</span>Browser → Route 53 → CloudFront</div>
+        <div class="flow-step"><span class="num">2</span>Static JS/CSS from S3 via CloudFront</div>
+        <div class="flow-step"><span class="num">3</span>SPA bootstraps → Cognito JWT refresh</div>
+        <div class="flow-step"><span class="num">4</span>API GW REST → ALB → Dashboard Service</div>
+        <div class="flow-step"><span class="num">5</span>Dashboard Service → ElastiCache (cache hit)</div>
+        <div class="flow-step"><span class="num">6</span>Cache miss → RDS Read Replica</div>
+        <div class="flow-step"><span class="num">7</span>Response → ALB → API GW → Client</div>
+        <div class="flow-step"><span class="num">8</span>WebSocket API GW → Redis Pub/Sub for live updates</div>
+      </div>
+    </div>
+
+    <div class="flow-card" data-glean-id="flow-realtime-data">
+      <h4><span class="flow-dot" style="background:var(--artifact-positive)"></span>Real-time Widget Data</h4>
+      <div class="flow-steps">
+        <div class="flow-step"><span class="num">1</span>External data source → Kinesis Data Streams</div>
+        <div class="flow-step"><span class="num">2</span>Stream Processor Lambda consumes events</div>
+        <div class="flow-step"><span class="num">3</span>Aggregation computed → DynamoDB + ElastiCache</div>
+        <div class="flow-step"><span class="num">4</span>Widget Service polls ElastiCache (30s TTL)</div>
+        <div class="flow-step"><span class="num">5</span>Widget Service pushes update via WebSocket API GW</div>
+        <div class="flow-step"><span class="num">6</span>Connected clients receive update instantly</div>
+        <div class="flow-step"><span class="num">7</span>Firehose writes to S3 → Glue catalog</div>
+      </div>
+    </div>
+
+    <div class="flow-card" data-glean-id="flow-export">
+      <h4><span class="flow-dot" style="background:var(--aws-orange)"></span>Dashboard Export</h4>
+      <div class="flow-steps">
+        <div class="flow-step"><span class="num">1</span>User clicks Export → API GW → Export Lambda</div>
+        <div class="flow-step"><span class="num">2</span>Lambda renders dashboard via headless Chrome</div>
+        <div class="flow-step"><span class="num">3</span>PDF/PNG uploaded to S3 (private bucket)</div>
+        <div class="flow-step"><span class="num">4</span>Presigned URL (TTL: 1h) returned to client</div>
+        <div class="flow-step"><span class="num">5</span>SNS event → Notification Lambda → SES email</div>
+      </div>
+    </div>
+
+    <div class="flow-card" data-glean-id="flow-cicd">
+      <h4><span class="flow-dot" style="background:var(--aws-purple)"></span>Deploy Pipeline</h4>
+      <div class="flow-steps">
+        <div class="flow-step"><span class="num">1</span>Git push → GitHub webhook → CodePipeline</div>
+        <div class="flow-step"><span class="num">2</span>CodeBuild: test + lint + Docker build</div>
+        <div class="flow-step"><span class="num">3</span>Image pushed to ECR with commit SHA tag</div>
+        <div class="flow-step"><span class="num">4</span>CodeDeploy: Blue/Green ECS task replacement</div>
+        <div class="flow-step"><span class="num">5</span>ALB shifts 10% → 100% traffic over 5min</div>
+        <div class="flow-step"><span class="num">6</span>CloudWatch alarm rollback if error rate spikes</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── DESIGN DECISIONS ── -->
+<div style="margin-top:28px;" data-glean-id="design-decisions">
+  <div class="flow-title" style="font-family:monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--artifact-text-secondary);margin-bottom:14px;">Senior Engineering Design Decisions</div>
+  <div class="decisions">
+    <div class="decision-card" data-glean-id="decision-multitenancy">
+      <div class="label">Multi-Tenancy</div>
+      <p>Shared infrastructure, tenant-isolated data via <strong style="color:var(--artifact-text-primary)">row-level security</strong> in RDS (tenant_id column) and separate DynamoDB partition keys. Cognito custom scopes enforce API-level isolation.</p>
+    </div>
+    <div class="decision-card" data-glean-id="decision-caching">
+      <div class="label">Caching Strategy</div>
+      <p><strong style="color:var(--artifact-text-primary)">Cache-aside pattern</strong> — services check ElastiCache before DB. Widget data TTL is configurable per widget (15s–5min). CloudFront caches API responses for non-personalised endpoints.</p>
+    </div>
+    <div class="decision-card" data-glean-id="decision-scaling">
+      <div class="label">Auto-Scaling</div>
+      <p>ECS Service Auto Scaling on <strong style="color:var(--artifact-text-primary)">CPU (70%) + custom metric</strong> (SQS queue depth). Scale-out before market open, scale-in overnight. Lambda handles bursty workloads with no pre-provisioning.</p>
+    </div>
+    <div class="decision-card" data-glean-id="decision-availability">
+      <div class="label">High Availability</div>
+      <p>All stateful components (RDS, ElastiCache, NAT GW) deployed across <strong style="color:var(--artifact-text-primary)">3 AZs</strong>. RDS Multi-AZ auto-failover &lt;1 min. Route 53 health-check failover to DR region for critical outages.</p>
+    </div>
+    <div class="decision-card" data-glean-id="decision-security">
+      <div class="label">Security Posture</div>
+      <p>Zero-trust network: all services in private subnets, outbound via NAT only. <strong style="color:var(--artifact-text-primary)">Least-privilege IAM</strong> task roles, secrets in Secrets Manager, all data encrypted KMS CMK.</p>
+    </div>
+    <div class="decision-card" data-glean-id="decision-cost">
+      <div class="label">Cost Optimisation</div>
+      <p>Athena + S3 Parquet is <strong style="color:var(--artifact-text-primary)">~80% cheaper</strong> than a persistent Redshift cluster for ad-hoc analytics. Spot instances for non-prod. Kinesis on-demand mode avoids over-provisioning shards.</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /canvas -->
+
+<script>
+window.GleanBridge.postMessage({
+  actionId: 'export-pdf',
+  type: 'glean-add-menu',
+  metadata: { label: 'Export as PDF', icon: 'export' }
+});
+window.GleanBridge.onMessage('action', function(data) {
+  if (data.actionId === 'export-pdf') window.print();
+});
+</script>
+</body>
+</html>

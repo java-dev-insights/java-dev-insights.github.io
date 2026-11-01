@@ -1,12 +1,14 @@
 // Tracks
 export { default as SIDEBAR_DEFAULT_FRONTEND } from './frontend'
 export { default as SIDEBAR_DEFAULT_BACKEND } from './backend';
+export { default as SIDEBAR_BACKEND_JAVA } from './backend/java';
 export { default as SIDEBAR_DEFAULT_DEVOPS } from './devops';
 // Interview
 export { default as SIDEBAR_DEFAULT_INTERVIEW } from './interview';
 export { default as SIDEBAR_INTERVIEW_CODING } from './interview/coding';
 export { default as SIDEBAR_INTERVIEW_LLD } from './interview/lld';
-export { default as SIDEBAR_INTERVIEW_SYSTEM_DESIGN } from './interview/system-design';
+export { default as SIDEBAR_HLD_INTERVIEW } from './interview/hld-interview';
+export { default as SIDEBAR_HLD_CONCEPTS } from './interview/hld-concepts';
 export { default as SIDEBAR_INTERVIEW_CONCURRENCY } from './interview/concurrency';
 // AI
 export { default as SIDEBAR_DEFAULT_AI } from './ai';

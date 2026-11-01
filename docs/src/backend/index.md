@@ -4,7 +4,11 @@ Back-end development refers to the server-side of web development, encompassing 
 
 Back-end developers are responsible for building and maintaining these systems, which include managing user data, processing requests from the front-end, integrating APIs, and ensuring the application performs efficiently.
 
-<hr />
+::: details Backend Ecosystem :raising_hand:
+<YouTubeEmbed video-id="mZ27vUoOEB0" /><br/>
+
+<YouTubeEmbed video-id="rq3iOcOa7jk" /><br/>
+:::
 
 - Language - ☕ [Java](java)
 - Framework - ☘️ [Spring](spring)

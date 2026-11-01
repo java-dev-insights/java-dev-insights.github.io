@@ -5,25 +5,29 @@ const enum PATH_ENUMS {
     HOME = "/",
     // Tracks
     FRONTEND_INDEX = "/frontend/",
-    BACKEND_INDEX = "/backend/",
     DEVOPS_INDEX = "/devops/",
+    // Backend
+    BACKEND_INDEX = "/backend/",
+    BACKEND_JAVA = BACKEND_INDEX + "java/",
+    BACKEND_SPRING = BACKEND_INDEX + "spring/",
     // Interview
     INTERVIEW_INDEX = "/interview/",
     INTERVIEW_CODING = INTERVIEW_INDEX + "coding/",
     INTERVIEW_LLD = INTERVIEW_INDEX + "lld/",
-    INTERVIEW_SYSTEM_DESIGN = INTERVIEW_INDEX + "system-design/",
+    SYSTEM_DESIGN_INDEX = "/system-design/",
+    HLD_CONCEPTS = INTERVIEW_INDEX + "hld-concepts/",
+    HLD_INTERVIEW = INTERVIEW_INDEX + "hld/",
     INTERVIEW_CONCURRENCY = INTERVIEW_INDEX + "concurrency/",
     INTERVIEW_FAQS = INTERVIEW_INDEX + "faqs/",
-    INTERVIEW_BEHAVIORAL = INTERVIEW_INDEX + "behavioral",
+    INTERVIEW_BEHAVIORAL = INTERVIEW_INDEX + "behavioral/",
     INTERVIEW_SALARY_NEGOTIATIONS = INTERVIEW_INDEX + "salary-negotiations",
     // AI
     AI_INDEX = "/ai/",
     AI_INTRO = "/ai/intro",
     // Miscellaneous
     MISC_INDEX = "/misc/",
-    MISC_REFS = MISC_INDEX+"refs",
+    MISC_REFS = MISC_INDEX+"refs/",
     MISC_JEKYLL = MISC_INDEX+"jekyll",
-    MISC_TEMP = MISC_INDEX+"temp",
 }
 
 export default PATH_ENUMS;

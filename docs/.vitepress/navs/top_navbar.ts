@@ -17,10 +17,16 @@ const TOP_NAVBAR = [
 			{
 				items: [
 					{ text: "Coding", link: PATHS.INTERVIEW_CODING },
-					{ text: "LLD", link: PATHS.INTERVIEW_LLD },
-					{ text: "System Design", link: PATHS.INTERVIEW_SYSTEM_DESIGN },
 					{ text: "Concurrency", link: PATHS.INTERVIEW_CONCURRENCY },
 					{ text: "FAQs", link: PATHS.INTERVIEW_FAQS },
+				],
+			},
+			{
+				text: "System Design",
+				items: [
+					{ text: "LLD", link: PATHS.INTERVIEW_LLD },
+					{ text: "HLD Concepts", link: PATHS.HLD_CONCEPTS },
+					{ text: "HLD Interviews", link: PATHS.HLD_INTERVIEW },
 				],
 			},
 			{ text: "Behavioral", link: PATHS.INTERVIEW_BEHAVIORAL },
@@ -34,9 +40,14 @@ const TOP_NAVBAR = [
 	{
 		text: "Misc",
 		items: [
-			{ text: "References", link: PATHS.MISC_REFS },
+			{text: "References",
+			items: [
+				{ text: "Links", link: PATHS.MISC_REFS + "links" },
+				{ text: "Images", link: PATHS.MISC_REFS + "images" },
+				{ text: "Videos", link: PATHS.MISC_REFS + "videos" },
+			]},
 			{ text: "Jekyll", link: PATHS.MISC_JEKYLL },
-			{ text: "temp", link: PATHS.MISC_TEMP },
+			{ text: "Tools", link: "tools" },
 		],
 	},
 ];
