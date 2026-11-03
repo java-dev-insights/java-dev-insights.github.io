@@ -2,6 +2,8 @@
 
 - [title](url){:target="_blank"}
 - [API Protocols Explained: When to Use HTTP, WebSockets, gRPC & More](https://www.youtube.com/watch?v=lcPcyNAEZgo){:target="_blank"}
+- WEB-INF folder details : tocat/webapps/Root/WEB-INF/lib/
+- scheduler service : multiple instance in distributed system with cron jobs, Rows locking? 2 instance start the same job at same time (same-region vs multi-region)
 - GitHub Copilot
   - [documentation](https://docs.github.com/en/copilot){:target="_blank"}
   - [Getting code suggestions in your IDE with GitHub Copilot](https://docs.github.com/en/copilot/how-tos/completions/getting-code-suggestions-in-your-ide-with-github-copilot?tool=vscode){:target="_blank"}

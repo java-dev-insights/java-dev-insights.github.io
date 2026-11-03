@@ -85,3 +85,7 @@ To help tailor a targeted preparation strategy, could you tell me:
 [20] [https://www.youtube.com](https://www.youtube.com/watch?v=n7KX399AnCM)
 
 :::
+
+## Puzzles
+
+<YouTubeEmbed video-id="CqeJhnJoVL8" /><br/>

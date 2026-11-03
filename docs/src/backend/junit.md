@@ -15,7 +15,8 @@
 The point of writing automated tests is not so much to verify that the code works now, but to verify on an ongoing basis that it continues to work in the future.
 
 **Why use testing Framework?**  
-![]({{site.cdn}}/junit/why-testing-framework.png)
+
+<ImageComponent image-path='/junit/why-testing-framework.png' />
 
 **JUnit 4**
 

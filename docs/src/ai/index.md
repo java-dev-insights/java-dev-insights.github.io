@@ -90,3 +90,45 @@ ChatClient.builder().build()
 ```
 
 - SpringAdvisors
+
+## From old Notebook
+
+- AI-first Professionals
+- Get AI to execute things for you
+- AI will take 4 out of 5 jobs, Also create new Jobs/roles
+- AI agents, systems, swarms
+- PROMPTS Framework
+  - Pick
+  - Refine
+  - Operate
+  - Make
+  - Productize
+  - Trigger
+  - Synthesize
+- Claude
+  - Models : Haiku, Sonnet, Opus, Fable
+  - Efforts : Low, Medium, high, Extra, Max
+- Other prompt framework = ART framework : Act, Request and Terms
+- Skills : Teach AI once and re-use in future repeatedly
+- /skill-creator
+- [getmulti](https://getmulti.ai/)
+  - compare mode for prompt results
+  - Ask + auto-route -> selects best AI model and provider -> second opinion from other model
+- CLAUDE DESIGN
+  - AI readiness report website/tool for example
+  - Setup design system : use website url and scrape site design design and generate a library for claude to re-use
+  - template
+  - Publish this artifact
+- AI can act as Copyrighter, Career Counsellor, Data visualizer
+- Use it as AI graphic designer
+- CLAUDE COWORK
+  - Use in desktop app
+  - like an employee
+  - Add a folder for its access
+- Example : Use AI employee to search for jobs
+  - cowork with folder access having your resume
+  - Add linked in connector to search jobs and job description
+  - Find matching Jobs, Tailor Resume
+- Happenstance for research
+- n8n, zapier
+- Use Ai for content creation - insta, youtube, slides etc
