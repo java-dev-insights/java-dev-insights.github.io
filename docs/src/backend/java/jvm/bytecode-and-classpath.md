@@ -1,5 +1,11 @@
 # Bytecode & Classpath
 
+![](https://www.altexsoft.com/static/blog-post/2023/11/ca8d02be-543f-47e2-9060-3dadbb6af891.jpg)
+
+- Source code is compiled to JVM bytecode.
+- This bytecode can immediately be interpreted by the JVM interpreter.  
+- The interpreter also monitors how much each piece of bytecode is executed (run-time profiling) and hands off frequently executed code (the hot spots) to the just-in-time (JIT) compiler.
+
 ## The ByteCode - Java’s Magic
 
 <ImageComponent image-path='/java/core-java/bytecode.png' />
@@ -16,9 +22,6 @@
   - Entire Java program not compile to executable code all at once, as various run-time checks happen.
   - Not all sequences of bytecode are compiled, only those that will benefit from compilation, remaining code is simply interpreted.
 
-> Source code is compiled to JVM bytecode. This bytecode can immediately be interpreted by the JVM interpreter.  
-> The interpreter also monitors how much each piece of bytecode is executed (run-time profiling) and hands off frequently executed code (the hot spots) to the just-in-time (JIT) compiler.
-
 ### Bytecode to JVM
 
 ![bytecode to jvm](https://miro.medium.com/v2/0*jp6qfoiX-eX06AI9.png)
@@ -27,17 +30,20 @@
 
 ## PATH vs CLASSPATH
 
-- **NoClassDefFoundError** and **ClassNotFoundException** both occur when class is not found at runtime.
-- Due to incorrect/misconfigured CLASSPATH.
+- Both exceptions occur when class is not found at runtime due to incorrect/misconfigured CLASSPATH.
+  - **NoClassDefFoundError**
+  - **ClassNotFoundException**
 
-**PATH**
+### PATH
+
 * JDK_HOME/bin added to PATH env variable. 
 * can’t be overridden by any Java settings. 
 * OS finds binary and command typed in shell. Example - java, javac.
 * Windows - `set PATH=%PATH%; C:\Program Files\Java\JDK1.6.20\bin`
 * UNIX/Linux - `export PATH = ${PATH}:/opt/Java/JDK1.6.18/bin`
 
-**CLASSPATH**
+### CLASSPATH
+
 * Used by classloader to find bytecodes stored as .class.
 * Includes all directories with .class and JAR file required by your Java application.
 * can be overridden by command line: -classpath or -cp to both "java" and "javac" or by using ClassPath attribute in Manifest file inside JAR archive.

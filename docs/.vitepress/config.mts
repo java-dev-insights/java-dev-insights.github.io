@@ -8,8 +8,8 @@ const IS_GITHUB_ACTIONS = process.env.GITHUB_ACTIONS === 'true';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "java-dev-insights",
-  description: "java-dev-insights",
+  title: "Java Dev Insights",
+  description: "Java development insights and tutorials",
   // Use repository name for GitHub Pages, fallback to root '/' for Netlify
   base: IS_GITHUB_ACTIONS ? '/' : '/',
   cleanUrls: true,

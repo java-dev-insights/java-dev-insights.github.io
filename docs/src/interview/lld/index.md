@@ -98,3 +98,23 @@ Different teams choose different methodologies to manage these phases:
   - migrate data while system is live
   - handle millions of websocket connections
   - what changes when traffic suddenly becomes 10x - Black friday sale scenario
+
+## Top 15 Low-Level Design (LLD) Problems
+
+For these, focus deeply on Java-specific implementations: thread safety, concurrency primitives (java.util.concurrent), generic interfaces, clean decoupling, and memory management.
+
+1. Distributed Rate Limiter: Implement Token Bucket or Leaky Bucket using Redis/Java concurrency.
+2. In-Memory Cache (LRU/LFU): Build with eviction policies, ensuring thread-safe access without global locks.
+3. Custom Thread Pool Executors: Re-implement a lightweight version of Java’s ThreadPoolExecutor.
+4. Pub-Sub Messaging Event Bus: Support concurrent producers, asynchronous consumer groups, and backpressure.
+5. Splitwise / Expense Sharing Application: Structure complex financial balance models using clean SOLID interfaces.
+6. Parking Lot System: Handle multiple vehicle types, spot allocation algorithms, and concurrent ticketing.
+7. Movie Booking System (BookMyShow): Solve the concurrency challenge of preventing double-booking during high-traffic checkout.
+8. Elevator Control System: Design scheduling algorithms optimized for traffic throughput across multiple elevators.
+9. Snake and Ladder / Chess Game Engine: Focus on clean state machines and separation of game logic from presentation.
+10. Distributed Cron Job Scheduler: Schedule and execute tasks dynamically across multiple worker threads.
+11. E-Commerce Checkout & Inventory Allocator: Handle stock reservations, item expiration, and thread-safe lock-free inventory updates.
+12. Vending Machine: Implement using the State Pattern to transition seamlessly between payment, product selection, and dispensing.
+13. Logging Framework: Design an asynchronous logger like Log4j, supporting multiple appenders (Console, File) and custom formatting.
+14. File Storage & Indexing System: Model a basic in-memory file structure (Directories, Files) with permissions.
+15. Ride-Sharing Service (Uber/Lyft matching engine): Structure proximity-based matching algorithms handling real-time driver updates.
