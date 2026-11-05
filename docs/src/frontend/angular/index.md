@@ -126,17 +126,17 @@ ng test
 * Hierarchical structure of views is a key factor in the way Angular detects and responds to changes in the DOM and app data.
 - 5 Pillars of Angular (Angular Ecosystem) - ***Component***, ***Services***, ***Directives***, ***Pipes***, ***Routers***.
 
-<ImageComponent image-path='/angular/ng-architecture.png' title='ng-architecture' />
+<OldImageComponent image-path='/angular/ng-architecture.png' title='ng-architecture' />
 
 ### Object Oriented Design v/s Component Based Design
 
-<ImageComponent image-path='/angular/browser-development.png' />
+<OldImageComponent image-path='/angular/browser-development.png' />
 
 ## Folder Structure
 - [understanding folder structure](https://overflowjs.com/posts/Angular-8-Understanding-Directory-Structure-and-Creating-CRUD-App){:target="_blank"}
 - [Structure](https://www.c-sharpcorner.com/blogs/folder-structure-of-angular-5-project){:target="_blank"}
 
-<ImageComponent image-path='/angular/folder-structure.png' />
+<OldImageComponent image-path='/angular/folder-structure.png' />
 
 **package.json**
 - scripts
@@ -144,7 +144,7 @@ ng test
 - dependencies (***npm install*** added here)
 - devDependencies
 
-<ImageComponent image-path='/angular/package-json.png' />
+<OldImageComponent image-path='/angular/package-json.png' />
 
 **angular.json**
 - bootstrapping (image on below page)
@@ -152,7 +152,7 @@ ng test
   - bootstrap, jquery and popper
   - aot flag
 
-<ImageComponent image-path='/angular/angular-json.png' />
+<OldImageComponent image-path='/angular/angular-json.png' />
 
 * index.html
   - file that hosts your bootstrap component and its hierarchy
@@ -319,11 +319,11 @@ canDeactivate() {
 
 ## RxJS
 
-<ImageComponent image-path='/angular/rxjs.png' />
+<OldImageComponent image-path='/angular/rxjs.png' />
 
 ### Promise vs Observable
 
-<ImageComponent image-path='/angular/promise-vs-observable.png' />
+<OldImageComponent image-path='/angular/promise-vs-observable.png' />
 
 | Promise                                                            | Observable                                                                   |
 | ------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
@@ -337,11 +337,11 @@ canDeactivate() {
 |                      | operators like map, forEach, reduce, filter    |
 | Push errors to child promises  | Subscribe method for centralized and predictable error handling.  |
 
-<ImageComponent image-path='/angular/observalble-code.png' />
+<OldImageComponent image-path='/angular/observalble-code.png' />
 
 ### Http Calls using RxJs
 
-<ImageComponent image-path='/angular/rxjs-http.png' />
+<OldImageComponent image-path='/angular/rxjs-http.png' />
 
 ```ts
 import { HttpClientModule } from '@angular/common/http';
@@ -677,11 +677,11 @@ https://blog.angular-university.io/angular-2-redux-ngrx-rxjs/)
 
 ***The main benefit, in my opinion, is that by binding all our components inputs to state properties we can change the change detection strategy to on push, and this is going to be a boost on performance for the application.***
 
-<ImageComponent image-path='/angular/ngrx-state-diagram.png' />
+<OldImageComponent image-path='/angular/ngrx-state-diagram.png' />
 
-<ImageComponent image-path='/angular/ngrx-code-action.png' />
+<OldImageComponent image-path='/angular/ngrx-code-action.png' />
 
-<ImageComponent image-path='/angular/ngrx-code-reducer.png' />
+<OldImageComponent image-path='/angular/ngrx-code-reducer.png' />
 
 ## Checklist Topics
 - Directives

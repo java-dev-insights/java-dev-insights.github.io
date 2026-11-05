@@ -35,7 +35,7 @@ class Car {
 
 ## Assigning Object reference variables
 
-<ImageComponent image-path='/java/core-java/assign-object.png' />
+<OldImageComponent image-path='/java/core-java/assign-object.png' />
 
 ## Constructors
 

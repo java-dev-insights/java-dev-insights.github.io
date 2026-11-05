@@ -10,7 +10,7 @@ Java divides the operators into the following groups:
 
 ## Operator Priority
 
-<ImageComponent image-path='/java/core-java/operator-priority.png' />
+<OldImageComponent image-path='/java/core-java/operator-priority.png' />
 
 ## Bitwise Operators
 
@@ -19,7 +19,7 @@ Java divides the operators into the following groups:
 * left shift operation on a byte or short value will be an int, hence the bits not lost till they get past 31st.
 * **negative byte/short are sign-extended when promoted to int**, higher order filled as 1. This is why need to discard higher order bits by type-casting result back.
 
-<ImageComponent image-path='/java/core-java/bit-operator.png' />
+<OldImageComponent image-path='/java/core-java/bit-operator.png' />
 
 ## Right Shift
 

@@ -1,6 +1,6 @@
 # Inheritance
 
-<ImageComponent image-path='/java/core-java/inheritance.png' />
+<OldImageComponent image-path='/java/core-java/inheritance.png' />
 
 * For hierarchical classifications - superclass and subclass.
 * `class B extends A {}`
@@ -101,4 +101,4 @@ a.callme();         // calls B's version of callme
 
 ## Types of Inheritance
 
-<ImageComponent image-path='/java/core-java/inheritance-types.png'/>
+<OldImageComponent image-path='/java/core-java/inheritance-types.png'/>

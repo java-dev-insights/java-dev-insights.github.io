@@ -27,6 +27,6 @@ console.log(Object.prototype === f.__proto__.__proto__);
 
 - prototypes can be used to implement inheritance in js.
 
-<ImageComponent image-path='/ui/js/prototypes.png' />
+<OldImageComponent image-path='/ui/js/prototypes.png' />
 
-<ImageComponent image-path='/ui/js/inheritance-with-prototype.png' />
+<OldImageComponent image-path='/ui/js/inheritance-with-prototype.png' />

@@ -37,7 +37,7 @@
 
 ## XML Structure
 
-<ImageComponent image-path='/webservices/xml/xml-structure.png' />
+<OldImageComponent image-path='/webservices/xml/xml-structure.png' />
 
 
 | Benefits of XML  |                                                                                                                                                                                                                   |

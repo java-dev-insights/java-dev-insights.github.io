@@ -8,7 +8,7 @@ PROGRAMMING PARADIGM :   Computer Program = code + data.
 
 ## Four pillars of OOP
 
-<ImageComponent image-path='/java/oop-and-ood/oops-concept.jpg' />
+<OldImageComponent image-path='/java/oop-and-ood/oops-concept.jpg' />
 
 [![OOP pillars - bytebytego](https://assets.bytebytego.com/diagrams/0197-4-fundamental-pillars-of-object-oriented-programming.png)](https://bytebytego.com/guides/the-fundamental-pillars-of-object-oriented-programming/)
 

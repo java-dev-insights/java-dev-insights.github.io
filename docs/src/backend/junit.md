@@ -16,7 +16,7 @@ The point of writing automated tests is not so much to verify that the code work
 
 **Why use testing Framework?**  
 
-<ImageComponent image-path='/junit/why-testing-framework.png' />
+<OldImageComponent image-path='/junit/why-testing-framework.png' />
 
 **JUnit 4**
 
@@ -60,14 +60,14 @@ testRuntime("org.junit.platform:junit-platform-runner:1.0.0-M4")
 
 # JUnit 4 vs JUnit 5
 
-<ImageComponent image-path='/junit/junit4-vs-junit5.png' />
+<OldImageComponent image-path='/junit/junit4-vs-junit5.png' />
 
 ## JUnit 5 Architecture
 
 ```
 JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage
 ```
-<ImageComponent image-path='/junit/junit5-architecture.png' />
+<OldImageComponent image-path='/junit/junit5-architecture.png' />
 
 ### JUnit Platform
 
@@ -153,7 +153,7 @@ public class AppTest {
 }
 ```
 
-<ImageComponent image-path='/junit/nested-unit-tests.png' />
+<OldImageComponent image-path='/junit/nested-unit-tests.png' />
 
 
 ### Conditional Execution
@@ -248,7 +248,7 @@ public class AppTest {
 
 ## TestInfo and TestReporter
 
-<ImageComponent image-path='/junit/testinfo-testreporter.png' />
+<OldImageComponent image-path='/junit/testinfo-testreporter.png' />
 
 ## Test Suites
 
@@ -290,7 +290,7 @@ static void beforeAllInit(){
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class MathUtilTest{...}
 ```
-<ImageComponent image-path='/junit/junit-lifecycle.png' />
+<OldImageComponent image-path='/junit/junit-lifecycle.png' />
 
 
 ## Maven Surefire Plugin

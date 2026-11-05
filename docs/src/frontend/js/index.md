@@ -5,7 +5,7 @@
   - **lightweight** - small memory footprint, easy to implement.
   - **interpreted** - no compilation, instructions are executed directly as opposed to java where intermediate bytecode is compiled and then executed.
 
-<ImageComponent image-path='/ui/js/why-js.png' />
+<OldImageComponent image-path='/ui/js/why-js.png' />
 
 - Browser receives html as a string and constructs a DOM tree from it. This conversion will always result in same output.
 - JS is used to provide dynamic functionality to this.

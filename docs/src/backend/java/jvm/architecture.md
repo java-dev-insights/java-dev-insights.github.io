@@ -2,7 +2,7 @@
 
 ![JVM Architecture](https://miro.medium.com/v2/1*K2AmthJxslFa2-NwnT6zHw.png)
 
-<ImageComponent image-path='/java/jvm-architecture/jvm-architecture.png' />
+<OldImageComponent image-path='/java/jvm-architecture/jvm-architecture.png' />
 
 ![JVM architecture](https://techvidvan.com/tutorials/wp-content/uploads/sites/2/2020/06/JVM-Model.jpg)
 
@@ -33,4 +33,4 @@ Activities are performed in a strict order:
    - ***Resolution***: transforming symbolic references from the type into direct references.
 3. **Initialization**: invoking Java code that initializes class variables to their proper starting values.
 
-<ImageComponent image-path='/java/jvm-architecture/classloader-subsystem.png' />
+<OldImageComponent image-path='/java/jvm-architecture/classloader-subsystem.png' />

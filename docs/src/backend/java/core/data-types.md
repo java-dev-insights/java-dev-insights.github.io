@@ -145,7 +145,7 @@ int x = 0b1101_0101_0001_1010;  // underscores discarded on compile
 * Hexadecimal floating-point literals - 0x12.2P2(=72.5).
   * P is called **binary exponent**, power-of-two to be multiplied.
 
-<ImageComponent image-path='/java/core-java/octal-decimal-computation.png' />
+<OldImageComponent image-path='/java/core-java/octal-decimal-computation.png' />
 
 ### Character Literals
 
@@ -220,7 +220,7 @@ twoD[2] = new int[5];
 twoD[3] = new int[5];
 ```
 
-<ImageComponent image-path='/java/core-java/2d-array.png' />
+<OldImageComponent image-path='/java/core-java/2d-array.png' />
 
 ### Irregular array – sparsely populated 2D array
 

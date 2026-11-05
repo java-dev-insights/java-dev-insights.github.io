@@ -1,6 +1,6 @@
 # SOLID Principles
 
-<ImageComponent image-path='/java/oop-and-ood/solid.png' />
+<OldImageComponent image-path='/java/oop-and-ood/solid.png' />
 
 - **Single Responsibility Principle**
   - A class should always have only one reasonability.

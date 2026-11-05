@@ -16,9 +16,9 @@
 |Class Binding|`[class.active = “isActive”]`|
 |Style Binding|[style.*]|
 
-<ImageComponent image-path='/angular/data-binding.png' />
+<OldImageComponent image-path='/angular/data-binding.png' />
 
-<ImageComponent image-path='/angular/data-bindings.png' />
+<OldImageComponent image-path='/angular/data-bindings.png' />
 
 ```
 <input type="text" class="form-control" (input)="onUpdateServerName($event)">
@@ -53,7 +53,7 @@ onUpdateServerName(event:Event){
 
 ### @NgModule
 
-<ImageComponent image-path='/angular/modules-app-diagram.png' />
+<OldImageComponent image-path='/angular/modules-app-diagram.png' />
 
 
 * Angular app is a set of NgModules.
@@ -152,7 +152,7 @@ export class AppComponent {
 })
 ```
 
-<ImageComponent image-path='/angular/component.png' />
+<OldImageComponent image-path='/angular/component.png' />
 
 |properties|  |
 |---|---|
@@ -190,7 +190,7 @@ export class TurnGreenDirective{
 }
 ```
 
-<ImageComponent image-path='/angular/directive.png' />
+<OldImageComponent image-path='/angular/directive.png' />
 
 #### Structural Directives
 
@@ -300,9 +300,9 @@ constructor(private service: HeroService) { }
 *	When Angular discovers that a component depends on a service, it first checks if the injector already has any existing instances of that service. If a requested service instance does not yet exist, the injector makes one using the registered provider, and adds it to the injector before returning the service to Angular.
 *	When all requested services have been resolved and returned, Angular can call the component's constructor with those services as arguments. The process of HeroService injection looks something like this:
 
-<ImageComponent image-path='/angular/dependency-injection.png' />
+<OldImageComponent image-path='/angular/dependency-injection.png' />
 
-<ImageComponent image-path='/angular/hierarchial-di.png' />
+<OldImageComponent image-path='/angular/hierarchial-di.png' />
 
 #### Providing services
 
@@ -418,7 +418,7 @@ addImpure(1); // 3
 import { Input, ... } from '@angular/core';
 ```
 
-<ImageComponent image-path='/angular/content-projection.png' />
+<OldImageComponent image-path='/angular/content-projection.png' />
 
 ### Custom Binding - Property and Event
 
@@ -607,7 +607,7 @@ export class MessageComponent implements OnInit {
 }
 ```
 
-<ImageComponent image-path='/angular/change-detector-hierarchy.png' />
+<OldImageComponent image-path='/angular/change-detector-hierarchy.png' />
 
 ### Change Detection Strategies
 
@@ -640,7 +640,7 @@ export class MessageComponent implements OnInit {
 * Angular offers lifecycle hooks that provide visibility into these key life moments and the ability to act when they occur.
 * A directive has the same set of lifecycle hooks.
 
-<ImageComponent image-path='/angular/lifecycle-of-directive-vs-component.png' />
+<OldImageComponent image-path='/angular/lifecycle-of-directive-vs-component.png' />
 
 ### ngOnChanges()
 * Respond when Angular (re)sets data-bound input properties. (@Input)
@@ -692,9 +692,9 @@ export class ServerElementComponent implements onInit, onChnages{
 *	Unsubscribe Observables and detach event handlers to avoid memory leaks.
 *	Called just before Angular destroys the directive/component.
 
-<ImageComponent image-path='/angular/lifecycle-hooks.png' />
+<OldImageComponent image-path='/angular/lifecycle-hooks.png' />
 
-<ImageComponent image-path='/angular/ngOnChanges-example.png' />
+<OldImageComponent image-path='/angular/ngOnChanges-example.png' />
 
 
 ## JIT vs AOT
@@ -709,11 +709,11 @@ ng build --prod --jit
 ng build --prod --aot
 ```
 
-<ImageComponent image-path='/angular/jit-vs-aot.png' />
+<OldImageComponent image-path='/angular/jit-vs-aot.png' />
 
-<ImageComponent image-path='/angular/jit-vs-aot-points.png' />
+<OldImageComponent image-path='/angular/jit-vs-aot-points.png' />
 
-<ImageComponent image-path='/angular/jit-vs-aot-flow.png' />
+<OldImageComponent image-path='/angular/jit-vs-aot-flow.png' />
 
 
 ### Flow of events with Just-in-Time Compilation

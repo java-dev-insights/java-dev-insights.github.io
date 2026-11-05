@@ -8,7 +8,7 @@
 
 ## The ByteCode - Java’s Magic
 
-<ImageComponent image-path='/java/core-java/bytecode.png' />
+<OldImageComponent image-path='/java/core-java/bytecode.png' />
 
 - **Bytecode**
   - highly optimized set of instructions executed by JVM.
@@ -82,7 +82,7 @@
 - /lib - supporting files: jars, config files, property files, fonts, sounds, icons etc. 
   - most important is **rt.jar** containing "java API".
 
-<ImageComponent image-path='/java/core-java/public-vs-private-jre.png' />
+<OldImageComponent image-path='/java/core-java/public-vs-private-jre.png' />
 
 * JDK installation brings private JRE and optionally a public copy.
 * **private JRE**

@@ -1,6 +1,6 @@
 # JDK vs JRE vs JVM
 
-<ImageComponent image-path='/java/jvm-architecture/jdk-jre-jvm.png' />
+<OldImageComponent image-path='/java/jvm-architecture/jdk-jre-jvm.png' />
 
 - **JVM**
   - virtual machine that run the Java bytecodes.

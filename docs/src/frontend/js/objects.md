@@ -63,7 +63,7 @@ console.log(myObj);
 - For JSON, keys can also be any valid string.
 - The JSON values can only be one of the six datatypes (strings, numbers, objects, arrays, Boolean, null). JavaScript values on the other hand can be any valid JavaScript Structure.
 
-<ImageComponent image-path='/angular/json-vs-jsObject.png' />
+<OldImageComponent image-path='/angular/json-vs-jsObject.png' />
 
 - d is JSON string
 - e is JavaScript Object
@@ -72,7 +72,7 @@ console.log(myObj);
 
 | JSON                                   | JS Object                                      |
 | -------------------------------------- | ---------------------------------------------- |
-| <ImageComponent image-path='/angular/json.png' /> | <ImageComponent image-path='/angular/jsObject.png' /> |
+| <OldImageComponent image-path='/angular/json.png' /> | <OldImageComponent image-path='/angular/jsObject.png' /> |
 
 ## Global Objects
 

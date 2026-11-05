@@ -34,7 +34,7 @@
 - **Uniqueness**
   - Class loaded by the parent classloader should not be again loaded by the child classloader.
 
-<ImageComponent image-path='/java/jvm-architecture/classloader-subsystem-loading.png' />
+<OldImageComponent image-path='/java/jvm-architecture/classloader-subsystem-loading.png' />
 
 ![](https://intexsoft.com/app/uploads/2019/10/jdk-2.jpg.webp)
 
@@ -74,7 +74,7 @@
 - Compiles parts of byte code having similar functionality at same time reducing compilation-time.
 - Compiler here refers to translator for instruction sets of JVM to that of a specific CPU.
 
-<ImageComponent image-path='/java/jvm-architecture/jit-compilation.jpg' />
+<OldImageComponent image-path='/java/jvm-architecture/jit-compilation.jpg' />
 
 ### JNI (Java Native Interface)
 
@@ -82,7 +82,7 @@
 
 ## How Java Code Runs
 
-<ImageComponent image-path='/java/jvm-architecture/how-java-code-runs.png' />
+<OldImageComponent image-path='/java/jvm-architecture/how-java-code-runs.png' />
 
 ![](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*HWkfCG1q4DFsFfoF)
 
@@ -90,8 +90,8 @@
 
 JVM Heap memory is divided into two parts – Young Generation and Old Generation.
 
-<ImageComponent image-path='/java/jvm-architecture/java-memory-model.png' />
-<ImageComponent image-path='/java/jvm-architecture/jmm-diagram.png' />
+<OldImageComponent image-path='/java/jvm-architecture/java-memory-model.png' />
+<OldImageComponent image-path='/java/jvm-architecture/jmm-diagram.png' />
 
 ### Young Generation
 
@@ -160,7 +160,7 @@ JVM Heap memory is divided into two parts – Young Generation and Old Generatio
     - memory provided by the OS to a particular Application for its own usage
   - MetaSpace - class meta-data and string pool
 
-<ImageComponent image-path='/java/jvm-architecture/jmm-java8.png' />
+<OldImageComponent image-path='/java/jvm-architecture/jmm-java8.png' />
 ![](https://intexsoft.com/app/uploads/2019/10/jdk-4.jpg.webp)
 
 ### Java Heap Memory Switches
@@ -181,9 +181,9 @@ JVM Heap memory is divided into two parts – Young Generation and Old Generatio
 |-XX:NewRatio	        |For providing ratio of old/new generation sizes. The default value is 2.|
 |MinMetaspaceFreeRatio<br>MaxMetaspaceFreeRatio	|minimum percentage of class metadata capacity free after **garbage collection**|
 
-<ImageComponent image-path='/java/jvm-architecture/heap-memory-switches.png' />
+<OldImageComponent image-path='/java/jvm-architecture/heap-memory-switches.png' />
 
-<ImageComponent image-path='/java/jvm-architecture/heap-memory-switches-generation.png' />
+<OldImageComponent image-path='/java/jvm-architecture/heap-memory-switches-generation.png' />
 
 ## Java Garbage Collection
 
@@ -437,7 +437,7 @@ Let’s go through each of the columns one by one.
  
 Now, Perm Gen is not there and moved to heap as metaSpace so no more option 2.
 
-<ImageComponent image-path='/java/jvm-architecture/outOfMemoryError.png' />
+<OldImageComponent image-path='/java/jvm-architecture/outOfMemoryError.png' />
 
 #### Long Term Solution: 
 - Short Term Solution
