@@ -17,7 +17,7 @@
 import { ref, computed, defineProps } from 'vue';
 
 const props = defineProps({
-  prefix: {type: String, default: 'https://raw.githubusercontent.com/arpit04tripathi/cdn/main/notebook'},
+  prefix: {type: String, default: 'https://raw.githubusercontent.com/arpit04tripathi/images/main/'},
   imagePath: { type: String, required: true },
   showDebugText: { type: Boolean, default: false },
   title: { type: String }

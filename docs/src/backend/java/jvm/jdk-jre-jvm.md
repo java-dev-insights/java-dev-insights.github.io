@@ -1,7 +1,5 @@
 # JDK vs JRE vs JVM
 
-<OldImageComponent image-path='/java/jvm-architecture/jdk-jre-jvm.png' />
-
 - **JVM**
   - virtual machine that run the Java bytecodes.
   - **Class loader system** + **runtime data area** + **Execution Engine**
@@ -12,7 +10,12 @@
   - **JRE** + **Development/debugging tools**
   - (Java compiler javac in its /bin) and tools (ex. javaDoc, debugger)
 
+<ImageComponent image-path='/java/jdk-jre-jvm.png' />
+
+::: details Old images
 ![](https://intexsoft.com/app/uploads/2019/10/jdk-1.jpg.webp)
+<OldImageComponent image-path='/java/jvm-architecture/jdk-jre-jvm.png' />
+:::
 
 ## What to use when?
 

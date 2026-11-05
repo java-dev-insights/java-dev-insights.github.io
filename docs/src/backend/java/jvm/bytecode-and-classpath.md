@@ -8,7 +8,13 @@
 
 ## The ByteCode - Java’s Magic
 
+<ImageComponent image-path='/java/java-bytecode.png' />
+
+::: details Old Images
 <OldImageComponent image-path='/java/core-java/bytecode.png' />
+![bytecode to jvm](https://miro.medium.com/v2/0*jp6qfoiX-eX06AI9.png)
+![JMV compile-interpret-jit](https://zhijunchen.com/wp-content/uploads/2021/04/JIT.png)
+:::
 
 - **Bytecode**
   - highly optimized set of instructions executed by JVM.
@@ -22,11 +28,6 @@
   - Entire Java program not compile to executable code all at once, as various run-time checks happen.
   - Not all sequences of bytecode are compiled, only those that will benefit from compilation, remaining code is simply interpreted.
 
-### Bytecode to JVM
-
-![bytecode to jvm](https://miro.medium.com/v2/0*jp6qfoiX-eX06AI9.png)
-
-![JMV compile-interpret-jit](https://zhijunchen.com/wp-content/uploads/2021/04/JIT.png)
 
 ## PATH vs CLASSPATH
 

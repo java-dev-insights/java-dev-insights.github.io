@@ -7,6 +7,7 @@ import 'vitepress-mermaid-preview/dist/index.css';
 import { YouTubeEmbed } from '@miletorix/vitepress-youtube-embed';
 import '@miletorix/vitepress-youtube-embed/style.css';
 import './style.css';
+import OldImageComponent from '../../components/OldImageComponent.vue';
 import ImageComponent from '../../components/ImageComponent.vue';
 import NotFound from '../../components/NotFound.vue';
 import AsideElementComponent from '../../components/AsideElementComponent.vue';
@@ -26,6 +27,7 @@ export default {
   enhanceApp({ app, router, siteData }) {
     app.component('YouTubeEmbed', YouTubeEmbed);
     app.component('ImageComponent', ImageComponent);
+    app.component('OldImageComponent', OldImageComponent);
     initComponent(app);
   }
 } satisfies Theme
