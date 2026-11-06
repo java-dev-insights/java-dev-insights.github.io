@@ -30,7 +30,7 @@ const SIDEBAR_BACKEND_JAVA = [
 			{ text: "Bytecode & Classpath", link: PATHS.BACKEND_JAVA + "jvm/bytecode-and-classpath" },
 			{ text: "JDK vs JRE vs JVM", link: PATHS.BACKEND_JAVA + "jvm/jdk-jre-jvm" },
 			{ text: "JVM Architecture", link: PATHS.BACKEND_JAVA + "jvm/architecture" },
-			{ text: "JVM Memory Management", link: PATHS.BACKEND_JAVA + "jvm/memory-management" },
+			{ text: "JVM Memory Management", link: PATHS.BACKEND_JAVA + "jvm/jmm" },
 			{ text: "Garbage Collection (GC)", link: PATHS.BACKEND_JAVA + "jvm/garbage-collection" },
 			{ text: "JVM Architecture One Page", link: PATHS.BACKEND_JAVA + "jvm-architecture" },
 		],
