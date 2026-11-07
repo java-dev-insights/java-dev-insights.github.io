@@ -6,6 +6,13 @@ const SIDEBAR_DEFAULT_AI = [
         // text: 'Examples',
         items: [
           { text: 'Introduction', link: PATHS.AI_INDEX+'intro' },
+          { text: 'MCP', link: PATHS.AI_INDEX+'mcp' },
+        ]
+      },{
+        text: 'Claude',
+        items: [
+          { text: 'Introduction', link: PATHS.AI_INDEX+'claude/' },
+          { text: 'Claude Code', link: PATHS.AI_INDEX+'claude/code' },
         ]
       },
     ]

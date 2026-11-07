@@ -1,14 +1,4 @@
-# Claude Code
-
-## References
-
-- [Claude Code for Everyone](https://learning.oreilly.com/live-events/claude-code-for-everyone/0642572274368/0642572301576/){target="_blank"}
-
-## What is Claude Code?
-
-- Claude Code is an AI agent
-- Regular AI (like chatgpt) gives you direction while claude code can drive you to destination
-- Claude Cowork is build on Claude Code
+# Intro to Claude
 
 ## commands vs skills vs agents
 

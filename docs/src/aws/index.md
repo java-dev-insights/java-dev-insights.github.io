@@ -3,6 +3,11 @@
 - Amazon Web Services
 - [AWS Regional Services](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/?p=ngi&loc=4){target="_blank"}
 
+<YouTubeEmbed video-id="h3St8AXYwCs" /><br/>
+
+<YouTubeEmbed video-id="GZ8nnWdS8zM" /><br/>
+
+
 ## Shared Responsibility Model
 
 ![](https://d1.awsstatic.com/onedam/marketing-channels/website/aws/en_US/product-categories/security-identity-compliance/compliance/approved/images/7a404923-5572-409c-b30e-6d44706bcd89.094727e5c591e9a96edf10578d0bc1172d9e4553.jpeg)
