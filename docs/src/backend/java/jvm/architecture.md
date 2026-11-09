@@ -14,6 +14,8 @@ outline: [2,4]
 
 ![How JVM works - bytebytego](https://substackcdn.com/image/fetch/$s_!S4We!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff4d477b4-f73d-47e6-a8f5-14c0fe4e8095_2484x3002.png)
 
+![Runtime Memory Allocation](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*HWkfCG1q4DFsFfoF)
+
 ## JVM Components
 
 | JVM Components           |                                                                                                                        |
@@ -25,6 +27,14 @@ outline: [2,4]
 | Program Counter Register | PC (program counter) register, Address of JVM instruction currently being executed.                                    |
 | Native Method Stack      | contains all the native methods used in the application                                                                |
 | Execution Engine.        | A virtual processor<br>Interpreter: Read bytecode stream then execute the instructions.<br>Just-In-Time (JIT) compiler |
+
+![](https://miro.medium.com/v2/1*4bA0XMDs9x_3haGRwcUyyQ.png)
+
+
+| Memory Area  | Shared or Per-Thread?  | What Lives There?                                                                                  |
+| ------------ | ---------------------- | -------------------------------------------------------------------------------------------------- |
+| Stack Memory | 👤 Per-Thread (Private) | Local primitive variables (int, boolean), method arguments, and reference pointers.                |
+| Heap Memory  | 🌐 Shared (All Threads) | Actual instantiated objects (e.g., new Person()), instance variables, arrays, and the String Pool. |
 
 ## ClassLoader Subsystem
 
