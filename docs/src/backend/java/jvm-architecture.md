@@ -1,48 +1,6 @@
 # JVM Architecture (old)
-## Method Area (Perm Gen)
-### Java Heap Memory Switches
-
-- Java provides a lot of memory switches that we can use to set the memory sizes and their ratios.
-- Some of the commonly used memory switches are:
-
-|VM SWITCH            |VM SWITCH DESCRIPTION |
-|---                  |---|
-|-Xms                 |initial heap size when JVM starts|
-|-Xmx                 |maximum heap size.|
-|-Xmn                 |size of the Young Generation, rest of the space goes for Old Generation.|
-|-XX:PermGen          |initial size of the Permanent Generation memory|
-|-XX:MaxPermGen       |maximum size of Perm Gen|
-|-XX:MetaspaceSize    ||
-|-XX:MaxMetaspaceSize ||
-|-XX:SurvivorRatio	  |ratio of Eden space and Survivor Space<br>Young Generation=10m with VM switch -XX:SurvivorRatio=2 then 5m will be reserved for Eden Space and 2.5m each for both the Survivor spaces. The default value is 8.|
-|-XX:NewRatio	        |For providing ratio of old/new generation sizes. The default value is 2.|
-|MinMetaspaceFreeRatio<br>MaxMetaspaceFreeRatio	|minimum percentage of class metadata capacity free after **garbage collection**|
-
-<OldImageComponent image-path='/java/jvm-architecture/heap-memory-switches.png' />
-
-<OldImageComponent image-path='/java/jvm-architecture/heap-memory-switches-generation.png' />
-
 ## Java Garbage Collection
-
-- Process to identify and remove the unused objects from memory and free up the space.
-- Java has **automatic garbage collection**.
-- **Garbage Collector**, background program that looks for unreferenced objects, which are deleted to reclaim memory.
-- Garbage collection involves three steps:
-  - **Marking** – identifies objects not in use.
-  - **Normal Deletion** - removes the unused objects and reclaim the free space.
-  - **Deletion with Compacting** - For better performance, all survived objects moved together.
-
-Problems with simple mark and delete approach.
-- Not efficient, because most of the newly created objects will become unused.
-- Objects that are in-use for multiple garbage collection cycle are most likely to be in-use for future cycles too.
-
-Due to these problems, **Java Garbage Collection is Generational**.  
-We have **Young Generation** and **Old Generation** spaces in the heap memory.
-
 ### Garbage Collection Types
-
-Use JVM switch to enable the garbage collection strategy for the application.  
-There are 5 types of garbage collection.
 
 #### Serial GC (-XX:+UseSerialGC)
 

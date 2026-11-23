@@ -6,6 +6,9 @@
 
 - Skills Plan : [AI Agents](skills/ai-agents) and [Agentic AI](skills/agentic-ai)
 
+Local LLMs
+<YouTubeEmbed video-id="OSnAd5SuT_k" /><br/>
+Create one for java as well
 
 ## Notes for Oreilly Courses
 

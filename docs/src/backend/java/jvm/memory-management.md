@@ -38,12 +38,10 @@ JVM Heap memory is divided into two parts – Young Generation and Old Generatio
 - Duration taken by garbage collector depends on the strategy used for garbage collection.
   - That’s why it’s necessary to monitor and tune the garbage collector to avoid timeouts in the highly responsive applications.
 
-![Types of GC](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_RGldr9pX3NLlRRLCg51Co8fVWxrSIdvg14m50HkPxWaG3YZjE5Fq1x0&s=10)
+## Java Stack Memory
 
-![](https://media.geeksforgeeks.org/wp-content/uploads/20230526124825/Serial-GC.png)
-
-![](https://miro.medium.com/v2/resize:fit:1400/0*LReZE-39GlXDY3c5)
-![](https://miro.medium.com/v2/resize:fit:1400/1*ncg-bI8FhTwAu60e6cJEbg.png)
+- Java Stack memory is used for execution of a thread.
+- contain method specific values that are short-lived and references to other objects on the heap referred from method.
 
 ## Method Area (Perm Gen)
 
@@ -60,9 +58,6 @@ JVM Heap memory is divided into two parts – Young Generation and Old Generatio
   - Runtime constant pool is per-class runtime representation of constant pool in a class.
   - It contains class runtime constants and static methods.
   - Runtime constant pool is the part of method area.
-- **Java Stack Memory**
-  - Java Stack memory is used for execution of a thread.
-  - contain method specific values that are short-lived and references to other objects on the heap referred from method.
 
 ### Where static variables are stored from Java 8
 
@@ -77,9 +72,37 @@ JVM Heap memory is divided into two parts – Young Generation and Old Generatio
   - ***static variables are stored in the Heap itself.***
   - PermGen Space is removed and new space, **MetaSpace** is introduced which is not the part of Heap any more.
   - MetaSpace is present on the native memory
-    - memory provided by the OS to a particular Application for its own usage
+    - Native memory provided by the OS to a particular Application for its own usage
   - MetaSpace - class meta-data and string pool
 
 <OldImageComponent image-path='/java/jvm-architecture/jmm-java8.png' />
 ![](https://intexsoft.com/app/uploads/2019/10/jdk-4.jpg.webp)
+![](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*OADfaQkCh-xabJWNpcYEgA.png)
 
+**How They Relate**
+
+- Method Area (The Blueprint). This is a logical memory area defined by the JVM Specification. It dictates that every JVM must have a shared space to store class structures, runtime constant pools, and method code, without enforcing how or where it is built.
+- PermGen (The Legacy Implementation). Short for Permanent Generation, this was Oracle's physical implementation of the Method Area in Java 7 and earlier. It lived inside a contiguous section of the Java heap and had a strict, fixed maximum size.
+- Metaspace (The Modern Implementation). Introduced in Java 8, Metaspace is the modern replacement for PermGen. It fulfills the Method Area specification by moving class metadata out of the Java heap and directly into native operating system memory.
+
+## Java Heap Memory Switches
+
+- Java provides a lot of memory switches that we can use to set the memory sizes and their ratios.
+- Some of the commonly used memory switches are:
+
+| VM SWITCH                                      | VM SWITCH DESCRIPTION                                                                                                                                                                                         |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -Xms                                           | initial heap size when JVM starts                                                                                                                                                                             |
+| -Xmx                                           | maximum heap size.                                                                                                                                                                                            |
+| -Xmn                                           | size of the Young Generation, rest of the space goes for Old Generation.                                                                                                                                      |
+| -XX:PermGen                                    | initial size of the Permanent Generation memory                                                                                                                                                               |
+| -XX:MaxPermGen                                 | maximum size of Perm Gen                                                                                                                                                                                      |
+| -XX:MetaspaceSize                              |                                                                                                                                                                                                               |
+| -XX:MaxMetaspaceSize                           |                                                                                                                                                                                                               |
+| -XX:SurvivorRatio                              | ratio of Eden space and Survivor Space<br>Young Generation=10m with VM switch -XX:SurvivorRatio=2 then 5m will be reserved for Eden Space and 2.5m each for both the Survivor spaces. The default value is 8. |
+| -XX:NewRatio                                   | For providing ratio of old/new generation sizes. The default value is 2.                                                                                                                                      |
+| MinMetaspaceFreeRatio<br>MaxMetaspaceFreeRatio | minimum percentage of class metadata capacity free after **garbage collection**                                                                                                                               |
+
+<OldImageComponent image-path='/java/jvm-architecture/heap-memory-switches.png' />
+
+<OldImageComponent image-path='/java/jvm-architecture/heap-memory-switches-generation.png' />

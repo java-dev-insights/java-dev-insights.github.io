@@ -10,6 +10,9 @@ LLD or HLD?
 
 <YouTubeEmbed video-id="a5rABvMQ53U" /><br/>
 
+<YouTubeEmbed video-id="Ru54dxzCyD0" /><br/>
+<YouTubeEmbed video-id="FkLAEAcQXcc" /><br/>
+
 ::: details Ace system design
 ![Ace system design](https://miro.medium.com/v2/resize:fit:1400/1*T9CFIuoIO24UcNRGRpi7dQ.png)
 :::
